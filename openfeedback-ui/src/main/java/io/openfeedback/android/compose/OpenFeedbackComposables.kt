@@ -51,8 +51,9 @@ fun SessionFeedbackContainer(openFeedback: OpenFeedback,
         Log.d("OF", "Compose Progress")
         CircularProgressIndicator()
 
+        // TODO: fix the leak
         openFeedback.getUISessionFeedback(sessionId) { sessionFeedback, possibleColors ->
-            loading.sessionFeedback = sessionFeedback
+            loading.sessionFeedback = OpenFeedbackModelHelper.keepDotsPosition(loading.sessionFeedback, sessionFeedback, possibleColors)
             loading.uiContext = UIContext(openFeedback, sessionId, possibleColors)
             Log.d("OF", "Got sessionFeedback: $sessionFeedback$")
         }
@@ -91,12 +92,10 @@ fun VoteItems(
                             Ripple(bounded = true) {
                                 Clickable(consumeDownOnStart = false,
                                         onClick = {
-                                            OpenFeedbackModelHelper.toggle(voteItem, uiContext?.colors ?: emptyList())
-
                                             if (uiContext != null) {
                                                 uiContext.openFeedback.voteAndForget(sessionId = uiContext.sessionId,
                                                         voteItemId = voteItem.id,
-                                                        vote = voteItem.votedByUser)
+                                                        vote = !voteItem.votedByUser)
                                             }
                                         }) {
                                     VoteCard(voteItem)

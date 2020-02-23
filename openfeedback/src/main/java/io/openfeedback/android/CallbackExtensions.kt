@@ -4,30 +4,31 @@ import android.util.Log
 import io.openfeedback.android.model.Project
 import io.openfeedback.android.model.VoteStatus
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.first
 
 /**
  * A bunch of helper methods to help bridging the non-coroutine world
  */
-fun OpenFeedback.getSessionFeedback(sessionId: String, callback: (Project, List<String>, Map<String, Long>) -> Unit): Job {
+fun OpenFeedback.getSessionFeedback(sessionId: String, callback: (Project, List<String>, Map<String, Long>) -> Unit):
+        Job {
     return GlobalScope.launch(Dispatchers.Main) {
 
-        combine(listOf(getProject(), getUserVotes(sessionId), getTotalVotes(sessionId))) { array ->
-            val project = array[0].snapshot as Project?
+        val flow = combine(listOf(getProject(), getUserVotes(sessionId), getTotalVotes(sessionId))) { array ->
+            array
+        }
+
+        flow.collect { array: Array<*> ->
+            val project = array[0] as Project?
             if (project == null) {
                 Log.e("OpenFeedback", "Cannot retrieve project, please check your projectId")
-                return@combine
+                return@collect
             }
 
             val userVotes = array[1] as List<String>
             val totalVotes = array[2] as Map<String, Long>
 
             callback(project, userVotes, totalVotes)
-
-            if (array.count { it.fromCache } == 0) {
-                //cancel()
-            }
         }
     }
 }

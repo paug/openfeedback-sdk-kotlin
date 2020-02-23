@@ -8,8 +8,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.*
 import io.openfeedback.android.model.Project
-import io.openfeedback.android.model.Snapshot
 import io.openfeedback.android.model.VoteStatus
+import kotlinx.coroutines.channels.BroadcastChannel
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -24,12 +26,23 @@ class OpenFeedback(context: Context,
     val firestore: FirebaseFirestore
     val auth: FirebaseAuth
 
+    class OptimisticVotes(
+            var lastValue: Map<String, Long>?,
+            val channel: BroadcastChannel<Map<String, Long>>
+    )
+
+    /**
+     * TODO: check if this leaks
+     */
+    val optimisticVotes = mutableMapOf<String, OptimisticVotes>()
+
     class FirebaseConfig(
             val projectId: String,
             val applicationId: String,
             val apiKey: String,
             val databaseUrl: String
     )
+
     init {
         val options = FirebaseOptions.Builder()
                 .setProjectId(firebaseConfig.projectId)
@@ -63,15 +76,12 @@ class OpenFeedback(context: Context,
         auth.currentUser
     }
 
-    suspend fun getProject(): Flow<Snapshot<Project?>> = flow {
-        val task = firestore.collection("projects")
+    suspend fun getProject(): Flow<Project?> = flow {
+        firestore.collection("projects")
                 .document(openFeedbackProjectId)
                 .toFlow()
-                .collect {documentSnapshot ->
-                    val snapshot = Snapshot(documentSnapshot.toObject(Project::class.java),
-                            documentSnapshot.metadata.isFromCache)
-
-                    emit(snapshot)
+                .collect { documentSnapshot ->
+                    emit(documentSnapshot.toObject(Project::class.java))
                 }
     }
 
@@ -81,39 +91,69 @@ class OpenFeedback(context: Context,
             firestore.collection("projects/$openFeedbackProjectId/userVotes")
                     .whereEqualTo("userId", user.uid)
                     .toFlow()
-                    .collect {querySnapshot ->
+                    .collect { querySnapshot ->
                         val votes = querySnapshot.filter {
                             it.data.get("status") == VoteStatus.Active.value
                                     && it.data.get("talkId") == sessionId
                         }.map {
                             it.data.get("voteItemId") as String
                         }
-                        val snapshot = Snapshot(votes, querySnapshot.metadata.isFromCache)
-                        emit(snapshot)
+                        emit(votes)
                     }
         }
     }
 
-    fun getTotalVotes(sessionId: String): Flow<Snapshot<Map<String, Long>>> = flow {
-        val user = getFirebaseUser()
-        if (user != null) {
-            firestore.collection("projects/$openFeedbackProjectId/sessionVotes")
-                    .toFlow()
-                    .collect { querySnapshot ->
-                        // Somehow I can query the list but not a single document..
-                        // Fix this one day
-                        val totalVotes = querySnapshot
-                                .firstOrNull { it.id == sessionId }
-                                ?.data as? Map<String, Long>
-                                ?: emptyMap() // If there's no vote yet, default to an empty map
-                        val snapshot = Snapshot(totalVotes, querySnapshot.metadata.isFromCache)
-                        emit(snapshot)
-                    }
+    fun getTotalVotes(sessionId: String): Flow<Map<String, Long>> {
+        val optimisticVotes = optimisticVotes.getOrPut(sessionId) {
+            OptimisticVotes(null, BroadcastChannel(Channel.CONFLATED))
         }
+
+        val channel = Channel<Map<String, Long>>(Channel.CONFLATED)
+        val registration = firestore.collection("projects/$openFeedbackProjectId/sessionVotes")
+                .document(sessionId)
+                .addSnapshotListener { documentSnapshot, firebaseFirestoreException ->
+                    val totalVotes = documentSnapshot!!.data as? Map<String, Long>
+                            ?: emptyMap() // If there's no vote yet, default to an empty map
+
+                    optimisticVotes.lastValue = totalVotes
+                    channel.offer(totalVotes)
+                }
+
+        channel.invokeOnClose {
+            registration.remove()
+        }
+
+        val flow1 = flow {
+            channel.consumeEach {
+                emit(it)
+            }
+        }
+        val flow2 = optimisticVotes.channel.asFlow()
+
+        return flowOf(flow1, flow2).flattenMerge()
     }
 
     suspend fun setVote(talkId: String, voteItemId: String, status: VoteStatus) = withFirebaseUser { firebaseUser ->
         val collectionReference = firestore.collection("projects/$openFeedbackProjectId/userVotes")
+
+        val optimisticVotes = optimisticVotes.getOrPut(talkId) {
+            OptimisticVotes(null, BroadcastChannel(Channel.CONFLATED))
+        }
+
+        val lastValue = optimisticVotes.lastValue
+        if (lastValue != null){
+
+            optimisticVotes.lastValue = lastValue.toMutableMap().apply {
+                var count = lastValue.getOrDefault(voteItemId, 0L)
+                count += if (status == VoteStatus.Deleted) -1 else 1
+                if (count < 0) {
+                    count = 0L
+                }
+                put(voteItemId, count)
+            }
+            optimisticVotes.channel.offer(optimisticVotes.lastValue!!)
+        }
+
         val querySnapshot = collectionReference
                 .whereEqualTo("userId", firebaseUser.uid)
                 .whereEqualTo("talkId", talkId)

@@ -39,10 +39,31 @@ object OpenFeedbackModelHelper {
     fun dots(count: Int, possibleColors: List<String>): List<UIDot> {
         return 0.until(count).map {
             UIDot(Random.nextFloat(),
-                    Random.nextFloat(),
+                    Random.nextFloat().coerceIn(0.1f, 0.9f),
                     possibleColors.get(Random.nextInt().absoluteValue % possibleColors.size)
             )
         }
+    }
+
+    fun keepDotsPosition(oldSessionFeedback: UISessionFeedback?, newSessionFeedback: UISessionFeedback, colors: List<String>): UISessionFeedback {
+        return UISessionFeedback(
+                comments = newSessionFeedback.comments,
+                voteItem = newSessionFeedback.voteItem.map { newVoteItem ->
+                    val oldVoteItem = oldSessionFeedback?.voteItem?.find { it.id == newVoteItem.id }
+                    val newDots = if ( oldVoteItem != null) {
+                        val diff = newVoteItem.dots.size - oldVoteItem.dots.size
+                        if (diff > 0) {
+                            oldVoteItem.dots + dots(diff, colors)
+                        } else {
+                            oldVoteItem.dots.dropLast(diff.absoluteValue)
+                        }
+                    } else {
+                        newVoteItem.dots
+                    }
+
+                    UIVoteItem(id = newVoteItem.id, text = newVoteItem.text, dots = newDots, votedByUser = newVoteItem.votedByUser)
+                }
+        )
     }
 }
 

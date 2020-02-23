@@ -12,11 +12,6 @@ class VoteItem(
         val type: String = ""
 )
 
-class Snapshot<T>(
-        val snapshot: T,
-        val fromCache: Boolean
-)
-
 enum class VoteStatus(val value: String) {
     Active("active"),
     Deleted("deleted")
