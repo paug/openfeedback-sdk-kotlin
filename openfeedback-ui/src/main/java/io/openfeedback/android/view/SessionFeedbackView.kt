@@ -22,7 +22,7 @@ class SessionFeedbackView @JvmOverloads constructor(context: Context,
 
     fun stop() {
         setContent {
-            
+
         }
     }
 }

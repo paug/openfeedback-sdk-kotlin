@@ -24,7 +24,9 @@ subprojects {
     if (name != "sample-app") {
         apply(plugin = "maven-publish")
         afterEvaluate {
-            configurePublishing()
+            afterEvaluate {
+                configurePublishing()
+            }
         }
     }
 }
