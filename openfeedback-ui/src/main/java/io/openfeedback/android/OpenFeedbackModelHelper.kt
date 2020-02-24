@@ -7,7 +7,9 @@ import kotlin.random.Random
 object OpenFeedbackModelHelper {
     fun toUISessionFeedback(project: Project, userVotes: List<String>, totalVotes: Map<String, Long>): UISessionFeedback {
 
-        val voteItems = project.voteItems.map { voteItem ->
+        val voteItems = project.voteItems
+                .filter { it.type == "boolean" }
+                .map { voteItem ->
             val count = totalVotes.entries.find { e ->
                 voteItem.id == e.key
             }?.value

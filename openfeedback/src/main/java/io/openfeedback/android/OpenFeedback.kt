@@ -116,6 +116,8 @@ class OpenFeedback(context: Context,
                             ?: emptyMap() // If there's no vote yet, default to an empty map
 
                     optimisticVotes.lastValue = totalVotes
+                    //val source = if (documentSnapshot.metadata.isFromCache) "cache" else "netwo"
+                    //Log.e("TotalVotes", "Firebase vote ($source): ${totalVotes.prettyString()}")
                     channel.offer(totalVotes)
                 }
 
@@ -151,6 +153,9 @@ class OpenFeedback(context: Context,
                 }
                 put(voteItemId, count)
             }
+
+            //Log.e("TotalVotes", "Optimistic vote: ${optimisticVotes.lastValue?.prettyString()}")
+
             optimisticVotes.channel.offer(optimisticVotes.lastValue!!)
         }
 
@@ -186,4 +191,7 @@ class OpenFeedback(context: Context,
         }
     }
 }
+
+fun Map<*, *>.prettyString() = entries.map { "${it.key}: ${it.value}" }.joinToString(separator = "\n", prefix = "\n")
+
 

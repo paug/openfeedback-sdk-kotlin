@@ -2,8 +2,10 @@ package io.openfeedback.android.compose
 
 import android.util.Log
 import androidx.compose.*
+import androidx.ui.core.Alignment
 import androidx.ui.core.Draw
 import androidx.ui.core.Text
+import androidx.ui.core.WithConstraints
 import androidx.ui.foundation.Border
 import androidx.ui.foundation.Clickable
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
@@ -18,6 +20,7 @@ import androidx.ui.text.TextStyle
 import androidx.ui.text.style.TextAlign
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
+import androidx.ui.unit.toPx
 import io.openfeedback.android.OpenFeedback
 import io.openfeedback.android.OpenFeedbackModelHelper
 import io.openfeedback.android.getUISessionFeedback
@@ -47,19 +50,30 @@ fun SessionFeedbackContainer(openFeedback: OpenFeedback,
         UIContainer(null, null)
     }
 
-    if (loading.sessionFeedback == null) {
-        Log.d("OF", "Compose Progress")
-        CircularProgressIndicator()
-
-        // TODO: fix the leak
+    val job = remember {
         openFeedback.getUISessionFeedback(sessionId) { sessionFeedback, possibleColors ->
             loading.sessionFeedback = OpenFeedbackModelHelper.keepDotsPosition(loading.sessionFeedback, sessionFeedback, possibleColors)
             loading.uiContext = UIContext(openFeedback, sessionId, possibleColors)
-            Log.d("OF", "Got sessionFeedback: $sessionFeedback$")
         }
+    }
+
+    onCommit(job) {
+        onDispose {
+            job.cancel()
+        }
+    }
+
+    if (loading.sessionFeedback == null) {
+        Loading()
     } else {
-        Log.d("OF", "Compose Feedback")
         SessionFeedback(sessionFeedback = loading.sessionFeedback!!, uiContext = loading.uiContext!!)
+    }
+}
+
+@Composable
+fun Loading() {
+    Wrap(alignment = Alignment.TopCenter) {
+        CircularProgressIndicator()
     }
 }
 
@@ -172,7 +186,9 @@ fun VoteCard(voteModel: UIVoteItem) {
 @Preview
 @Composable
 fun votePreview() {
-    VoteItems(voteItems = fakeVotes, columnCount = 2, uiContext = null)
+    //VoteItems(voteItems = fakeVotes, columnCount = 2, uiContext = null)
+
+    Loading()
 }
 
 val fakeVotes = listOf(
