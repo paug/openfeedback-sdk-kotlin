@@ -29,11 +29,19 @@ subprojects {
     }
 }
 
+class PomValues(
+        val artifactName: String
+)
 
 fun Project.configurePublishing() {
     val publicationName = "default"
     val android = extensions.findByType(com.android.build.gradle.BaseExtension::class.java)
 
+    val values = when(name) {
+        "openfeedback" -> PomValues(artifactName = "feedback-android-sdk")
+        "openfeedback-ui" -> PomValues(artifactName = "feedback-android-sdk-ui")
+        else -> error("don't know how to configure $name")
+    }
     /**
      * Javadoc
      */
@@ -87,7 +95,7 @@ fun Project.configurePublishing() {
 
                 pom {
                     groupId = "io.openfeedback"
-                    artifactId = this@configurePublishing.name.substring("open".length)
+                    artifactId = values.artifactName
                     version = rootProject.version as String
 
                     name.set(artifactId)
@@ -121,7 +129,7 @@ fun Project.configurePublishing() {
         repositories {
             maven {
                 name = "bintray"
-                url = uri("https://api.bintray.com/maven/openfeedback/Android/${this@configurePublishing.name.substring("open".length)}/;publish=1;override=1")
+                url = uri("https://api.bintray.com/maven/openfeedback/Android/${values.artifactName}/;publish=1;override=1")
                 credentials {
                     username = findProperty("bintray.user") as String?
                     password = findProperty("bintray.apikey") as String?

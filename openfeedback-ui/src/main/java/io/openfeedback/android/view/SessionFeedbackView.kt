@@ -12,11 +12,17 @@ import io.openfeedback.android.model.UIVoteItem
 class SessionFeedbackView @JvmOverloads constructor(context: Context,
                                                     attrs: AttributeSet? = null,
                                                     defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
-    fun configure(
+    fun start(
             openFeedback: OpenFeedback,
             sessionId: String) {
         setContent {
             SessionFeedbackContainer(openFeedback, sessionId)
+        }
+    }
+
+    fun stop() {
+        setContent {
+            
         }
     }
 }
