@@ -1,0 +1,4 @@
+set -e
+
+./gradlew assemble
+
