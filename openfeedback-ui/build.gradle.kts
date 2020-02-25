@@ -6,7 +6,7 @@ plugins {
 }
 
 extensions.findByType(BaseExtension::class.java)!!.apply {
-    compileSdkVersion(28.toString().toInt())
+    compileSdkVersion(29)
     defaultConfig {
         minSdkVersion(21)
         targetSdkVersion(29)
