@@ -3,10 +3,10 @@ plugins {
     id("kotlin-android")
 }
 extensions.findByType(com.android.build.gradle.BaseExtension::class.java)!!.apply {
-    compileSdkVersion(28.toString().toInt())
+    compileSdkVersion(29)
     defaultConfig {
         minSdkVersion(21)
-        targetSdkVersion(28)
+        targetSdkVersion(29)
         versionCode = 1
         versionName = "1"
     }
