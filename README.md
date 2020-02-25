@@ -8,15 +8,11 @@ The SDK exposes a regular View and a Composable if you want to try [compose](htt
 
 # Installation
 
-The SDK is available on bintray and soon jcenter:
+The SDK is available on jcenter:
 
 ```
 repositories {
     jcenter()
-    // Remove when the SDK reaches jcenter, hopefully soon
-    maven {
-        url = uri("https://dl.bintray.com/openfeedback/Android/")
-    }
 }
 
 dependencies {
