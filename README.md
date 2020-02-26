@@ -1,4 +1,4 @@
-# Open-Feedback Android SDK
+# Open-Feedback Android SDK [![Build Status](https://travis-ci.org/paug/openfeedback-android-sdk.svg?branch=master)](https://travis-ci.org/paug/openfeedback-android-sdk)
 
 An Android client for Open-Feeedback https://github.com/HugoGresse/open-feedback:
 
