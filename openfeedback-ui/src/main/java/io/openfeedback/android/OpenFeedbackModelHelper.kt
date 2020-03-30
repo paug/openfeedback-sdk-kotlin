@@ -18,7 +18,7 @@ object OpenFeedbackModelHelper {
 
                 UIVoteItem(
                         id = voteItem.id,
-                        text = voteItem.name,
+                        text = voteItem.localizedName("en"),
                         dots = dots(count, project.chipColors),
                         votedByUser = userVotes.contains(voteItem.id))
         }

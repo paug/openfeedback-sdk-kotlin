@@ -9,12 +9,12 @@ class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         openFeedback = OpenFeedback(context = this,
-                openFeedbackProjectId = "7Hq01JIxGJtCQ7bRGIYN",
+                openFeedbackProjectId = "Y7J4MXql8rSR2NUPhPuy",
                 firebaseConfig = OpenFeedback.FirebaseConfig(
-                        projectId = "openfeedbackandroid",
-                        applicationId = "1:374468031823:web:1c09ba872a0b0b1439013a",
-                        apiKey = "AIzaSyBz84579hY2Ry_lnNBqcfD2D4fXwx3g5V4",
-                        databaseUrl = "https://openfeedbackandroid.firebaseio.com"
+                        projectId = "openfeedback-b7ab9",
+                        applicationId = "1:765209934800:android:a6bb09f3deabc2277297d5",
+                        apiKey = "AIzaSyC_cfbh8xKwF8UPxCeasGcsHyK4s5yZFeA",
+                        databaseUrl = "https://openfeedback-b7ab9.firebaseio.com"
                 )
         )
     }

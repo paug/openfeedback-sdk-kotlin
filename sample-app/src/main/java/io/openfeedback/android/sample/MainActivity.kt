@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val openFeedback = (applicationContext as MainApplication).openFeedback
         setContent {
-            SessionFeedbackContainer(openFeedback, "mqWvuGJrKc0q6C3LVZY3")
+            SessionFeedbackContainer(openFeedback, "tpPA74vW740LHiVDWHtV")
         }
     }
 
