@@ -33,7 +33,7 @@ fun setCurrentVersion(version: String) {
 fun getCurrentVersion(): String {
     val versionLines = File("build.gradle.kts").readLines().filter { it.startsWith("version =") }
 
-    require(versionLines.size > 0) {
+    require(versionLines.isNotEmpty()) {
         "cannot find the version in ./gradle.properties"
     }
 
@@ -41,7 +41,7 @@ fun getCurrentVersion(): String {
         "multiple versions found in ./gradle.properties"
     }
 
-    val regex = Regex("version = (.*)-SNAPSHOT")
+    val regex = Regex("version = \"(.*)-SNAPSHOT\"")
     val matchResult = regex.matchEntire(versionLines.first())
 
     require(matchResult != null) {
