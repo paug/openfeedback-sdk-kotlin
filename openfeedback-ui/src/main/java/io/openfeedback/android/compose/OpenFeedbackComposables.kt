@@ -44,14 +44,15 @@ class UIContainer(var sessionFeedback: UISessionFeedback?,
 
 @Composable
 fun SessionFeedbackContainer(openFeedback: OpenFeedback,
-                             sessionId: String
+                             sessionId: String,
+                             language: String
 ) {
     val loading = remember {
         UIContainer(null, null)
     }
 
     val job = remember {
-        openFeedback.getUISessionFeedback(sessionId) { sessionFeedback, possibleColors ->
+        openFeedback.getUISessionFeedback(sessionId, language) { sessionFeedback, possibleColors ->
             loading.sessionFeedback = OpenFeedbackModelHelper.keepDotsPosition(loading.sessionFeedback, sessionFeedback, possibleColors)
             loading.uiContext = UIContext(openFeedback, sessionId, possibleColors)
         }

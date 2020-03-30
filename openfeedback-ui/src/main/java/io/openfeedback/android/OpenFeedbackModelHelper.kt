@@ -5,7 +5,7 @@ import kotlin.math.absoluteValue
 import kotlin.random.Random
 
 object OpenFeedbackModelHelper {
-    fun toUISessionFeedback(project: Project, userVotes: List<String>, totalVotes: Map<String, Long>): UISessionFeedback {
+    fun toUISessionFeedback(project: Project, userVotes: List<String>, totalVotes: Map<String, Long>, language: String): UISessionFeedback {
 
         val voteItems = project.voteItems
                 .filter { it.type == "boolean" }
@@ -18,7 +18,7 @@ object OpenFeedbackModelHelper {
 
                 UIVoteItem(
                         id = voteItem.id,
-                        text = voteItem.localizedName("en"),
+                        text = voteItem.localizedName(language),
                         dots = dots(count, project.chipColors),
                         votedByUser = userVotes.contains(voteItem.id))
         }

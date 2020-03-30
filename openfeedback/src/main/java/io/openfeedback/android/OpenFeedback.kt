@@ -146,7 +146,7 @@ class OpenFeedback(context: Context,
         if (lastValue != null){
 
             optimisticVotes.lastValue = lastValue.toMutableMap().apply {
-                var count = lastValue.getOrDefault(voteItemId, 0L)
+                var count = lastValue.getOrElse(voteItemId, {0L})
                 count += if (status == VoteStatus.Deleted) -1 else 1
                 if (count < 0) {
                     count = 0L

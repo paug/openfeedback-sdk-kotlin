@@ -130,6 +130,15 @@ fun Project.configurePublishing() {
 
         repositories {
             maven {
+                name = "ojo"
+                url = uri("https://oss.jfrog.org/artifactory/oss-snapshot-local/")
+                credentials {
+                    username = System.getenv("BINTRAY_USER")
+                    password = System.getenv("BINTRAY_API_KEY")
+                }
+            }
+
+            maven {
                 name = "bintray"
                 url = uri("https://api.bintray.com/maven/openfeedback/Android/${values.artifactName}/;publish=1;override=1")
                 credentials {
@@ -138,5 +147,37 @@ fun Project.configurePublishing() {
                 }
             }
         }
+    }
+}
+
+val publishToBintray = tasks.register("publishToBintray") {
+    dependsOn(subprojects.flatMap {subproject ->
+        subproject.tasks.matching {
+            it.name == "publishAllPublicationsToBintrayRepository"
+        }
+    })
+}
+
+val publishToOjo = tasks.register("publishToOjo") {
+    dependsOn(subprojects.flatMap {subproject ->
+        subproject.tasks.matching {
+            it.name == "publishAllPublicationsToOjoRepository"
+        }
+    })
+}
+
+tasks.register("publishIfNeeded") {
+    val eventName = System.getenv("GITHUB_EVENT_NAME")
+    val ref = System.getenv("GITHUB_REF")
+    project.logger.log(LogLevel.LIFECYCLE, "publishIfNeeded eventName=$eventName ref=$ref")
+
+    if (eventName == "push" && ref == "refs/heads/master") {
+        project.logger.log(LogLevel.LIFECYCLE, "Deploying snapshot to OJO...")
+        dependsOn(publishToOjo)
+    }
+
+    if (ref?.startsWith("ref/tags/") == true) {
+        project.logger.log(LogLevel.LIFECYCLE, "Deploying release to Bintray...")
+        dependsOn(publishToBintray)
     }
 }

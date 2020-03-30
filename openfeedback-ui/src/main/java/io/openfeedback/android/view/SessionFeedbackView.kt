@@ -16,7 +16,7 @@ class SessionFeedbackView @JvmOverloads constructor(context: Context,
             openFeedback: OpenFeedback,
             sessionId: String) {
         setContent {
-            SessionFeedbackContainer(openFeedback, sessionId)
+            SessionFeedbackContainer(openFeedback, sessionId, "en")
         }
     }
 

@@ -7,8 +7,8 @@ import kotlinx.coroutines.Job
  * A bunch of extensions to get UI models from a openFeedback object
  */
 
-fun OpenFeedback.getUISessionFeedback(sessionId: String, callback: (UISessionFeedback, List<String>) -> Unit): Job {
+fun OpenFeedback.getUISessionFeedback(sessionId: String, language: String, callback: (UISessionFeedback, List<String>) -> Unit): Job {
     return getSessionFeedback(sessionId) { project, userVotes, totalVotes ->
-        callback(OpenFeedbackModelHelper.toUISessionFeedback(project, userVotes, totalVotes), project.chipColors)
+        callback(OpenFeedbackModelHelper.toUISessionFeedback(project, userVotes, totalVotes, language), project.chipColors)
     }
 }
