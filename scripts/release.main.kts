@@ -79,9 +79,9 @@ var tagVersion: String = ""
 
 while (tagVersion.isEmpty()) {
     println("Current version is '$version-SNAPSHOT'.")
-    println("1. patch: tag $version and bump to $nextPatch")
-    println("2. minor: tag $nextMinor and bump to $nextPatchAfterMinor")
-    println("3. major: tag $nextMajor and bump to $nextPatchAfterMajor")
+    println("1. patch: tag $version and bump to $nextPatch-SNAPSHOT")
+    println("2. minor: tag $nextMinor and bump to $nextPatchAfterMinor-SNAPSHOT")
+    println("3. major: tag $nextMajor and bump to $nextPatchAfterMajor-SNAPSHOT")
     println("What do you want to do [1/2/3]?")
 
     val answer = readLine()!!.trim()
