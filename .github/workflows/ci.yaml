@@ -16,7 +16,9 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Gradle
-        run: ./gradlew build publishIfNeeded
+        run:
+          ./gradlew build
+          ./gradlew publishIfNeeded
         env: # Or as an environment variable
           BINTRAY_API_KEY: ${{ secrets.BINTRAY_API_KEY }}
           BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
