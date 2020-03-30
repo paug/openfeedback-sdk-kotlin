@@ -23,24 +23,15 @@ fun runCommand(vararg args: String): String {
 }
 
 fun setCurrentVersion(version: String) {
-    val gradleProperties = File("gradle.properties")
-    var newContent = gradleProperties.readLines().map {
-        it.replace(Regex("VERSION_NAME=.*"), "VERSION_NAME=$version")
+    val gradleProperties = File("build.gradle.kts")
+    val newContent = gradleProperties.readLines().map {
+        it.replace(Regex("version = .*"), "version = $version")
     }.joinToString(separator = "\n", postfix = "\n")
     gradleProperties.writeText(newContent)
-
-    val dependencies = File("gradle/dependencies.gradle")
-    //    apollo                : '1.2.2', // This should only be used by apollo-gradle-plugin-incubating:test to get the artifacts locally
-    newContent = dependencies.readLines().map {
-        it.replace(Regex("( *apollo *: *').*('.*)")) {
-            "${it.groupValues[1]}$version${it.groupValues[2]}"
-        }
-    }.joinToString(separator = "\n", postfix = "\n")
-    dependencies.writeText(newContent)
 }
 
 fun getCurrentVersion(): String {
-    val versionLines = File("gradle.properties").readLines().filter { it.startsWith("VERSION_NAME=") }
+    val versionLines = File("build.gradle.kts").readLines().filter { it.startsWith("version =") }
 
     require(versionLines.size > 0) {
         "cannot find the version in ./gradle.properties"
@@ -50,11 +41,11 @@ fun getCurrentVersion(): String {
         "multiple versions found in ./gradle.properties"
     }
 
-    val regex = Regex("VERSION_NAME=(.*)-SNAPSHOT")
+    val regex = Regex("version = (.*)-SNAPSHOT")
     val matchResult = regex.matchEntire(versionLines.first())
 
     require(matchResult != null) {
-        "'${versionLines.first()}' doesn't match VERSION_NAME=(.*)-SNAPSHOT"
+        "'${versionLines.first()}' doesn't match ${regex.pattern}"
     }
 
     return matchResult.groupValues[1]
