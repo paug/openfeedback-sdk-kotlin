@@ -25,7 +25,7 @@ fun runCommand(vararg args: String): String {
 fun setCurrentVersion(version: String) {
     val gradleProperties = File("build.gradle.kts")
     val newContent = gradleProperties.readLines().map {
-        it.replace(Regex("version = .*"), "version = $version")
+        it.replace(Regex("version = .*"), "version = \"$version\"")
     }.joinToString(separator = "\n", postfix = "\n")
     gradleProperties.writeText(newContent)
 }
