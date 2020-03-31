@@ -13,7 +13,7 @@ buildscript {
     }
 }
 
-version = "0.0.3-SNAPSHOT"
+version = "0.0.3"
 
 subprojects {
     repositories {
@@ -98,7 +98,7 @@ fun Project.configurePublishing() {
                 pom {
                     groupId = "io.openfeedback"
                     artifactId = values.artifactName
-                    version = rootProject.version as String
+                    version = "0.0.3"
 
                     name.set(artifactId)
                     packaging = "aar"
