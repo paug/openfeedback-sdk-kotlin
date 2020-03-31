@@ -142,8 +142,8 @@ fun Project.configurePublishing() {
                 name = "bintray"
                 url = uri("https://api.bintray.com/maven/openfeedback/Android/${values.artifactName}/;publish=1;override=1")
                 credentials {
-                    username = findProperty("bintray.user") as String?
-                    password = findProperty("bintray.apikey") as String?
+                    username = System.getenv("BINTRAY_USER")
+                    password = System.getenv("BINTRAY_API_KEY")
                 }
             }
         }
