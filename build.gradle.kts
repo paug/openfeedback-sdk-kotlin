@@ -1,5 +1,5 @@
 buildscript {
-    val kotlinVersion = "1.3.61"
+    val kotlinVersion = "1.3.71"
     project.extra.set("kotlinVersion", kotlinVersion)
     project.extra.set("composeVersion", "0.1.0-dev05")
 
@@ -8,7 +8,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.0.0-beta03")
+        classpath("com.android.tools.build:gradle:4.0.0-beta04")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
     }
 }
