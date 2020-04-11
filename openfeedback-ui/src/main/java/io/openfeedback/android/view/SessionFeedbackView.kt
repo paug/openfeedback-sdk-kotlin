@@ -14,9 +14,10 @@ class SessionFeedbackView @JvmOverloads constructor(context: Context,
                                                     defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
     fun start(
             openFeedback: OpenFeedback,
-            sessionId: String) {
+            sessionId: String,
+            language: String) {
         setContent {
-            SessionFeedbackContainer(openFeedback, sessionId, "en")
+            SessionFeedbackContainer(openFeedback, sessionId, language)
         }
     }
 
