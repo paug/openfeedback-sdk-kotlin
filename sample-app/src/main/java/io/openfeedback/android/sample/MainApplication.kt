@@ -9,7 +9,7 @@ class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         openFeedback = OpenFeedback(context = this,
-                openFeedbackProjectId = "Y7J4MXql8rSR2NUPhPuy",
+                openFeedbackProjectId = "mMHR63ARZQpPidFQISyc",
                 firebaseConfig = OpenFeedback.FirebaseConfig(
                         projectId = "openfeedback-b7ab9",
                         applicationId = "1:765209934800:android:a6bb09f3deabc2277297d5",
