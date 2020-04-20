@@ -1,0 +1,1 @@
+-keep class io.openfeedback.android.model.** { *; }

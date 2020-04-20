@@ -14,6 +14,10 @@ extensions.findByType(BaseExtension::class.java)!!.apply {
         versionName = "1"
     }
 
+    defaultConfig {
+        consumerProguardFiles.add(file("openfeedback-proguard-rules.txt"))
+    }
+
     compileOptions {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
