@@ -1,14 +1,14 @@
 buildscript {
-    val kotlinVersion = "1.3.71"
+    val kotlinVersion = "1.6.10"
     project.extra.set("kotlinVersion", kotlinVersion)
-    project.extra.set("composeVersion", "0.1.0-dev05")
+    project.extra.set("composeVersion", "1.2.0-alpha02")
 
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.0.0-beta04")
+        classpath("com.android.tools.build:gradle:7.0.4")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
     }
 }
@@ -18,7 +18,7 @@ version = "0.0.6-SNAPSHOT"
 subprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     if (name != "sample-app") {
@@ -51,7 +51,7 @@ fun Project.configurePublishing() {
     var javadocJarTaskProvider: TaskProvider<org.gradle.jvm.tasks.Jar>? = null
     if (javadocTask == null && android != null) {
         javadocTask = tasks.create("javadoc", Javadoc::class.java) {
-            source = android.sourceSets["main"].java.sourceFiles
+            // source = android.sourceSets.get("main").java.sourceFiles
             //classpath += project.files(android.joinToString(File.pathSeparator))
         }
     }
@@ -74,7 +74,7 @@ fun Project.configurePublishing() {
     } else if (android != null) {
         sourcesJarTaskProvider = tasks.register("sourcesJar", org.gradle.jvm.tasks.Jar::class.java) {
             archiveClassifier.set("sources")
-            from(android.sourceSets["main"].java.sourceFiles)
+            // from(android.sourceSets["main"].java.sourceFiles)
         }
     }
 
