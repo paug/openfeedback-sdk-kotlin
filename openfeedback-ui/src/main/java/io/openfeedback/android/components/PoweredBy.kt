@@ -22,7 +22,7 @@ import io.openfeedback.android.ui.R
 fun PoweredBy(
     modifier: Modifier = Modifier,
     style: TextStyle = MaterialTheme.typography.body2,
-    color: Color = Color(0, 0, 0, 200)
+    color: Color = MaterialTheme.colors.onBackground
 ) {
     Row(
         modifier = modifier.semantics(mergeDescendants = true) {

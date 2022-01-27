@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -40,7 +39,7 @@ fun VoteItems(
                         VoteCard(
                             voteModel = voteItem,
                             modifier = Modifier.clickable(
-                                role = Role.RadioButton,
+                                role = Role.Button,
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = rememberRipple(bounded = true),
                                 onClick = { onClick(voteItem) }
