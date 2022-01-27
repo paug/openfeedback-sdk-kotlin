@@ -10,7 +10,7 @@ fun Query.toFlow(): Flow<QuerySnapshot> = callbackFlow {
     val registration = addSnapshotListener(MetadataChanges.INCLUDE) { snapshot, exception ->
         if (snapshot != null) {
             runCatching {
-                offer(snapshot!!)
+                trySend(snapshot)
             }
         }
         if (exception != null) {
@@ -27,7 +27,7 @@ fun DocumentReference.toFlow(): Flow<DocumentSnapshot> = callbackFlow {
     val registration = addSnapshotListener(MetadataChanges.INCLUDE) { snapshot, exception ->
         if (snapshot != null) {
             runCatching {
-                offer(snapshot!!)
+                trySend(snapshot)
             }
         }
         if (exception != null) {

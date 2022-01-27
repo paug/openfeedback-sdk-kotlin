@@ -1,21 +1,23 @@
-import com.android.build.gradle.BaseExtension
-
 plugins {
     id("com.android.library")
     id("kotlin-android")
 }
 
-extensions.findByType(BaseExtension::class.java)!!.apply {
-    compileSdkVersion(29)
+android {
+    compileSdk = 31
+
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(29)
-        versionCode = 1
-        versionName = "1"
+        minSdk = 21
+        targetSdk = 31
     }
 
     compileOptions {
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = rootProject.extra["composeVersion"] as String
     }
 
     buildFeatures.compose = true
@@ -23,7 +25,7 @@ extensions.findByType(BaseExtension::class.java)!!.apply {
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 
@@ -32,14 +34,15 @@ dependencies {
     // Kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${rootProject.extra["kotlinVersion"]}")
 
-    implementation("androidx.compose:compose-runtime:$composeVersion")
-    implementation("androidx.ui:ui-framework:$composeVersion")
-    implementation("androidx.ui:ui-layout:$composeVersion")
-    implementation("androidx.ui:ui-material:$composeVersion")
-    implementation("androidx.ui:ui-foundation:$composeVersion")
-    implementation("androidx.ui:ui-animation:$composeVersion")
-    implementation("androidx.ui:ui-tooling:$composeVersion")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0")
+    implementation("androidx.compose.material:material:$composeVersion")
+    implementation("androidx.compose.ui:ui:$composeVersion")
+    implementation("androidx.compose.ui:ui-tooling:$composeVersion")
+    // Weird but necessary for the compose preview.
+    debugImplementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
+    debugImplementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
+    debugImplementation("androidx.savedstate:savedstate-ktx:1.1.0")
+    debugImplementation("androidx.core:core-ktx:1.7.0")
 
     api(project(":openfeedback"))
 }
-

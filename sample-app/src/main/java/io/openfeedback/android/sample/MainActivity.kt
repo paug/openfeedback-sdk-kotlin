@@ -1,29 +1,30 @@
 package io.openfeedback.android.sample
 
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
-import android.widget.Space
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.disposeComposition
-import androidx.ui.core.setContent
-import androidx.ui.layout.Container
-import androidx.ui.layout.Spacer
-import io.openfeedback.android.OpenFeedback
-import io.openfeedback.android.compose.Loading
-import io.openfeedback.android.compose.SessionFeedbackContainer
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Scaffold
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import io.openfeedback.android.components.SessionFeedbackContainer
+import io.openfeedback.android.sample.theme.OpenFeedbackTheme
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val openFeedback = (applicationContext as MainApplication).openFeedback
         setContent {
-            SessionFeedbackContainer(openFeedback, "173222", "en")
+            OpenFeedbackTheme {
+                Scaffold {
+                    SessionFeedbackContainer(
+                        openFeedback = openFeedback,
+                        sessionId = "173222",
+                        language = "en",
+                        modifier = Modifier.padding(it).padding(horizontal = 8.dp, vertical = 4.dp)
+                    )
+                }
+            }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        setContent { }
     }
 }

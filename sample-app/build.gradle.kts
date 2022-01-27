@@ -2,42 +2,43 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
 }
-extensions.findByType(com.android.build.gradle.BaseExtension::class.java)!!.apply {
-    compileSdkVersion(29)
+
+android {
+    compileSdk = 31
+
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(29)
+        minSdk = 21
+        targetSdk = 31
         versionCode = 1
         versionName = "1"
     }
 
     compileOptions {
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = rootProject.extra["composeVersion"] as String
     }
 
     buildFeatures.compose = true
 }
 
-
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${rootProject.extra["kotlinVersion"]}")
-    implementation("androidx.core:core-ktx:1.2.0")
-    implementation("androidx.appcompat:appcompat:1.1.0")
+    implementation("androidx.core:core-ktx:1.7.0")
+    implementation("androidx.appcompat:appcompat:1.4.1")
+    implementation("androidx.activity:activity-compose:1.5.0-alpha01")
 
     val composeVersion = rootProject.extra["composeVersion"]
-    implementation("androidx.compose:compose-runtime:$composeVersion")
-    implementation("androidx.ui:ui-framework:$composeVersion")
-    implementation("androidx.ui:ui-layout:$composeVersion")
-    implementation("androidx.ui:ui-material:$composeVersion")
-    implementation("androidx.ui:ui-foundation:$composeVersion")
-    implementation("androidx.ui:ui-animation:$composeVersion")
-    implementation("androidx.ui:ui-tooling:$composeVersion")
+    implementation("androidx.compose.material:material:$composeVersion")
 
     implementation(project(":openfeedback-ui"))
 }
