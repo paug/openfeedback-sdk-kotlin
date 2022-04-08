@@ -44,7 +44,7 @@ open class OpenFeedback(val project: Project) {
 
         if (ref?.startsWith("refs/tags/") == true) {
             project.logger.log(LogLevel.LIFECYCLE, "Deploying release to OssStaging...")
-            publishIfNeeded.dependsOn(project.tasks.named"publishAllPublicationsToOssStagingRepository")
+            publishIfNeeded.dependsOn(project.tasks.named("publishAllPublicationsToOssStagingRepository"))
         }
     }
 }
