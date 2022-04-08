@@ -20,5 +20,6 @@ jobs:
           ./gradlew build -Dorg.gradle.jvmargs=-Xmx1g
           ./gradlew publishIfNeeded
         env: # Or as an environment variable
-          BINTRAY_API_KEY: ${{ secrets.BINTRAY_API_KEY }}
-          BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
+          SONATYPE_NEXUS_USERNAME: ${{ secrets.SONATYPE_NEXUS_USERNAME }}
+          SONATYPE_NEXUS_PASSWORD: ${{ secrets.SONATYPE_NEXUS_PASSWORD }}
+          IO_OPENFEEDBACK_PROFILE_ID: ${{ secrets.IO_OPENFEEDBACK_PROFILE_ID }}

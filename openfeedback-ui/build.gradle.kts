@@ -1,8 +1,11 @@
+
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
+    id("io.openfeedback.build.lib")
 }
 
+openfeedback {
+    configurePublishing("feedback-android-sdk-ui")
+}
 android {
     compileSdk = 31
 
@@ -31,8 +34,6 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 
 dependencies {
     val composeVersion = rootProject.extra["composeVersion"]
-    // Kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${rootProject.extra["kotlinVersion"]}")
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0")
     implementation("androidx.compose.material:material:$composeVersion")

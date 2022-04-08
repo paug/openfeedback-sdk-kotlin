@@ -1,5 +1,5 @@
 **/.idea/*
-!/.idea/codeStyles.xml
-/.gradle
 build
+!/.idea/codeStyles.xml
+.gradle
 local.properties
