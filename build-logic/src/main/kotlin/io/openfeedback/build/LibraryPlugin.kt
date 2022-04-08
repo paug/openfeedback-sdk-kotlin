@@ -14,12 +14,15 @@ import org.gradle.api.tasks.TaskProvider
 import org.gradle.api.tasks.javadoc.Javadoc
 import org.gradle.external.javadoc.StandardJavadocDocletOptions
 import org.gradle.jvm.tasks.Jar
+import org.gradle.plugins.signing.Sign
+import org.gradle.plugins.signing.SigningExtension
 
 class LibraryPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         target.apply(mapOf("plugin" to "com.android.library"))
         target.apply(mapOf("plugin" to "org.jetbrains.kotlin.android"))
         target.apply(mapOf("plugin" to "maven-publish"))
+        target.apply(mapOf("plugin" to "signing"))
 
         target.extensions.create("openfeedback", OpenFeedback::class.java, target)
     }
@@ -202,5 +205,18 @@ private fun Project.configurePublishingInternal(artifactName: String) {
                 }
             }
         }
+    }
+    extensions.configure(SigningExtension::class.java) { signingExtension ->
+        // GPG_PRIVATE_KEY should contain the armoured private key that starts with -----BEGIN PGP PRIVATE KEY BLOCK-----
+        // It can be obtained with gpg --armour --export-secret-keys KEY_ID
+        signingExtension.useInMemoryPgpKeys(
+            System.getenv("OPENFEEDBACK_GPG_PRIVATE_KEY"),
+            System.getenv("OPENFEEDBACK_GPG_PRIVATE_KEY_PASSWORD")
+        )
+        val publicationsContainer = (extensions.getByName("publishing") as PublishingExtension).publications
+        signingExtension.sign(publicationsContainer)
+    }
+    tasks.withType(Sign::class.java).configureEach {
+        it.isEnabled = !System.getenv("OPENFEEDBACK_GPG_PRIVATE_KEY").isNullOrBlank()
     }
 }
