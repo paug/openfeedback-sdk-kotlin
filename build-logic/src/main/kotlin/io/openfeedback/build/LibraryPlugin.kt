@@ -39,7 +39,7 @@ open class OpenFeedback(val project: Project) {
 
         if (eventName == "push" && ref == "refs/heads/master") {
             project.logger.log(LogLevel.LIFECYCLE, "Deploying snapshot to OJO...")
-            publishIfNeeded.dependsOn(project.tasks.named("publishAllPublicationsToOssSnapshotRepository"))
+            publishIfNeeded.dependsOn(project.tasks.named("publishAllPublicationsToOssSnapshotsRepository"))
         }
 
         if (ref?.startsWith("refs/tags/") == true) {
