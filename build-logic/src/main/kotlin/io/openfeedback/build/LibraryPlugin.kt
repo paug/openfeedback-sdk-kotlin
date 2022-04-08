@@ -30,8 +30,6 @@ class LibraryPlugin : Plugin<Project> {
 
 open class OpenFeedback(val project: Project) {
     fun Project.configurePublishing(artifactName: String) {
-        project.version = "0.0.6"
-
         project.configurePublishingInternal(artifactName)
 
         val publishIfNeeded = project.rootProject.publishIfNeededTaskProvider()
@@ -78,7 +76,7 @@ fun Project.getOssStagingUrl(): String {
     val repositoryId = kotlinx.coroutines.runBlocking {
         client.createRepository(
             profileId = System.getenv("IO_OPENFEEDBACK_PROFILE_ID"),
-            description = "io.openfeedback $version"
+            description = "io.openfeedback ${rootProject.version}"
         )
     }
     return "${baseUrl}staging/deployByRepositoryId/${repositoryId}/".also {
@@ -152,7 +150,7 @@ private fun Project.configurePublishingInternal(artifactName: String) {
                         pom.apply {
                             groupId = "io.openfeedback"
                             artifactId = artifactName
-                            version = version
+                            version = rootProject.version.toString()
 
                             name.set(artifactId)
                             packaging = "aar"
