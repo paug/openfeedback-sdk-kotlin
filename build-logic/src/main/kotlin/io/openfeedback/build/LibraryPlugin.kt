@@ -27,6 +27,8 @@ class LibraryPlugin : Plugin<Project> {
 
 open class OpenFeedback(val project: Project) {
     fun Project.configurePublishing(artifactName: String) {
+        project.version = "0.0.6"
+
         project.configurePublishingInternal(artifactName)
 
         val publishIfNeeded = project.rootProject.publishIfNeededTaskProvider()
@@ -147,7 +149,7 @@ private fun Project.configurePublishingInternal(artifactName: String) {
                         pom.apply {
                             groupId = "io.openfeedback"
                             artifactId = artifactName
-                            version = "0.0.6-SNAPSHOT"
+                            version = version
 
                             name.set(artifactId)
                             packaging = "aar"

@@ -9,15 +9,15 @@ The SDK exposes a regular View and a Composable if you want to try [compose](htt
 
 # Installation
 
-The SDK is available on jcenter:
+The SDK is available on mavenCentral:
 
 ```
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
-    implementation("io.openfeedback:feedback-android-sdk-ui:0.0.1")
+    implementation("io.openfeedback:feedback-android-sdk-ui:0.0.6")
 }
 ```
 
