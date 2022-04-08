@@ -38,13 +38,13 @@ open class OpenFeedback(val project: Project) {
         project.logger.log(LogLevel.LIFECYCLE, "publishIfNeeded eventName=$eventName ref=$ref")
 
         if (eventName == "push" && ref == "refs/heads/master") {
-            project.logger.log(LogLevel.LIFECYCLE, "Deploying snapshot to OJO...")
+            project.logger.log(LogLevel.LIFECYCLE, "Deploying snapshot to OssSnapshot...")
             publishIfNeeded.dependsOn(project.tasks.named("publishAllPublicationsToOssSnapshotsRepository"))
         }
 
         if (ref?.startsWith("refs/tags/") == true) {
-            project.logger.log(LogLevel.LIFECYCLE, "Deploying release to Bintray...")
-            publishIfNeeded.dependsOn("publishAllPublicationsToOssStagingRepository")
+            project.logger.log(LogLevel.LIFECYCLE, "Deploying release to OssStaging...")
+            publishIfNeeded.dependsOn(project.tasks.named"publishAllPublicationsToOssStagingRepository")
         }
     }
 }
