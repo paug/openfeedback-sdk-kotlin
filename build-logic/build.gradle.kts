@@ -10,7 +10,7 @@ repositories {
 
 dependencies {
     implementation("net.mbonnin.vespene:vespene-lib:0.5")
-    implementation("com.android.tools.build:gradle:7.0.4")
+    implementation("com.android.tools.build:gradle:7.1.3")
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
 }
 

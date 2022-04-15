@@ -86,64 +86,21 @@ fun Project.getOssStagingUrl(): String {
 
 private fun Project.configurePublishingInternal(artifactName: String) {
     val publicationName = "default"
-    val android = extensions.findByType(com.android.build.gradle.BaseExtension::class.java)
+    val android = extensions.findByType(com.android.build.gradle.LibraryExtension::class.java)!!
 
-    /**
-     * Javadoc
-     */
-    var javadocTask = tasks.findByName("javadoc") as Javadoc?
-    var javadocJarTaskProvider: TaskProvider<Jar>? = null
-    if (javadocTask == null && android != null) {
-        javadocTask = tasks.create("javadoc", Javadoc::class.java) {
-            // source = android.sourceSets.get("main").java.sourceFiles
-            //classpath += project.files(android.joinToString(File.pathSeparator))
+    android.publishing {
+        singleVariant("release") {
+            withJavadocJar()
+            withSourcesJar()
         }
-    }
-
-    if (javadocTask != null) {
-        javadocJarTaskProvider = tasks.register("javadocJar", org.gradle.jvm.tasks.Jar::class.java) {
-            it.apply {
-                archiveClassifier.set("javadoc")
-                dependsOn(javadocTask)
-                from(javadocTask.destinationDir)
-            }
-        }
-    }
-
-    var sourcesJarTaskProvider: TaskProvider<org.gradle.jvm.tasks.Jar>? = null
-    val javaPluginConvention = project.convention.findPlugin(JavaPluginConvention::class.java)
-    if (javaPluginConvention != null && android == null) {
-        sourcesJarTaskProvider = tasks.register("sourcesJar", org.gradle.jvm.tasks.Jar::class.java) {
-            it.apply {
-                archiveClassifier.set("sources")
-                from(javaPluginConvention.sourceSets.getByName("main").allSource)
-            }
-        }
-    } else if (android != null) {
-        sourcesJarTaskProvider = tasks.register("sourcesJar", org.gradle.jvm.tasks.Jar::class.java) {
-            it.apply {
-                archiveClassifier.set("sources")
-                // from(android.sourceSets["main"].java.sourceFiles)
-            }
-        }
-    }
-
-    tasks.withType(Javadoc::class.java) {
-        // TODO: fix the javadoc warnings
-        (it.options as StandardJavadocDocletOptions).addStringOption("Xdoclint:none", "-quiet")
     }
 
     extensions.getByType(PublishingExtension::class.java).apply {
         publications {
             it.create(publicationName, MavenPublication::class.java) {
                 it.apply {
-                    from(components.findByName("release"))
-
-                    if (javadocJarTaskProvider != null) {
-                        artifact(javadocJarTaskProvider.get())
-                    }
-                    if (sourcesJarTaskProvider != null) {
-                        artifact(sourcesJarTaskProvider.get())
+                    afterEvaluate {
+                        from(components.findByName("release"))
                     }
 
                     pom { pom ->
