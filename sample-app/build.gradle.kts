@@ -18,7 +18,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = rootProject.extra["composeVersion"] as String
+        kotlinCompilerExtensionVersion = libs.versions.androidx.compose.get()
     }
 
     buildFeatures.compose = true
@@ -31,12 +31,11 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.7.0")
+    implementation(libs.androidx.core)
     implementation("androidx.appcompat:appcompat:1.4.1")
     implementation("androidx.activity:activity-compose:1.5.0-alpha01")
 
-    val composeVersion = rootProject.extra["composeVersion"]
-    implementation("androidx.compose.material:material:$composeVersion")
+    implementation(libs.androidx.compose.material)
 
     implementation(project(":openfeedback-ui"))
 }

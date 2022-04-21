@@ -4,7 +4,7 @@ import io.openfeedback.android.model.*
 import kotlin.math.absoluteValue
 import kotlin.random.Random
 
-object OpenFeedbackModelHelper {
+internal object OpenFeedbackModelHelper {
     fun toUISessionFeedback(
         project: Project,
         userVotes: List<String>,

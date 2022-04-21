@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import io.openfeedback.android.ui.R
 
 @Composable
-fun PoweredBy(
+internal fun PoweredBy(
     modifier: Modifier = Modifier,
     style: TextStyle = MaterialTheme.typography.body2,
     color: Color = MaterialTheme.colors.onBackground

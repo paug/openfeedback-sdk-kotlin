@@ -1,6 +1,6 @@
 plugins {
-    id("org.jetbrains.kotlin.jvm").version("1.6.10")
-    id("java-gradle-plugin")
+    `embedded-kotlin`
+    `java-gradle-plugin`
 }
 
 repositories {
@@ -9,9 +9,9 @@ repositories {
 }
 
 dependencies {
-    implementation("net.mbonnin.vespene:vespene-lib:0.5")
-    implementation("com.android.tools.build:gradle:7.1.3")
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
+    implementation(libs.vespene)
+    implementation(libs.android.gradle.plugin)
+    implementation(libs.kotlin.gradle.plugin)
 }
 
 gradlePlugin {

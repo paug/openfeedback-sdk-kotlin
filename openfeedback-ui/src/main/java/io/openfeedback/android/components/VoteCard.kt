@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import io.openfeedback.android.model.UIVoteItem
 
 @Composable
-fun VoteCard(
+internal fun VoteCard(
     voteModel: UIVoteItem,
     modifier: Modifier = Modifier,
     style: TextStyle = MaterialTheme.typography.body2,

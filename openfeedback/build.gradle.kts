@@ -28,12 +28,11 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 dependencies {
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.0")
+    api(libs.kotlin.coroutines.core)
+    api(libs.kotlin.coroutines.android)
+    api(libs.kotlin.coroutines.play.services)
 
     // Firestore
-    implementation("com.google.firebase:firebase-firestore:24.0.1")
-    implementation("com.google.firebase:firebase-auth:21.0.1")
-    implementation("com.google.firebase:firebase-firestore-ktx:24.0.1")
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.auth)
 }

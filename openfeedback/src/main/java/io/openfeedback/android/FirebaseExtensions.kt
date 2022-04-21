@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.conflate
 
-fun Query.toFlow(): Flow<QuerySnapshot> = callbackFlow {
+internal fun Query.toFlow(): Flow<QuerySnapshot> = callbackFlow {
     val registration = addSnapshotListener(MetadataChanges.INCLUDE) { snapshot, exception ->
         if (snapshot != null) {
             runCatching {
@@ -23,7 +23,7 @@ fun Query.toFlow(): Flow<QuerySnapshot> = callbackFlow {
     }
 }.conflate()
 
-fun DocumentReference.toFlow(): Flow<DocumentSnapshot> = callbackFlow {
+internal fun DocumentReference.toFlow(): Flow<DocumentSnapshot> = callbackFlow {
     val registration = addSnapshotListener(MetadataChanges.INCLUDE) { snapshot, exception ->
         if (snapshot != null) {
             runCatching {

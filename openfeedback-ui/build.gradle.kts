@@ -20,7 +20,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = rootProject.extra["composeVersion"] as String
+        kotlinCompilerExtensionVersion = libs.versions.androidx.compose.get()
     }
 
     buildFeatures.compose = true
@@ -33,17 +33,15 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 dependencies {
-    val composeVersion = rootProject.extra["composeVersion"]
-
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0")
-    implementation("androidx.compose.material:material:$composeVersion")
-    implementation("androidx.compose.ui:ui:$composeVersion")
-    implementation("androidx.compose.ui:ui-tooling:$composeVersion")
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.tooling)
     // Weird but necessary for the compose preview.
-    debugImplementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
-    debugImplementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
-    debugImplementation("androidx.savedstate:savedstate-ktx:1.1.0")
-    debugImplementation("androidx.core:core-ktx:1.7.0")
+    debugImplementation(libs.androidx.lifecycle.runtime)
+    debugImplementation(libs.androidx.lifecycle.viewmodel)
+    debugImplementation(libs.androidx.savedstate)
+    debugImplementation(libs.androidx.core)
 
     api(project(":openfeedback"))
 }
