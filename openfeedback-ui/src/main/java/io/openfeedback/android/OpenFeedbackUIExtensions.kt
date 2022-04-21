@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.combine
 /**
  * A bunch of extensions to get UI models from a openFeedback object
  */
-internal suspend fun OpenFeedback.getUISessionFeedback(
+internal suspend fun OpenFeedbackConfig.getUISessionFeedback(
     sessionId: String,
     language: String
 ) = combine(

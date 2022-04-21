@@ -18,7 +18,7 @@ import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.tasks.await
 import java.util.*
 
-class OpenFeedback(
+class OpenFeedbackConfig(
     context: Context,
     firebaseConfig: FirebaseConfig,
     val openFeedbackProjectId: String,
@@ -72,7 +72,7 @@ class OpenFeedback(
         if (auth.currentUser == null) {
             val result = auth.signInAnonymously().await()
             if (result.user == null) {
-                Log.e(OpenFeedback::class.java.name, "Cannot signInAnonymously")
+                Log.e(OpenFeedbackConfig::class.java.name, "Cannot signInAnonymously")
             }
         }
         auth.currentUser
@@ -184,7 +184,7 @@ class OpenFeedback(
             } else {
                 if (querySnapshot.size() != 1) {
                     Log.e(
-                        OpenFeedback::class.java.name,
+                        OpenFeedbackConfig::class.java.name,
                         "Too many votes registered for ${firebaseUser.uid}"
                     )
                 }

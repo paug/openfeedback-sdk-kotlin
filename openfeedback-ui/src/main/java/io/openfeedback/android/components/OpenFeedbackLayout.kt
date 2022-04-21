@@ -13,15 +13,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import io.openfeedback.android.OpenFeedback
-import io.openfeedback.android.OpenFeedbackState
+import io.openfeedback.android.OpenFeedbackConfig
+import io.openfeedback.android.OpenFeedbackUiState
 import io.openfeedback.android.OpenFeedbackViewModel
 import io.openfeedback.android.model.UISessionFeedback
 import io.openfeedback.android.model.UIVoteItem
 
 @Composable
-fun SessionFeedbackContainer(
-    openFeedbackState: OpenFeedback,
+fun OpenFeedback(
+    openFeedbackState: OpenFeedbackConfig,
     sessionId: String,
     language: String,
     modifier: Modifier = Modifier,
@@ -32,10 +32,10 @@ fun SessionFeedbackContainer(
     )
     val uiState = viewModel.uiState.collectAsState()
     when (uiState.value) {
-        is OpenFeedbackState.Loading -> loading()
-        is OpenFeedbackState.Success -> {
-            val session = (uiState.value as OpenFeedbackState.Success).session
-            SessionFeedback(
+        is OpenFeedbackUiState.Loading -> loading()
+        is OpenFeedbackUiState.Success -> {
+            val session = (uiState.value as OpenFeedbackUiState.Success).session
+            OpenFeedbackLayout(
                 sessionFeedback = session,
                 modifier = modifier,
                 onClick = { voteItem -> viewModel.vote(voteItem = voteItem) }
@@ -45,7 +45,7 @@ fun SessionFeedbackContainer(
 }
 
 @Composable
-fun SessionFeedback(
+fun OpenFeedbackLayout(
     sessionFeedback: UISessionFeedback,
     modifier: Modifier = Modifier,
     onClick: (voteItem: UIVoteItem) -> Unit
@@ -67,9 +67,9 @@ fun SessionFeedback(
 fun rememberOpenFeedbackState(
     context: Context = LocalContext.current,
     projectId: String,
-    firebaseConfig: OpenFeedback.FirebaseConfig
+    firebaseConfig: OpenFeedbackConfig.FirebaseConfig
 ) = remember {
-    OpenFeedback(
+    OpenFeedbackConfig(
         context = context,
         openFeedbackProjectId = projectId,
         firebaseConfig = firebaseConfig

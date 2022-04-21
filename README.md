@@ -22,7 +22,7 @@ val openFeedbackState = rememberOpenFeedbackState(
         databaseUrl = "https://<your-firebase-open-feedback-project-id>.firebaseio.com"
     )
 )
-SessionFeedbackContainer(
+OpenFeedback(
     openFeedbackState = openFeedbackState,
     sessionId = "<your-open-feedback-session-id>",
     language = "<language-code>"

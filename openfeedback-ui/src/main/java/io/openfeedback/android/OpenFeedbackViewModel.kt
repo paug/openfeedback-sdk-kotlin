@@ -10,26 +10,26 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-sealed class OpenFeedbackState {
-    object Loading : OpenFeedbackState()
-    class Success(val session: UISessionFeedback) : OpenFeedbackState()
+sealed class OpenFeedbackUiState {
+    object Loading : OpenFeedbackUiState()
+    class Success(val session: UISessionFeedback) : OpenFeedbackUiState()
 }
 
 class OpenFeedbackViewModel(
-    private val openFeedback: OpenFeedback,
+    private val openFeedbackConfig: OpenFeedbackConfig,
     private val sessionId: String,
     private val language: String
 ) : ViewModel() {
-    private val _uiState = MutableStateFlow<OpenFeedbackState>(OpenFeedbackState.Loading)
-    val uiState: StateFlow<OpenFeedbackState> = _uiState
+    private val _uiState = MutableStateFlow<OpenFeedbackUiState>(OpenFeedbackUiState.Loading)
+    val uiState: StateFlow<OpenFeedbackUiState> = _uiState
 
     init {
         viewModelScope.launch {
-            openFeedback.getUISessionFeedback(sessionId, language).collect {
+            openFeedbackConfig.getUISessionFeedback(sessionId, language).collect {
                 val oldSession =
-                    if (uiState.value is OpenFeedbackState.Success) (uiState.value as OpenFeedbackState.Success).session
+                    if (uiState.value is OpenFeedbackUiState.Success) (uiState.value as OpenFeedbackUiState.Success).session
                     else null
-                _uiState.value = OpenFeedbackState.Success(OpenFeedbackModelHelper.keepDotsPosition(
+                _uiState.value = OpenFeedbackUiState.Success(OpenFeedbackModelHelper.keepDotsPosition(
                     oldSessionFeedback = oldSession,
                     newSessionFeedback = it.session,
                     colors = it.colors
@@ -39,7 +39,7 @@ class OpenFeedbackViewModel(
     }
 
     fun vote(voteItem: UIVoteItem) = viewModelScope.launch {
-        openFeedback.setVote(
+        openFeedbackConfig.setVote(
             talkId = sessionId,
             voteItemId = voteItem.id,
             status = if (!voteItem.votedByUser) VoteStatus.Active else VoteStatus.Deleted
@@ -47,10 +47,10 @@ class OpenFeedbackViewModel(
     }
 
     object Factory {
-        fun create(openFeedback: OpenFeedback, sessionId: String, language: String) =
+        fun create(openFeedbackConfig: OpenFeedbackConfig, sessionId: String, language: String) =
             object : ViewModelProvider.Factory {
                 override fun <T : ViewModel> create(modelClass: Class<T>): T =
-                    OpenFeedbackViewModel(openFeedback, sessionId, language) as T
+                    OpenFeedbackViewModel(openFeedbackConfig, sessionId, language) as T
             }
     }
 }
