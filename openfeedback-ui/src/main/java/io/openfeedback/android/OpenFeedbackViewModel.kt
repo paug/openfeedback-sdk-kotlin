@@ -8,7 +8,6 @@ import io.openfeedback.android.model.UIVoteItem
 import io.openfeedback.android.model.VoteStatus
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 sealed class OpenFeedbackState {

@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.combine
 /**
  * A bunch of extensions to get UI models from a openFeedback object
  */
-suspend fun OpenFeedback.getUISessionFeedback(
+internal suspend fun OpenFeedback.getUISessionFeedback(
     sessionId: String,
     language: String
 ) = combine(
@@ -20,7 +20,7 @@ suspend fun OpenFeedback.getUISessionFeedback(
     )
 }
 
-data class UISessionFeedbackWithColors(
+internal data class UISessionFeedbackWithColors(
     val session: UISessionFeedback,
     val colors: List<String>
 )

@@ -19,7 +19,7 @@ import kotlin.math.absoluteValue
 import kotlin.random.Random
 
 @Composable
-fun VoteItems(
+internal fun VoteItems(
     voteItems: List<UIVoteItem>,
     modifier: Modifier = Modifier,
     columnCount: Int = 2,
@@ -58,7 +58,7 @@ fun VoteItemsPreview() {
     VoteItems(voteItems = fakeVotes, columnCount = 2) {}
 }
 
-val fakeVotes = listOf(
+internal val fakeVotes = listOf(
     fakeVoteItem("Drôle/original \uD83D\uDE03", 3),
     fakeVoteItem("Trèsenrichissant enrichissant enrichissant \uD83E\uDD13", 1),
     fakeVoteItem("Super intéressant \uD83D\uDC4D", 8),
@@ -66,7 +66,7 @@ val fakeVotes = listOf(
     fakeVoteItem("Pas clair \uD83E\uDDD0", 2)
 )
 
-fun dots(count: Int, possibleColors: List<String>): List<UIDot> {
+internal fun dots(count: Int, possibleColors: List<String>): List<UIDot> {
     return 0.until(count).map {
         UIDot(
             Random.nextFloat(),
@@ -76,7 +76,7 @@ fun dots(count: Int, possibleColors: List<String>): List<UIDot> {
     }
 }
 
-fun fakeVoteItem(text: String, count: Int): UIVoteItem {
+internal fun fakeVoteItem(text: String, count: Int): UIVoteItem {
     val color = listOf(
         "7cebcd",
         "0822cb",
