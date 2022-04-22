@@ -38,7 +38,7 @@ open class OpenFeedback(val project: Project) {
         val ref = System.getenv("GITHUB_REF")
         project.logger.log(LogLevel.LIFECYCLE, "publishIfNeeded eventName=$eventName ref=$ref")
 
-        if (eventName == "push" && ref == "refs/heads/master") {
+        if (eventName == "push" && ref == "refs/heads/main") {
             project.logger.log(LogLevel.LIFECYCLE, "Deploying snapshot to OssSnapshot...")
             publishIfNeeded.dependsOn(project.tasks.named("publishAllPublicationsToOssSnapshotsRepository"))
         }
@@ -112,18 +112,18 @@ private fun Project.configurePublishingInternal(artifactName: String) {
                             name.set(artifactId)
                             packaging = "aar"
                             description.set(artifactId)
-                            url.set("https://github.com/martinbonnin/openfeedback-android-sdk")
+                            url.set("https://github.com/paug/openfeedback-android-sdk")
 
                             scm { scm ->
-                                scm.url.set("https://github.com/martinbonnin/openfeedback-android-sdk")
-                                scm.connection.set("https://github.com/martinbonnin/openfeedback-android-sdk")
-                                scm.developerConnection.set("https://github.com/martinbonnin/openfeedback-android-sdk")
+                                scm.url.set("https://github.com/paug/openfeedback-android-sdk")
+                                scm.connection.set("https://github.com/paug/openfeedback-android-sdk")
+                                scm.developerConnection.set("https://github.com/paug/openfeedback-android-sdk")
                             }
 
                             licenses { licenseSpec ->
                                 licenseSpec.license { license ->
                                     license.name.set("MIT License")
-                                    license.url.set("https://github.com/martinbonnin/openfeedback-android-sdk/blob/master/LICENSE")
+                                    license.url.set("https://github.com/paug/openfeedback-android-sdk/blob/master/LICENSE")
                                 }
                             }
 
