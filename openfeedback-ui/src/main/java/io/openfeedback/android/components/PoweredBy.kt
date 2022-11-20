@@ -2,10 +2,12 @@ package io.openfeedback.android.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.darkColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,6 +26,9 @@ internal fun PoweredBy(
     style: TextStyle = MaterialTheme.typography.body2,
     color: Color = MaterialTheme.colors.onBackground
 ) {
+    val logo =
+        if (MaterialTheme.colors.isLight) R.drawable.openfeedback_light
+        else R.drawable.openfeedback_dark
     Row(
         modifier = modifier.semantics(mergeDescendants = true) {
             contentDescription = "Powered by Openfeedback"
@@ -33,7 +38,7 @@ internal fun PoweredBy(
     ) {
         Text(text = "Powered by", style = style, color = color)
         Image(
-            painter = painterResource(id = R.drawable.openfeedback),
+            painter = painterResource(id = logo),
             contentDescription = null,
             modifier = Modifier.height(style.fontSize.value.dp + 13.dp)
         )
@@ -42,6 +47,13 @@ internal fun PoweredBy(
 
 @Preview
 @Composable
-fun PoweredByPreview() {
-    PoweredBy()
+internal fun PoweredByPreview() {
+    Column {
+        MaterialTheme {
+            PoweredBy()
+        }
+        MaterialTheme(colors = darkColors()) {
+            PoweredBy()
+        }
+    }
 }
