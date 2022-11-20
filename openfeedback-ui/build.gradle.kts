@@ -36,10 +36,10 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.compose.uitooling)
     // Weird but necessary for the compose preview.
     debugImplementation(libs.androidx.lifecycle.runtime)
-    debugImplementation(libs.androidx.lifecycle.viewmodel)
+    debugImplementation(libs.androidx.lifecycle.viewmodel.ktx)
     debugImplementation(libs.androidx.savedstate)
     debugImplementation(libs.androidx.core)
 
