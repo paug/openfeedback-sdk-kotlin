@@ -1,25 +1,10 @@
-package io.openfeedback.build
+package io.openfeedback
 
 import com.android.build.gradle.internal.tasks.factory.dependsOn
-import io.openfeedback.EnvVarKeys
 import io.openfeedback.extensions.configurePublishingInternal
 import io.openfeedback.extensions.publishIfNeededTaskProvider
-import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.logging.LogLevel
-
-class LibraryPlugin : Plugin<Project> {
-    override fun apply(target: Project) {
-        with(target.pluginManager) {
-            apply("com.android.library")
-            apply("org.jetbrains.kotlin.android")
-            apply("maven-publish")
-            apply("signing")
-        }
-
-        target.extensions.create("openfeedback", OpenFeedback::class.java, target)
-    }
-}
 
 open class OpenFeedback(val project: Project) {
     fun Project.configurePublishing(artifactName: String) {

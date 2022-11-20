@@ -17,13 +17,17 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        register("io.openfeedback.build.lib") {
-            id = "io.openfeedback.build.lib"
-            implementationClass = "io.openfeedback.build.LibraryPlugin"
+        register("io.openfeedback.plugins.lib") {
+            id = "io.openfeedback.plugins.lib"
+            implementationClass = "io.openfeedback.plugins.LibraryPlugin"
         }
-        register("io.openfeedback.build.app") {
-            id = "io.openfeedback.build.app"
-            implementationClass = "io.openfeedback.build.AppPlugin"
+        register("io.openfeedback.plugins.compose.lib") {
+            id = "io.openfeedback.plugins.compose.lib"
+            implementationClass = "io.openfeedback.plugins.ComposeLibraryPlugin"
+        }
+        register("io.openfeedback.plugins.app") {
+            id = "io.openfeedback.plugins.app"
+            implementationClass = "io.openfeedback.plugins.AppPlugin"
         }
     }
 }
