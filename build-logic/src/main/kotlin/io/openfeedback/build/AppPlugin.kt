@@ -5,8 +5,9 @@ import org.gradle.api.Project
 
 class AppPlugin : Plugin<Project> {
     override fun apply(target: Project) {
-        target.apply(mapOf("plugin" to "com.android.application"))
-        target.apply(mapOf("plugin" to "org.jetbrains.kotlin.android"))
+        with(target.pluginManager) {
+            apply("com.android.application")
+            apply("org.jetbrains.kotlin.android")
+        }
     }
 }
-

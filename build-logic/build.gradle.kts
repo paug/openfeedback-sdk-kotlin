@@ -1,5 +1,6 @@
 plugins {
     `embedded-kotlin`
+    `kotlin-dsl`
     `java-gradle-plugin`
 }
 
@@ -16,21 +17,12 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        create("io.openfeedback.build.lib") {
+        register("io.openfeedback.build.lib") {
             id = "io.openfeedback.build.lib"
-            displayName = ""
-            description = ""
             implementationClass = "io.openfeedback.build.LibraryPlugin"
         }
-    }
-}
-
-gradlePlugin {
-    plugins {
-        create("io.openfeedback.build.app") {
+        register("io.openfeedback.build.app") {
             id = "io.openfeedback.build.app"
-            displayName = ""
-            description = ""
             implementationClass = "io.openfeedback.build.AppPlugin"
         }
     }
