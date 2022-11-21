@@ -17,5 +17,11 @@ pluginManagement {
 
 includeBuild("build-logic")
 
-include(":openfeedback", ":openfeedback-ui", ":sample-app")
+include(
+    ":openfeedback",
+    ":openfeedback-ui",
+    ":openfeedback-m2",
+    ":openfeedback-viewmodel",
+    ":sample-app"
+)
 

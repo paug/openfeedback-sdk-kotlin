@@ -1,6 +1,7 @@
-package io.openfeedback.android
+package io.openfeedback.android.viewmodels
 
-import io.openfeedback.android.model.UISessionFeedback
+import io.openfeedback.android.OpenFeedbackConfig
+import io.openfeedback.android.viewmodels.models.UISessionFeedback
 import kotlinx.coroutines.flow.combine
 
 /**

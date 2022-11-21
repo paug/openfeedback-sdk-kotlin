@@ -1,4 +1,4 @@
-package io.openfeedback.android.components
+package io.openfeedback.android.m2
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

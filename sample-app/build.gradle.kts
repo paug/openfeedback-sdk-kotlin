@@ -17,5 +17,5 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.material)
 
-    implementation(project(":openfeedback-ui"))
+    implementation(projects.openfeedbackM2)
 }

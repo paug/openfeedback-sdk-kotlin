@@ -1,4 +1,4 @@
-package io.openfeedback.android.components
+package io.openfeedback.android.m2
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -18,10 +18,9 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import io.openfeedback.android.ui.R
 
 @Composable
-internal fun PoweredBy(
+fun PoweredBy(
     modifier: Modifier = Modifier,
     style: TextStyle = MaterialTheme.typography.body2,
     color: Color = MaterialTheme.colors.onBackground

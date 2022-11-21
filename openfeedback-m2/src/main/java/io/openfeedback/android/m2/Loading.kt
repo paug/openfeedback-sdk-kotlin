@@ -1,4 +1,4 @@
-package io.openfeedback.android.components
+package io.openfeedback.android.m2
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,6 +20,6 @@ fun Loading(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-fun LoadingPreview() {
+internal fun LoadingPreview() {
     Loading()
 }

@@ -1,6 +1,9 @@
-package io.openfeedback.android
+package io.openfeedback.android.viewmodels
 
-import io.openfeedback.android.model.*
+import io.openfeedback.android.model.Project
+import io.openfeedback.android.viewmodels.models.UIDot
+import io.openfeedback.android.viewmodels.models.UISessionFeedback
+import io.openfeedback.android.viewmodels.models.UIVoteItem
 import kotlin.math.absoluteValue
 import kotlin.random.Random
 
@@ -72,4 +75,3 @@ internal object OpenFeedbackModelHelper {
         )
     }
 }
-
