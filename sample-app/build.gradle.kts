@@ -16,6 +16,8 @@ dependencies {
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.material3)
 
     implementation(projects.openfeedbackM2)
+    implementation(projects.openfeedbackM3)
 }

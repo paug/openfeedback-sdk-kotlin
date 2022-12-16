@@ -25,6 +25,7 @@ androidx_core = { module = "androidx.core:core-ktx", version.ref = "androidx_cor
 androidx_savedstate = { module = "androidx.savedstate:savedstate-ktx", version.ref = "androidx_savedstate" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidx_compose_bom" }
 androidx_compose_material = { module = "androidx.compose.material:material" }
+androidx_compose_material3 = { module = "androidx.compose.material3:material3" }
 androidx_compose_ui = { module = "androidx.compose.ui:ui" }
 androidx_compose_runtime = { module = "androidx.compose.runtime:runtime" }
 androidx_compose_foundation = { module = "androidx.compose.foundation:foundation" }

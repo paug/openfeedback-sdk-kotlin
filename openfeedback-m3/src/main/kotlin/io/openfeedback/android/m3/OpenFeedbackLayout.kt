@@ -1,9 +1,10 @@
-package io.openfeedback.android.m2
+package io.openfeedback.android.m3
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -41,6 +42,7 @@ fun OpenFeedback(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OpenFeedbackLayout(
     sessionFeedback: UISessionFeedback,

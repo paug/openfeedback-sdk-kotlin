@@ -47,7 +47,10 @@ repositories {
 }
 
 dependencies {
+    // Material 2
     implementation("io.openfeedback:feedback-android-sdk-m2:0.0.6")
+    // Material 3
+    implementation("io.openfeedback:feedback-android-sdk-m3:0.0.6")
 }
 ```
 
