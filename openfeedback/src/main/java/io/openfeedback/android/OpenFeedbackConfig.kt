@@ -1,22 +1,27 @@
 package io.openfeedback.android
 
-import com.google.firebase.FirebaseApp
-import com.google.firebase.FirebaseOptions
 import android.content.Context
 import android.util.Log
+import com.google.firebase.FirebaseApp
+import com.google.firebase.FirebaseOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.*
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreSettings
 import io.openfeedback.android.model.Project
 import io.openfeedback.android.model.VoteStatus
 import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.consumeEach
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.flattenMerge
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.tasks.await
-import java.util.*
+import java.util.Date
 
 class OpenFeedbackConfig(
     context: Context,
@@ -202,5 +207,3 @@ class OpenFeedbackConfig(
 
 fun Map<*, *>.prettyString() =
     entries.map { "${it.key}: ${it.value}" }.joinToString(separator = "\n", prefix = "\n")
-
-

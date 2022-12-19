@@ -14,11 +14,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import io.openfeedback.android.OpenFeedbackConfig
-import io.openfeedback.android.OpenFeedbackUiState
-import io.openfeedback.android.OpenFeedbackViewModel
-import io.openfeedback.android.model.UISessionFeedback
-import io.openfeedback.android.model.UIVoteItem
+import io.openfeedback.android.viewmodels.OpenFeedbackUiState
+import io.openfeedback.android.viewmodels.OpenFeedbackViewModel
+import io.openfeedback.android.m2.Loading
+import io.openfeedback.android.m2.PoweredBy
+import io.openfeedback.android.viewmodels.models.UISessionFeedback
+import io.openfeedback.android.viewmodels.models.UIVoteItem
 
+@Deprecated(message = "Use OpenFeedback component in m2 artifact")
 @Composable
 fun OpenFeedback(
     openFeedbackState: OpenFeedbackConfig,
@@ -44,6 +47,7 @@ fun OpenFeedback(
     }
 }
 
+@Deprecated(message = "Use OpenFeedbackLayout component in m2 artifact")
 @Composable
 fun OpenFeedbackLayout(
     sessionFeedback: UISessionFeedback,
@@ -63,6 +67,7 @@ fun OpenFeedbackLayout(
     }
 }
 
+@Deprecated(message = "Configure state in your Application class")
 @Composable
 fun rememberOpenFeedbackState(
     context: Context = LocalContext.current,

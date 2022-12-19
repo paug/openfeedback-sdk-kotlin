@@ -1,30 +1,10 @@
 
 plugins {
-    id("io.openfeedback.build.lib")
+    id("io.openfeedback.plugins.lib")
 }
 
 openfeedback {
     configurePublishing("feedback-android-sdk")
-}
-
-android {
-    compileSdk = 31
-
-    defaultConfig {
-        minSdk = 21
-        targetSdk = 31
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "11"
-    }
 }
 
 dependencies {
