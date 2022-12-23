@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import io.openfeedback.android.OpenFeedbackConfig
+import io.openfeedback.OpenFeedbackConfig
 import io.openfeedback.android.viewmodels.OpenFeedbackUiState
 import io.openfeedback.android.viewmodels.OpenFeedbackViewModel
 import io.openfeedback.android.m2.Loading

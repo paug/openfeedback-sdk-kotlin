@@ -1,4 +1,4 @@
-package io.openfeedback.android
+package io.openfeedback
 
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot

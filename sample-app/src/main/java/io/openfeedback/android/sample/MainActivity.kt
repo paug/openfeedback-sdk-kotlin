@@ -22,7 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.openfeedback.android.OpenFeedbackConfig
+import io.openfeedback.OpenFeedbackConfig
 import io.openfeedback.android.m2.OpenFeedback
 import io.openfeedback.android.sample.theme.DesignSystem
 import io.openfeedback.android.sample.theme.OpenFeedbackTheme

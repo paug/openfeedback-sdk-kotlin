@@ -1,6 +1,6 @@
 package io.openfeedback.android.viewmodels
 
-import io.openfeedback.android.model.Project
+import io.openfeedback.models.Project
 import io.openfeedback.android.viewmodels.models.UIDot
 import io.openfeedback.android.viewmodels.models.UISessionFeedback
 import io.openfeedback.android.viewmodels.models.UIVoteItem

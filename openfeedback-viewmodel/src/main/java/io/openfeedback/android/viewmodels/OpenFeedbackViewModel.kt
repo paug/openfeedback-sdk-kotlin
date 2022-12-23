@@ -3,10 +3,10 @@ package io.openfeedback.android.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import io.openfeedback.android.OpenFeedbackConfig
+import io.openfeedback.OpenFeedbackConfig
 import io.openfeedback.android.viewmodels.models.UISessionFeedback
 import io.openfeedback.android.viewmodels.models.UIVoteItem
-import io.openfeedback.android.model.VoteStatus
+import io.openfeedback.models.VoteStatus
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

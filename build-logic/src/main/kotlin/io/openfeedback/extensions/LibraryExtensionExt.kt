@@ -23,10 +23,6 @@ internal fun CommonExtension<*, *, *, *>.configureKotlinAndroid() {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
-    }
 }
 
 internal fun CommonExtension<*, *, *, *>.configureAndroidCompose(project: Project) {

@@ -1,9 +1,4 @@
-package io.openfeedback.android.model
-
-class Project(
-    val chipColors: List<String> = emptyList(),
-    val voteItems: List<VoteItem> = emptyList()
-)
+package io.openfeedback.models
 
 class VoteItem(
     val id: String = "",
@@ -15,9 +10,4 @@ class VoteItem(
     fun localizedName(language: String): String {
         return languages.getOrElse(language) { name }
     }
-}
-
-enum class VoteStatus(val value: String) {
-    Active("active"),
-    Deleted("deleted")
 }

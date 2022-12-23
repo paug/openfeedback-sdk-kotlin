@@ -1,4 +1,4 @@
-package io.openfeedback.android
+package io.openfeedback
 
 import android.content.Context
 import android.util.Log
@@ -8,8 +8,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
-import io.openfeedback.android.model.Project
-import io.openfeedback.android.model.VoteStatus
+import io.openfeedback.models.Project
+import io.openfeedback.models.VoteStatus
 import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.consumeEach
@@ -174,12 +174,13 @@ class OpenFeedbackConfig(
 
             if (querySnapshot.isEmpty) {
                 val documentReference = collectionReference.document()
+                val value: String = status.value
                 documentReference.set(
                     mapOf(
                         "id" to documentReference.id,
                         "createdAt" to Date(),
                         "projectId" to openFeedbackProjectId,
-                        "status" to status.value,
+                        "status" to value,
                         "talkId" to talkId,
                         "updatedAt" to Date(),
                         "userId" to firebaseUser.uid,
