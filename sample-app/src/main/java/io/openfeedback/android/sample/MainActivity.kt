@@ -22,20 +22,22 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import io.openfeedback.FirebaseConfig
 import io.openfeedback.OpenFeedbackConfig
 import io.openfeedback.android.m2.OpenFeedback
 import io.openfeedback.android.sample.theme.DesignSystem
 import io.openfeedback.android.sample.theme.OpenFeedbackTheme
+import io.openfeedback.daos.appContext
 
 class MainActivity : AppCompatActivity() {
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        appContext = this
         val config = OpenFeedbackConfig(
-            context = this,
             openFeedbackProjectId = "mMHR63ARZQpPidFQISyc",
-            firebaseConfig = OpenFeedbackConfig.FirebaseConfig(
+            firebaseConfig = FirebaseConfig(
                 projectId = "openfeedback-b7ab9",
                 applicationId = "1:765209934800:android:a6bb09f3deabc2277297d5",
                 apiKey = "AIzaSyC_cfbh8xKwF8UPxCeasGcsHyK4s5yZFeA",

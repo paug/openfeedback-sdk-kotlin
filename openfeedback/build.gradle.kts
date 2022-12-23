@@ -26,12 +26,11 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-
+                api(libs.kotlin.coroutines.core)
             }
         }
         val androidMain by getting {
             dependencies {
-                api(libs.kotlin.coroutines.core)
                 api(libs.kotlin.coroutines.android)
                 api(libs.kotlin.coroutines.play.services)
 

@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import io.openfeedback.FirebaseConfig
 import io.openfeedback.OpenFeedbackConfig
 import io.openfeedback.android.viewmodels.OpenFeedbackUiState
 import io.openfeedback.android.viewmodels.OpenFeedbackViewModel
@@ -72,10 +73,9 @@ fun OpenFeedbackLayout(
 fun rememberOpenFeedbackState(
     context: Context = LocalContext.current,
     projectId: String,
-    firebaseConfig: OpenFeedbackConfig.FirebaseConfig
+    firebaseConfig: FirebaseConfig
 ) = remember {
     OpenFeedbackConfig(
-        context = context,
         openFeedbackProjectId = projectId,
         firebaseConfig = firebaseConfig
     )
