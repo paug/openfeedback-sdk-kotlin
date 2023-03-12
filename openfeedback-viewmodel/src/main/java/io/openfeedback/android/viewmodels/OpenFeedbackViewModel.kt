@@ -43,7 +43,7 @@ class OpenFeedbackViewModel(
 
     fun vote(voteItem: UIVoteItem) = viewModelScope.launch {
         openFeedbackConfig.setVote(
-            talkId = sessionId,
+            sessionId = sessionId,
             voteItemId = voteItem.id,
             status = if (!voteItem.votedByUser) VoteStatus.Active else VoteStatus.Deleted
         )

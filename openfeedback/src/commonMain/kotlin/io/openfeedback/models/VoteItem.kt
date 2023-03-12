@@ -1,5 +1,8 @@
 package io.openfeedback.models
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 class VoteItem(
     val id: String = "",
     val languages: Map<String, String> = emptyMap(),

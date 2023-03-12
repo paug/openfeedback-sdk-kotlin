@@ -13,6 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import dev.gitlive.firebase.Firebase
+import dev.gitlive.firebase.FirebaseOptions
+import dev.gitlive.firebase.initialize
 import io.openfeedback.FirebaseConfig
 import io.openfeedback.OpenFeedbackConfig
 import io.openfeedback.android.viewmodels.OpenFeedbackUiState
@@ -77,6 +80,15 @@ fun rememberOpenFeedbackState(
 ) = remember {
     OpenFeedbackConfig(
         openFeedbackProjectId = projectId,
-        firebaseConfig = firebaseConfig
+        firebaseApp = Firebase.initialize(
+            context = context,
+            options = FirebaseOptions(
+                projectId = "openfeedback-b7ab9",
+                applicationId = "1:765209934800:android:a6bb09f3deabc2277297d5",
+                apiKey = "AIzaSyC_cfbh8xKwF8UPxCeasGcsHyK4s5yZFeA",
+                databaseUrl = "https://openfeedback-b7ab9.firebaseio.com"
+            ),
+            name = "openfeedback"
+        )
     )
 }

@@ -19,6 +19,7 @@ kotlin {
         ).forEach {
             it.binaries.framework {
                 baseName = "openfeedback"
+                isStatic = true
             }
         }
     }
@@ -26,17 +27,19 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(libs.kotlin.coroutines.core)
+                api(libs.kotlinx.coroutines.core)
+                implementation(libs.kotlinx.datetime)
+                api(libs.kotlinx.serialization.json)
+                api(libs.gitlive.firebase.app)
+                implementation(libs.gitlive.firebase.auth)
+                implementation(libs.gitlive.firebase.firestore)
+                api(libs.gitlive.firebase.common)
             }
         }
         val androidMain by getting {
             dependencies {
-                api(libs.kotlin.coroutines.android)
-                api(libs.kotlin.coroutines.play.services)
-
-                // Firestore
-                implementation(libs.firebase.firestore)
-                implementation(libs.firebase.auth)
+                // FIXME https://github.com/GitLiveApp/firebase-kotlin-sdk/issues/356
+                api(libs.firebase.common)
             }
         }
         if (OperatingSystem.current().isMacOsX) {
@@ -48,8 +51,6 @@ kotlin {
                 iosX64Main.dependsOn(this)
                 iosArm64Main.dependsOn(this)
                 iosSimulatorArm64Main.dependsOn(this)
-                dependencies {
-                }
             }
         }
     }
