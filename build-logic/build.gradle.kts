@@ -34,5 +34,9 @@ gradlePlugin {
             id = "io.openfeedback.plugins.app"
             implementationClass = "io.openfeedback.plugins.AppPlugin"
         }
+        register("io.openfeedback.publishing") {
+            id = "io.openfeedback.publishing"
+            implementationClass = "io.openfeedback.plugins.PublishingPlugin"
+        }
     }
 }

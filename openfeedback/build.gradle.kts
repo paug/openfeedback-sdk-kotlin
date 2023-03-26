@@ -2,14 +2,13 @@ import org.gradle.internal.os.OperatingSystem
 
 plugins {
     id("io.openfeedback.plugins.multiplatform")
-}
-
-openfeedback {
-    configurePublishing("feedback-android-sdk")
+    id("io.openfeedback.publishing")
 }
 
 kotlin {
-    android()
+    android {
+        publishLibraryVariants("release", "debug")
+    }
 
     if (OperatingSystem.current().isMacOsX) {
         listOf(
@@ -18,7 +17,7 @@ kotlin {
             iosSimulatorArm64()
         ).forEach {
             it.binaries.framework {
-                baseName = "openfeedback"
+                baseName = "Openfeedback"
                 isStatic = true
             }
         }

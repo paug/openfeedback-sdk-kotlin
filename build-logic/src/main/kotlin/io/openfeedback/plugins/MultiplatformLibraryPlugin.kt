@@ -15,10 +15,7 @@ class MultiplatformLibraryPlugin: Plugin<Project> {
                 apply("com.android.library")
                 apply("org.jetbrains.kotlin.multiplatform")
                 apply("org.jetbrains.kotlin.plugin.serialization")
-                apply("maven-publish")
-                apply("signing")
             }
-            target.extensions.create("openfeedback", OpenFeedback::class.java, target)
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid()
                 sourceSets.getByName("main").manifest.srcFile("src/androidMain/AndroidManifest.xml")

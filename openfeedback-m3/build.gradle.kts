@@ -1,10 +1,7 @@
 
 plugins {
     id("io.openfeedback.plugins.compose.lib")
-}
-
-openfeedback {
-    configurePublishing("feedback-android-sdk-m3")
+    id("io.openfeedback.publishing")
 }
 
 dependencies {
