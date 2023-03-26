@@ -34,12 +34,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val config = OpenFeedbackConfig(
             context = this,
-            openFeedbackProjectId = "mMHR63ARZQpPidFQISyc",
+            openFeedbackProjectId = "am2023",
             firebaseConfig = OpenFeedbackConfig.FirebaseConfig(
-                projectId = "openfeedback-b7ab9",
-                applicationId = "1:765209934800:android:a6bb09f3deabc2277297d5",
-                apiKey = "AIzaSyC_cfbh8xKwF8UPxCeasGcsHyK4s5yZFeA",
-                databaseUrl = "https://openfeedback-b7ab9.firebaseio.com"
+                projectId = "open-feedback-42",
+                applicationId = "1:635903227116:web:31de912f8bf29befb1e1c9",
+                apiKey = "AIzaSyB3ELJsaiItrln0uDGSuuHE1CfOJO67Hb4",
+                databaseUrl = "https://open-feedback-42.firebaseio.com"
             )
         )
         setContent {
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                         DesignSystem.M2 -> Scaffold {
                             OpenFeedback(
                                 openFeedbackState = config,
-                                sessionId = "173222",
+                                sessionId = "417949",
                                 language = "en",
                                 modifier = Modifier
                                     .padding(it)
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                         DesignSystem.M3 -> androidx.compose.material3.Scaffold {
                             io.openfeedback.android.m3.OpenFeedback(
                                 openFeedbackState = config,
-                                sessionId = "173222",
+                                sessionId = "417890",
                                 language = "en",
                                 modifier = Modifier
                                     .padding(it)
