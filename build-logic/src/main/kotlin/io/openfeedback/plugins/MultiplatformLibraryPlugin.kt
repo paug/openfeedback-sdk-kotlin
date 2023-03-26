@@ -1,7 +1,6 @@
 package io.openfeedback.plugins
 
 import com.android.build.gradle.LibraryExtension
-import io.openfeedback.OpenFeedback
 import io.openfeedback.extensions.configureKotlinAndroid
 import io.openfeedback.extensions.configureKotlinCompiler
 import org.gradle.api.Plugin

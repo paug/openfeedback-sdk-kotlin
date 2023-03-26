@@ -3,40 +3,7 @@ package io.openfeedback.extensions
 import io.openfeedback.EnvVarKeys
 import net.mbonnin.vespene.lib.NexusStagingClient
 import org.gradle.api.Project
-import org.gradle.api.Task
 import org.gradle.api.plugins.ExtraPropertiesExtension
-import org.gradle.api.tasks.TaskProvider
-import org.gradle.plugins.signing.Sign
-
-internal fun Project.configurePublishingInternal(artifactName: String) {
-    val android = extensions.findByType(com.android.build.gradle.LibraryExtension::class.java)!!
-
-    android.publishing {
-        singleVariant("release") {
-            withJavadocJar()
-            withSourcesJar()
-        }
-    }
-
-    extensions.configurePublishing(
-        project = this@configurePublishingInternal,
-        artifactName = artifactName
-    )
-
-    extensions.configureSigning()
-
-    tasks.withType(Sign::class.java).configureEach {
-        isEnabled = !System.getenv(EnvVarKeys.GPG.privateKey).isNullOrBlank()
-    }
-}
-
-fun Project.publishIfNeededTaskProvider(): TaskProvider<Task> {
-    return try {
-        tasks.named("publishIfNeeded")
-    } catch (ignored: Exception) {
-        tasks.register("publishIfNeeded")
-    }
-}
 
 fun Project.getOssStagingUrl(): String {
     val url = try {

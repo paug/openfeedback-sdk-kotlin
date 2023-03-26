@@ -18,7 +18,7 @@ jobs:
       - name: Build with Gradle
         run: |
           ./gradlew build -Dorg.gradle.jvmargs=-Xmx1g
-          ./gradlew publishIfNeeded
+          ./gradlew publish
         env: # Or as an environment variable
           SONATYPE_NEXUS_USERNAME: ${{ secrets.SONATYPE_NEXUS_USERNAME }}
           SONATYPE_NEXUS_PASSWORD: ${{ secrets.SONATYPE_NEXUS_PASSWORD }}
