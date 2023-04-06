@@ -26,12 +26,11 @@ import java.util.Date
 class OpenFeedbackConfig(
     context: Context,
     firebaseConfig: FirebaseConfig,
-    val openFeedbackProjectId: String,
     appName: String = "openfeedback"
 ) {
-
     val firestore: FirebaseFirestore
     val auth: FirebaseAuth
+    var openFeedbackProjectId: String = ""
 
     class OptimisticVotes(
         var lastValue: Map<String, Long>?,
@@ -49,6 +48,18 @@ class OpenFeedbackConfig(
         val apiKey: String,
         val databaseUrl: String
     )
+
+    @Deprecated(
+        message = "Openfeedback project id should be passed in parameter in functions"
+    )
+    constructor(
+        context: Context,
+        firebaseConfig: FirebaseConfig,
+        openFeedbackProjectId: String,
+        appName: String = "openfeedback"
+    ) : this(context, firebaseConfig, appName) {
+        this.openFeedbackProjectId = openFeedbackProjectId
+    }
 
     init {
         val options = FirebaseOptions.Builder()
@@ -83,19 +94,31 @@ class OpenFeedbackConfig(
         auth.currentUser
     }
 
-    suspend fun getProject(): Flow<Project> = flow {
+    @Deprecated(
+        message = "Use getProject(projectId: String) instead of this one.",
+        replaceWith = ReplaceWith("getProject(openFeedbackProjectId)")
+    )
+    suspend fun getProject(): Flow<Project> = getProject(openFeedbackProjectId)
+
+    suspend fun getProject(projectId: String): Flow<Project> = flow {
         firestore.collection("projects")
-            .document(openFeedbackProjectId)
+            .document(projectId)
             .toFlow()
             .collect { documentSnapshot ->
                 documentSnapshot.toObject(Project::class.java)?.let { emit(it) }
             }
     }
 
-    fun getUserVotes(sessionId: String) = flow {
+    @Deprecated(
+        message = "Use getUserVotes(projectId: String, sessionId: String) instead of this one.",
+        replaceWith = ReplaceWith("getUserVotes(openFeedbackProjectId, sessionId)")
+    )
+    fun getUserVotes(sessionId: String) = getUserVotes(openFeedbackProjectId, sessionId)
+
+    fun getUserVotes(projectId: String, sessionId: String) = flow {
         val user = getFirebaseUser()
         if (user != null) {
-            firestore.collection("projects/$openFeedbackProjectId/userVotes")
+            firestore.collection("projects/$projectId/userVotes")
                 .whereEqualTo("userId", user.uid)
                 .toFlow()
                 .collect { querySnapshot ->
@@ -107,13 +130,20 @@ class OpenFeedbackConfig(
         }
     }
 
-    fun getTotalVotes(sessionId: String): Flow<Map<String, Long>> {
+    @Deprecated(
+        message = "Use getTotalVotes(projectId: String, sessionId: String) instead of this one.",
+        replaceWith = ReplaceWith("getTotalVotes(openFeedbackProjectId, sessionId)")
+    )
+    fun getTotalVotes(sessionId: String): Flow<Map<String, Long>> =
+        getTotalVotes(openFeedbackProjectId, sessionId)
+
+    fun getTotalVotes(projectId: String, sessionId: String): Flow<Map<String, Long>> {
         val optimisticVotes = optimisticVotes.getOrPut(sessionId) {
             OptimisticVotes(null, BroadcastChannel(Channel.CONFLATED))
         }
 
         val channel = Channel<Map<String, Long>>(Channel.CONFLATED)
-        val registration = firestore.collection("projects/$openFeedbackProjectId/sessionVotes")
+        val registration = firestore.collection("projects/$projectId/sessionVotes")
             .document(sessionId)
             .addSnapshotListener { documentSnapshot, firebaseFirestoreException ->
                 val totalVotes = documentSnapshot!!.data as? Map<String, Long>
@@ -139,10 +169,17 @@ class OpenFeedbackConfig(
         return flowOf(flow1, flow2).flattenMerge()
     }
 
+    @Deprecated(
+        message = "Use setVote(projectId: String, talkId: String, voteItemId: String, status: VoteStatus) instead of this one.",
+        replaceWith = ReplaceWith("setVote(openFeedbackProjectId, talkId, voteItemId, status)")
+    )
     suspend fun setVote(talkId: String, voteItemId: String, status: VoteStatus) =
+        setVote(openFeedbackProjectId, talkId, voteItemId, status)
+
+    suspend fun setVote(projectId: String, talkId: String, voteItemId: String, status: VoteStatus) =
         withFirebaseUser { firebaseUser ->
             val collectionReference =
-                firestore.collection("projects/$openFeedbackProjectId/userVotes")
+                firestore.collection("projects/$projectId/userVotes")
 
             val optimisticVotes = optimisticVotes.getOrPut(talkId) {
                 OptimisticVotes(null, BroadcastChannel(Channel.CONFLATED))
@@ -178,7 +215,7 @@ class OpenFeedbackConfig(
                     mapOf(
                         "id" to documentReference.id,
                         "createdAt" to Date(),
-                        "projectId" to openFeedbackProjectId,
+                        "projectId" to projectId,
                         "status" to status.value,
                         "talkId" to talkId,
                         "updatedAt" to Date(),

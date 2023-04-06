@@ -16,6 +16,9 @@ import io.openfeedback.android.viewmodels.OpenFeedbackViewModel
 import io.openfeedback.android.viewmodels.models.UISessionFeedback
 import io.openfeedback.android.viewmodels.models.UIVoteItem
 
+@Deprecated(
+    message = "Use OpenFeedback component with projectId parameter."
+)
 @Composable
 fun OpenFeedback(
     openFeedbackState: OpenFeedbackConfig,
@@ -23,9 +26,31 @@ fun OpenFeedback(
     language: String,
     modifier: Modifier = Modifier,
     loading: @Composable () -> Unit = { Loading(modifier = modifier) }
+) = OpenFeedback(
+    config = openFeedbackState,
+    projectId = openFeedbackState.openFeedbackProjectId,
+    sessionId = sessionId,
+    language = language,
+    modifier = modifier,
+    loading = loading
+)
+
+@Composable
+fun OpenFeedback(
+    config: OpenFeedbackConfig,
+    projectId: String,
+    sessionId: String,
+    language: String,
+    modifier: Modifier = Modifier,
+    loading: @Composable () -> Unit = { Loading(modifier = modifier) }
 ) {
     val viewModel: OpenFeedbackViewModel = viewModel(
-        factory = OpenFeedbackViewModel.Factory.create(openFeedbackState, sessionId, language)
+        factory = OpenFeedbackViewModel.Factory.create(
+            openFeedbackConfig = config,
+            projectId = projectId,
+            sessionId = sessionId,
+            language = language
+        )
     )
     val uiState = viewModel.uiState.collectAsState()
     when (uiState.value) {

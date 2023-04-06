@@ -18,6 +18,7 @@ sealed class OpenFeedbackUiState {
 
 class OpenFeedbackViewModel(
     private val openFeedbackConfig: OpenFeedbackConfig,
+    private val projectId: String,
     private val sessionId: String,
     private val language: String
 ) : ViewModel() {
@@ -26,7 +27,7 @@ class OpenFeedbackViewModel(
 
     init {
         viewModelScope.launch {
-            openFeedbackConfig.getUISessionFeedback(sessionId, language).collect {
+            openFeedbackConfig.getUISessionFeedback(projectId, sessionId, language).collect {
                 val oldSession =
                     if (uiState.value is OpenFeedbackUiState.Success) (uiState.value as OpenFeedbackUiState.Success).session
                     else null
@@ -43,6 +44,7 @@ class OpenFeedbackViewModel(
 
     fun vote(voteItem: UIVoteItem) = viewModelScope.launch {
         openFeedbackConfig.setVote(
+            projectId = projectId,
             talkId = sessionId,
             voteItemId = voteItem.id,
             status = if (!voteItem.votedByUser) VoteStatus.Active else VoteStatus.Deleted
@@ -50,10 +52,34 @@ class OpenFeedbackViewModel(
     }
 
     object Factory {
+        @Deprecated(
+            message = "Use create(openFeedbackConfig: OpenFeedbackConfig, projectId: String, sessionId: String, language: String) instead of this one.",
+            replaceWith = ReplaceWith("create(config, openFeedbackProjectId, sessionId, language)")
+        )
         fun create(openFeedbackConfig: OpenFeedbackConfig, sessionId: String, language: String) =
             object : ViewModelProvider.Factory {
                 override fun <T : ViewModel> create(modelClass: Class<T>): T =
-                    OpenFeedbackViewModel(openFeedbackConfig, sessionId, language) as T
+                    OpenFeedbackViewModel(
+                        openFeedbackConfig = openFeedbackConfig,
+                        projectId = openFeedbackConfig.openFeedbackProjectId,
+                        sessionId = sessionId,
+                        language = language
+                    ) as T
             }
+
+        fun create(
+            openFeedbackConfig: OpenFeedbackConfig,
+            projectId: String,
+            sessionId: String,
+            language: String
+        ) = object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T =
+                OpenFeedbackViewModel(
+                    openFeedbackConfig = openFeedbackConfig,
+                    projectId = projectId,
+                    sessionId = sessionId,
+                    language = language
+                ) as T
+        }
     }
 }

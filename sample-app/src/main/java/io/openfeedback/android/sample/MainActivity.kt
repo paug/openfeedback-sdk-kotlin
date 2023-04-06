@@ -32,9 +32,9 @@ class MainActivity : AppCompatActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val projectId = "mMHR63ARZQpPidFQISyc"
         val config = OpenFeedbackConfig(
             context = this,
-            openFeedbackProjectId = "mMHR63ARZQpPidFQISyc",
             firebaseConfig = OpenFeedbackConfig.FirebaseConfig(
                 projectId = "openfeedback-b7ab9",
                 applicationId = "1:765209934800:android:a6bb09f3deabc2277297d5",
@@ -60,7 +60,8 @@ class MainActivity : AppCompatActivity() {
                     when (designSystem) {
                         DesignSystem.M2 -> Scaffold {
                             OpenFeedback(
-                                openFeedbackState = config,
+                                config = config,
+                                projectId = projectId,
                                 sessionId = "173222",
                                 language = "en",
                                 modifier = Modifier
@@ -70,7 +71,8 @@ class MainActivity : AppCompatActivity() {
                         }
                         DesignSystem.M3 -> androidx.compose.material3.Scaffold {
                             io.openfeedback.android.m3.OpenFeedback(
-                                openFeedbackState = config,
+                                config = config,
+                                projectId = projectId,
                                 sessionId = "173222",
                                 language = "en",
                                 modifier = Modifier
