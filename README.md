@@ -14,20 +14,17 @@ configuration which is common for all sessions of your event.
 
 ```kotlin
 // In your Application class
-val config = OpenFeedbackConfig(
-    context = context,
-    projectId = "<your-open-feedback-project-id>",
-    firebaseConfig = OpenFeedback.FirebaseConfig(
-        projectId = "<your-firebase-open-feedback-project-id>",
-        applicationId = "<your-firebase-open-feedback-app-id>",
-        apiKey = "<your-firebase-open-feedback-api-key>",
-        databaseUrl = "https://<your-firebase-open-feedback-project-id>.firebaseio.com"
-    )
+val firebaseConfig = FirebaseConfig(
+    projectId = "<your-firebase-open-feedback-project-id>",
+    applicationId = "<your-firebase-open-feedback-app-id>",
+    apiKey = "<your-firebase-open-feedback-api-key>",
+    databaseUrl = "https://<your-firebase-open-feedback-project-id>.firebaseio.com"
 )
 
 // In your Compose screen
 OpenFeedback(
-    openFeedbackState = MyApp.config,
+    config = MyApp.firebaseConfig,
+    projectId = "<your-open-feedback-project-id>",
     sessionId = "<your-open-feedback-session-id>",
     language = "<language-code>"
 )

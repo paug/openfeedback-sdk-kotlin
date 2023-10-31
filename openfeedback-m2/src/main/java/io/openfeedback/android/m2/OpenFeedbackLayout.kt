@@ -8,45 +8,29 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import io.openfeedback.android.OpenFeedbackConfig
+import io.openfeedback.android.FirebaseConfig
 import io.openfeedback.android.viewmodels.OpenFeedbackUiState
 import io.openfeedback.android.viewmodels.OpenFeedbackViewModel
 import io.openfeedback.android.viewmodels.models.UISessionFeedback
 import io.openfeedback.android.viewmodels.models.UIVoteItem
 
-@Deprecated(
-    message = "Use OpenFeedback component with projectId parameter."
-)
 @Composable
 fun OpenFeedback(
-    openFeedbackState: OpenFeedbackConfig,
-    sessionId: String,
-    language: String,
-    modifier: Modifier = Modifier,
-    loading: @Composable () -> Unit = { Loading(modifier = modifier) }
-) = OpenFeedback(
-    config = openFeedbackState,
-    projectId = openFeedbackState.openFeedbackProjectId,
-    sessionId = sessionId,
-    language = language,
-    modifier = modifier,
-    loading = loading
-)
-
-@Composable
-fun OpenFeedback(
-    config: OpenFeedbackConfig,
+    config: FirebaseConfig,
     projectId: String,
     sessionId: String,
     language: String,
     modifier: Modifier = Modifier,
     loading: @Composable () -> Unit = { Loading(modifier = modifier) }
 ) {
+    val context = LocalContext.current
     val viewModel: OpenFeedbackViewModel = viewModel(
         factory = OpenFeedbackViewModel.Factory.create(
-            openFeedbackConfig = config,
+            context = context,
+            firebaseConfig = config,
             projectId = projectId,
             sessionId = sessionId,
             language = language

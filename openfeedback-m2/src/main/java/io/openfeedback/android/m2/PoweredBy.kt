@@ -19,6 +19,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import io.openfeedback.android.R as ROF
 
 @Composable
 fun PoweredBy(
@@ -27,9 +28,9 @@ fun PoweredBy(
     color: Color = MaterialTheme.colors.onBackground
 ) {
     val logo =
-        if (MaterialTheme.colors.isLight) R.drawable.openfeedback_light
-        else R.drawable.openfeedback_dark
-    val poweredBy = stringResource(id = R.string.powered_by)
+        if (MaterialTheme.colors.isLight) ROF.drawable.openfeedback_light
+        else ROF.drawable.openfeedback_dark
+    val poweredBy = stringResource(id = ROF.string.powered_by)
     Row(
         modifier = modifier.semantics(mergeDescendants = true) {
             contentDescription = "$poweredBy Openfeedback"
