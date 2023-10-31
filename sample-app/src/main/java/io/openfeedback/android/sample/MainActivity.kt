@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,25 +21,21 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.openfeedback.android.OpenFeedbackConfig
+import io.openfeedback.android.FirebaseConfig
 import io.openfeedback.android.m2.OpenFeedback
 import io.openfeedback.android.sample.theme.DesignSystem
 import io.openfeedback.android.sample.theme.OpenFeedbackTheme
 
 class MainActivity : AppCompatActivity() {
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
-    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val projectId = "mMHR63ARZQpPidFQISyc"
-        val config = OpenFeedbackConfig(
-            context = this,
-            firebaseConfig = OpenFeedbackConfig.FirebaseConfig(
-                projectId = "openfeedback-b7ab9",
-                applicationId = "1:765209934800:android:a6bb09f3deabc2277297d5",
-                apiKey = "AIzaSyC_cfbh8xKwF8UPxCeasGcsHyK4s5yZFeA",
-                databaseUrl = "https://openfeedback-b7ab9.firebaseio.com"
-            )
+        val firebaseConfig = FirebaseConfig(
+            projectId = "openfeedback-b7ab9",
+            applicationId = "1:765209934800:android:a6bb09f3deabc2277297d5",
+            apiKey = "AIzaSyC_cfbh8xKwF8UPxCeasGcsHyK4s5yZFeA",
+            databaseUrl = "https://openfeedback-b7ab9.firebaseio.com"
         )
         setContent {
             var designSystem by rememberSaveable { mutableStateOf(DesignSystem.M2) }
@@ -60,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                     when (designSystem) {
                         DesignSystem.M2 -> Scaffold {
                             OpenFeedback(
-                                config = config,
+                                config = firebaseConfig,
                                 projectId = projectId,
                                 sessionId = "173222",
                                 language = "en",
@@ -71,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                         }
                         DesignSystem.M3 -> androidx.compose.material3.Scaffold {
                             io.openfeedback.android.m3.OpenFeedback(
-                                config = config,
+                                config = firebaseConfig,
                                 projectId = projectId,
                                 sessionId = "173222",
                                 language = "en",

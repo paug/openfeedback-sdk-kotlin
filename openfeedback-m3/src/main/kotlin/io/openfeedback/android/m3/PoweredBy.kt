@@ -1,7 +1,6 @@
 package io.openfeedback.android.m3
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
@@ -18,6 +17,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import io.openfeedback.android.R as ROF
 
 @Composable
 internal fun PoweredBy(
@@ -27,9 +27,9 @@ internal fun PoweredBy(
 ) {
 
     val logo =
-        if (MaterialTheme.colorScheme.background.luminance() > 0.5) R.drawable.openfeedback_light
-        else R.drawable.openfeedback_dark
-    val poweredBy = stringResource(id = R.string.powered_by)
+        if (MaterialTheme.colorScheme.background.luminance() > 0.5) ROF.drawable.openfeedback_light
+        else ROF.drawable.openfeedback_dark
+    val poweredBy = stringResource(id = ROF.string.powered_by)
     Row(
         modifier = modifier.semantics(mergeDescendants = true) {
             contentDescription = "$poweredBy Openfeedback"

@@ -17,6 +17,6 @@ dependencies {
     api(libs.kotlin.coroutines.play.services)
 
     // Firestore
-    implementation(libs.firebase.firestore)
-    implementation(libs.firebase.auth)
+    api(libs.firebase.firestore)
+    api(libs.firebase.auth)
 }
