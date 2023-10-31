@@ -7,6 +7,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun TaskContainer.configureKotlinCompiler() = withType<KotlinCompile> {
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 }

@@ -20,7 +20,7 @@ class LibraryPlugin : Plugin<Project> {
         target.extensions.create("openfeedback", OpenFeedback::class.java, target)
         target.extensions.configure<LibraryExtension> {
             configureKotlinAndroid()
-            defaultConfig.targetSdk = 33
+            defaultConfig.targetSdk = 34
         }
         target.tasks.configureKotlinCompiler()
     }

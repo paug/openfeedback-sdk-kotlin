@@ -3,6 +3,10 @@ plugins {
     id("io.openfeedback.plugins.compose.lib")
 }
 
+android {
+    namespace = "io.openfeedback.android.m2"
+}
+
 openfeedback {
     configurePublishing("feedback-android-sdk-m2")
 }

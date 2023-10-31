@@ -22,7 +22,7 @@ class ComposeLibraryPlugin : Plugin<Project> {
         target.extensions.configure<LibraryExtension> {
             configureKotlinAndroid()
             configureAndroidCompose(target)
-            defaultConfig.targetSdk = 33
+            defaultConfig.targetSdk = 34
         }
         target.tasks.configureKotlinCompiler()
     }

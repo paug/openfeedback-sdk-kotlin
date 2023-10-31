@@ -3,6 +3,10 @@ plugins {
     id("io.openfeedback.plugins.compose.lib")
 }
 
+android {
+    namespace = "io.openfeedback.android.viewmodel"
+}
+
 openfeedback {
     configurePublishing("feedback-android-sdk-viewmodel")
 }
