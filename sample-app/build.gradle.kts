@@ -3,6 +3,7 @@ plugins {
 }
 
 android {
+    namespace = "io.openfeedback.android.sample"
     defaultConfig {
         versionCode = 1
         versionName = "1"

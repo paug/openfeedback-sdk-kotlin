@@ -3,6 +3,10 @@ plugins {
     id("io.openfeedback.plugins.lib")
 }
 
+android {
+    namespace = "io.openfeedback.android"
+}
+
 openfeedback {
     configurePublishing("feedback-android-sdk")
 }
