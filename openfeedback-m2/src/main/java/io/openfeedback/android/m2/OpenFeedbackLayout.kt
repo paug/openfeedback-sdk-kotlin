@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import io.openfeedback.android.FirebaseConfig
+import io.openfeedback.android.viewmodels.OpenFeedbackFirebaseConfig
 import io.openfeedback.android.viewmodels.OpenFeedbackUiState
 import io.openfeedback.android.viewmodels.OpenFeedbackViewModel
 import io.openfeedback.android.viewmodels.models.UISessionFeedback
@@ -19,18 +19,16 @@ import io.openfeedback.android.viewmodels.models.UIVoteItem
 
 @Composable
 fun OpenFeedback(
-    config: FirebaseConfig,
+    config: OpenFeedbackFirebaseConfig,
     projectId: String,
     sessionId: String,
     language: String,
     modifier: Modifier = Modifier,
     loading: @Composable () -> Unit = { Loading(modifier = modifier) }
 ) {
-    val context = LocalContext.current
     val viewModel: OpenFeedbackViewModel = viewModel(
         factory = OpenFeedbackViewModel.Factory.create(
-            context = context,
-            firebaseConfig = config,
+            firebaseApp = config.firebaseApp,
             projectId = projectId,
             sessionId = sessionId,
             language = language

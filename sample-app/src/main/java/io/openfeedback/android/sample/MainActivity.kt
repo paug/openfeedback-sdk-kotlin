@@ -21,7 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.openfeedback.android.FirebaseConfig
+import io.openfeedback.android.viewmodels.OpenFeedbackFirebaseConfig
 import io.openfeedback.android.m2.OpenFeedback
 import io.openfeedback.android.sample.theme.DesignSystem
 import io.openfeedback.android.sample.theme.OpenFeedbackTheme
@@ -31,12 +31,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val projectId = "mMHR63ARZQpPidFQISyc"
-        val firebaseConfig = FirebaseConfig(
-            projectId = "openfeedback-b7ab9",
-            applicationId = "1:765209934800:android:a6bb09f3deabc2277297d5",
-            apiKey = "AIzaSyC_cfbh8xKwF8UPxCeasGcsHyK4s5yZFeA",
-            databaseUrl = "https://openfeedback-b7ab9.firebaseio.com"
-        )
+        val openFeedbackFirebaseConfig = (application as MainApplication).openFeedbackFirebaseConfig
         setContent {
             var designSystem by rememberSaveable { mutableStateOf(DesignSystem.M2) }
             val isDark = isSystemInDarkTheme()
@@ -55,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                     when (designSystem) {
                         DesignSystem.M2 -> Scaffold {
                             OpenFeedback(
-                                config = firebaseConfig,
+                                config = openFeedbackFirebaseConfig,
                                 projectId = projectId,
                                 sessionId = "173222",
                                 language = "en",
@@ -66,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                         }
                         DesignSystem.M3 -> androidx.compose.material3.Scaffold {
                             io.openfeedback.android.m3.OpenFeedback(
-                                config = firebaseConfig,
+                                config = openFeedbackFirebaseConfig,
                                 projectId = projectId,
                                 sessionId = "173222",
                                 language = "en",

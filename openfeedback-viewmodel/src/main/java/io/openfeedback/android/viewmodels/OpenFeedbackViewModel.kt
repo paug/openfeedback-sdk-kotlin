@@ -1,15 +1,12 @@
 package io.openfeedback.android.viewmodels
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.FirebaseApp
-import io.openfeedback.android.FirebaseConfig
 import io.openfeedback.android.OpenFeedbackRepository
 import io.openfeedback.android.caches.OptimisticVoteCaching
 import io.openfeedback.android.model.VoteStatus
-import io.openfeedback.android.sources.FirebaseFactory
 import io.openfeedback.android.sources.OpenFeedbackAuth
 import io.openfeedback.android.sources.OpenFeedbackFirestore
 import io.openfeedback.android.viewmodels.mappers.convertToUiSessionFeedback
@@ -27,14 +24,14 @@ sealed class OpenFeedbackUiState {
 }
 
 class OpenFeedbackViewModel(
-    private val firebase: FirebaseApp,
+    private val firebaseApp: FirebaseApp,
     private val projectId: String,
     private val sessionId: String,
     private val language: String
 ) : ViewModel() {
     private val repository = OpenFeedbackRepository(
-        auth = OpenFeedbackAuth.Factory.create(firebase),
-        firestore = OpenFeedbackFirestore.Factory.create(firebase),
+        auth = OpenFeedbackAuth.Factory.create(firebaseApp),
+        firestore = OpenFeedbackFirestore.Factory.create(firebaseApp),
         optimisticVoteCaching = OptimisticVoteCaching()
     )
 
@@ -75,14 +72,13 @@ class OpenFeedbackViewModel(
 
     object Factory {
         fun create(
-            context: Context,
-            firebaseConfig: FirebaseConfig,
+            firebaseApp: FirebaseApp,
             projectId: String,
             sessionId: String,
             language: String
         ) = object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T = OpenFeedbackViewModel(
-                firebase = FirebaseFactory.create(context, firebaseConfig),
+                firebaseApp = firebaseApp,
                 projectId = projectId,
                 sessionId = sessionId,
                 language = language
