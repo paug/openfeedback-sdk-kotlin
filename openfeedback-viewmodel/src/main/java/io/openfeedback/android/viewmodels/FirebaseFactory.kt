@@ -1,14 +1,13 @@
-package io.openfeedback.android.sources
+package io.openfeedback.android.viewmodels
 
 import android.content.Context
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
-import io.openfeedback.android.FirebaseConfig
 
-object FirebaseFactory {
+internal object FirebaseFactory {
     fun create(
         context: Context,
-        config: FirebaseConfig,
+        config: OpenFeedbackFirebaseConfig,
         appName: String = "openfeedback"
     ): FirebaseApp {
         val options = FirebaseOptions.Builder()

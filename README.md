@@ -9,12 +9,18 @@ An Android client for Open-Feeedback https://github.com/HugoGresse/open-feedback
 
 The Composable `OpenFeedback` is the entry point to vote on a session. It'll make calls
 between the Firebase which host your OpenFeedback instance and your mobile application. It is
-mandatory to pass the `OpenFeedbackState` to give the Firebase configuration and your open-feedback
-configuration which is common for all sessions of your event.
+mandatory to pass the `OpenFeedbackFirebaseConfig` to give the Firebase instance which is common 
+for all sessions of your event.
+
+Note that it is mandatory to keep this instance unique in your application because it creates the
+`FirebaseApp` instance which is the active connection between your mobile application and the
+OpenFeedback Firebase host. Consider to save this configuration in your custom `Application` class
+or in singleton in your dependency injection.
 
 ```kotlin
 // In your Application class
-val firebaseConfig = FirebaseConfig(
+val openfeedbackFirebaseConfig = OpenFeedbackFirebaseConfig(
+    context = applicationContext,
     projectId = "<your-firebase-open-feedback-project-id>",
     applicationId = "<your-firebase-open-feedback-app-id>",
     apiKey = "<your-firebase-open-feedback-api-key>",
@@ -23,7 +29,7 @@ val firebaseConfig = FirebaseConfig(
 
 // In your Compose screen
 OpenFeedback(
-    config = MyApp.firebaseConfig,
+    config = (application as MyApp).openfeedbackFirebaseConfig,
     projectId = "<your-open-feedback-project-id>",
     sessionId = "<your-open-feedback-session-id>",
     language = "<language-code>"
@@ -32,7 +38,12 @@ OpenFeedback(
 
 That's all!
 
-If you want to see an example, please check the [sample-app](sample-app/src/main/java/io/openfeedback/android/sample/MainActivity.kt).
+See the [sample-app](sample-app/src/main/java/io/openfeedback/android/sample/MainActivity.kt) app 
+module if you want to see this implementation in action.
+
+If you are interested to create your own UI, you can use the component `OpenFeedbackLayout`. This
+`Composable` takes OpenFeedback Model UI in input and you can use `OpenFeedbackViewModel` in the
+viewmodel artifact to get the data from the Firebase host.
 
 ## Installation
 
@@ -43,11 +54,14 @@ repositories {
     mavenCentral()
 }
 
+val openfeedbackVersion = "0.0.6"
 dependencies {
     // Material 2
-    implementation("io.openfeedback:feedback-android-sdk-m2:0.0.6")
+    implementation("io.openfeedback:feedback-android-sdk-m2:$openfeedbackVersion")
     // Material 3
-    implementation("io.openfeedback:feedback-android-sdk-m3:0.0.6")
+    implementation("io.openfeedback:feedback-android-sdk-m3:$openfeedbackVersion")
+    // ViewModel
+    implementation("io.openfeedback:feedback-android-sdk-viewmodel:$openfeedbackVersion")
 }
 ```
 
