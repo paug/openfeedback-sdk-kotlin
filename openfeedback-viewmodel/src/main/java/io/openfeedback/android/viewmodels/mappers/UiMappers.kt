@@ -7,6 +7,8 @@ import io.openfeedback.android.viewmodels.models.UIDot
 import io.openfeedback.android.viewmodels.models.UISessionFeedback
 import io.openfeedback.android.viewmodels.models.UISessionFeedbackWithColors
 import io.openfeedback.android.viewmodels.models.UIVoteItem
+import java.text.SimpleDateFormat
+import java.util.Locale
 import kotlin.math.absoluteValue
 import kotlin.random.Random
 
@@ -14,27 +16,56 @@ fun convertToUiSessionFeedback(
     project: Project,
     userVotes: List<String>,
     totalVotes: SessionVotes,
-    language: String
-): UISessionFeedback = UISessionFeedback(
-    comments = totalVotes.comments
-        .map { UIComment(message = it.value.text, createdAt = it.value.createdAt.toDate()) },
-    voteItem = project.voteItems
-        .filter { it.type == "boolean" }
-        .map { voteItem ->
-            val count = totalVotes.votes[voteItem.id]?.toInt() ?: 0
-            UIVoteItem(
-                id = voteItem.id,
-                text = voteItem.localizedName(language),
-                dots = dots(count, project.chipColors),
-                votedByUser = userVotes.contains(voteItem.id)
+    locale: Locale
+): UISessionFeedback {
+    val formatter = SimpleDateFormat("dd MMMM yyyy, hh:mm", locale)
+    return UISessionFeedback(
+        comments = totalVotes.comments.map {
+            UIComment(
+                id = it.key,
+                message = it.value.text,
+                createdAt = formatter.format(it.value.createdAt.toDate()),
+                upVotes = it.value.plus.toInt(),
+                dots = dots(it.value.plus.toInt(), project.chipColors)
             )
-        }
-)
+        },
+        voteItem = project.voteItems
+            .filter { it.type == "boolean" }
+            .map { voteItem ->
+                val count = totalVotes.votes[voteItem.id]?.toInt() ?: 0
+                UIVoteItem(
+                    id = voteItem.id,
+                    text = voteItem.localizedName(locale.language),
+                    dots = dots(count, project.chipColors),
+                    votedByUser = userVotes.contains(voteItem.id)
+                )
+            }
+    )
+}
 
 fun UISessionFeedbackWithColors.convertToUiSessionFeedback(
     oldSessionFeedback: UISessionFeedback?
 ): UISessionFeedback = UISessionFeedback(
-    comments = this.session.comments,
+    comments = this.session.comments.map { newCommentItem ->
+        val oldCommentItem = oldSessionFeedback?.comments?.find { it.id == newCommentItem.id }
+        val newDots = if (oldCommentItem != null) {
+            val diff = newCommentItem.dots.size - oldCommentItem.dots.size
+            if (diff > 0) {
+                oldCommentItem.dots + dots(diff, this.colors)
+            } else {
+                oldCommentItem.dots.dropLast(diff.absoluteValue)
+            }
+        } else {
+            newCommentItem.dots
+        }
+        UIComment(
+            id = newCommentItem.id,
+            message = newCommentItem.message,
+            createdAt = newCommentItem.createdAt,
+            upVotes = newCommentItem.upVotes,
+            dots = newDots
+        )
+    },
     voteItem = this.session.voteItem.map { newVoteItem ->
         val oldVoteItem = oldSessionFeedback?.voteItem?.find { it.id == newVoteItem.id }
         val newDots = if (oldVoteItem != null) {

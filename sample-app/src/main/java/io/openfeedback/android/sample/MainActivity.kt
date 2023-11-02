@@ -53,7 +53,6 @@ class MainActivity : AppCompatActivity() {
                                 config = openFeedbackFirebaseConfig,
                                 projectId = projectId,
                                 sessionId = "173222",
-                                language = "en",
                                 modifier = Modifier
                                     .padding(it)
                                     .padding(horizontal = 8.dp, vertical = 4.dp)
@@ -64,7 +63,6 @@ class MainActivity : AppCompatActivity() {
                                 config = openFeedbackFirebaseConfig,
                                 projectId = projectId,
                                 sessionId = "173222",
-                                language = "en",
                                 modifier = Modifier
                                     .padding(it)
                                     .padding(horizontal = 8.dp, vertical = 4.dp)

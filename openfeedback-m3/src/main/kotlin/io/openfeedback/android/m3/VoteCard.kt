@@ -11,11 +11,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -42,30 +39,7 @@ fun VoteCard(
         onClick = { onClick(voteModel) }
     ) {
         Box(
-            modifier = Modifier
-                .drawBehind {
-                    voteModel.dots.forEach { dot ->
-                        val offset =
-                            Offset(x = this.size.width * dot.x, y = this.size.height * dot.y)
-                        drawCircle(
-                            color = Color(
-                                dot.color
-                                    .substring(0, 2)
-                                    .toInt(16),
-                                dot.color
-                                    .substring(2, 4)
-                                    .toInt(16),
-                                dot.color
-                                    .substring(4, 6)
-                                    .toInt(16),
-                                255 / 3
-                            ),
-                            radius = 30.dp.value,
-                            center = offset,
-                            style = Fill
-                        )
-                    }
-                }
+            modifier = Modifier.drawDots(voteModel.dots)
         ) {
             Text(
                 text = voteModel.text,

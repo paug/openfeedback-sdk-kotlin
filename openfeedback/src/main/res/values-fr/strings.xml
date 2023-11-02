@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="openfeedback_comments_title">Commentaires</string>
+    <string name="openfeedback_comments_upvotes">%d votes</string>
     <string name="powered_by">Proposé par</string>
 </resources>

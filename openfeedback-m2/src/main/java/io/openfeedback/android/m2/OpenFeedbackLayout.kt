@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import io.openfeedback.android.viewmodels.OpenFeedbackFirebaseConfig
@@ -22,16 +22,16 @@ fun OpenFeedback(
     config: OpenFeedbackFirebaseConfig,
     projectId: String,
     sessionId: String,
-    language: String,
     modifier: Modifier = Modifier,
     loading: @Composable () -> Unit = { Loading(modifier = modifier) }
 ) {
+    val systemConfig = LocalConfiguration.current
     val viewModel: OpenFeedbackViewModel = viewModel(
         factory = OpenFeedbackViewModel.Factory.create(
             firebaseApp = config.firebaseApp,
             projectId = projectId,
             sessionId = sessionId,
-            language = language
+            locale = systemConfig.locale
         )
     )
     val uiState = viewModel.uiState.collectAsState()
