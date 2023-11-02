@@ -30,7 +30,11 @@ class OpenFeedbackFirestore(
             .toFlow()
             .map { querySnapshot ->
                 querySnapshot
-                    .filter { it.data["status"] == VoteStatus.Active.value && it.data["talkId"] == sessionId }
+                    .filter {
+                        it.data["status"] == VoteStatus.Active.value
+                                && it.data["talkId"] == sessionId
+                                && it.data["userId"] == userId
+                    }
                     .map { it.data["voteItemId"] as String }
             }
 
@@ -39,19 +43,26 @@ class OpenFeedbackFirestore(
             .document(sessionId)
             .toFlow()
             .map { querySnapshot ->
-                val comments = querySnapshot.data
-                    ?.filter { it.value is HashMap<*, *> }
-                    ?.map { (it.value as HashMap<*, *>).entries }
-                    ?.flatten()
-                    ?.associate {
-                        it.key as String to (it.value as Map<String, *>).convertToModel()
-                    }
-                    ?: emptyMap()
                 SessionVotes(
                     votes = querySnapshot.data
                         ?.filter { it.value is Long } as? Map<String, Long>
                         ?: emptyMap(), // If there's no vote yet, default to an empty map }
-                    comments = comments
+                    comments = querySnapshot.data
+                        ?.filter { it.value is HashMap<*, *> }
+                        ?.map {
+                            val voteItemId = it.key
+                            (it.value as HashMap<*, *>).entries
+                                .map { entry ->
+                                    entry.key as String to (entry.value as Map<String, *>)
+                                        .convertToModel(
+                                            id = entry.key as String,
+                                            voteItemId = voteItemId
+                                        )
+                                }
+                        }
+                        ?.flatten()
+                        ?.associate { it.first to it.second }
+                        ?: emptyMap()
                 )
             }
 
@@ -81,6 +92,49 @@ class OpenFeedbackFirestore(
                     "updatedAt" to Date(),
                     "userId" to userId,
                     "voteItemId" to voteItemId
+                )
+            )
+        } else {
+            collectionReference
+                .document(querySnapshot.documents[0].id)
+                .update(
+                    mapOf(
+                        "updatedAt" to Date(),
+                        "status" to status.value
+                    )
+                )
+        }
+    }
+
+    suspend fun upVote(
+        projectId: String,
+        userId: String,
+        talkId: String,
+        voteItemId: String,
+        voteId: String,
+        status: VoteStatus
+    ) {
+        val collectionReference = firestore.collection("projects/$projectId/userVotes")
+        val querySnapshot = collectionReference
+            .whereEqualTo("userId", userId)
+            .whereEqualTo("talkId", talkId)
+            .whereEqualTo("voteItemId", voteItemId)
+            .get()
+            .await()
+        if (querySnapshot.isEmpty) {
+            val documentReference = collectionReference.document()
+            documentReference.set(
+                mapOf(
+                    "projectId" to projectId,
+                    "talkId" to talkId,
+                    "voteItemId" to voteItemId,
+                    "id" to documentReference.id,
+                    "voteId" to voteId,
+                    "createdAt" to Date(),
+                    "updatedAt" to Date(),
+                    "voteType" to "textPlus",
+                    "userId" to userId,
+                    "status" to status.value
                 )
             )
         } else {

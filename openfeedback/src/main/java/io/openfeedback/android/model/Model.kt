@@ -30,6 +30,8 @@ data class SessionVotes(
 )
 
 data class Comment(
+    val id: String,
+    val voteItemId: String,
     val text: String,
     val plus: Long,
     val createdAt: Timestamp,

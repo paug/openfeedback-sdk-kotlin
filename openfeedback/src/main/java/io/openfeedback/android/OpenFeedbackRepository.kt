@@ -45,4 +45,17 @@ class OpenFeedbackRepository(
             firestore.setVote(projectId, it.uid, talkId, voteItemId, status)
         }
     }
+
+    suspend fun upVote(
+        projectId: String,
+        talkId: String,
+        voteItemId: String,
+        voteId: String,
+        status: VoteStatus
+    ) {
+        auth.withFirebaseUser {
+            optimisticVoteCaching.updateCommentVote(voteItemId, status)
+            firestore.upVote(projectId, it.uid, talkId, voteItemId, voteId, status)
+        }
+    }
 }
