@@ -1,6 +1,8 @@
 package io.openfeedback.android.viewmodels.mappers
 
 import io.openfeedback.android.model.Project
+import io.openfeedback.android.model.SessionVotes
+import io.openfeedback.android.viewmodels.models.UIComment
 import io.openfeedback.android.viewmodels.models.UIDot
 import io.openfeedback.android.viewmodels.models.UISessionFeedback
 import io.openfeedback.android.viewmodels.models.UISessionFeedbackWithColors
@@ -11,18 +13,15 @@ import kotlin.random.Random
 fun convertToUiSessionFeedback(
     project: Project,
     userVotes: List<String>,
-    totalVotes: Map<String, Long>,
+    totalVotes: SessionVotes,
     language: String
 ): UISessionFeedback = UISessionFeedback(
-    comments = emptyList(),
+    comments = totalVotes.comments
+        .map { UIComment(message = it.value.text, createdAt = it.value.createdAt.toDate()) },
     voteItem = project.voteItems
         .filter { it.type == "boolean" }
         .map { voteItem ->
-            val count = totalVotes.entries
-                .find { e -> voteItem.id == e.key }
-                ?.value
-                ?.toInt()
-                ?: 0
+            val count = totalVotes.votes[voteItem.id]?.toInt() ?: 0
             UIVoteItem(
                 id = voteItem.id,
                 text = voteItem.localizedName(language),

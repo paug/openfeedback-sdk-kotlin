@@ -3,7 +3,9 @@ package io.openfeedback.android.sources
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
+import io.openfeedback.android.mappers.convertToModel
 import io.openfeedback.android.model.Project
+import io.openfeedback.android.model.SessionVotes
 import io.openfeedback.android.model.VoteStatus
 import io.openfeedback.android.toFlow
 import kotlinx.coroutines.flow.Flow
@@ -32,15 +34,26 @@ class OpenFeedbackFirestore(
                     .map { it.data["voteItemId"] as String }
             }
 
-    fun sessionVotes(projectId: String, sessionId: String): Flow<Map<String, Long>> =
+    fun sessionVotes(projectId: String, sessionId: String): Flow<SessionVotes> =
         firestore.collection("projects/$projectId/sessionVotes")
             .document(sessionId)
             .toFlow()
             .map { querySnapshot ->
-                querySnapshot.data as? Map<String, Long>
-                    ?: emptyMap() // If there's no vote yet, default to an empty map }
+                val comments = querySnapshot.data
+                    ?.filter { it.value is HashMap<*, *> }
+                    ?.map { (it.value as HashMap<*, *>).entries }
+                    ?.flatten()
+                    ?.associate {
+                        it.key as String to (it.value as Map<String, *>).convertToModel()
+                    }
+                    ?: emptyMap()
+                SessionVotes(
+                    votes = querySnapshot.data
+                        ?.filter { it.value is Long } as? Map<String, Long>
+                        ?: emptyMap(), // If there's no vote yet, default to an empty map }
+                    comments = comments
+                )
             }
-
 
     suspend fun setVote(
         projectId: String,

@@ -2,6 +2,7 @@ package io.openfeedback.android
 
 import io.openfeedback.android.caches.OptimisticVoteCaching
 import io.openfeedback.android.model.Project
+import io.openfeedback.android.model.SessionVotes
 import io.openfeedback.android.model.VoteStatus
 import io.openfeedback.android.sources.OpenFeedbackAuth
 import io.openfeedback.android.sources.OpenFeedbackFirestore
@@ -31,10 +32,10 @@ class OpenFeedbackRepository(
                 }
             }
 
-    fun totalVotes(projectId: String, sessionId: String): Flow<Map<String, Long>> =
+    fun totalVotes(projectId: String, sessionId: String): Flow<SessionVotes> =
         merge(
             firestore.sessionVotes(projectId, sessionId)
-                .onEach { optimisticVoteCaching.setVotes(it) },
+                .onEach { optimisticVoteCaching.setSessionVotes(it) },
             optimisticVoteCaching.votes
         )
 
