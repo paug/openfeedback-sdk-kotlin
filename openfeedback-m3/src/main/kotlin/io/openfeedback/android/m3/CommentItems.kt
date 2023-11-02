@@ -19,6 +19,7 @@ internal fun CommentItems(
     comments: List<UIComment>,
     modifier: Modifier = Modifier,
     verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(8.dp),
+    commentInput: @Composable ColumnScope.() -> Unit,
     comment: @Composable ColumnScope.(UIComment) -> Unit
 ) {
     Column(
@@ -29,6 +30,7 @@ internal fun CommentItems(
             text = stringResource(id = R.string.openfeedback_comments_title),
             style = MaterialTheme.typography.titleMedium
         )
+        commentInput()
         comments.forEachIndexed { index, uiComment ->
             comment(uiComment)
         }
@@ -60,6 +62,9 @@ private fun VoteItemsPreview() {
                     votedByUser = true
                 )
             ),
+            commentInput = {
+                CommentInput(value = "", onValueChange = {}, onSubmit = {})
+            },
             comment = {
                 Comment(comment = it, onClick = {})
             }

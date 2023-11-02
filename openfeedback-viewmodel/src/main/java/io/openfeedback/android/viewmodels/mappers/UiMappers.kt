@@ -20,6 +20,8 @@ fun convertToUiSessionFeedback(
 ): UISessionFeedback {
     val formatter = SimpleDateFormat("dd MMMM yyyy, hh:mm", locale)
     return UISessionFeedback(
+        commentValue = "",
+        commentVoteItemId = project.voteItems.find { it.type == "text" }?.id,
         comments = totalVotes.comments.map { commentItem ->
             UIComment(
                 id = commentItem.value.id,
@@ -48,6 +50,8 @@ fun convertToUiSessionFeedback(
 fun UISessionFeedbackWithColors.convertToUiSessionFeedback(
     oldSessionFeedback: UISessionFeedback?
 ): UISessionFeedback = UISessionFeedback(
+    commentValue = oldSessionFeedback?.commentValue ?: "",
+    commentVoteItemId = oldSessionFeedback?.commentVoteItemId ?: this.session.commentVoteItemId,
     comments = this.session.comments.map { newCommentItem ->
         val oldCommentItem = oldSessionFeedback?.comments?.find { it.id == newCommentItem.id }
         val newDots = if (oldCommentItem != null) {

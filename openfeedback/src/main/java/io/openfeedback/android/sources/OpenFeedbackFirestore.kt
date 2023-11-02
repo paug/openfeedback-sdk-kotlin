@@ -52,6 +52,7 @@ class OpenFeedbackFirestore(
                         ?.map {
                             val voteItemId = it.key
                             (it.value as HashMap<*, *>).entries
+                                .filter { (it.value as Map<String, *>).isNotEmpty() }
                                 .map { entry ->
                                     entry.key as String to (entry.value as Map<String, *>)
                                         .convertToModel(
@@ -65,6 +66,50 @@ class OpenFeedbackFirestore(
                         ?: emptyMap()
                 )
             }
+
+    suspend fun newComment(
+        projectId: String,
+        userId: String,
+        talkId: String,
+        voteItemId: String,
+        status: VoteStatus,
+        text: String
+    ) {
+        if (text.trim() == "") return
+        val collectionReference = firestore.collection("projects/$projectId/userVotes")
+        val querySnapshot = collectionReference
+            .whereEqualTo("userId", userId)
+            .whereEqualTo("talkId", talkId)
+            .whereEqualTo("voteItemId", voteItemId)
+            .get()
+            .await()
+        if (querySnapshot.isEmpty) {
+            val documentReference = collectionReference.document()
+            documentReference.set(
+                mapOf(
+                    "id" to documentReference.id,
+                    "createdAt" to Date(),
+                    "projectId" to projectId,
+                    "status" to status.value,
+                    "talkId" to talkId,
+                    "updatedAt" to Date(),
+                    "userId" to userId,
+                    "voteItemId" to voteItemId,
+                    "text" to text.trim()
+                )
+            )
+        } else {
+            collectionReference
+                .document(querySnapshot.documents[0].id)
+                .update(
+                    mapOf(
+                        "updatedAt" to Date(),
+                        "status" to status.value,
+                        "text" to text.trim()
+                    )
+                )
+        }
+    }
 
     suspend fun setVote(
         projectId: String,
