@@ -54,7 +54,12 @@ fun OpenFeedback(
                 sessionFeedback = session,
                 modifier = modifier,
                 columnCount = columnCount,
-                comment = { Comment(comment = it, onClick = {}) },
+                comment = {
+                    Comment(
+                        comment = it,
+                        onClick = viewModel::upVote
+                    )
+                },
                 content = {
                     VoteCard(
                         voteModel = it,
@@ -117,17 +122,21 @@ private fun OpenFeedbackLayoutPreview() {
                 comments = listOf(
                     UIComment(
                         id = "",
+                        voteItemId = "",
                         message = "Nice comment",
                         createdAt = "08 August 2023",
                         upVotes = 8,
-                        dots = listOf(UIDot(x = .5f, y = .5f, color = "FF00CC"))
+                        dots = listOf(UIDot(x = .5f, y = .5f, color = "FF00CC")),
+                        votedByUser = true
                     ),
                     UIComment(
                         id = "",
+                        voteItemId = "",
                         message = "Another one",
                         createdAt = "08 August 2023",
                         upVotes = 0,
-                        dots = listOf(UIDot(x = .5f, y = .5f, color = "FF00CC"))
+                        dots = listOf(UIDot(x = .5f, y = .5f, color = "FF00CC")),
+                        votedByUser = true
                     )
                 ),
                 voteItem = listOf(

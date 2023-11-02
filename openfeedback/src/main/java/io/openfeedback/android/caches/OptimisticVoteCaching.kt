@@ -28,4 +28,18 @@ class OptimisticVoteCaching {
             it.copy(votes = map)
         }
     }
+
+    fun updateCommentVote(commentItemId: String, status: VoteStatus) {
+        _votes.update {
+            val map = it.comments.toMutableMap()
+            val comment = it.comments[commentItemId] ?: return
+            var count = comment.plus
+            count += if (status == VoteStatus.Deleted) -1 else 1
+            if (count < 0) {
+                count = 0L
+            }
+            map[commentItemId] = comment.copy(plus = count)
+            it.copy(comments = map)
+        }
+    }
 }

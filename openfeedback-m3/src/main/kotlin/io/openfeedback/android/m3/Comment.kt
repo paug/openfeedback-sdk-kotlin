@@ -76,10 +76,12 @@ private fun CommentPreview() {
         Comment(
             comment = UIComment(
                 id = "",
+                voteItemId = "",
                 message = "Super talk and great speakers!",
                 createdAt = "08 August 2023",
                 upVotes = 8,
-                dots = listOf(UIDot(x = .5f, y = .5f, color = "FF00CC"))
+                dots = listOf(UIDot(x = .5f, y = .5f, color = "FF00CC")),
+                votedByUser = true
             ),
             onClick = {}
         )

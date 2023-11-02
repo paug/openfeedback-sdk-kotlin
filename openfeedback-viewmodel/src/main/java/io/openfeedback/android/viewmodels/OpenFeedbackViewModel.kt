@@ -10,6 +10,7 @@ import io.openfeedback.android.model.VoteStatus
 import io.openfeedback.android.sources.OpenFeedbackAuth
 import io.openfeedback.android.sources.OpenFeedbackFirestore
 import io.openfeedback.android.viewmodels.mappers.convertToUiSessionFeedback
+import io.openfeedback.android.viewmodels.models.UIComment
 import io.openfeedback.android.viewmodels.models.UISessionFeedback
 import io.openfeedback.android.viewmodels.models.UISessionFeedbackWithColors
 import io.openfeedback.android.viewmodels.models.UIVoteItem
@@ -68,6 +69,16 @@ class OpenFeedbackViewModel(
             talkId = sessionId,
             voteItemId = voteItem.id,
             status = if (!voteItem.votedByUser) VoteStatus.Active else VoteStatus.Deleted
+        )
+    }
+
+    fun upVote(comment: UIComment) = viewModelScope.launch {
+        repository.upVote(
+            projectId = projectId,
+            talkId = sessionId,
+            voteItemId = comment.voteItemId,
+            voteId = comment.id,
+            status = if (!comment.votedByUser) VoteStatus.Active else VoteStatus.Deleted
         )
     }
 

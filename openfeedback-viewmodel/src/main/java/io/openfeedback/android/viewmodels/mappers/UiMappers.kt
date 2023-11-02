@@ -20,13 +20,15 @@ fun convertToUiSessionFeedback(
 ): UISessionFeedback {
     val formatter = SimpleDateFormat("dd MMMM yyyy, hh:mm", locale)
     return UISessionFeedback(
-        comments = totalVotes.comments.map {
+        comments = totalVotes.comments.map { commentItem ->
             UIComment(
-                id = it.key,
-                message = it.value.text,
-                createdAt = formatter.format(it.value.createdAt.toDate()),
-                upVotes = it.value.plus.toInt(),
-                dots = dots(it.value.plus.toInt(), project.chipColors)
+                id = commentItem.value.id,
+                voteItemId = commentItem.value.voteItemId,
+                message = commentItem.value.text,
+                createdAt = formatter.format(commentItem.value.createdAt.toDate()),
+                upVotes = commentItem.value.plus.toInt(),
+                dots = dots(commentItem.value.plus.toInt(), project.chipColors),
+                votedByUser = userVotes.contains(commentItem.value.voteItemId)
             )
         },
         voteItem = project.voteItems
@@ -60,10 +62,12 @@ fun UISessionFeedbackWithColors.convertToUiSessionFeedback(
         }
         UIComment(
             id = newCommentItem.id,
+            voteItemId = newCommentItem.voteItemId,
             message = newCommentItem.message,
             createdAt = newCommentItem.createdAt,
             upVotes = newCommentItem.upVotes,
-            dots = newDots
+            dots = newDots,
+            votedByUser = newCommentItem.votedByUser
         )
     },
     voteItem = this.session.voteItem.map { newVoteItem ->
