@@ -39,6 +39,12 @@ class OpenFeedbackRepository(
             optimisticVoteCaching.votes
         )
 
+    suspend fun newComment(projectId: String, talkId: String, voteItemId: String, status: VoteStatus, text: String) {
+        auth.withFirebaseUser {
+            firestore.newComment(projectId, it.uid, talkId, voteItemId, status, text)
+        }
+    }
+
     suspend fun setVote(projectId: String, talkId: String, voteItemId: String, status: VoteStatus) {
         auth.withFirebaseUser {
             optimisticVoteCaching.updateVotes(voteItemId, status)

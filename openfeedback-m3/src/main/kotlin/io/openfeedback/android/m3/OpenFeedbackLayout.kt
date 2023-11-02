@@ -60,6 +60,14 @@ fun OpenFeedback(
                         onClick = viewModel::upVote
                     )
                 },
+                commentInput = {
+                    CommentInput(
+                        value = session.commentValue,
+                        onValueChange = viewModel::valueChangedComment,
+                        onSubmit = viewModel::submitComment,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                },
                 content = {
                     VoteCard(
                         voteModel = it,
@@ -83,6 +91,7 @@ fun OpenFeedbackLayout(
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(8.dp),
     verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(8.dp),
     comment: @Composable ColumnScope.(UIComment) -> Unit,
+    commentInput: @Composable ColumnScope.() -> Unit,
     content: @Composable ColumnScope.(UIVoteItem) -> Unit
 ) {
     Column(
@@ -96,12 +105,15 @@ fun OpenFeedbackLayout(
             verticalArrangement = verticalArrangement,
             content = content
         )
-        Spacer(modifier = Modifier.height(8.dp))
-        CommentItems(
-            comments = sessionFeedback.comments,
-            verticalArrangement = verticalArrangement,
-            comment = comment
-        )
+        if (sessionFeedback.commentVoteItemId != null) {
+            Spacer(modifier = Modifier.height(8.dp))
+            CommentItems(
+                comments = sessionFeedback.comments,
+                verticalArrangement = verticalArrangement,
+                commentInput = commentInput,
+                comment = comment
+            )
+        }
         Spacer(modifier = Modifier.height(8.dp))
         Box(
             modifier = Modifier.fillMaxWidth(),
@@ -119,6 +131,8 @@ private fun OpenFeedbackLayoutPreview() {
     MaterialTheme {
         OpenFeedbackLayout(
             sessionFeedback = UISessionFeedback(
+                commentValue = "",
+                commentVoteItemId = "",
                 comments = listOf(
                     UIComment(
                         id = "",
@@ -156,6 +170,9 @@ private fun OpenFeedbackLayoutPreview() {
             ),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
+            commentInput = {
+                CommentInput(value = "", onValueChange = {}, onSubmit = {})
+            },
             comment = { Comment(comment = it, onClick = {}) }
         ) {
             VoteCard(

@@ -63,6 +63,25 @@ class OpenFeedbackViewModel(
         }
     }
 
+    fun valueChangedComment(value: String) {
+        if (_uiState.value !is OpenFeedbackUiState.Success) return
+        val session = (_uiState.value as OpenFeedbackUiState.Success).session
+        _uiState.value = OpenFeedbackUiState.Success(session.copy(commentValue = value))
+    }
+
+    fun submitComment() = viewModelScope.launch {
+        if (_uiState.value !is OpenFeedbackUiState.Success) return@launch
+        val session = (_uiState.value as OpenFeedbackUiState.Success).session
+        if (session.commentVoteItemId == null) return@launch
+        repository.newComment(
+            projectId = projectId,
+            talkId = sessionId,
+            voteItemId = session.commentVoteItemId,
+            status = VoteStatus.Active,
+            text = session.commentValue
+        )
+    }
+
     fun vote(voteItem: UIVoteItem) = viewModelScope.launch {
         repository.setVote(
             projectId = projectId,
