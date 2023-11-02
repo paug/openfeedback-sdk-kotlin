@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 sealed class OpenFeedbackUiState {
     data object Loading : OpenFeedbackUiState()
@@ -27,7 +28,7 @@ class OpenFeedbackViewModel(
     private val firebaseApp: FirebaseApp,
     private val projectId: String,
     private val sessionId: String,
-    private val language: String
+    private val locale: Locale
 ) : ViewModel() {
     private val repository = OpenFeedbackRepository(
         auth = OpenFeedbackAuth.Factory.create(firebaseApp),
@@ -46,7 +47,7 @@ class OpenFeedbackViewModel(
                 flow3 = repository.totalVotes(projectId, sessionId),
                 transform = { project, votes, totals ->
                     UISessionFeedbackWithColors(
-                        convertToUiSessionFeedback(project, votes, totals, language),
+                        convertToUiSessionFeedback(project, votes, totals, locale),
                         project.chipColors
                     )
                 }
@@ -75,13 +76,13 @@ class OpenFeedbackViewModel(
             firebaseApp: FirebaseApp,
             projectId: String,
             sessionId: String,
-            language: String
+            locale: Locale
         ) = object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T = OpenFeedbackViewModel(
                 firebaseApp = firebaseApp,
                 projectId = projectId,
                 sessionId = sessionId,
-                language = language
+                locale = locale
             ) as T
         }
     }
