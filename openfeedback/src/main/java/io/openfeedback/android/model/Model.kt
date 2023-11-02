@@ -1,11 +1,13 @@
 package io.openfeedback.android.model
 
-class Project(
+import com.google.firebase.Timestamp
+
+data class Project(
     val chipColors: List<String> = emptyList(),
     val voteItems: List<VoteItem> = emptyList()
 )
 
-class VoteItem(
+data class VoteItem(
     val id: String = "",
     val languages: Map<String, String> = emptyMap(),
     val name: String = "",
@@ -21,3 +23,15 @@ enum class VoteStatus(val value: String) {
     Active("active"),
     Deleted("deleted")
 }
+
+data class SessionVotes(
+    val votes: Map<String, Long>,
+    val comments: Map<String, Comment>
+)
+
+data class Comment(
+    val text: String,
+    val plus: Long,
+    val createdAt: Timestamp,
+    val updatedAt: Timestamp
+)
