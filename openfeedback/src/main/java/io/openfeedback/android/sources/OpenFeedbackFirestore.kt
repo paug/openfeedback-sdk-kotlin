@@ -1,6 +1,7 @@
 package io.openfeedback.android.sources
 
 import com.google.firebase.FirebaseApp
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import io.openfeedback.android.mappers.convertToModel
@@ -11,7 +12,6 @@ import io.openfeedback.android.toFlow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
-import java.util.Date
 
 class OpenFeedbackFirestore(
     private val firestore: FirebaseFirestore
@@ -88,11 +88,11 @@ class OpenFeedbackFirestore(
             documentReference.set(
                 mapOf(
                     "id" to documentReference.id,
-                    "createdAt" to Date(),
+                    "createdAt" to FieldValue.serverTimestamp(),
                     "projectId" to projectId,
                     "status" to status.value,
                     "talkId" to talkId,
-                    "updatedAt" to Date(),
+                    "updatedAt" to FieldValue.serverTimestamp(),
                     "userId" to userId,
                     "voteItemId" to voteItemId,
                     "text" to text.trim()
@@ -103,7 +103,7 @@ class OpenFeedbackFirestore(
                 .document(querySnapshot.documents[0].id)
                 .update(
                     mapOf(
-                        "updatedAt" to Date(),
+                        "updatedAt" to FieldValue.serverTimestamp(),
                         "status" to status.value,
                         "text" to text.trim()
                     )
@@ -130,11 +130,11 @@ class OpenFeedbackFirestore(
             documentReference.set(
                 mapOf(
                     "id" to documentReference.id,
-                    "createdAt" to Date(),
+                    "createdAt" to FieldValue.serverTimestamp(),
                     "projectId" to projectId,
                     "status" to status.value,
                     "talkId" to talkId,
-                    "updatedAt" to Date(),
+                    "updatedAt" to FieldValue.serverTimestamp(),
                     "userId" to userId,
                     "voteItemId" to voteItemId
                 )
@@ -144,7 +144,7 @@ class OpenFeedbackFirestore(
                 .document(querySnapshot.documents[0].id)
                 .update(
                     mapOf(
-                        "updatedAt" to Date(),
+                        "updatedAt" to FieldValue.serverTimestamp(),
                         "status" to status.value
                     )
                 )
@@ -175,8 +175,8 @@ class OpenFeedbackFirestore(
                     "voteItemId" to voteItemId,
                     "id" to documentReference.id,
                     "voteId" to voteId,
-                    "createdAt" to Date(),
-                    "updatedAt" to Date(),
+                    "createdAt" to FieldValue.serverTimestamp(),
+                    "updatedAt" to FieldValue.serverTimestamp(),
                     "voteType" to "textPlus",
                     "userId" to userId,
                     "status" to status.value
@@ -187,7 +187,7 @@ class OpenFeedbackFirestore(
                 .document(querySnapshot.documents[0].id)
                 .update(
                     mapOf(
-                        "updatedAt" to Date(),
+                        "updatedAt" to FieldValue.serverTimestamp(),
                         "status" to status.value
                     )
                 )
