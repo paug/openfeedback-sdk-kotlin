@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/paug/openfeedback-android-sdk.svg?branch=master)](https://travis-ci.org/paug/openfeedback-android-sdk) [ ![Download](https://api.bintray.com/packages/openfeedback/Android/feedback-android-sdk-ui/images/download.svg) ](https://bintray.com/openfeedback/Android/feedback-android-sdk-ui/_latestVersion)
+[![BuildStatus](https://github.com/paug/openfeedback-android-sdk/actions/workflows/ci.yaml/badge.svg)](https://github.com/paug/openfeedback-android-sdk/actions/workflows/ci.yaml/badge.svg)
+
 # Open-Feedback Android SDK
 
 An Android client for Open-Feeedback https://github.com/HugoGresse/open-feedback:
@@ -31,8 +32,7 @@ val openfeedbackFirebaseConfig = OpenFeedbackFirebaseConfig(
 OpenFeedback(
     config = (application as MyApp).openfeedbackFirebaseConfig,
     projectId = "<your-open-feedback-project-id>",
-    sessionId = "<your-open-feedback-session-id>",
-    language = "<language-code>"
+    sessionId = "<your-open-feedback-session-id>"
 )
 ```
 
@@ -64,7 +64,3 @@ dependencies {
     implementation("io.openfeedback:feedback-android-sdk-viewmodel:$openfeedbackVersion")
 }
 ```
-
-## Limitations and TODO
-
-The SDK is still very young and misses some features, most notably comments. Feedbacks welcome.

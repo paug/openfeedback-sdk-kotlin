@@ -10,7 +10,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Scaffold
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,7 +22,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.openfeedback.android.viewmodels.OpenFeedbackFirebaseConfig
 import io.openfeedback.android.m2.OpenFeedback
 import io.openfeedback.android.sample.theme.DesignSystem
 import io.openfeedback.android.sample.theme.OpenFeedbackTheme
@@ -31,42 +31,46 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val projectId = "mMHR63ARZQpPidFQISyc"
+        val sessionId = "173222"
         val openFeedbackFirebaseConfig = (application as MainApplication).openFeedbackFirebaseConfig
         setContent {
-            var designSystem by rememberSaveable { mutableStateOf(DesignSystem.M2) }
+            var designSystem by rememberSaveable { mutableStateOf(DesignSystem.M3) }
             val isDark = isSystemInDarkTheme()
             var isLight by rememberSaveable(isDark) { mutableStateOf(isDark.not()) }
             OpenFeedbackTheme(
                 designSystem = designSystem,
                 isLight = isLight
             ) {
-                Column {
-                    ThemeSwitcher(
-                        designSystem = designSystem,
-                        isLight = isLight,
-                        onDesignSystemChanged = { designSystem = it },
-                        onLightDarkChanged = { isLight = it }
-                    )
-                    when (designSystem) {
-                        DesignSystem.M2 -> Scaffold {
-                            OpenFeedback(
-                                config = openFeedbackFirebaseConfig,
-                                projectId = projectId,
-                                sessionId = "173222",
-                                modifier = Modifier
-                                    .padding(it)
-                                    .padding(horizontal = 8.dp, vertical = 4.dp)
+                Scaffold {
+                    LazyColumn(contentPadding = it) {
+                        item {
+                            ThemeSwitcher(
+                                designSystem = designSystem,
+                                isLight = isLight,
+                                onDesignSystemChanged = { designSystem = it },
+                                onLightDarkChanged = { isLight = it }
                             )
                         }
-                        DesignSystem.M3 -> androidx.compose.material3.Scaffold {
-                            io.openfeedback.android.m3.OpenFeedback(
-                                config = openFeedbackFirebaseConfig,
-                                projectId = projectId,
-                                sessionId = "173222",
-                                modifier = Modifier
-                                    .padding(it)
-                                    .padding(horizontal = 8.dp, vertical = 4.dp)
-                            )
+                        item {
+                            when (designSystem) {
+                                DesignSystem.M2 ->
+                                    OpenFeedback(
+                                        config = openFeedbackFirebaseConfig,
+                                        projectId = projectId,
+                                        sessionId = sessionId,
+                                        modifier = Modifier
+                                            .padding(horizontal = 8.dp, vertical = 4.dp)
+                                    )
+
+                                DesignSystem.M3 ->
+                                    io.openfeedback.android.m3.OpenFeedback(
+                                        config = openFeedbackFirebaseConfig,
+                                        projectId = projectId,
+                                        sessionId = sessionId,
+                                        modifier = Modifier
+                                            .padding(horizontal = 8.dp, vertical = 4.dp)
+                                    )
+                            }
                         }
                     }
                 }
