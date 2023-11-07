@@ -2,6 +2,7 @@ package io.openfeedback.android.viewmodels.mappers
 
 import io.openfeedback.android.model.Project
 import io.openfeedback.android.model.SessionVotes
+import io.openfeedback.android.model.UserVote
 import io.openfeedback.android.viewmodels.models.UIComment
 import io.openfeedback.android.viewmodels.models.UIDot
 import io.openfeedback.android.viewmodels.models.UISessionFeedback
@@ -14,11 +15,13 @@ import kotlin.random.Random
 
 fun convertToUiSessionFeedback(
     project: Project,
-    userVotes: List<String>,
+    userVotes: List<UserVote>,
     totalVotes: SessionVotes,
     locale: Locale
 ): UISessionFeedback {
     val formatter = SimpleDateFormat("dd MMMM yyyy, hh:mm", locale)
+    val userUpVoteIds = userVotes.filter { it.voteId != null }.map { it.voteId!! }
+    val userVoteIds = userVotes.map { it.voteItemId }
     return UISessionFeedback(
         commentValue = "",
         commentVoteItemId = project.voteItems.find { it.type == "text" }?.id,
@@ -30,7 +33,7 @@ fun convertToUiSessionFeedback(
                 createdAt = formatter.format(commentItem.value.createdAt.toDate()),
                 upVotes = commentItem.value.plus.toInt(),
                 dots = dots(commentItem.value.plus.toInt(), project.chipColors),
-                votedByUser = userVotes.contains(commentItem.value.voteItemId)
+                votedByUser = userUpVoteIds.contains(commentItem.value.id)
             )
         },
         voteItem = project.voteItems
@@ -41,7 +44,7 @@ fun convertToUiSessionFeedback(
                     id = voteItem.id,
                     text = voteItem.localizedName(locale.language),
                     dots = dots(count, project.chipColors),
-                    votedByUser = userVotes.contains(voteItem.id)
+                    votedByUser = userVoteIds.contains(voteItem.id)
                 )
             }
     )

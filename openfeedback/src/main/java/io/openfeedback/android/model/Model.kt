@@ -24,6 +24,11 @@ enum class VoteStatus(val value: String) {
     Deleted("deleted")
 }
 
+data class UserVote(
+    val voteItemId: String,
+    val voteId: String?
+)
+
 data class SessionVotes(
     val votes: Map<String, Long>,
     val comments: Map<String, Comment>

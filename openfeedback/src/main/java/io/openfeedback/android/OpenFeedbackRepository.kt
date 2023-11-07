@@ -3,6 +3,7 @@ package io.openfeedback.android
 import io.openfeedback.android.caches.OptimisticVoteCaching
 import io.openfeedback.android.model.Project
 import io.openfeedback.android.model.SessionVotes
+import io.openfeedback.android.model.UserVote
 import io.openfeedback.android.model.VoteStatus
 import io.openfeedback.android.sources.OpenFeedbackAuth
 import io.openfeedback.android.sources.OpenFeedbackFirestore
@@ -22,7 +23,7 @@ class OpenFeedbackRepository(
     fun project(projectId: String): Flow<Project> = firestore.project(projectId)
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    fun userVotes(projectId: String, sessionId: String): Flow<List<String>> =
+    fun userVotes(projectId: String, sessionId: String): Flow<List<UserVote>> =
         flow { emit(auth.firebaseUser()) }
             .flatMapConcat {
                 if (it != null) {
