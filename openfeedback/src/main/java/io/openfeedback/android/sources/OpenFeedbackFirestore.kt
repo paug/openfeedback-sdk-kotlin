@@ -7,6 +7,7 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings
 import io.openfeedback.android.mappers.convertToModel
 import io.openfeedback.android.model.Project
 import io.openfeedback.android.model.SessionVotes
+import io.openfeedback.android.model.UserVote
 import io.openfeedback.android.model.VoteStatus
 import io.openfeedback.android.toFlow
 import kotlinx.coroutines.flow.Flow
@@ -24,18 +25,19 @@ class OpenFeedbackFirestore(
                 querySnapshot.toObject(Project::class.java)!!
             }
 
-    fun userVotes(projectId: String, userId: String, sessionId: String): Flow<List<String>> =
+    fun userVotes(projectId: String, userId: String, sessionId: String): Flow<List<UserVote>> =
         firestore.collection("projects/$projectId/userVotes")
             .whereEqualTo("userId", userId)
+            .whereEqualTo("status", VoteStatus.Active.value)
+            .whereEqualTo("talkId", sessionId)
             .toFlow()
             .map { querySnapshot ->
-                querySnapshot
-                    .filter {
-                        it.data["status"] == VoteStatus.Active.value
-                                && it.data["talkId"] == sessionId
-                                && it.data["userId"] == userId
-                    }
-                    .map { it.data["voteItemId"] as String }
+                querySnapshot.map {
+                    UserVote(
+                        voteItemId = it.data["voteItemId"] as String,
+                        voteId = it.data["voteId"] as String?
+                    )
+                }
             }
 
     fun sessionVotes(projectId: String, sessionId: String): Flow<SessionVotes> =
@@ -164,6 +166,7 @@ class OpenFeedbackFirestore(
             .whereEqualTo("userId", userId)
             .whereEqualTo("talkId", talkId)
             .whereEqualTo("voteItemId", voteItemId)
+            .whereEqualTo("voteId", voteId)
             .get()
             .await()
         if (querySnapshot.isEmpty) {
