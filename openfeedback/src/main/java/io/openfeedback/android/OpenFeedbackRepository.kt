@@ -61,7 +61,7 @@ class OpenFeedbackRepository(
         status: VoteStatus
     ) {
         auth.withFirebaseUser {
-            optimisticVoteCaching.updateCommentVote(voteItemId, status)
+            optimisticVoteCaching.updateCommentVote(voteId, status)
             firestore.upVote(projectId, it.uid, talkId, voteItemId, voteId, status)
         }
     }
