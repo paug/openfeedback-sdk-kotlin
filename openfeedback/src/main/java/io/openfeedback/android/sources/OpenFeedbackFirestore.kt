@@ -64,6 +64,7 @@ class OpenFeedbackFirestore(
                                 }
                         }
                         ?.flatten()
+                        ?.sortedBy { it.second.createdAt }
                         ?.associate { it.first to it.second }
                         ?: emptyMap()
                 )
