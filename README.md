@@ -54,7 +54,7 @@ repositories {
     mavenCentral()
 }
 
-val openfeedbackVersion = "0.0.6"
+val openfeedbackVersion = "0.1.0"
 dependencies {
     // Material 2
     implementation("io.openfeedback:feedback-android-sdk-m2:$openfeedbackVersion")
