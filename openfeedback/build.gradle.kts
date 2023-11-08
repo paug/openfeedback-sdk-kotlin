@@ -12,11 +12,13 @@ openfeedback {
 }
 
 dependencies {
+    api(libs.kotlinx.serialization.json)
     api(libs.kotlin.coroutines.core)
     api(libs.kotlin.coroutines.android)
     api(libs.kotlin.coroutines.play.services)
 
-    // Firestore
-    api(libs.firebase.firestore)
-    api(libs.firebase.auth)
+    // KMM Firestore
+    api(libs.gitlive.firestore)
+    api(libs.gitlive.auth)
+    implementation(libs.gitlive.common)
 }

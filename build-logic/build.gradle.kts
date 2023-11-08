@@ -14,6 +14,7 @@ dependencies {
     implementation(libs.kotlin.coroutines.core)
     implementation(libs.android.gradle.plugin)
     implementation(libs.kotlin.gradle.plugin)
+    implementation(libs.kotlin.serialization.plugin)
 }
 
 gradlePlugin {

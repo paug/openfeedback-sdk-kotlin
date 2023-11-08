@@ -1,12 +1,15 @@
 package io.openfeedback.android.model
 
 import com.google.firebase.Timestamp
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Project(
     val chipColors: List<String> = emptyList(),
     val voteItems: List<VoteItem> = emptyList()
 )
 
+@Serializable
 data class VoteItem(
     val id: String = "",
     val languages: Map<String, String> = emptyMap(),
