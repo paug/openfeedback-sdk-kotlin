@@ -3,7 +3,7 @@ package io.openfeedback.android.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.FirebaseApp
+import dev.gitlive.firebase.FirebaseApp
 import io.openfeedback.android.OpenFeedbackRepository
 import io.openfeedback.android.caches.OptimisticVoteCaching
 import io.openfeedback.android.model.VoteStatus

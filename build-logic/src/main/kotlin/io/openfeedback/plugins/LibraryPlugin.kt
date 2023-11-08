@@ -13,6 +13,7 @@ class LibraryPlugin : Plugin<Project> {
         with(target.pluginManager) {
             apply("com.android.library")
             apply("org.jetbrains.kotlin.android")
+            apply("org.jetbrains.kotlin.plugin.serialization")
             apply("maven-publish")
             apply("signing")
         }

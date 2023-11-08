@@ -1,17 +1,19 @@
 package io.openfeedback.android.sources
 
 import android.util.Log
-import com.google.firebase.FirebaseApp
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
+import dev.gitlive.firebase.Firebase
+import dev.gitlive.firebase.FirebaseApp
+import dev.gitlive.firebase.auth.FirebaseAuth
+import dev.gitlive.firebase.auth.FirebaseUser
+import dev.gitlive.firebase.auth.auth
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import kotlinx.coroutines.tasks.await
 
 class OpenFeedbackAuth(private val auth: FirebaseAuth) {
     suspend fun firebaseUser(): FirebaseUser? = Mutex().withLock {
         if (auth.currentUser == null) {
-            val result = auth.signInAnonymously().await()
+            auth.signInAnonymously()
+            val result = auth.signInAnonymously()
             if (result.user == null) {
                 Log.e("OpenFeedbackAuth", "Cannot signInAnonymously")
             }
@@ -25,6 +27,6 @@ class OpenFeedbackAuth(private val auth: FirebaseAuth) {
 
     companion object Factory {
         fun create(app: FirebaseApp): OpenFeedbackAuth =
-            OpenFeedbackAuth(FirebaseAuth.getInstance(app))
+            OpenFeedbackAuth(Firebase.auth(app))
     }
 }
