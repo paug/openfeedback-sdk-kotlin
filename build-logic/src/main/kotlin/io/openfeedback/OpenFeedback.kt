@@ -25,7 +25,6 @@ open class OpenFeedback(val project: Project) {
 
         val eventName = System.getenv(EnvVarKeys.GitHub.event)
         val ref = System.getenv(EnvVarKeys.GitHub.ref)
-        project.logger.log(LogLevel.LIFECYCLE, "publishIfNeeded eventName=$eventName ref=$ref")
 
         if (eventName == "push" && ref == "refs/heads/main") {
             project.logger.log(LogLevel.LIFECYCLE, "Deploying snapshot to OssSnapshot...")
