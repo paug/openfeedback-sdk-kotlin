@@ -11,6 +11,9 @@ import org.gradle.api.logging.Logger
 import org.gradle.api.plugins.ExtraPropertiesExtension
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.plugins.signing.Sign
+import java.util.concurrent.locks.ReentrantLock
+import kotlin.concurrent.withLock
+import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.ExperimentalTime
 
@@ -45,17 +48,20 @@ fun Project.publishIfNeededTaskProvider(): TaskProvider<Task> {
 }
 
 private val baseUrl = "https://s01.oss.sonatype.org/service/local/"
+private val lock = ReentrantLock()
 
 private val nexusStagingClient by lazy {
     NexusStagingClient(
         baseUrl = baseUrl,
-        username = System.getenv(EnvVarKeys.Nexus.username) ?: error("please set the ${EnvVarKeys.Nexus.username} environment variable"),
-        password = System.getenv(EnvVarKeys.Nexus.password) ?: error("please set the ${EnvVarKeys.Nexus.password} environment variable"),
+        username = System.getenv(EnvVarKeys.Nexus.username)
+            ?: error("please set the ${EnvVarKeys.Nexus.username} environment variable"),
+        password = System.getenv(EnvVarKeys.Nexus.password)
+            ?: error("please set the ${EnvVarKeys.Nexus.password} environment variable"),
     )
 }
 
 
-internal fun Project.getOssStagingRepoId(): String? {
+internal fun Project.getOssStagingRepoId(): String? = lock.withLock {
     return try {
         this.extensions.extraProperties["ossStagingRepositoryId"] as String?
     } catch (ignored: ExtraPropertiesExtension.UnknownPropertyException) {
@@ -63,7 +69,7 @@ internal fun Project.getOssStagingRepoId(): String? {
     }
 }
 
-private fun Project.getOrCreateOssStagingRepoId(): String {
+private fun Project.getOrCreateOssStagingRepoId(): String = lock.withLock {
     var repoId = getOssStagingRepoId()
     if (repoId != null) {
         return repoId
@@ -96,5 +102,20 @@ fun Task.closeAndReleaseStagingRepository(repoId: String) {
             }
         }
         nexusStagingClient.releaseRepositories(listOf(repoId), true)
+    }
+}
+
+fun Project.registerReleaseTask(name: String, configure: Task.() -> Unit): TaskProvider<Task> {
+    return project.tasks.register(name) {
+        configure()
+        dependsOn("publishAllPublicationsToOssStagingRepository")
+        inputs.property(
+            "repoId",
+            getOssStagingRepoId()
+                ?: error("You need to publish to OssStaging in the same Gradle invocation before calling closeAndReleaseStagingRepository.")
+        )
+        doLast {
+            closeAndReleaseStagingRepository(inputs.properties.get("repoId") as String)
+        }
     }
 }
