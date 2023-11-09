@@ -1,10 +1,11 @@
 package io.openfeedback
 
 import com.android.build.gradle.internal.tasks.factory.dependsOn
+import io.openfeedback.extensions.*
 import io.openfeedback.extensions.configurePublishingInternal
-import io.openfeedback.extensions.publishIfNeededTaskProvider
 import org.gradle.api.Project
 import org.gradle.api.logging.LogLevel
+import org.gradle.api.tasks.PathSensitivity
 
 open class OpenFeedback(val project: Project) {
     fun Project.configurePublishing(artifactName: String) {
@@ -12,9 +13,12 @@ open class OpenFeedback(val project: Project) {
 
         val publishIfNeeded = project.rootProject.publishIfNeededTaskProvider()
 
+        val ossStagingReleaseTask = project.registerReleaseTask("ossStagingRelease") {
+            dependsOn("publishAllPublicationsToOssStagingRepository")
+        }
+
         val eventName = System.getenv(EnvVarKeys.GitHub.event)
         val ref = System.getenv(EnvVarKeys.GitHub.ref)
-        project.logger.log(LogLevel.LIFECYCLE, "publishIfNeeded eventName=$eventName ref=$ref")
 
         if (eventName == "push" && ref == "refs/heads/main") {
             project.logger.log(LogLevel.LIFECYCLE, "Deploying snapshot to OssSnapshot...")
@@ -23,7 +27,7 @@ open class OpenFeedback(val project: Project) {
 
         if (ref?.startsWith("refs/tags/") == true) {
             project.logger.log(LogLevel.LIFECYCLE, "Deploying release to OssStaging...")
-            publishIfNeeded.dependsOn(project.tasks.named("publishAllPublicationsToOssStagingRepository"))
+            publishIfNeeded.dependsOn(ossStagingReleaseTask)
         }
     }
 }
