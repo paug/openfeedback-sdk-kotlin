@@ -38,7 +38,7 @@ fun OpenFeedback(
     val systemConfig = LocalConfiguration.current
     val viewModel: OpenFeedbackViewModel = viewModel(
         factory = OpenFeedbackViewModel.Factory.create(
-            firebaseApp = config.firebaseApp,
+            firebaseApp = config.firebaseApp.value,
             projectId = projectId,
             sessionId = sessionId,
             locale = systemConfig.locale
