@@ -1,6 +1,5 @@
 package io.openfeedback.android.m3
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,6 +32,7 @@ fun OpenFeedback(
     projectId: String,
     sessionId: String,
     modifier: Modifier = Modifier,
+    columnCount: Int = 2,
     loading: @Composable () -> Unit = { Loading(modifier = modifier) }
 ) {
     val systemConfig = LocalConfiguration.current
@@ -44,7 +44,6 @@ fun OpenFeedback(
             locale = systemConfig.locale
         )
     )
-    val columnCount = if (systemConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) 4 else 2
     val uiState = viewModel.uiState.collectAsState()
     when (uiState.value) {
         is OpenFeedbackUiState.Loading -> loading()
