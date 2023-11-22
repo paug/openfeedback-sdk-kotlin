@@ -1,4 +1,4 @@
-version = "1.0.0-SNAPSHOT"
+version = "0.1.1"
 subprojects {
     repositories {
         google()
