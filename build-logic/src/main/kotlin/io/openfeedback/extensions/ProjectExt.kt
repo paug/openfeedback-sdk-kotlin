@@ -115,8 +115,7 @@ private fun Project.registerReleaseTask(name: String): TaskProvider<Task> {
                 repoId
             )
             doLast {
-                println("Closing repo: ${inputs.properties.get("repoId") as String}")
-                //closeAndReleaseStagingRepository(inputs.properties.get("repoId") as String)
+                closeAndReleaseStagingRepository(inputs.properties.get("repoId") as String)
             }
         }
     }
