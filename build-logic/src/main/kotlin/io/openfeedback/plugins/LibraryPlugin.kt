@@ -1,7 +1,6 @@
 package io.openfeedback.plugins
 
 import com.android.build.gradle.LibraryExtension
-import io.openfeedback.OpenFeedback
 import io.openfeedback.extensions.configureKotlinAndroid
 import io.openfeedback.extensions.configureKotlinCompiler
 import org.gradle.api.Plugin
@@ -14,11 +13,8 @@ class LibraryPlugin : Plugin<Project> {
             apply("com.android.library")
             apply("org.jetbrains.kotlin.android")
             apply("org.jetbrains.kotlin.plugin.serialization")
-            apply("maven-publish")
-            apply("signing")
         }
 
-        target.extensions.create("openfeedback", OpenFeedback::class.java, target)
         target.extensions.configure<LibraryExtension> {
             configureKotlinAndroid()
             defaultConfig.targetSdk = 34

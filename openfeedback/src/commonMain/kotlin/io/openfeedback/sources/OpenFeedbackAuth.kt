@@ -1,4 +1,4 @@
-package io.openfeedback.android.sources
+package io.openfeedback.sources
 
 import android.util.Log
 import dev.gitlive.firebase.Firebase

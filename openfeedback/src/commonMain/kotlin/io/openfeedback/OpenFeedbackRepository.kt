@@ -1,12 +1,12 @@
-package io.openfeedback.android
+package io.openfeedback
 
-import io.openfeedback.android.caches.OptimisticVoteCaching
-import io.openfeedback.android.model.Project
-import io.openfeedback.android.model.SessionVotes
-import io.openfeedback.android.model.UserVote
-import io.openfeedback.android.model.VoteStatus
-import io.openfeedback.android.sources.OpenFeedbackAuth
-import io.openfeedback.android.sources.OpenFeedbackFirestore
+import io.openfeedback.caches.OptimisticVoteCaching
+import io.openfeedback.model.Project
+import io.openfeedback.model.SessionVotes
+import io.openfeedback.model.UserVote
+import io.openfeedback.model.VoteStatus
+import io.openfeedback.sources.OpenFeedbackAuth
+import io.openfeedback.sources.OpenFeedbackFirestore
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow

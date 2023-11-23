@@ -1,4 +1,4 @@
-package io.openfeedback.android.sources
+package io.openfeedback.sources
 
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.FirebaseApp
@@ -7,11 +7,11 @@ import dev.gitlive.firebase.firestore.FieldValue
 import dev.gitlive.firebase.firestore.FirebaseFirestore
 import dev.gitlive.firebase.firestore.firestore
 import dev.gitlive.firebase.firestore.where
-import io.openfeedback.android.mappers.convertToModel
-import io.openfeedback.android.model.Project
-import io.openfeedback.android.model.SessionVotes
-import io.openfeedback.android.model.UserVote
-import io.openfeedback.android.model.VoteStatus
+import io.openfeedback.mappers.convertToModel
+import io.openfeedback.model.Project
+import io.openfeedback.model.SessionVotes
+import io.openfeedback.model.UserVote
+import io.openfeedback.model.VoteStatus
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

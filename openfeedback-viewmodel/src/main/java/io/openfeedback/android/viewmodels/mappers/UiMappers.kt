@@ -1,14 +1,17 @@
 package io.openfeedback.android.viewmodels.mappers
 
-import io.openfeedback.android.model.Project
-import io.openfeedback.android.model.SessionVotes
-import io.openfeedback.android.model.UserVote
 import io.openfeedback.android.viewmodels.models.UIComment
 import io.openfeedback.android.viewmodels.models.UIDot
 import io.openfeedback.android.viewmodels.models.UISessionFeedback
 import io.openfeedback.android.viewmodels.models.UISessionFeedbackWithColors
 import io.openfeedback.android.viewmodels.models.UIVoteItem
+import io.openfeedback.model.Project
+import io.openfeedback.model.SessionVotes
+import io.openfeedback.model.UserVote
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 import kotlin.math.absoluteValue
 import kotlin.random.Random
@@ -19,18 +22,26 @@ fun convertToUiSessionFeedback(
     totalVotes: SessionVotes,
     locale: Locale
 ): UISessionFeedback {
-    val formatter = SimpleDateFormat("dd MMMM yyyy, hh:mm", locale)
+    val formatter = SimpleDateFormat("dd MMM, hh:mm", locale)
     val userUpVoteIds = userVotes.filter { it.voteId != null }.map { it.voteId!! }
     val userVoteIds = userVotes.map { it.voteItemId }
     return UISessionFeedback(
         commentValue = "",
         commentVoteItemId = project.voteItems.find { it.type == "text" }?.id,
         comments = totalVotes.comments.map { commentItem ->
+            val localDateTime = commentItem.value.createdAt.toLocalDateTime(TimeZone.currentSystemDefault())
             UIComment(
                 id = commentItem.value.id,
                 voteItemId = commentItem.value.voteItemId,
                 message = commentItem.value.text,
-                createdAt = formatter.format(commentItem.value.createdAt.toDate()),
+                createdAt = formatter.format(Date(
+                    localDateTime.date.year,
+                    localDateTime.date.monthNumber,
+                    localDateTime.date.dayOfMonth,
+                    localDateTime.time.hour,
+                    localDateTime.time.minute,
+                    localDateTime.time.second
+                )),
                 upVotes = commentItem.value.plus.toInt(),
                 dots = dots(commentItem.value.plus.toInt(), project.chipColors),
                 votedByUser = userUpVoteIds.contains(commentItem.value.id)

@@ -1,12 +1,17 @@
 [versions]
 kotlin_lang = "1.9.10"
 kotlin_coroutines = "1.7.3"
+kotlinx_datetime = "0.4.1"
 kotlinx_serialization = "1.6.0"
 androidx_core = "1.12.0"
 androidx_compose_bom = "2023.10.01"
 androidx_compose_compiler = "1.5.3"
 androidx_lifecycle = "2.6.2"
+firebase_common = "20.4.2"
+firebase_firestore = "24.9.1"
+firebase_auth = "22.3.0"
 gitlive_firebase = "1.10.4"
+moko_resources = "0.23.0"
 
 [libraries]
 android-gradle-plugin = "com.android.tools.build:gradle:8.1.2"
@@ -15,11 +20,14 @@ vespene = "net.mbonnin.vespene:vespene-lib:0.5"
 kotlin_gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin_lang" }
 kotlin_serialization-plugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin_lang" }
 kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin_coroutines" }
-kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin_coroutines" }
-kotlin-coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "kotlin_coroutines" }
 
+kotlinx_datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx_datetime" }
 kotlinx_serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx_serialization" }
 
+firebase_common = { module = "com.google.firebase:firebase-common", version.ref = "firebase_common" }
+firebase_firestore = { module = "com.google.firebase:firebase-firestore-ktx", version.ref = "firebase_firestore" }
+firebase_auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebase_auth" }
+gitlive_app = { module = "dev.gitlive:firebase-app", version.ref = "gitlive_firebase" }
 gitlive_firestore = { module = "dev.gitlive:firebase-firestore", version.ref = "gitlive_firebase" }
 gitlive_auth = { module = "dev.gitlive:firebase-auth", version.ref = "gitlive_firebase" }
 gitlive_common = { module = "dev.gitlive:firebase-common", version.ref = "gitlive_firebase" }
@@ -32,3 +40,8 @@ androidx_compose_ui = { module = "androidx.compose.ui:ui" }
 androidx_compose_runtime = { module = "androidx.compose.runtime:runtime" }
 androidx_compose_uitooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx_lifecycle_viewmodel_compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx_lifecycle" }
+
+moko_resources = { module = "dev.icerock.moko:resources", version.ref = "moko_resources"}
+
+[plugins]
+moko_resources_generator = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko_resources" }
