@@ -1,6 +1,7 @@
 
 plugins {
     id("io.openfeedback.plugins.compose.lib")
+    id("io.openfeedback.plugins.publishing")
 }
 
 android {

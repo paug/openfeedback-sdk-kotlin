@@ -4,11 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import dev.gitlive.firebase.FirebaseApp
-import io.openfeedback.android.OpenFeedbackRepository
-import io.openfeedback.android.caches.OptimisticVoteCaching
-import io.openfeedback.android.model.VoteStatus
-import io.openfeedback.android.sources.OpenFeedbackAuth
-import io.openfeedback.android.sources.OpenFeedbackFirestore
+import io.openfeedback.OpenFeedbackRepository
+import io.openfeedback.caches.OptimisticVoteCaching
+import io.openfeedback.model.VoteStatus
+import io.openfeedback.sources.OpenFeedbackAuth
+import io.openfeedback.sources.OpenFeedbackFirestore
 import io.openfeedback.android.viewmodels.mappers.convertToUiSessionFeedback
 import io.openfeedback.android.viewmodels.models.UIComment
 import io.openfeedback.android.viewmodels.models.UISessionFeedback
@@ -32,8 +32,8 @@ class OpenFeedbackViewModel(
     private val locale: Locale
 ) : ViewModel() {
     private val repository = OpenFeedbackRepository(
-        auth = OpenFeedbackAuth.Factory.create(firebaseApp),
-        firestore = OpenFeedbackFirestore.Factory.create(firebaseApp),
+        auth = OpenFeedbackAuth.create(firebaseApp),
+        firestore = OpenFeedbackFirestore.create(firebaseApp),
         optimisticVoteCaching = OptimisticVoteCaching()
     )
 

@@ -1,7 +1,7 @@
-package io.openfeedback.android.caches
+package io.openfeedback.caches
 
-import io.openfeedback.android.model.SessionVotes
-import io.openfeedback.android.model.VoteStatus
+import io.openfeedback.model.SessionVotes
+import io.openfeedback.model.VoteStatus
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update

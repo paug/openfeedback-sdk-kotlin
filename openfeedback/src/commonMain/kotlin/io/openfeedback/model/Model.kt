@@ -1,6 +1,6 @@
-package io.openfeedback.android.model
+package io.openfeedback.model
 
-import com.google.firebase.Timestamp
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -42,6 +42,6 @@ data class Comment(
     val voteItemId: String = "",
     val text: String = "",
     val plus: Long = 0L,
-    val createdAt: Timestamp,
-    val updatedAt: Timestamp
+    val createdAt: Instant,
+    val updatedAt: Instant
 )
