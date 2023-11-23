@@ -83,11 +83,14 @@ private val nexusStagingClient by lazy {
     )
 }
 
-fun Project.getOrCreateOssStagingUrl(): Provider<String> {
+fun Project.getOrCreateRepoId(): Provider<String> {
     return getOrCreateRepoIdTask().map {
-        val repoId = it.outputs.files.singleFile.readText()
-        "${baseUrl}staging/deployByRepositoryId/$repoId/"
+        it.outputs.files.singleFile.readText()
     }
+}
+
+fun Project.getOrCreateRepoUrl(): Provider<String> {
+    return getOrCreateRepoId().map { "${baseUrl}staging/deployByRepositoryId/$it/" }
 }
 
 @OptIn(ExperimentalTime::class)
@@ -108,7 +111,7 @@ private fun Project.registerReleaseTask(name: String): TaskProvider<Task> {
     val task = try {
         rootProject.tasks.named(name)
     } catch (e: UnknownDomainObjectException) {
-        val repoId = getOrCreateOssStagingUrl()
+        val repoId = getOrCreateRepoId()
         rootProject.tasks.register(name) {
             inputs.property(
                 "repoId",
