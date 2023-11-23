@@ -63,7 +63,7 @@ private val nexusStagingClient by lazy {
 
 internal fun Project.getOssStagingRepoId(): String? = lock.withLock {
     return try {
-        this.extensions.extraProperties["ossStagingRepositoryId"] as String?
+        this.rootProject.extensions.extraProperties["ossStagingRepositoryId"] as String?
     } catch (ignored: ExtraPropertiesExtension.UnknownPropertyException) {
         null
     }
@@ -81,7 +81,7 @@ private fun Project.getOrCreateOssStagingRepoId(): String = lock.withLock {
             description = "io.openfeedback ${rootProject.version}"
         )
     }
-    this.extensions.extraProperties["ossStagingRepositoryId"] = repoId
+    this.rootProject.extensions.extraProperties["ossStagingRepositoryId"] = repoId
 
     return repoId
 }

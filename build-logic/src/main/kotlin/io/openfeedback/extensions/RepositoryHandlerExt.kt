@@ -16,7 +16,7 @@ fun RepositoryHandler.mavenSonatypeSnapshot(project: Project) = maven {
 fun RepositoryHandler.mavenSonatypeStaging(project: Project) = maven {
     name = "ossStaging"
     setUrl {
-        project.uri(project.rootProject.getOssStagingUrl())
+        project.uri(project.getOssStagingUrl())
     }
     credentials {
         username = System.getenv(EnvVarKeys.Nexus.username)
