@@ -93,7 +93,6 @@ fun Project.getOrCreateRepoUrl(): Provider<String> {
     return getOrCreateRepoId().map { "${baseUrl}staging/deployByRepositoryId/$it/" }
 }
 
-@OptIn(ExperimentalTime::class)
 fun Task.closeAndReleaseStagingRepository(repoId: String) {
     runBlocking {
         logger.log(LogLevel.LIFECYCLE, "Closing repository $repoId")

@@ -11,6 +11,7 @@ repositories {
 
 dependencies {
     implementation(libs.vespene)
+    implementation(libs.kotlin.coroutines.core)
     implementation(libs.android.gradle.plugin)
     implementation(libs.kotlin.gradle.plugin)
 }
