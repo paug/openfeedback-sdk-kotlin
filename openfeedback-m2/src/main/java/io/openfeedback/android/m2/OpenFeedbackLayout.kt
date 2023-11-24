@@ -17,6 +17,7 @@ import io.openfeedback.android.viewmodels.OpenFeedbackViewModel
 import io.openfeedback.android.viewmodels.models.UISessionFeedback
 import io.openfeedback.android.viewmodels.models.UIVoteItem
 
+@Deprecated("Please use m3 artifact to display OpenFeedback")
 @Composable
 fun OpenFeedback(
     config: OpenFeedbackFirebaseConfig,
@@ -48,6 +49,7 @@ fun OpenFeedback(
     }
 }
 
+@Deprecated("Please use m3 artifact to display OpenFeedback")
 @Composable
 fun OpenFeedbackLayout(
     sessionFeedback: UISessionFeedback,
