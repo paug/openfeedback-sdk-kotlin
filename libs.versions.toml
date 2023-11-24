@@ -3,9 +3,8 @@ kotlin_lang = "1.9.10"
 kotlin_coroutines = "1.7.3"
 kotlinx_datetime = "0.4.1"
 kotlinx_serialization = "1.6.0"
+jetbrains_compose = "1.5.1"
 androidx_core = "1.12.0"
-androidx_compose_bom = "2023.10.01"
-androidx_compose_compiler = "1.5.3"
 androidx_lifecycle = "2.6.2"
 firebase_common = "20.4.2"
 firebase_firestore = "24.9.1"
@@ -33,15 +32,10 @@ gitlive_auth = { module = "dev.gitlive:firebase-auth", version.ref = "gitlive_fi
 gitlive_common = { module = "dev.gitlive:firebase-common", version.ref = "gitlive_firebase" }
 
 androidx_core = { module = "androidx.core:core-ktx", version.ref = "androidx_core" }
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidx_compose_bom" }
-androidx_compose_material = { module = "androidx.compose.material:material" }
-androidx_compose_material3 = { module = "androidx.compose.material3:material3" }
-androidx_compose_ui = { module = "androidx.compose.ui:ui" }
-androidx_compose_runtime = { module = "androidx.compose.runtime:runtime" }
-androidx_compose_uitooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx_lifecycle_viewmodel_compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx_lifecycle" }
 
 moko_resources = { module = "dev.icerock.moko:resources", version.ref = "moko_resources"}
 
 [plugins]
 moko_resources_generator = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko_resources" }
+jetbrains_compose = { id = "org.jetbrains.compose", version.ref = "jetbrains_compose" }
