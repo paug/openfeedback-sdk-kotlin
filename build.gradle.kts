@@ -4,7 +4,7 @@ plugins {
     id("io.openfeedback.plugins.compose.lib") apply false
 }
 
-version = "0.1.1"
+version = "0.2.0-SNAPSHOT"
 subprojects {
     repositories {
         google()
