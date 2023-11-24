@@ -16,8 +16,8 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import io.openfeedback.android.viewmodels.models.UIDot
-import io.openfeedback.android.viewmodels.models.UIVoteItem
+import io.openfeedback.viewmodels.models.UIDot
+import io.openfeedback.viewmodels.models.UIVoteItem
 
 @ExperimentalMaterial3Api
 @Composable

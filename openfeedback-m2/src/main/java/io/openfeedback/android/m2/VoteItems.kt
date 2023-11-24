@@ -7,8 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.openfeedback.android.m2.VoteCard
-import io.openfeedback.android.viewmodels.models.UIVoteItem
+import io.openfeedback.viewmodels.models.UIVoteItem
 
 @Composable
 internal fun VoteItems(

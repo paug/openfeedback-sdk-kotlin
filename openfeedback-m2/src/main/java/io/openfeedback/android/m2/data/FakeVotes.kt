@@ -1,7 +1,7 @@
 package io.openfeedback.android.m2.data
 
-import io.openfeedback.android.viewmodels.models.UIDot
-import io.openfeedback.android.viewmodels.models.UIVoteItem
+import io.openfeedback.viewmodels.models.UIDot
+import io.openfeedback.viewmodels.models.UIVoteItem
 import kotlin.math.absoluteValue
 import kotlin.random.Random
 

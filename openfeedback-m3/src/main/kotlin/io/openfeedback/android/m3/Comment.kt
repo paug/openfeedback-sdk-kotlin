@@ -18,8 +18,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.openfeedback.R
-import io.openfeedback.android.viewmodels.models.UIComment
-import io.openfeedback.android.viewmodels.models.UIDot
+import io.openfeedback.viewmodels.models.UIComment
+import io.openfeedback.viewmodels.models.UIDot
 
 @Composable
 fun Comment(

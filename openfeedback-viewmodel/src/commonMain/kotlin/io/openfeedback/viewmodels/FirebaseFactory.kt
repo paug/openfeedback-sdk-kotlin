@@ -1,11 +1,11 @@
-package io.openfeedback.android.viewmodels
+package io.openfeedback.viewmodels
 
 import android.content.Context
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.initialize
 
 internal object FirebaseFactory {
-    fun createKM(
+    fun create(
         context: Context,
         config: OpenFeedbackFirebaseConfig,
         appName: String = "openfeedback"

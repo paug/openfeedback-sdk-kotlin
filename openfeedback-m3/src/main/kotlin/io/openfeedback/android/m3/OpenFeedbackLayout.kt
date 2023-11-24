@@ -19,13 +19,13 @@ import com.vanniktech.locale.Locale
 import com.vanniktech.locale.Locales
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
-import io.openfeedback.android.viewmodels.OpenFeedbackFirebaseConfig
-import io.openfeedback.android.viewmodels.OpenFeedbackUiState
-import io.openfeedback.android.viewmodels.OpenFeedbackViewModel
-import io.openfeedback.android.viewmodels.models.UIComment
-import io.openfeedback.android.viewmodels.models.UIDot
-import io.openfeedback.android.viewmodels.models.UISessionFeedback
-import io.openfeedback.android.viewmodels.models.UIVoteItem
+import io.openfeedback.viewmodels.OpenFeedbackFirebaseConfig
+import io.openfeedback.viewmodels.OpenFeedbackUiState
+import io.openfeedback.viewmodels.OpenFeedbackViewModel
+import io.openfeedback.viewmodels.models.UIComment
+import io.openfeedback.viewmodels.models.UIDot
+import io.openfeedback.viewmodels.models.UISessionFeedback
+import io.openfeedback.viewmodels.models.UIVoteItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

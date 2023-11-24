@@ -1,4 +1,4 @@
-package io.openfeedback.android.viewmodels
+package io.openfeedback.viewmodels
 
 import android.content.Context
 import androidx.compose.runtime.Immutable
@@ -12,5 +12,5 @@ data class OpenFeedbackFirebaseConfig(
     val databaseUrl: String,
     val appName: String = "openfeedback"
 ) {
-    val firebaseApp = lazy { FirebaseFactory.createKM(context, this, appName) }
+    val firebaseApp = lazy { FirebaseFactory.create(context, this, appName) }
 }

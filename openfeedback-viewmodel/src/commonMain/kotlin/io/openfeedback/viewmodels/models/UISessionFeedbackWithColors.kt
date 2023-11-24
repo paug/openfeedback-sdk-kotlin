@@ -1,4 +1,4 @@
-package io.openfeedback.android.viewmodels.models
+package io.openfeedback.viewmodels.models
 
 data class UISessionFeedbackWithColors(
     val session: UISessionFeedback,

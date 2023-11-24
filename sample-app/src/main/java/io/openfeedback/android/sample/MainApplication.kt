@@ -1,7 +1,7 @@
 package io.openfeedback.android.sample
 
 import android.app.Application
-import io.openfeedback.android.viewmodels.OpenFeedbackFirebaseConfig
+import io.openfeedback.viewmodels.OpenFeedbackFirebaseConfig
 
 class MainApplication: Application() {
     lateinit var openFeedbackFirebaseConfig: OpenFeedbackFirebaseConfig

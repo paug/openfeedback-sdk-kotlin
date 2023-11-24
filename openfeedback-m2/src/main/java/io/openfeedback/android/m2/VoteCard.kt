@@ -20,7 +20,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.openfeedback.android.m2.data.fakeVotes
-import io.openfeedback.android.viewmodels.models.UIVoteItem
+import io.openfeedback.viewmodels.models.UIVoteItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

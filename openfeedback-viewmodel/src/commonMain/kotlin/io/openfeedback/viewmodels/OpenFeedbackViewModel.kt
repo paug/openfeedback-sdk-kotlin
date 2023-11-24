@@ -1,14 +1,14 @@
-package io.openfeedback.android.viewmodels
+package io.openfeedback.viewmodels
 
 import com.vanniktech.locale.Locale
 import dev.gitlive.firebase.FirebaseApp
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import io.openfeedback.OpenFeedbackRepository
-import io.openfeedback.android.viewmodels.mappers.convertToUiSessionFeedback
-import io.openfeedback.android.viewmodels.models.UIComment
-import io.openfeedback.android.viewmodels.models.UISessionFeedback
-import io.openfeedback.android.viewmodels.models.UISessionFeedbackWithColors
-import io.openfeedback.android.viewmodels.models.UIVoteItem
+import io.openfeedback.viewmodels.mappers.convertToUiSessionFeedback
+import io.openfeedback.viewmodels.models.UIComment
+import io.openfeedback.viewmodels.models.UISessionFeedback
+import io.openfeedback.viewmodels.models.UISessionFeedbackWithColors
+import io.openfeedback.viewmodels.models.UIVoteItem
 import io.openfeedback.caches.OptimisticVoteCaching
 import io.openfeedback.model.VoteStatus
 import io.openfeedback.sources.OpenFeedbackAuth

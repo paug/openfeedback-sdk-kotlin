@@ -6,7 +6,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.unit.dp
-import io.openfeedback.android.viewmodels.models.UIDot
+import io.openfeedback.viewmodels.models.UIDot
 
 fun Modifier.drawDots(dots: List<UIDot>): Modifier = drawBehind {
     dots.forEach { dot ->
