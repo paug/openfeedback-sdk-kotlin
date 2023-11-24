@@ -56,8 +56,6 @@ repositories {
 
 val openfeedbackVersion = "0.1.0"
 dependencies {
-    // Material 2
-    implementation("io.openfeedback:feedback-android-sdk-m2:$openfeedbackVersion")
     // Material 3
     implementation("io.openfeedback:feedback-android-sdk-m3:$openfeedbackVersion")
     // ViewModel
