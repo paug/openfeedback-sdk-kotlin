@@ -11,6 +11,7 @@ firebase_auth = "22.3.0"
 gitlive_firebase = "1.10.4"
 moko_resources = "0.23.0"
 moko_mvvm = "0.16.1"
+kmm_locale = "0.5.0"
 
 [libraries]
 android-gradle-plugin = "com.android.tools.build:gradle:8.1.2"
@@ -37,6 +38,7 @@ moko_resources = { module = "dev.icerock.moko:resources", version.ref = "moko_re
 moko_mvvm_core = { module = "dev.icerock.moko:mvvm-core", version.ref = "moko_mvvm" }
 moko_mvvm_compose = { module = "dev.icerock.moko:mvvm-compose", version.ref = "moko_mvvm" }
 
+kmm_locale = { module = "com.vanniktech:multiplatform-locale", version.ref = "kmm_locale" }
 
 [plugins]
 moko_resources_generator = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko_resources" }

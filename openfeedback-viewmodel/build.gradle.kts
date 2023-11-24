@@ -14,7 +14,7 @@ openfeedback {
 
 dependencies {
     implementation(projects.openfeedback)
-    api(libs.moko.mvvm.core)
     implementation(compose.runtime)
-
+    api(libs.moko.mvvm.core)
+    api(libs.kmm.locale)
 }

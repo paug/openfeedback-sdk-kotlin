@@ -1,5 +1,6 @@
 package io.openfeedback.android.viewmodels
 
+import com.vanniktech.locale.Locale
 import dev.gitlive.firebase.FirebaseApp
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import io.openfeedback.OpenFeedbackRepository
@@ -16,7 +17,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
-import java.util.Locale
 
 sealed class OpenFeedbackUiState {
     data object Loading : OpenFeedbackUiState()

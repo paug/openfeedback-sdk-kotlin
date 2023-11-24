@@ -13,9 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.vanniktech.locale.Locale
+import com.vanniktech.locale.Locales
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
 import io.openfeedback.android.viewmodels.OpenFeedbackFirebaseConfig
@@ -34,9 +35,9 @@ fun OpenFeedback(
     sessionId: String,
     modifier: Modifier = Modifier,
     columnCount: Int = 2,
+    locale: Locale = Locale.from(Locales.currentLocaleString()),
     loading: @Composable () -> Unit = { Loading(modifier = modifier) }
 ) {
-    val systemConfig = LocalConfiguration.current
     val viewModel: OpenFeedbackViewModel = getViewModel(
         key = sessionId,
         factory = viewModelFactory {
@@ -44,7 +45,7 @@ fun OpenFeedback(
                 firebaseApp = config.firebaseApp.value,
                 projectId = projectId,
                 sessionId = sessionId,
-                locale = systemConfig.locale
+                locale = locale
             )
         }
     )

@@ -1,5 +1,7 @@
 package io.openfeedback.android.viewmodels.mappers
 
+import com.vanniktech.locale.Locale
+import com.vanniktech.locale.toJavaLocale
 import io.openfeedback.android.viewmodels.models.UIComment
 import io.openfeedback.android.viewmodels.models.UIDot
 import io.openfeedback.android.viewmodels.models.UISessionFeedback
@@ -12,7 +14,6 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import java.text.SimpleDateFormat
 import java.util.Date
-import java.util.Locale
 import kotlin.math.absoluteValue
 import kotlin.random.Random
 
@@ -22,7 +23,7 @@ fun convertToUiSessionFeedback(
     totalVotes: SessionVotes,
     locale: Locale
 ): UISessionFeedback {
-    val formatter = SimpleDateFormat("dd MMM, hh:mm", locale)
+    val formatter = SimpleDateFormat("dd MMM, hh:mm", locale.toJavaLocale())
     val userUpVoteIds = userVotes.filter { it.voteId != null }.map { it.voteId!! }
     val userVoteIds = userVotes.map { it.voteItemId }
     return UISessionFeedback(
@@ -53,7 +54,7 @@ fun convertToUiSessionFeedback(
                 val count = totalVotes.votes[voteItem.id]?.toInt() ?: 0
                 UIVoteItem(
                     id = voteItem.id,
-                    text = voteItem.localizedName(locale.language),
+                    text = voteItem.localizedName(locale.language.code),
                     dots = dots(count, project.chipColors),
                     votedByUser = userVoteIds.contains(voteItem.id)
                 )
