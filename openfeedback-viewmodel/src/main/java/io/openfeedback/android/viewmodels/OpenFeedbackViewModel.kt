@@ -1,19 +1,17 @@
 package io.openfeedback.android.viewmodels
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import dev.gitlive.firebase.FirebaseApp
+import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import io.openfeedback.OpenFeedbackRepository
-import io.openfeedback.caches.OptimisticVoteCaching
-import io.openfeedback.model.VoteStatus
-import io.openfeedback.sources.OpenFeedbackAuth
-import io.openfeedback.sources.OpenFeedbackFirestore
 import io.openfeedback.android.viewmodels.mappers.convertToUiSessionFeedback
 import io.openfeedback.android.viewmodels.models.UIComment
 import io.openfeedback.android.viewmodels.models.UISessionFeedback
 import io.openfeedback.android.viewmodels.models.UISessionFeedbackWithColors
 import io.openfeedback.android.viewmodels.models.UIVoteItem
+import io.openfeedback.caches.OptimisticVoteCaching
+import io.openfeedback.model.VoteStatus
+import io.openfeedback.sources.OpenFeedbackAuth
+import io.openfeedback.sources.OpenFeedbackFirestore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
@@ -99,21 +97,5 @@ class OpenFeedbackViewModel(
             voteId = comment.id,
             status = if (!comment.votedByUser) VoteStatus.Active else VoteStatus.Deleted
         )
-    }
-
-    object Factory {
-        fun create(
-            firebaseApp: FirebaseApp,
-            projectId: String,
-            sessionId: String,
-            locale: Locale
-        ) = object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T = OpenFeedbackViewModel(
-                firebaseApp = firebaseApp,
-                projectId = projectId,
-                sessionId = sessionId,
-                locale = locale
-            ) as T
-        }
     }
 }

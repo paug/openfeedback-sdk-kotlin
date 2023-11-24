@@ -5,12 +5,12 @@ kotlinx_datetime = "0.4.1"
 kotlinx_serialization = "1.6.0"
 jetbrains_compose = "1.5.1"
 androidx_core = "1.12.0"
-androidx_lifecycle = "2.6.2"
 firebase_common = "20.4.2"
 firebase_firestore = "24.9.1"
 firebase_auth = "22.3.0"
 gitlive_firebase = "1.10.4"
 moko_resources = "0.23.0"
+moko_mvvm = "0.16.1"
 
 [libraries]
 android-gradle-plugin = "com.android.tools.build:gradle:8.1.2"
@@ -32,9 +32,11 @@ gitlive_auth = { module = "dev.gitlive:firebase-auth", version.ref = "gitlive_fi
 gitlive_common = { module = "dev.gitlive:firebase-common", version.ref = "gitlive_firebase" }
 
 androidx_core = { module = "androidx.core:core-ktx", version.ref = "androidx_core" }
-androidx_lifecycle_viewmodel_compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx_lifecycle" }
 
 moko_resources = { module = "dev.icerock.moko:resources", version.ref = "moko_resources"}
+moko_mvvm_core = { module = "dev.icerock.moko:mvvm-core", version.ref = "moko_mvvm" }
+moko_mvvm_compose = { module = "dev.icerock.moko:mvvm-compose", version.ref = "moko_mvvm" }
+
 
 [plugins]
 moko_resources_generator = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko_resources" }

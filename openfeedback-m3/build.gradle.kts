@@ -17,7 +17,7 @@ dependencies {
     api(projects.openfeedback)
     api(projects.openfeedbackViewmodel)
 
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.moko.mvvm.compose)
     implementation(compose.material3)
     implementation(compose.ui)
     implementation(compose.uiTooling)
