@@ -35,6 +35,7 @@ gitlive_common = { module = "dev.gitlive:firebase-common", version.ref = "gitliv
 androidx_core = { module = "androidx.core:core-ktx", version.ref = "androidx_core" }
 
 moko_resources = { module = "dev.icerock.moko:resources", version.ref = "moko_resources"}
+moko_resources_compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko_resources" }
 moko_mvvm_core = { module = "dev.icerock.moko:mvvm-core", version.ref = "moko_mvvm" }
 moko_mvvm_compose = { module = "dev.icerock.moko:mvvm-compose", version.ref = "moko_mvvm" }
 

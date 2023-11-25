@@ -11,13 +11,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import io.openfeedback.R as ROF
+import dev.icerock.moko.resources.compose.painterResource
+import dev.icerock.moko.resources.compose.stringResource
+import io.openfeedback.MR
 
 @Composable
 internal fun PoweredBy(
@@ -27,9 +27,9 @@ internal fun PoweredBy(
 ) {
 
     val logo =
-        if (MaterialTheme.colorScheme.background.luminance() > 0.5) ROF.drawable.openfeedback_light
-        else ROF.drawable.openfeedback_dark
-    val poweredBy = stringResource(id = ROF.string.powered_by)
+        if (MaterialTheme.colorScheme.background.luminance() > 0.5) MR.images.openfeedback_light
+        else MR.images.openfeedback_dark
+    val poweredBy = stringResource(MR.strings.powered_by)
     Row(
         modifier = modifier.semantics(mergeDescendants = true) {
             contentDescription = "$poweredBy Openfeedback"
@@ -39,7 +39,7 @@ internal fun PoweredBy(
     ) {
         Text(text = poweredBy, style = style, color = color)
         Image(
-            painter = painterResource(id = logo),
+            painter = painterResource(logo),
             contentDescription = null,
             modifier = Modifier.height(style.fontSize.value.dp + 13.dp)
         )

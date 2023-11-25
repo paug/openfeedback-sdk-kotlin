@@ -17,6 +17,7 @@ dependencies {
     api(projects.openfeedback)
     api(projects.openfeedbackViewmodel)
 
+    implementation(libs.moko.resources.compose)
     implementation(libs.moko.mvvm.compose)
     implementation(compose.material3)
     implementation(compose.ui)

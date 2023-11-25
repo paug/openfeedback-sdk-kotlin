@@ -13,11 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import io.openfeedback.R
+import dev.icerock.moko.resources.compose.stringResource
+import io.openfeedback.MR
 import io.openfeedback.viewmodels.models.UIComment
 import io.openfeedback.viewmodels.models.UIDot
 
@@ -51,9 +51,10 @@ fun Comment(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
+
                 Text(
                     text = stringResource(
-                        id = R.string.openfeedback_comments_upvotes,
+                        MR.strings.openfeedback_comments_upvotes,
                         comment.upVotes
                     ),
                     color = contentColor.copy(alpha = .7f),
