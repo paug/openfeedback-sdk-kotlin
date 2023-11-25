@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                                     )
 
                                 DesignSystem.M3 ->
-                                    io.openfeedback.android.m3.OpenFeedback(
+                                    io.openfeedback.m3.OpenFeedback(
                                         config = openFeedbackFirebaseConfig,
                                         projectId = projectId,
                                         sessionId = sessionId,

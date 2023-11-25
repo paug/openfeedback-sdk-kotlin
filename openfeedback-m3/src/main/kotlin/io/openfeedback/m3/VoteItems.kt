@@ -1,4 +1,4 @@
-package io.openfeedback.android.m3
+package io.openfeedback.m3
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

@@ -1,4 +1,4 @@
-package io.openfeedback.android.m3
+package io.openfeedback.m3
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind

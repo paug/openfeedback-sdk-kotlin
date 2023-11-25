@@ -1,25 +1,35 @@
 
 plugins {
-    id("io.openfeedback.plugins.lib")
+    id("io.openfeedback.plugins.lib.multiplatform")
     id("io.openfeedback.plugins.publishing")
     alias(libs.plugins.jetbrains.compose)
 }
 
 android {
-    namespace = "io.openfeedback.android.m3"
+    namespace = "io.openfeedback.m3"
 }
 
 openfeedback {
-    configurePublishing("feedback-android-sdk-m3")
+    configurePublishing("feedback-sdk-m3")
 }
 
-dependencies {
-    api(projects.openfeedback)
-    api(projects.openfeedbackViewmodel)
+kotlin {
+    androidTarget()
 
-    implementation(libs.moko.resources.compose)
-    implementation(libs.moko.mvvm.compose)
-    implementation(compose.material3)
-    implementation(compose.ui)
-    implementation(compose.uiTooling)
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                api(projects.openfeedback)
+                api(projects.openfeedbackViewmodel)
+
+                implementation(libs.moko.resources.compose)
+                implementation(libs.moko.mvvm.compose)
+
+                implementation(compose.material3)
+                implementation(compose.ui)
+                implementation(compose.uiTooling)
+            }
+        }
+        val androidMain by getting
+    }
 }
