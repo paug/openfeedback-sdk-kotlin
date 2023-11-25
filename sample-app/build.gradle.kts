@@ -12,13 +12,12 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core)
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("androidx.activity:activity-compose:1.7.0-alpha02")
+    implementation(projects.openfeedbackM3)
 
-    implementation(compose.material)
+    implementation(libs.androidx.core)
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.activity:activity-compose:1.8.1")
+
     implementation(compose.material3)
 
-    implementation(projects.openfeedbackM2)
-    implementation(projects.openfeedbackM3)
 }

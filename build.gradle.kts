@@ -1,7 +1,7 @@
 import io.openfeedback.extensions.configureRoot
 
 plugins {
-    id("io.openfeedback.plugins.lib") apply false
+    id("io.openfeedback.plugins.lib.multiplatform") apply false
     alias(libs.plugins.moko.resources.generator) apply false
     alias(libs.plugins.jetbrains.compose) apply false
 }

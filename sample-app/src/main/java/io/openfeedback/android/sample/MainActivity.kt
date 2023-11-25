@@ -22,9 +22,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.openfeedback.android.m2.OpenFeedback
-import io.openfeedback.android.sample.theme.DesignSystem
 import io.openfeedback.android.sample.theme.OpenFeedbackTheme
+import io.openfeedback.m3.OpenFeedback
 
 class MainActivity : AppCompatActivity() {
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -34,43 +33,26 @@ class MainActivity : AppCompatActivity() {
         val sessionId = "173222"
         val openFeedbackFirebaseConfig = (application as MainApplication).openFeedbackFirebaseConfig
         setContent {
-            var designSystem by rememberSaveable { mutableStateOf(DesignSystem.M3) }
             val isDark = isSystemInDarkTheme()
             var isLight by rememberSaveable(isDark) { mutableStateOf(isDark.not()) }
             OpenFeedbackTheme(
-                designSystem = designSystem,
                 isLight = isLight
             ) {
                 Scaffold {
                     LazyColumn(contentPadding = it) {
                         item {
                             ThemeSwitcher(
-                                designSystem = designSystem,
-                                isLight = isLight,
-                                onDesignSystemChanged = { designSystem = it },
-                                onLightDarkChanged = { isLight = it }
-                            )
+                                isLight = isLight
+                            ) { isLight = it }
                         }
                         item {
-                            when (designSystem) {
-                                DesignSystem.M2 ->
-                                    OpenFeedback(
-                                        config = openFeedbackFirebaseConfig,
-                                        projectId = projectId,
-                                        sessionId = sessionId,
-                                        modifier = Modifier
-                                            .padding(horizontal = 8.dp, vertical = 4.dp)
-                                    )
-
-                                DesignSystem.M3 ->
-                                    io.openfeedback.m3.OpenFeedback(
-                                        config = openFeedbackFirebaseConfig,
-                                        projectId = projectId,
-                                        sessionId = sessionId,
-                                        modifier = Modifier
-                                            .padding(horizontal = 8.dp, vertical = 4.dp)
-                                    )
-                            }
+                            OpenFeedback(
+                                config = openFeedbackFirebaseConfig,
+                                projectId = projectId,
+                                sessionId = sessionId,
+                                modifier = Modifier
+                                    .padding(horizontal = 8.dp, vertical = 4.dp)
+                            )
                         }
                     }
                 }
@@ -81,9 +63,7 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun ThemeSwitcher(
-    designSystem: DesignSystem,
     isLight: Boolean,
-    onDesignSystemChanged: (DesignSystem) -> Unit,
     onLightDarkChanged: (Boolean) -> Unit
 ) {
     Column(
@@ -91,18 +71,6 @@ fun ThemeSwitcher(
         verticalArrangement = Arrangement.spacedBy(4.dp),
         modifier = Modifier.fillMaxWidth()
     ) {
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(text = "Material 2")
-            Switch(checked = designSystem == DesignSystem.M3, onCheckedChange = {
-                onDesignSystemChanged(
-                    if (designSystem == DesignSystem.M2) DesignSystem.M3 else DesignSystem.M2
-                )
-            })
-            Text(text = "Material 3")
-        }
         Row(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically

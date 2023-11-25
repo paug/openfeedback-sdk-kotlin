@@ -18,9 +18,8 @@ includeBuild("build-logic")
 
 include(
     ":openfeedback",
-    ":openfeedback-m2",
-    ":openfeedback-m3",
     ":openfeedback-viewmodel",
+    ":openfeedback-m3",
     ":sample-app"
 )
 

@@ -19,10 +19,6 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        register("io.openfeedback.plugins.lib") {
-            id = "io.openfeedback.plugins.lib"
-            implementationClass = "io.openfeedback.plugins.LibraryPlugin"
-        }
         register("io.openfeedback.plugins.lib.multiplatform") {
             id = "io.openfeedback.plugins.lib.multiplatform"
             implementationClass = "io.openfeedback.plugins.MultiplatformPlugin"
