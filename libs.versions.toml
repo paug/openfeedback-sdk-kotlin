@@ -1,9 +1,9 @@
 [versions]
-kotlin_lang = "1.9.10"
+kotlin_lang = "1.9.20"
 kotlin_coroutines = "1.7.3"
 kotlinx_datetime = "0.4.1"
 kotlinx_serialization = "1.6.0"
-jetbrains_compose = "1.5.1"
+jetbrains_compose = "1.5.11"
 androidx_core = "1.12.0"
 firebase_common = "20.4.2"
 firebase_firestore = "24.9.1"
