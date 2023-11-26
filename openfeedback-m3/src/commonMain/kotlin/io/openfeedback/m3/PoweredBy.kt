@@ -25,7 +25,6 @@ internal fun PoweredBy(
     style: TextStyle = MaterialTheme.typography.bodyMedium,
     color: Color = MaterialTheme.colorScheme.onBackground
 ) {
-
     val logo =
         if (MaterialTheme.colorScheme.background.luminance() > 0.5) MR.images.openfeedback_light
         else MR.images.openfeedback_dark

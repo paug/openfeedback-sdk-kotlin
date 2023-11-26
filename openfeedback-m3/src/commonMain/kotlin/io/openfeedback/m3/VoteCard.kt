@@ -3,7 +3,6 @@ package io.openfeedback.m3
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -14,9 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import io.openfeedback.viewmodels.models.UIDot
 import io.openfeedback.viewmodels.models.UIVoteItem
 
 @ExperimentalMaterial3Api
@@ -48,23 +45,5 @@ fun VoteCard(
                 modifier = Modifier.padding(10.dp),
             )
         }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Preview
-@Composable
-private fun VoteCardPreview() {
-    MaterialTheme {
-        VoteCard(
-            voteModel = UIVoteItem(
-                id = "",
-                text = "Fun",
-                dots = listOf(UIDot(x = .5f, y = .5f, color = "FF00CC")),
-                votedByUser = true
-            ),
-            onClick = {},
-            modifier = Modifier.size(height = 100.dp, width = 200.dp)
-        )
     }
 }

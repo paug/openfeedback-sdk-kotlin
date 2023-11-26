@@ -14,12 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.icerock.moko.resources.compose.stringResource
 import io.openfeedback.MR
 import io.openfeedback.viewmodels.models.UIComment
-import io.openfeedback.viewmodels.models.UIDot
 
 @Composable
 fun Comment(
@@ -67,24 +65,5 @@ fun Comment(
                 )
             }
         }
-    }
-}
-
-@Preview
-@Composable
-private fun CommentPreview() {
-    MaterialTheme {
-        Comment(
-            comment = UIComment(
-                id = "",
-                voteItemId = "",
-                message = "Super talk and great speakers!",
-                createdAt = "08 August 2023",
-                upVotes = 8,
-                dots = listOf(UIDot(x = .5f, y = .5f, color = "FF00CC")),
-                votedByUser = true
-            ),
-            onClick = {}
-        )
     }
 }

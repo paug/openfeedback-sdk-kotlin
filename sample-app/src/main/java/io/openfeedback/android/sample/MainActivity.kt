@@ -41,9 +41,7 @@ class MainActivity : AppCompatActivity() {
                 Scaffold {
                     LazyColumn(contentPadding = it) {
                         item {
-                            ThemeSwitcher(
-                                isLight = isLight
-                            ) { isLight = it }
+                            ThemeSwitcher(isLight = isLight) { isLight = it }
                         }
                         item {
                             OpenFeedback(
