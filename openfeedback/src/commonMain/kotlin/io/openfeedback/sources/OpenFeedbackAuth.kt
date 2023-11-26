@@ -1,6 +1,6 @@
 package io.openfeedback.sources
 
-import android.util.Log
+import co.touchlab.kermit.Logger
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.FirebaseApp
 import dev.gitlive.firebase.auth.FirebaseAuth
@@ -15,7 +15,7 @@ class OpenFeedbackAuth(private val auth: FirebaseAuth) {
             auth.signInAnonymously()
             val result = auth.signInAnonymously()
             if (result.user == null) {
-                Log.e("OpenFeedbackAuth", "Cannot signInAnonymously")
+                Logger.e("OpenFeedbackAuth") { "Cannot signInAnonymously" }
             }
         }
         auth.currentUser

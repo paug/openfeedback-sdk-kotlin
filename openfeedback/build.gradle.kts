@@ -1,6 +1,7 @@
 plugins {
     id("io.openfeedback.plugins.lib.multiplatform")
     id("io.openfeedback.plugins.publishing")
+    kotlin("native.cocoapods")
     alias(libs.plugins.moko.resources.generator)
 }
 
@@ -16,7 +17,33 @@ openfeedback {
 }
 
 kotlin {
+    applyDefaultHierarchyTemplate()
+
     androidTarget()
+
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "OpenFeedbackKit"
+            isStatic = true
+            export(libs.moko.resources)
+        }
+    }
+
+    cocoapods {
+        version = "1.0"
+        ios.deploymentTarget = "14.1"
+        noPodspec()
+        pod("FirebaseAuth") {
+            linkOnly = true
+        }
+        pod("FirebaseFirestore") {
+            linkOnly = true
+        }
+    }
 
     sourceSets {
         val commonMain by getting {
@@ -31,6 +58,8 @@ kotlin {
                 implementation(libs.gitlive.common)
 
                 api(libs.moko.resources)
+
+                implementation(libs.kermit)
             }
         }
         val androidMain by getting {
