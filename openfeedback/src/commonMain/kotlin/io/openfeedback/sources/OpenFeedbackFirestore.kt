@@ -14,6 +14,7 @@ import io.openfeedback.model.UserVote
 import io.openfeedback.model.VoteStatus
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapNotNull
 
 @Suppress("UNCHECKED_CAST")
 class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
@@ -31,10 +32,7 @@ class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
             .snapshots
             .map { querySnapshot ->
                 querySnapshot.documents.map {
-                    UserVote(
-                        voteItemId = it.get<String>("voteItemId"),
-                        voteId = it.get<String?>("voteId")
-                    )
+                    it.data<UserVote>()
                 }
             }
 
@@ -42,8 +40,11 @@ class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
         firestore.collection("projects/$projectId/sessionVotes")
             .document(sessionId)
             .snapshots
-            .map { querySnapshot ->
-                querySnapshot.data(strategy = SpecialValueSerializer(
+            .mapNotNull { documentSnapshot ->
+                if (documentSnapshot.exists.not()) {
+                    return@mapNotNull null
+                }
+                documentSnapshot.data(strategy = SpecialValueSerializer(
                     serialName = "SessionVotes",
                     toNativeValue = {},
                     fromNativeValue = {

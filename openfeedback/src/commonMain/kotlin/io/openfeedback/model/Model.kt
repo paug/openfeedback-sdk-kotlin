@@ -22,21 +22,25 @@ data class VoteItem(
     }
 }
 
+@Serializable
 enum class VoteStatus(val value: String) {
     Active("active"),
     Deleted("deleted")
 }
 
+@Serializable
 data class UserVote(
     val voteItemId: String,
     val voteId: String?
 )
 
+@Serializable
 data class SessionVotes(
     val votes: Map<String, Long>,
     val comments: Map<String, Comment>
 )
 
+@Serializable
 data class Comment(
     val id: String = "",
     val voteItemId: String = "",
