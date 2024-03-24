@@ -15,9 +15,8 @@ dependencies {
     implementation(projects.openfeedbackM3)
 
     implementation(libs.androidx.core)
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.activity:activity-compose:1.8.1")
+    implementation(libs.appcompat)
+    implementation(libs.activity.compose)
 
     implementation(compose.material3)
-
 }
