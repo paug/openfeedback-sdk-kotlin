@@ -29,8 +29,8 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val projectId = "mMHR63ARZQpPidFQISyc"
-        val sessionId = "173222"
+        val projectId = "x957vfwwtWxn8wF6RSLb"
+        val sessionId = "KWhBK2ysHnazBasuU7s0"
         val openFeedbackFirebaseConfig = (application as MainApplication).openFeedbackFirebaseConfig
         setContent {
             val isDark = isSystemInDarkTheme()
