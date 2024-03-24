@@ -1,7 +1,6 @@
 package io.openfeedback.android.sample
 
 import android.app.Application
-import io.openfeedback.viewmodels.AndroidContext
 import io.openfeedback.viewmodels.OpenFeedbackFirebaseConfig
 
 class MainApplication: Application() {
@@ -10,7 +9,7 @@ class MainApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         openFeedbackFirebaseConfig = OpenFeedbackFirebaseConfig(
-            context = AndroidContext(context = this),
+            context = this,
             projectId = "openfeedback-b7ab9",
             applicationId = "1:765209934800:android:a6bb09f3deabc2277297d5",
             apiKey = "AIzaSyC_cfbh8xKwF8UPxCeasGcsHyK4s5yZFeA",

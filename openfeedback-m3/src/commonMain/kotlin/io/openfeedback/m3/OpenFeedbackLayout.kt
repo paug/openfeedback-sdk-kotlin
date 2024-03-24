@@ -23,6 +23,7 @@ import io.openfeedback.viewmodels.OpenFeedbackViewModel
 import io.openfeedback.viewmodels.models.UIComment
 import io.openfeedback.viewmodels.models.UISessionFeedback
 import io.openfeedback.viewmodels.models.UIVoteItem
+import io.openfeedback.viewmodels.toFirebaseApp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,7 +40,7 @@ fun OpenFeedback(
         key = sessionId,
         factory = viewModelFactory {
             OpenFeedbackViewModel(
-                firebaseApp = config.firebaseApp.value,
+                firebaseApp = config.toFirebaseApp(),
                 projectId = projectId,
                 sessionId = sessionId,
                 locale = locale
