@@ -4,9 +4,12 @@ plugins {
     `java-gradle-plugin`
 }
 
+group = "build-logic"
+
 repositories {
     mavenCentral()
     google()
+    gradlePluginPortal()
 }
 
 dependencies {
@@ -15,21 +18,16 @@ dependencies {
     implementation(libs.android.gradle.plugin)
     implementation(libs.kotlin.gradle.plugin)
     implementation(libs.kotlin.serialization.plugin)
+    implementation(libs.moko.gradle.plugin)
+    implementation(libs.jetbrains.compose)
+
 }
 
 gradlePlugin {
     plugins {
-        register("io.openfeedback.plugins.lib.multiplatform") {
-            id = "io.openfeedback.plugins.lib.multiplatform"
-            implementationClass = "io.openfeedback.plugins.MultiplatformPlugin"
-        }
         register("io.openfeedback.plugins.publishing") {
             id = "io.openfeedback.plugins.publishing"
             implementationClass = "io.openfeedback.plugins.PublishingPlugin"
-        }
-        register("io.openfeedback.plugins.app") {
-            id = "io.openfeedback.plugins.app"
-            implementationClass = "io.openfeedback.plugins.AppPlugin"
         }
     }
 }

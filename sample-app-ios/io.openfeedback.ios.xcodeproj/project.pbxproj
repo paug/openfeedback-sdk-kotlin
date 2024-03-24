@@ -11,6 +11,8 @@
 		1167ADE22BB0CFED001541D8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1167ADE12BB0CFED001541D8 /* ContentView.swift */; };
 		1167ADE42BB0CFEE001541D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1167ADE32BB0CFEE001541D8 /* Assets.xcassets */; };
 		1167ADE72BB0CFEE001541D8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1167ADE62BB0CFEE001541D8 /* Preview Assets.xcassets */; };
+		11D2416F2BB0D96D00370624 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 11D2416E2BB0D96D00370624 /* FirebaseAuth */; };
+		11D241712BB0D96D00370624 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 11D241702BB0D96D00370624 /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11D2416F2BB0D96D00370624 /* FirebaseAuth in Frameworks */,
+				11D241712BB0D96D00370624 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +78,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1167ADEA2BB0CFEE001541D8 /* Build configuration list for PBXNativeTarget "io.openfeedback.ios" */;
 			buildPhases = (
+				1167ADED2BB0D0EB001541D8 /* ShellScript */,
 				1167ADD82BB0CFED001541D8 /* Sources */,
 				1167ADD92BB0CFED001541D8 /* Frameworks */,
 				1167ADDA2BB0CFED001541D8 /* Resources */,
@@ -83,6 +88,10 @@
 			dependencies = (
 			);
 			name = io.openfeedback.ios;
+			packageProductDependencies = (
+				11D2416E2BB0D96D00370624 /* FirebaseAuth */,
+				11D241702BB0D96D00370624 /* FirebaseFirestore */,
+			);
 			productName = io.openfeedback.ios;
 			productReference = 1167ADDC2BB0CFED001541D8 /* io.openfeedback.ios.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +120,9 @@
 				Base,
 			);
 			mainGroup = 1167ADD32BB0CFED001541D8;
+			packageReferences = (
+				11D2416D2BB0D96D00370624 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 1167ADDD2BB0CFED001541D8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -131,6 +143,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1167ADED2BB0D0EB001541D8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd \"$SRCROOT/..\"\n./gradlew :sample-app-shared:embedAndSignAppleFrameworkForXcode\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1167ADD82BB0CFED001541D8 /* Sources */ = {
@@ -182,7 +214,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -245,7 +277,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -274,6 +306,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"io.openfeedback.ios/Preview Content\"";
 				DEVELOPMENT_TEAM = F9RAPYL9T3;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../sample-app-shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -304,6 +338,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"io.openfeedback.ios/Preview Content\"";
 				DEVELOPMENT_TEAM = F9RAPYL9T3;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../sample-app-shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -346,6 +382,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		11D2416D2BB0D96D00370624 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.23.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		11D2416E2BB0D96D00370624 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 11D2416D2BB0D96D00370624 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		11D241702BB0D96D00370624 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 11D2416D2BB0D96D00370624 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1167ADD42BB0CFED001541D8 /* Project object */;
 }

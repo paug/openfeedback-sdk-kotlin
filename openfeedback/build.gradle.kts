@@ -1,50 +1,17 @@
 plugins {
-    id("io.openfeedback.plugins.lib.multiplatform")
+    id("com.android.library")
+    id("org.jetbrains.kotlin.multiplatform")
+    id("org.jetbrains.kotlin.plugin.serialization")
     id("io.openfeedback.plugins.publishing")
-    kotlin("native.cocoapods")
-    alias(libs.plugins.moko.resources.generator)
 }
 
-android {
-    namespace = "io.openfeedback"
-    sourceSets {
-        getByName("main").java.srcDirs("build/generated/moko/androidMain/src")
-    }
-}
-
-openfeedback {
-    configurePublishing("feedback-sdk")
-}
+library(
+    namespace = "io.openfeedback",
+    artifactName = "feedback-sdk",
+    moko = true
+)
 
 kotlin {
-    applyDefaultHierarchyTemplate()
-
-    androidTarget()
-
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "OpenFeedbackKit"
-            isStatic = true
-            export(libs.moko.resources)
-        }
-    }
-
-    cocoapods {
-        version = "1.0"
-        ios.deploymentTarget = "14.1"
-        noPodspec()
-        pod("FirebaseAuth") {
-            linkOnly = true
-        }
-        pod("FirebaseFirestore") {
-            linkOnly = true
-        }
-    }
-
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -72,6 +39,3 @@ kotlin {
     }
 }
 
-multiplatformResources {
-    multiplatformResourcesPackage = "io.openfeedback"
-}

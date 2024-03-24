@@ -1,33 +1,17 @@
 plugins {
-    id("io.openfeedback.plugins.lib.multiplatform")
+    id("com.android.library")
+    id("org.jetbrains.kotlin.multiplatform")
+    id("org.jetbrains.kotlin.plugin.serialization")
     id("io.openfeedback.plugins.publishing")
-    alias(libs.plugins.jetbrains.compose)
+    id("org.jetbrains.compose")
 }
 
-android {
-    namespace = "io.openfeedback.viewmodels"
-}
-
-openfeedback {
-    configurePublishing("feedback-sdk-viewmodels")
-}
+library(
+    namespace = "io.openfeedback.viewmodels",
+    artifactName = "feedback-sdk-viewmodels"
+)
 
 kotlin {
-    applyDefaultHierarchyTemplate()
-
-    androidTarget()
-
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "OpenFeedbackViewModelKit"
-            isStatic = true
-        }
-    }
-
     sourceSets {
         val commonMain by getting {
             dependencies {

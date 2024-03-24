@@ -1,33 +1,17 @@
 plugins {
-    id("io.openfeedback.plugins.lib.multiplatform")
+    id("com.android.library")
+    id("org.jetbrains.kotlin.multiplatform")
+    id("org.jetbrains.kotlin.plugin.serialization")
     id("io.openfeedback.plugins.publishing")
-    alias(libs.plugins.jetbrains.compose)
+    id("org.jetbrains.compose")
 }
 
-android {
-    namespace = "io.openfeedback.m3"
-}
-
-openfeedback {
-    configurePublishing("feedback-sdk-m3")
-}
+library(
+    namespace = "io.openfeedback.m3",
+    artifactName = "feedback-sdk-m3"
+)
 
 kotlin {
-    applyDefaultHierarchyTemplate()
-
-    androidTarget()
-
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "OpenFeedbackM3Kit"
-            isStatic = true
-        }
-    }
-
     sourceSets {
         val commonMain by getting {
             dependencies {

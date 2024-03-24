@@ -1,20 +1,35 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+
 plugins {
     id("org.jetbrains.kotlin.multiplatform")
     id("com.android.library")
-    alias(libs.plugins.jetbrains.compose)
+    id("org.jetbrains.compose")
 }
 
-android {
-    namespace = "io.openfeedback.shared"
-}
-
-configureAndroid()
-configureKotlin()
+library(
+    namespace =  "io.openfeedback.shared",
+    artifactName = null,
+    moko = true
+)
 
 kotlin {
-    androidTarget()
-    listOf(iosArm64(), iosSimulatorArm64()).forEach {
+    targets.configureEach {
+        if (this is KotlinNativeTarget) {
+            binaries {
+                this.framework {
+                    baseName = "SampleApp"
+                    isStatic = true
 
+//                linkerOpts()
+//                freeCompilerArgs += listOf(
+//                    "-linker-option", "-framework", "-linker-option", "Metal",
+//                    "-linker-option", "-framework", "-linker-option", "CoreText",
+//                    "-linker-option", "-framework", "-linker-option", "CoreGraphics"
+//                )
+
+                }
+            }
+        }
     }
 
     sourceSets {

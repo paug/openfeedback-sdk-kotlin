@@ -16,7 +16,6 @@ import kotlin.time.Duration.Companion.minutes
 import kotlin.time.ExperimentalTime
 
 internal fun Project.configurePublishingInternal(artifactName: String) {
-    println("configurePublishingInternal for $name")
     val android = extensions.findByType(com.android.build.gradle.LibraryExtension::class.java)!!
 
     android.publishing {

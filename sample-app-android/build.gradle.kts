@@ -1,10 +1,12 @@
 plugins {
-    id("io.openfeedback.plugins.app")
-    alias(libs.plugins.jetbrains.compose)
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.compose")
 }
 
+androidApp("io.openfeedback.android.sample")
+
 android {
-    namespace = "io.openfeedback.android.sample"
     defaultConfig {
         versionCode = 1
         versionName = "1"
