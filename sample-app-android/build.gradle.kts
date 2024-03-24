@@ -13,6 +13,7 @@ android {
 
 dependencies {
     implementation(projects.openfeedbackM3)
+    implementation(projects.sampleAppShared)
 
     implementation(libs.androidx.core)
     implementation(libs.appcompat)

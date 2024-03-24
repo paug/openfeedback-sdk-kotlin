@@ -10,6 +10,6 @@ class PublishingPlugin : Plugin<Project> {
             apply("maven-publish")
             apply("signing")
         }
-        target.extensions.create("openfeedback", OpenFeedback::class.java, target)
+        target.extensions.create("openfeedback", OpenFeedback::class.java)
     }
 }

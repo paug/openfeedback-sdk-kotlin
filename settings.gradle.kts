@@ -12,6 +12,7 @@ include(
     ":openfeedback",
     ":openfeedback-viewmodel",
     ":openfeedback-m3",
-    ":sample-app-android"
+    ":sample-app-android",
+    ":sample-app-shared",
 )
 

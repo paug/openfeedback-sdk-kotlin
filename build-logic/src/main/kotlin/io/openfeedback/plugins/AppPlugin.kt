@@ -1,6 +1,7 @@
 package io.openfeedback.plugins
 
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
+import configureAndroid
 import io.openfeedback.extensions.configureKotlinAndroid
 import io.openfeedback.extensions.configureKotlinCompiler
 import org.gradle.api.Plugin
@@ -13,9 +14,7 @@ class AppPlugin : Plugin<Project> {
             apply("com.android.application")
             apply("org.jetbrains.kotlin.android")
         }
-        target.extensions.configure<BaseAppModuleExtension> {
-            configureKotlinAndroid()
-        }
+        target.configureAndroid()
         target.tasks.configureKotlinCompiler()
     }
 }
