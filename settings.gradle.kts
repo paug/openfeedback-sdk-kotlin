@@ -20,6 +20,6 @@ include(
     ":openfeedback",
     ":openfeedback-viewmodel",
     ":openfeedback-m3",
-    ":sample-app"
+    ":sample-app-android"
 )
 
