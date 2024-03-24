@@ -15,6 +15,7 @@ import io.openfeedback.model.VoteStatus
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
+@Suppress("UNCHECKED_CAST")
 class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
     fun project(projectId: String): Flow<Project> =
         firestore.collection("projects")
@@ -24,9 +25,9 @@ class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
 
     fun userVotes(projectId: String, userId: String, sessionId: String): Flow<List<UserVote>> =
         firestore.collection("projects/$projectId/userVotes")
-            .where("userId", equalTo = userId)
-            .where("status", VoteStatus.Active.value)
-            .where("talkId", sessionId)
+            .where { "userId" equalTo userId }
+            .where { "status" equalTo VoteStatus.Active.value }
+            .where { "talkId" equalTo sessionId }
             .snapshots
             .map { querySnapshot ->
                 querySnapshot.documents.map {
@@ -81,9 +82,9 @@ class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
         if (text.trim() == "") return
         val collectionReference = firestore.collection("projects/$projectId/userVotes")
         val querySnapshot = collectionReference
-            .where("userId", equalTo = userId)
-            .where("talkId", equalTo = talkId)
-            .where("voteItemId", equalTo = voteItemId)
+            .where { "userId" equalTo userId }
+            .where { "talkId" equalTo talkId }
+            .where { "voteItemId" equalTo voteItemId }
             .get()
         if (querySnapshot.documents.isEmpty()) {
             val documentReference = collectionReference.document
@@ -122,9 +123,9 @@ class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
     ) {
         val collectionReference = firestore.collection("projects/$projectId/userVotes")
         val querySnapshot = collectionReference
-            .where("userId", equalTo = userId)
-            .where("talkId", equalTo = talkId)
-            .where("voteItemId", equalTo = voteItemId)
+            .where { "userId" equalTo userId }
+            .where { "talkId" equalTo talkId }
+            .where { "voteItemId" equalTo voteItemId }
             .get()
         if (querySnapshot.documents.isEmpty()) {
             val documentReference = collectionReference.document
@@ -162,10 +163,10 @@ class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
     ) {
         val collectionReference = firestore.collection("projects/$projectId/userVotes")
         val querySnapshot = collectionReference
-            .where("userId", equalTo = userId)
-            .where("talkId", equalTo = talkId)
-            .where("voteItemId", equalTo = voteItemId)
-            .where("voteId", equalTo = voteId)
+            .where { "userId" equalTo userId }
+            .where { "talkId" equalTo talkId }
+            .where { "voteItemId" equalTo voteItemId }
+            .where { "voteId" equalTo voteId }
             .get()
         if (querySnapshot.documents.isEmpty()) {
             val documentReference = collectionReference.document
