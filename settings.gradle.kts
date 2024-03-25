@@ -1,3 +1,5 @@
+rootProject.name = "openfeedback-android-sdk"
+
 pluginManagement {
     repositories {
         gradlePluginPortal()

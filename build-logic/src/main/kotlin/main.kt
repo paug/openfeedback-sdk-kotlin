@@ -48,8 +48,7 @@ private fun Project.configureKMP() {
 fun Project.configureMoko(namespace: String) {
     pluginManager.apply("dev.icerock.mobile.multiplatform-resources")
     extensions.getByType(MultiplatformResourcesPluginExtension::class.java).apply {
-        multiplatformResourcesPackage = namespace
-        disableStaticFrameworkWarning = true
+        resourcesPackage.set(namespace)
     }
 }
 

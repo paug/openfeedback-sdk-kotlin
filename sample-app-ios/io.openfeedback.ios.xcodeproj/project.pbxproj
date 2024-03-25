@@ -82,6 +82,7 @@
 				1167ADD82BB0CFED001541D8 /* Sources */,
 				1167ADD92BB0CFED001541D8 /* Frameworks */,
 				1167ADDA2BB0CFED001541D8 /* Resources */,
+				11D241742BB0F69300370624 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -161,6 +162,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd \"$SRCROOT/..\"\n./gradlew :sample-app-shared:embedAndSignAppleFrameworkForXcode\n";
+		};
+		11D241742BB0F69300370624 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$SRCROOT/../gradlew\" -p \"$SRCROOT/../\" :sample-app-shared:copyFrameworkResourcesToApp \\\n    -Pmoko.resources.BUILT_PRODUCTS_DIR=$BUILT_PRODUCTS_DIR \\\n    -Pmoko.resources.CONTENTS_FOLDER_PATH=$CONTENTS_FOLDER_PATH\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
