@@ -1,0 +1,51 @@
+[versions]
+activityCompose = "1.8.2"
+appcompat = "1.6.1"
+kotlin_lang = "1.9.22"
+kotlin_coroutines = "1.8.0"
+kotlinx_datetime = "0.5.0"
+kotlinx_serialization = "1.6.3"
+androidx_core = "1.12.0"
+firebase_common = "20.4.3"
+firebase_firestore = "24.11.0"
+firebase_auth = "22.3.1"
+gitlive_firebase = "1.11.1"
+moko_mvvm = "0.16.1"
+moko_resources = "0.24.0-alpha-5"
+kmm_locale = "0.5.0"
+kermit = "2.0.2"
+
+[libraries]
+activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+android-gradle-plugin = "com.android.tools.build:gradle:8.1.2"
+appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+vespene = "net.mbonnin.vespene:vespene-lib:0.5"
+
+kotlin_gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin_lang" }
+kotlin_serialization-plugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin_lang" }
+kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin_coroutines" }
+
+kotlinx_datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx_datetime" }
+kotlinx_serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx_serialization" }
+
+firebase_common = { module = "com.google.firebase:firebase-common", version.ref = "firebase_common" }
+firebase_firestore = { module = "com.google.firebase:firebase-firestore-ktx", version.ref = "firebase_firestore" }
+firebase_auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebase_auth" }
+gitlive_app = { module = "dev.gitlive:firebase-app", version.ref = "gitlive_firebase" }
+gitlive_firestore = { module = "dev.gitlive:firebase-firestore", version.ref = "gitlive_firebase" }
+gitlive_auth = { module = "dev.gitlive:firebase-auth", version.ref = "gitlive_firebase" }
+gitlive_common = { module = "dev.gitlive:firebase-common", version.ref = "gitlive_firebase" }
+
+androidx_core = { module = "androidx.core:core-ktx", version.ref = "androidx_core" }
+
+moko_resources = { module = "dev.icerock.moko:resources", version.ref = "moko_resources"}
+moko_resources_compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko_resources" }
+moko_gradle_plugin = { module = "dev.icerock.moko:resources-generator", version.ref = "moko_resources" }
+moko_mvvm_core = { module = "dev.icerock.moko:mvvm-core", version.ref = "moko_mvvm" }
+moko_mvvm_compose = { module = "dev.icerock.moko:mvvm-compose", version.ref = "moko_mvvm" }
+
+kmm_locale = { module = "com.vanniktech:multiplatform-locale", version.ref = "kmm_locale" }
+
+kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
+
+jetbrains_compose = "org.jetbrains.compose:compose-gradle-plugin:1.6.1"

@@ -1,13 +1,8 @@
-dependencyResolutionManagement {
-    versionCatalogs {
-        create("libs") {
-            from(files("libs.versions.toml"))
-        }
-    }
-}
+rootProject.name = "openfeedback-android-sdk"
 
 pluginManagement {
     repositories {
+        gradlePluginPortal()
         google()
         mavenCentral()
     }
@@ -17,9 +12,9 @@ includeBuild("build-logic")
 
 include(
     ":openfeedback",
-    ":openfeedback-m2",
-    ":openfeedback-m3",
     ":openfeedback-viewmodel",
-    ":sample-app"
+    ":openfeedback-m3",
+    ":sample-app-android",
+    ":sample-app-shared",
 )
 

@@ -1,34 +1,22 @@
 plugins {
     `embedded-kotlin`
-    `kotlin-dsl`
-    `java-gradle-plugin`
 }
+
+group = "build-logic"
 
 repositories {
     mavenCentral()
     google()
+    gradlePluginPortal()
 }
 
 dependencies {
+    implementation(gradleApi())
     implementation(libs.vespene)
     implementation(libs.kotlin.coroutines.core)
     implementation(libs.android.gradle.plugin)
     implementation(libs.kotlin.gradle.plugin)
-}
-
-gradlePlugin {
-    plugins {
-        register("io.openfeedback.plugins.lib") {
-            id = "io.openfeedback.plugins.lib"
-            implementationClass = "io.openfeedback.plugins.LibraryPlugin"
-        }
-        register("io.openfeedback.plugins.compose.lib") {
-            id = "io.openfeedback.plugins.compose.lib"
-            implementationClass = "io.openfeedback.plugins.ComposeLibraryPlugin"
-        }
-        register("io.openfeedback.plugins.app") {
-            id = "io.openfeedback.plugins.app"
-            implementationClass = "io.openfeedback.plugins.AppPlugin"
-        }
-    }
+    implementation(libs.kotlin.serialization.plugin)
+    implementation(libs.moko.gradle.plugin)
+    implementation(libs.jetbrains.compose)
 }

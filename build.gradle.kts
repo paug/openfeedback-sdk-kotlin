@@ -1,14 +1,20 @@
-import io.openfeedback.extensions.configureRoot
-
-plugins {
-    id("io.openfeedback.plugins.compose.lib") apply false
+buildscript {
+    repositories {
+        mavenCentral()
+        google()
+        gradlePluginPortal()
+    }
+    dependencies {
+        //noinspection UseTomlInstead
+        classpath("build-logic:build-logic")
+    }
 }
 
 version = "0.1.2"
-subprojects {
+allprojects {
     repositories {
-        google()
         mavenCentral()
+        google()
     }
 }
 

@@ -1,22 +1,37 @@
-
 plugins {
-    id("io.openfeedback.plugins.lib")
+    id("com.android.library")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
-android {
-    namespace = "io.openfeedback.android"
+library(
+    namespace = "io.openfeedback",
+    moko = true,
+    publish = true
+) {
+    it.sourceSets {
+        getByName("commonMain").apply {
+            dependencies {
+                api(libs.kotlin.coroutines.core)
+                api(libs.kotlinx.datetime)
+                api(libs.kotlinx.serialization.json)
+
+                api(libs.gitlive.app)
+                api(libs.gitlive.firestore)
+                implementation(libs.gitlive.auth)
+                implementation(libs.gitlive.common)
+
+                api(libs.moko.resources)
+
+                implementation(libs.kermit)
+            }
+        }
+        getByName("androidMain"){
+            dependencies {
+                api(libs.firebase.common)
+                api(libs.firebase.firestore)
+                implementation(libs.firebase.auth)
+            }
+        }
+    }
 }
 
-openfeedback {
-    configurePublishing("feedback-android-sdk")
-}
-
-dependencies {
-    api(libs.kotlin.coroutines.core)
-    api(libs.kotlin.coroutines.android)
-    api(libs.kotlin.coroutines.play.services)
-
-    // Firestore
-    api(libs.firebase.firestore)
-    api(libs.firebase.auth)
-}

@@ -1,22 +1,32 @@
-
 plugins {
-    id("io.openfeedback.plugins.compose.lib")
+    id("com.android.library")
+    id("org.jetbrains.kotlin.plugin.serialization")
+    id("org.jetbrains.compose")
 }
 
-android {
-    namespace = "io.openfeedback.android.m3"
-}
+library(
+    namespace = "io.openfeedback.m3",
+    publish = true,
+) { kotlinMultiplatformExtension ->
+    kotlinMultiplatformExtension.sourceSets {
+        findByName("commonMain")!!.apply {
+            dependencies {
+                api(projects.openfeedback)
+                api(projects.openfeedbackViewmodel)
 
-openfeedback {
-    configurePublishing("feedback-android-sdk-m3")
-}
+                implementation(libs.moko.resources.compose)
+                implementation(libs.moko.mvvm.compose)
 
-dependencies {
-    api(projects.openfeedback)
-    api(projects.openfeedbackViewmodel)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.uitooling)
+                implementation(kotlinMultiplatformExtension.compose.material3)
+                implementation(kotlinMultiplatformExtension.compose.ui)
+            }
+        }
+        val androidMain by getting {
+            dependencies {
+                with (kotlinMultiplatformExtension) {
+                    implementation(compose.uiTooling)
+                }
+            }
+        }
+    }
 }
