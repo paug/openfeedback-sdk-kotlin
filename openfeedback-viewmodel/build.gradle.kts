@@ -2,24 +2,23 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.multiplatform")
     id("org.jetbrains.kotlin.plugin.serialization")
-    id("org.jetbrains.compose")
 }
 
 library(
     namespace = "io.openfeedback.viewmodels",
-    artifactName = "feedback-sdk-viewmodels"
-)
-
-kotlin {
-    sourceSets {
-        val commonMain by getting {
+    publish = true,
+    compose = true,
+) { kotlinMultiplatformExtension ->
+    kotlinMultiplatformExtension.sourceSets {
+        getByName("commonMain") {
             dependencies {
                 implementation(projects.openfeedback)
-                implementation(compose.runtime)
+                implementation(kotlinMultiplatformExtension.compose.runtime)
+                // Not sure why this is needed 🤷
+                implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.23")
                 api(libs.moko.mvvm.core)
                 api(libs.kmm.locale)
             }
         }
-        val androidMain by getting
     }
 }

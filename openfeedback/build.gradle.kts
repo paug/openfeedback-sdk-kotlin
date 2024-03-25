@@ -1,18 +1,15 @@
 plugins {
     id("com.android.library")
-    id("org.jetbrains.kotlin.multiplatform")
     id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 library(
     namespace = "io.openfeedback",
-    artifactName = "feedback-sdk",
-    moko = true
-)
-
-kotlin {
-    sourceSets {
-        val commonMain by getting {
+    moko = true,
+    publish = true
+) {
+    it.sourceSets {
+        getByName("commonMain").apply {
             dependencies {
                 api(libs.kotlin.coroutines.core)
                 api(libs.kotlinx.datetime)
@@ -28,7 +25,7 @@ kotlin {
                 implementation(libs.kermit)
             }
         }
-        val androidMain by getting {
+        getByName("androidMain"){
             dependencies {
                 api(libs.firebase.common)
                 api(libs.firebase.firestore)

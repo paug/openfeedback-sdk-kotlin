@@ -1,7 +1,9 @@
 package internal
 
-import com.android.build.gradle.internal.tasks.factory.dependsOn
 import EnvVarKeys
+import applyPublishingPlugin
+import applySigningPlugin
+import extension
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import net.mbonnin.vespene.lib.NexusStagingClient
@@ -12,78 +14,49 @@ import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.logging.LogLevel
 import org.gradle.api.plugins.ExtensionContainer
 import org.gradle.api.provider.Provider
-import org.gradle.api.publish.PublicationContainer
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.plugins.signing.Sign
-import org.gradle.plugins.signing.SigningExtension
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
 import kotlin.time.Duration.Companion.minutes
 
-fun ExtensionContainer.configurePublishing(
-    project: Project,
+internal fun Project.configurePublications(
+    publishing: PublishingExtension,
     artifactName: String
-) = getByType(PublishingExtension::class.java).apply {
-    publications {
-        it.createReleasePublication(
-            project = project,
-            artifactName = artifactName
-        )
-    }
+) {
+    val project = this
 
-    repositories {
-        it.mavenSonatypeSnapshot(project = project)
-        it.mavenSonatypeStaging(project = project)
-    }
-}
+    publishing.publications.configureEach {
+        (it as MavenPublication).apply {
+            groupId = "io.openfeedback"
+            version = project.rootProject.version.toString()
+            artifactId = artifactName
 
-fun ExtensionContainer.configureSigning() = configure(SigningExtension::class.java) {
-    // GPG_PRIVATE_KEY should contain the armoured private key that starts with -----BEGIN PGP PRIVATE KEY BLOCK-----
-    // It can be obtained with gpg --armour --export-secret-keys KEY_ID
-    it.useInMemoryPgpKeys(
-        System.getenv(EnvVarKeys.GPG.privateKey),
-        System.getenv(EnvVarKeys.GPG.password)
-    )
-    it.sign((getByName("publishing") as PublishingExtension).publications)
-}
+            pom {
+                it.name.set(artifactName)
 
-fun PublicationContainer.createReleasePublication(
-    project: Project,
-    artifactName: String
-) = create("default", MavenPublication::class.java) { publication ->
-    publication.apply {
-        project.afterEvaluate {
-            from(it.components.findByName("release"))
-        }
-
-        groupId = "io.openfeedback"
-        artifactId = artifactName
-        version = project.rootProject.version.toString()
-        
-        pom {
-
-            it.name.set(artifactId)
-            it.packaging = "aar"
-            it.description.set(artifactId)
-            it.url.set("https://github.com/paug/openfeedback-android-sdk")
-
-            it.scm {
+                it.description.set(artifactId)
                 it.url.set("https://github.com/paug/openfeedback-android-sdk")
-                it.connection.set("https://github.com/paug/openfeedback-android-sdk")
-                it.developerConnection.set("https://github.com/paug/openfeedback-android-sdk")
-            }
 
-            it.licenses {
-                it.license {
-                    it.name.set("MIT License")
-                    it.url.set("https://github.com/paug/openfeedback-android-sdk/blob/master/LICENSE")
+                it.scm {
+                    it.url.set("https://github.com/paug/openfeedback-android-sdk")
+                    it.connection.set("https://github.com/paug/openfeedback-android-sdk")
+                    it.developerConnection.set("https://github.com/paug/openfeedback-android-sdk")
                 }
-            }
 
-            it.developers {
-                it.developer {
-                    it.id.set("openfeedback team")
-                    it.name.set("openfeedback team")
+                it.licenses {
+                    it.license {
+                        it.name.set("MIT License")
+                        it.url.set("https://github.com/paug/openfeedback-android-sdk/blob/master/LICENSE")
+                    }
+                }
+
+                it.developers {
+                    it.developer {
+                        it.id.set("openfeedback team")
+                        it.name.set("openfeedback team")
+                    }
                 }
             }
         }
@@ -91,28 +64,51 @@ fun PublicationContainer.createReleasePublication(
 }
 
 
-internal fun Project.configurePublishingInternal(artifactName: String) {
-    pluginManager.apply("maven-publish")
-    pluginManager.apply("signing")
+internal fun Project.configurePublishingInternal(
+    androidTarget: KotlinAndroidTarget
+) {
+    val publishing = applyPublishingPlugin()
 
-    val android = extensions.findByType(com.android.build.gradle.LibraryExtension::class.java)!!
-
-    android.publishing {
-        singleVariant("release") {
-            withJavadocJar()
-            withSourcesJar()
-        }
+    /**
+     * Signing
+     */
+    val privateKey = System.getenv(EnvVarKeys.GPG.privateKey)
+    val password = System.getenv(EnvVarKeys.GPG.password)
+    applySigningPlugin().apply {
+        // GPG_PRIVATE_KEY should contain the armoured private key that starts with -----BEGIN PGP PRIVATE KEY BLOCK-----
+        // It can be obtained with gpg --armour --export-secret-keys KEY_ID
+        useInMemoryPgpKeys(
+            privateKey,
+            password
+        )
+        sign(publishing.publications)
     }
-
-    extensions.configurePublishing(
-        project = this@configurePublishingInternal,
-        artifactName = artifactName
-    )
-
-    extensions.configureSigning()
 
     tasks.withType(Sign::class.java).configureEach {
-        it.isEnabled = !System.getenv(EnvVarKeys.GPG.privateKey).isNullOrBlank()
+        it.isEnabled = !privateKey.isNullOrBlank()
+    }
+
+    /**
+     * Android publication
+     */
+    androidTarget.apply {
+        publishLibraryVariants("release")
+    }
+
+    /**
+     * Pom
+     */
+    configurePublications(
+        publishing = publishing,
+        artifactName = name
+    )
+
+    /**
+     * Repositories
+     */
+    publishing.repositories {
+        it.mavenSonatypeSnapshot(project = project)
+        it.mavenSonatypeStaging(project = project)
     }
 
     rootProject.tasks.named("ossStagingRelease").configure {

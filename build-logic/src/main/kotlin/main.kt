@@ -58,18 +58,23 @@ fun Project.configureMoko(namespace: String) {
 
 fun Project.library(
     namespace: String,
-    artifactName: String?,
     moko: Boolean = false,
-    kotlin: KotlinMultiplatformExtension.() -> Unit = {}
+    compose: Boolean = false,
+    publish: Boolean = false,
+    kotlin: (KotlinMultiplatformExtension) -> Unit
 ) {
-    if (artifactName != null) {
-        configurePublishingInternal(artifactName)
+    val kotlinMultiplatformExtension = applyKotlinMultiplatformPlugin()
+    if (compose) {
+        applyJetbrainsComposePlugin()
+    }
+    if (publish) {
+        configurePublishingInternal(kotlinMultiplatformExtension.androidTarget())
     }
     configureAndroid(namespace = namespace)
     configureKMP()
     configureKotlin()
 
-    (extensions.getByName("kotlin") as KotlinMultiplatformExtension).apply(kotlin)
+    kotlin(kotlinMultiplatformExtension)
 
     if (moko) {
         configureMoko(namespace)
