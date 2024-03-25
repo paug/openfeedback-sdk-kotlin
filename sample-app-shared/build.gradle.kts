@@ -9,13 +9,11 @@ plugins {
 library(
     namespace =  "io.openfeedback.shared",
     artifactName = null,
-    moko = true
-)
-
-kotlin {
-    targets.configureEach {
-        if (this is KotlinNativeTarget) {
-            binaries {
+    moko = true,
+) {
+    targets.forEach {
+        if (it is KotlinNativeTarget) {
+            it.binaries {
                 this.framework {
                     baseName = "SampleApp"
                     isStatic = true
@@ -23,7 +21,9 @@ kotlin {
             }
         }
     }
+}
 
+kotlin {
     sourceSets {
         getByName("commonMain") {
             dependencies {

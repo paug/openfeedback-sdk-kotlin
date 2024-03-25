@@ -36,17 +36,26 @@ fun SampleApp(
                     ThemeSwitcher(isLight = isLight) { isLight = it }
                 }
                 item {
+                    /**
+                     * The firebase parameters are from the openfeedback.io project so we can
+                     * access firestore directly
+                     */
                     val openFeedbackFirebaseConfig = OpenFeedbackFirebaseConfig(
                         context = context,
                         projectId = "open-feedback-42",
-                        applicationId = "1:635903227116:web:31de912f8bf29befb1e1c9",
+                        // Hack: I replaced :web: by :ios: for the iOS SDK to behave
+                        applicationId = "1:635903227116:ios:31de912f8bf29befb1e1c9",
                         apiKey = "AIzaSyB3ELJsaiItrln0uDGSuuHE1CfOJO67Hb4",
                         databaseUrl = "https://open-feedback-42.firebaseio.com/"
                     )
+                    /**
+                     * The project and session Ids are taken from openfeedback.io demo conference:
+                     * https://openfeedback.io/eaJnyMXD3oNfhrrnBYDT/
+                     */
                     OpenFeedback(
                         config = openFeedbackFirebaseConfig,
-                        projectId = "x957vfwwtWxn8wF6RSLb",
-                        sessionId = "KWhBK2ysHnazBasuU7s0",
+                        projectId = "eaJnyMXD3oNfhrrnBYDT",
+                        sessionId = "100",
                         modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
                     )
                 }

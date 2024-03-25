@@ -13,6 +13,7 @@
 		1167ADE72BB0CFEE001541D8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1167ADE62BB0CFEE001541D8 /* Preview Assets.xcassets */; };
 		11D2416F2BB0D96D00370624 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 11D2416E2BB0D96D00370624 /* FirebaseAuth */; };
 		11D241712BB0D96D00370624 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 11D241702BB0D96D00370624 /* FirebaseFirestore */; };
+		11D241762BB109C900370624 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11D241752BB109C900370624 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		1167ADE12BB0CFED001541D8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1167ADE32BB0CFEE001541D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1167ADE62BB0CFEE001541D8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		11D241752BB109C900370624 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				1167ADDF2BB0CFED001541D8 /* io_openfeedback_iosApp.swift */,
 				1167ADE12BB0CFED001541D8 /* ContentView.swift */,
 				1167ADE32BB0CFEE001541D8 /* Assets.xcassets */,
+				11D241752BB109C900370624 /* GoogleService-Info.plist */,
 				1167ADE52BB0CFEE001541D8 /* Preview Content */,
 			);
 			path = io.openfeedback.ios;
@@ -140,6 +143,7 @@
 			files = (
 				1167ADE72BB0CFEE001541D8 /* Preview Assets.xcassets in Resources */,
 				1167ADE42BB0CFEE001541D8 /* Assets.xcassets in Resources */,
+				11D241762BB109C900370624 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,7 +182,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$SRCROOT/../gradlew\" -p \"$SRCROOT/../\" :sample-app-shared:copyFrameworkResourcesToApp \\\n    -Pmoko.resources.BUILT_PRODUCTS_DIR=$BUILT_PRODUCTS_DIR \\\n    -Pmoko.resources.CONTENTS_FOLDER_PATH=$CONTENTS_FOLDER_PATH\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$SRCROOT/../gradlew\" -p \"$SRCROOT/../\" :sample-app-shared:copyFrameworkResourcesToApp \\\n    -Pmoko.resources.PLATFORM_NAME=\"$PLATFORM_NAME\" \\\n    -Pmoko.resources.CONFIGURATION=\"$CONFIGURATION\" \\\n    -Pmoko.resources.ARCHS=\"$ARCHS\" \\\n    -Pmoko.resources.BUILT_PRODUCTS_DIR=\"$BUILT_PRODUCTS_DIR\" \\\n    -Pmoko.resources.CONTENTS_FOLDER_PATH=\"$CONTENTS_FOLDER_PATH\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

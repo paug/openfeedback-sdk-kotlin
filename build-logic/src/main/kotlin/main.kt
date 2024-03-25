@@ -55,7 +55,8 @@ fun Project.configureMoko(namespace: String) {
 fun Project.library(
     namespace: String,
     artifactName: String?,
-    moko: Boolean = false
+    moko: Boolean = false,
+    kotlin: KotlinMultiplatformExtension.() -> Unit = {}
 ) {
     if (artifactName != null) {
         extensions.getByType(OpenFeedback::class.java).apply {
@@ -65,6 +66,8 @@ fun Project.library(
     configureAndroid(namespace = namespace)
     configureKMP()
     configureKotlin()
+
+    (extensions.getByName("kotlin") as KotlinMultiplatformExtension).apply(kotlin)
 
     if (moko) {
         configureMoko(namespace)

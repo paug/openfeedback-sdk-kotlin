@@ -4,7 +4,7 @@ plugins {
     id("org.jetbrains.compose")
 }
 
-androidApp("io.openfeedback.android.sample")
+androidApp("io.openfeedback.android")
 
 android {
     defaultConfig {
