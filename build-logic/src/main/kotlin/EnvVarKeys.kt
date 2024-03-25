@@ -1,5 +1,3 @@
-package io.openfeedback
-
 object EnvVarKeys {
     object Nexus {
         const val username = "SONATYPE_NEXUS_USERNAME"

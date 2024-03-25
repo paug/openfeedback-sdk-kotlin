@@ -1,5 +1,3 @@
-import io.openfeedback.extensions.configureRoot
-
 buildscript {
     repositories {
         mavenCentral()

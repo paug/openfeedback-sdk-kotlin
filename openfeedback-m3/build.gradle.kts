@@ -2,7 +2,6 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.multiplatform")
     id("org.jetbrains.kotlin.plugin.serialization")
-    id("io.openfeedback.plugins.publishing")
     id("org.jetbrains.compose")
 }
 
