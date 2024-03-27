@@ -14,21 +14,21 @@ private fun CommentItemsPreview() {
             comments = listOf(
                 UIComment(
                     id = "",
-                    voteItemId = "",
                     message = "Nice comment",
                     createdAt = "08 August 2023",
                     upVotes = 8,
                     dots = listOf(UIDot(x = .5f, y = .5f, color = "FF00CC")),
-                    votedByUser = true
+                    votedByUser = true,
+                    fromUser = false
                 ),
                 UIComment(
                     id = "",
-                    voteItemId = "",
                     message = "Another comment",
                     createdAt = "08 August 2023",
                     upVotes = 0,
                     dots = listOf(UIDot(x = .5f, y = .5f, color = "FF00CC")),
-                    votedByUser = true
+                    votedByUser = true,
+                    fromUser = false
                 )
             ),
             commentInput = {

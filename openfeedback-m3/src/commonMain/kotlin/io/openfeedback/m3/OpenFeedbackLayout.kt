@@ -10,6 +10,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -52,6 +56,8 @@ fun OpenFeedback(
         is OpenFeedbackUiState.Loading -> loading()
         is OpenFeedbackUiState.Success -> {
             val session = (uiState.value as OpenFeedbackUiState.Success).session
+            var text by remember { mutableStateOf("") }
+
             OpenFeedbackLayout(
                 sessionFeedback = session,
                 modifier = modifier,
@@ -64,9 +70,9 @@ fun OpenFeedback(
                 },
                 commentInput = {
                     CommentInput(
-                        value = session.commentValue,
-                        onValueChange = viewModel::valueChangedComment,
-                        onSubmit = viewModel::submitComment,
+                        value = text,
+                        onValueChange = { text = it },
+                        onSubmit = { viewModel.submitComment(text) },
                         modifier = Modifier.fillMaxWidth()
                     )
                 },
@@ -101,13 +107,13 @@ fun OpenFeedbackLayout(
         verticalArrangement = verticalArrangement
     ) {
         VoteItems(
-            voteItems = sessionFeedback.voteItem,
+            voteItems = sessionFeedback.voteItems,
             columnCount = columnCount,
             horizontalArrangement = horizontalArrangement,
             verticalArrangement = verticalArrangement,
             content = content
         )
-        if (sessionFeedback.commentVoteItemId != null) {
+        if (sessionFeedback.comments.isNotEmpty()) {
             Spacer(modifier = Modifier.height(8.dp))
             CommentItems(
                 comments = sessionFeedback.comments,

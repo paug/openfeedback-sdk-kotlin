@@ -5,4 +5,5 @@
     <string name="openfeedback_comments_send">Submit comment</string>
     <string name="openfeedback_comments_upvotes">%d votes</string>
     <string name="powered_by">Powered by</string>
+    <string name="from_you">, from you</string>
 </resources>

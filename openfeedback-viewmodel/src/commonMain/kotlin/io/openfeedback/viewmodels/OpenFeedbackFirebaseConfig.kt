@@ -35,6 +35,7 @@ data class OpenFeedbackFirebaseConfig(
                 apiKey = "AIzaSyB3ELJsaiItrln0uDGSuuHE1CfOJO67Hb4",
                 databaseUrl = "https://open-feedback-42.firebaseio.com/"
             )
+
         }
     }
 }
