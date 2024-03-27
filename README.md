@@ -1,8 +1,8 @@
 [![BuildStatus](https://github.com/paug/openfeedback-android-sdk/actions/workflows/ci.yaml/badge.svg)](https://github.com/paug/openfeedback-android-sdk/actions/workflows/ci.yaml/badge.svg)
 
-# Open-Feedback Android SDK
+# Open-Feedback Kotlin SDK
 
-An Android client for Open-Feeedback https://github.com/HugoGresse/open-feedback:
+A Kotlin multiplatform client for Open-Feeedback https://github.com/HugoGresse/open-feedback:
 
 ![screenshot](docs/screenshot.png)
 
@@ -54,11 +54,9 @@ repositories {
     mavenCentral()
 }
 
-val openfeedbackVersion = "0.1.2"
+val openfeedbackVersion = "0.2.1"
 dependencies {
     // Material 3
-    implementation("io.openfeedback:feedback-sdk-m3:$openfeedbackVersion")
-    // ViewModel
-    implementation("io.openfeedback:feedback-sdk-viewmodel:$openfeedbackVersion")
+    implementation("io.openfeedback:openfeedback-m3:$openfeedbackVersion")
 }
 ```
