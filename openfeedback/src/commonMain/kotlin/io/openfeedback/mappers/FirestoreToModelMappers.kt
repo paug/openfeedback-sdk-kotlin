@@ -1,5 +1,5 @@
 package io.openfeedback.mappers
 
-import io.openfeedback.model.Comment
+import kotlinx.datetime.Instant
 
-expect fun Map<String, *>.convertToModel(id: String, voteItemId: String): Comment
+expect fun timestampToInstant(nativeTimestamp: Any): Instant

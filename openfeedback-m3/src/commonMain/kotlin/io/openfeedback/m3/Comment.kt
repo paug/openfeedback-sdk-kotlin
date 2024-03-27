@@ -59,7 +59,7 @@ fun Comment(
                     style = subStyle
                 )
                 Text(
-                    text = comment.createdAt,
+                    text = comment.createdAt + (if (comment.fromUser) stringResource(MR.strings.from_you) else ""),
                     color = contentColor.copy(alpha = .7f),
                     style = subStyle
                 )

@@ -1,5 +1,6 @@
 package io.openfeedback.model
 
+import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
@@ -28,24 +29,54 @@ enum class VoteStatus(val value: String) {
     Deleted("deleted")
 }
 
+/**
+ * An user vote. This is a document in firebase.
+ * [UserVote] may represent:
+ * - a vote on a voteItem
+ * - a plus on a comment
+ * - a comment
+ *
+ * Note that this can not represent the absence of a vote.
+ *
+ * @param voteItemId the voteItemId
+ * @param id only if this is an upvote for a comment
+ * @param text only if this is a comment
+ */
 @Serializable
 data class UserVote(
+    val projectId: String,
+    val talkId: String,
+    val id: String?,
     val voteItemId: String,
-    val voteId: String?
+    val text: String?,
+    val userId: String?,
+    val status: String
 )
 
-@Serializable
-data class SessionVotes(
-    val votes: Map<String, Long>,
-    val comments: Map<String, Comment>
-)
+/**
+ * Not serializable using kotlinx-serialization because there is no type discriminator
+ * See https://github.com/Kotlin/kotlinx.serialization/issues/2223
+ */
+//@Serializable
+sealed interface SessionThing
 
-@Serializable
+class VoteItemCount(val count: Long): SessionThing
+
+/**
+ * A SessionThing representing all the comments for that session
+ */
+class CommentsMap(
+    /**
+     * The key is the comment.id
+     */
+    val all: Map<String, Comment>
+): SessionThing
+
 data class Comment(
-    val id: String = "",
-    val voteItemId: String = "",
-    val text: String = "",
+    val id: String,
+    val text: String,
     val plus: Long = 0L,
     val createdAt: Instant,
-    val updatedAt: Instant
-)
+    val updatedAt: Instant,
+    val userId: String?,
+): SessionThing
