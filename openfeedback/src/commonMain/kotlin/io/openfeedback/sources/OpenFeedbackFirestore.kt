@@ -82,7 +82,7 @@ class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
             .snapshots
             .mapNotNull { documentSnapshot ->
                 if (documentSnapshot.exists.not()) {
-                    return@mapNotNull null
+                    return@mapNotNull SessionThingsResult(emptyMap(), documentSnapshot.metadata.isFromCache)
                 }
                 val sessionThings = documentSnapshot.data(strategy = SpecialValueSerializer(
                     serialName = "SessionVotes",
