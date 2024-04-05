@@ -83,9 +83,6 @@ private fun sessionData(
     userVotes: List<UserVote>,
     sessionThings: Map<String, SessionThing>,
 ): SessionData {
-    /**
-     * substract the user vote from the aggregate, we'll maintain the aggregate on our side
-     */
     val votedItemIds = userVotes.mapNotNull {
         if (it.text != null) {
             // This is a comment
@@ -112,23 +109,29 @@ private fun sessionData(
         it.id
     }.toSet()
 
-    val voteItemAggregates = sessionThings.mapValues {
-        val value = it.value
-        if (value !is VoteItemCount) {
-            return@mapValues null
+    val voteItemAggregates = project.voteItems.mapNotNull { voteItem ->
+        if (voteItem.type == "text") {
+            return@mapNotNull null
         }
-        /**
-         * Be robust to negative votes
-         */
-        val minValue = if (votedCommentIds.contains(it.key)) {
-            1L
+
+        val existing = sessionThings.get(voteItem.id)
+        if (existing != null && existing is VoteItemCount) {
+            /**
+             * Be robust to negative votes
+             */
+            val minValue = if (votedCommentIds.contains(voteItem.id)) {
+                1L
+            } else {
+                0L
+            }
+            voteItem.id to existing.count.coerceAtLeast(minValue)
         } else {
-            0L
+            /**
+             * No document yet, return 0
+             */
+            voteItem.id to 0L
         }
-        value.count.coerceAtLeast(minValue)
-    }.filter {
-        it.value != null
-    } as Map<String, Long>
+    }.toMap()
 
     val commentsMaps = sessionThings.values.filterIsInstance<CommentsMap>()
     if (commentsMaps.size > 1) {
