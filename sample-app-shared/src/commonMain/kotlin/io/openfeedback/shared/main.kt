@@ -41,7 +41,6 @@ fun SampleApp(
                      * https://openfeedback.io/eaJnyMXD3oNfhrrnBYDT/
                      */
                     OpenFeedback(
-                        config = OpenFeedbackFirebaseConfig.default(context),
                         projectId = "eaJnyMXD3oNfhrrnBYDT",
                         sessionId = "100",
                         modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
