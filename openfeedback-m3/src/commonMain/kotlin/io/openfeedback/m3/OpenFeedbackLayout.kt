@@ -151,7 +151,7 @@ fun OpenFeedbackLayout(
 
 private val appCache = mutableMapOf<String, FirebaseApp>()
 
-fun OpenFeedbackInitialize(
+fun initializeOpenFeedback(
     config: OpenFeedbackFirebaseConfig
 ) {
     require (!appCache.containsKey(config.appName)) {

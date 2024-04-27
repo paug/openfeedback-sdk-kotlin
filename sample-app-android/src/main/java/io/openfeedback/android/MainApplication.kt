@@ -2,7 +2,7 @@ package io.openfeedback.android
 
 import android.app.Application
 import android.content.Context
-import io.openfeedback.m3.OpenFeedbackInitialize
+import io.openfeedback.m3.initializeOpenFeedback
 import io.openfeedback.viewmodels.OpenFeedbackFirebaseConfig
 
 class MainApplication: Application() {
@@ -11,6 +11,6 @@ class MainApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         context = this
-        OpenFeedbackInitialize(OpenFeedbackFirebaseConfig.default(this))
+        initializeOpenFeedback(OpenFeedbackFirebaseConfig.default(this))
     }
 }
