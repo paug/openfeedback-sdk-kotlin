@@ -19,6 +19,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.vanniktech.locale.Locale
 import com.vanniktech.locale.Locales
+import dev.gitlive.firebase.Firebase
+import dev.gitlive.firebase.FirebaseApp
+import dev.gitlive.firebase.initialize
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
 import io.openfeedback.viewmodels.OpenFeedbackFirebaseConfig
@@ -27,24 +30,26 @@ import io.openfeedback.viewmodels.OpenFeedbackViewModel
 import io.openfeedback.viewmodels.models.UIComment
 import io.openfeedback.viewmodels.models.UISessionFeedback
 import io.openfeedback.viewmodels.models.UIVoteItem
-import io.openfeedback.viewmodels.toFirebaseApp
 
+/**
+ * @param config the
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OpenFeedback(
-    config: OpenFeedbackFirebaseConfig,
     projectId: String,
     sessionId: String,
     modifier: Modifier = Modifier,
     columnCount: Int = 2,
     locale: Locale = Locale.from(Locales.currentLocaleString()),
+    appName: String? = null,
     loading: @Composable () -> Unit = { Loading(modifier = modifier) }
 ) {
     val viewModel: OpenFeedbackViewModel = getViewModel(
         key = sessionId,
         factory = viewModelFactory {
             OpenFeedbackViewModel(
-                firebaseApp = config.toFirebaseApp(),
+                firebaseApp = getApp(appName),
                 projectId = projectId,
                 sessionId = sessionId,
                 locale = locale
@@ -90,6 +95,18 @@ fun OpenFeedback(
     }
 }
 
+fun getApp(appName: String?): FirebaseApp {
+    if (appName != null) {
+        return appCache.get(appName) ?: error("OpenFeedback was not initialized for app '$appName'")
+    }
+
+    return when {
+        appCache.isEmpty() -> error("You need to call OpenFeedbackInitialize() before OpenFeedback()")
+        appCache.size == 1 -> appCache.values.single()
+        else -> error("Multiple OpenFeedback apps initialized, pass 'appName'")
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OpenFeedbackLayout(
@@ -129,5 +146,31 @@ fun OpenFeedbackLayout(
         ) {
             PoweredBy()
         }
+    }
+}
+
+private val appCache = mutableMapOf<String, FirebaseApp>()
+
+fun initializeOpenFeedback(
+    config: OpenFeedbackFirebaseConfig
+) {
+    require (!appCache.containsKey(config.appName)) {
+        "Openfeedback '${config.apiKey}' is already initialized"
+    }
+
+    with(config) {
+        appCache.put(
+            appName,
+            Firebase.initialize(
+                context = context,
+                options = dev.gitlive.firebase.FirebaseOptions(
+                    projectId = projectId,
+                    applicationId = applicationId,
+                    apiKey = apiKey,
+                    databaseUrl = databaseUrl
+                ),
+                name = appName
+            )
+        )
     }
 }

@@ -40,19 +40,3 @@ data class OpenFeedbackFirebaseConfig(
     }
 }
 
-private val appCache = mutableMapOf<OpenFeedbackFirebaseConfig, FirebaseApp>()
-
-fun OpenFeedbackFirebaseConfig.toFirebaseApp(): FirebaseApp {
-    return appCache.getOrPut(this) {
-        Firebase.initialize(
-            context = context,
-            options = dev.gitlive.firebase.FirebaseOptions(
-                projectId = projectId,
-                applicationId = applicationId,
-                apiKey = apiKey,
-                databaseUrl = databaseUrl
-            ),
-            name = appName
-        )
-    }
-}
