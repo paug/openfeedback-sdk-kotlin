@@ -1,10 +1,11 @@
 [versions]
 activityCompose = "1.8.2"
 appcompat = "1.6.1"
-kotlin_lang = "1.9.22"
-kotlin_coroutines = "1.8.0"
-kotlinx_datetime = "0.6.0-RC.2"
+kotlin_lang = "2.0.0"
+kotlin_coroutines = "1.8.1"
+kotlinx_datetime = "0.6.0"
 kotlinx_serialization = "1.6.3"
+jetbrains-compose = "1.6.10"
 androidx_core = "1.12.0"
 firebase_common = "20.4.3"
 firebase_firestore = "24.11.0"
@@ -24,6 +25,8 @@ vespene = "net.mbonnin.vespene:vespene-lib:0.5"
 kotlin_gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin_lang" }
 kotlin_serialization-plugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin_lang" }
 kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin_coroutines" }
+jetbrains_compose = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "jetbrains-compose" }
+jetbrains-compose-compiler-gradle-plugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin_lang" }
 
 kotlinx_datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx_datetime" }
 kotlinx_serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx_serialization" }
@@ -47,5 +50,3 @@ moko_mvvm_compose = { module = "dev.icerock.moko:mvvm-compose", version.ref = "m
 kmm_locale = { module = "com.vanniktech:multiplatform-locale", version.ref = "kmm_locale" }
 
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
-
-jetbrains_compose = "org.jetbrains.compose:compose-gradle-plugin:1.6.1"

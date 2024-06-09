@@ -16,6 +16,7 @@ dependencies {
     implementation(libs.kotlin.coroutines.core)
     implementation(libs.android.gradle.plugin)
     implementation(libs.kotlin.gradle.plugin)
+    implementation(libs.jetbrains.compose.compiler.gradle.plugin)
     implementation(libs.kotlin.serialization.plugin)
     implementation(libs.moko.gradle.plugin)
     implementation(libs.jetbrains.compose)

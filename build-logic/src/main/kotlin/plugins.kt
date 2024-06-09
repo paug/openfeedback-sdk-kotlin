@@ -21,5 +21,6 @@ fun Project.applyKotlinMultiplatformPlugin(): KotlinMultiplatformExtension {
 
 fun Project.applyJetbrainsComposePlugin(): ComposeExtension {
     pluginManager.apply("org.jetbrains.compose")
+    pluginManager.apply("org.jetbrains.kotlin.plugin.compose")
     return extension()
 }
