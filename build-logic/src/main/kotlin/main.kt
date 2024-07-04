@@ -12,7 +12,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 private fun Project.configureAndroid(namespace: String) {
     extensions.getByName("android").apply {
-        this as CommonExtension<*,*,*,*,*>
+        this as CommonExtension<*,*,*,*,*, *>
         compileSdk = 34
         this.namespace = namespace
 
