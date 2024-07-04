@@ -15,8 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import dev.icerock.moko.resources.compose.stringResource
-import io.openfeedback.MR
+import io.openfeedback.resources.LocalStrings
 import io.openfeedback.viewmodels.models.UIComment
 
 @Composable
@@ -49,17 +48,13 @@ fun Comment(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
-
                 Text(
-                    text = stringResource(
-                        MR.strings.openfeedback_comments_upvotes,
-                        comment.upVotes
-                    ),
+                    text = LocalStrings.current.strings.comments.nbVotes(comment.upVotes),
                     color = contentColor.copy(alpha = .7f),
                     style = subStyle
                 )
                 Text(
-                    text = comment.createdAt + (if (comment.fromUser) stringResource(MR.strings.from_you) else ""),
+                    text = comment.createdAt + (if (comment.fromUser) LocalStrings.current.strings.fromYou else ""),
                     color = contentColor.copy(alpha = .7f),
                     style = subStyle
                 )

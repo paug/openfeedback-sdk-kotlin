@@ -5,7 +5,6 @@ plugins {
 
 library(
     namespace = "io.openfeedback",
-    moko = true,
     publish = true
 ) {
     it.sourceSets {
@@ -20,8 +19,6 @@ library(
                 implementation(libs.gitlive.auth)
                 implementation(libs.gitlive.common)
 
-                api(libs.moko.resources)
-
                 implementation(libs.kermit)
             }
         }
@@ -34,4 +31,3 @@ library(
         }
     }
 }
-

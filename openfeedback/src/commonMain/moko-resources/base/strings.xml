@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="openfeedback_comments_title">Comments</string>
-    <string name="openfeedback_comments_title_input">Your comment</string>
-    <string name="openfeedback_comments_send">Submit comment</string>
-    <string name="openfeedback_comments_upvotes">%d votes</string>
-    <string name="powered_by">Powered by</string>
-    <string name="from_you">, from you</string>
-</resources>

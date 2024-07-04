@@ -1,6 +1,5 @@
 import com.android.build.api.dsl.CommonExtension
 import com.android.build.gradle.internal.tasks.factory.dependsOn
-import dev.icerock.gradle.MultiplatformResourcesPluginExtension
 import internal.configurePublishingInternal
 import internal.publishIfNeededTaskProvider
 import internal.registerReleaseTask
@@ -49,16 +48,8 @@ private fun Project.configureKMP() {
     }
 }
 
-fun Project.configureMoko(namespace: String) {
-    pluginManager.apply("dev.icerock.mobile.multiplatform-resources")
-    extensions.getByType(MultiplatformResourcesPluginExtension::class.java).apply {
-        resourcesPackage.set(namespace)
-    }
-}
-
 fun Project.library(
     namespace: String,
-    moko: Boolean = false,
     compose: Boolean = false,
     publish: Boolean = false,
     kotlin: (KotlinMultiplatformExtension) -> Unit
@@ -75,10 +66,6 @@ fun Project.library(
     configureKotlin()
 
     kotlin(kotlinMultiplatformExtension)
-
-    if (moko) {
-        configureMoko(namespace)
-    }
 }
 
 fun Project.androidApp(

@@ -13,9 +13,9 @@ library(
         findByName("commonMain")!!.apply {
             dependencies {
                 api(projects.openfeedback)
+                api(projects.openfeedbackResources)
                 api(projects.openfeedbackViewmodel)
 
-                implementation(libs.moko.resources.compose)
                 implementation(libs.moko.mvvm.compose)
 
                 implementation(kotlinMultiplatformExtension.compose.material3)

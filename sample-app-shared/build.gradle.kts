@@ -1,4 +1,3 @@
-import org.jetbrains.compose.ComposePlugin
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
@@ -7,7 +6,6 @@ plugins {
 
 library(
     namespace = "io.openfeedback.shared",
-    moko = true,
     compose = true
 ) { kotlinMultiplatformExtension ->
     with(kotlinMultiplatformExtension) {
