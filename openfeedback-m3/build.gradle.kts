@@ -16,7 +16,7 @@ library(
                 api(projects.openfeedbackResources)
                 api(projects.openfeedbackViewmodel)
 
-                implementation(libs.moko.mvvm.compose)
+                api(libs.androidx.lifecycle.viewmodel.compose)
 
                 implementation(kotlinMultiplatformExtension.compose.material3)
                 implementation(kotlinMultiplatformExtension.compose.ui)

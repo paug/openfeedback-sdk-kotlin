@@ -15,8 +15,8 @@ library(
                 implementation(projects.openfeedback)
                 implementation(kotlinMultiplatformExtension.compose.runtime)
                 // Not sure why this is needed 🤷
-                implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.23")
-                api(libs.moko.mvvm.core)
+                implementation(libs.jetbrains.kotlin.stdlib)
+                api(libs.androidx.lifecycle.viewmodel.compose)
                 api(libs.vanniktech.multiplatform.locale)
             }
         }

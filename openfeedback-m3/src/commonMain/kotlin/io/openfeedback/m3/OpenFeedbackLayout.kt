@@ -17,13 +17,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vanniktech.locale.Locale
 import com.vanniktech.locale.Locales
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.FirebaseApp
 import dev.gitlive.firebase.initialize
-import dev.icerock.moko.mvvm.compose.getViewModel
-import dev.icerock.moko.mvvm.compose.viewModelFactory
 import io.openfeedback.viewmodels.OpenFeedbackFirebaseConfig
 import io.openfeedback.viewmodels.OpenFeedbackUiState
 import io.openfeedback.viewmodels.OpenFeedbackViewModel
@@ -43,19 +42,17 @@ fun OpenFeedback(
     columnCount: Int = 2,
     locale: Locale = Locale.from(Locales.currentLocaleString()),
     appName: String? = null,
-    loading: @Composable () -> Unit = { Loading(modifier = modifier) }
-) {
-    val viewModel: OpenFeedbackViewModel = getViewModel(
+    loading: @Composable () -> Unit = { Loading(modifier = modifier) },
+    viewModel: OpenFeedbackViewModel = viewModel(
         key = sessionId,
-        factory = viewModelFactory {
-            OpenFeedbackViewModel(
-                firebaseApp = getApp(appName),
-                projectId = projectId,
-                sessionId = sessionId,
-                locale = locale
-            )
-        }
+        factory = OpenFeedbackViewModel.provideFactory(
+            firebaseApp = getApp(appName),
+            projectId = projectId,
+            sessionId = sessionId,
+            locale = locale
+        )
     )
+) {
     val uiState = viewModel.uiState.collectAsState()
     when (uiState.value) {
         is OpenFeedbackUiState.Loading -> loading()

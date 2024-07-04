@@ -1,8 +1,11 @@
 package io.openfeedback.viewmodels
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.CreationExtras
 import com.vanniktech.locale.Locale
 import dev.gitlive.firebase.FirebaseApp
-import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import io.openfeedback.model.Comment
 import io.openfeedback.model.CommentsMap
 import io.openfeedback.model.Project
@@ -38,6 +41,7 @@ import kotlinx.datetime.format.char
 import kotlinx.datetime.toLocalDateTime
 import kotlin.math.absoluteValue
 import kotlin.random.Random
+import kotlin.reflect.KClass
 
 sealed class OpenFeedbackUiState {
     data object Loading : OpenFeedbackUiState()
@@ -234,7 +238,7 @@ private fun SessionData.commitComment(text: String): SessionData {
 }
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class OpenFeedbackViewModel(
+class OpenFeedbackViewModel private constructor(
     firebaseApp: FirebaseApp,
     private val projectId: String,
     private val sessionId: String,
@@ -376,6 +380,18 @@ class OpenFeedbackViewModel(
             status = if (!comment.votedByUser) VoteStatus.Active else VoteStatus.Deleted,
             userId = auth.userId()
         )
+    }
+
+    companion object {
+        fun provideFactory(
+            firebaseApp: FirebaseApp,
+            projectId: String,
+            sessionId: String,
+            locale: Locale
+        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: KClass<T>, extras: CreationExtras): T =
+                OpenFeedbackViewModel(firebaseApp, projectId, sessionId, locale) as T
+        }
     }
 }
 
