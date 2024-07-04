@@ -1,51 +1,49 @@
 [versions]
-activityCompose = "1.8.2"
-appcompat = "1.6.1"
-kotlin_lang = "2.0.0"
-kotlin_coroutines = "1.8.1"
-kotlinx_datetime = "0.6.0"
-kotlinx_serialization = "1.6.3"
+androidx-activity = "1.8.2"
+androidx-appcompat = "1.6.1"
+androidx-core = "1.12.0"
 jetbrains-compose = "1.6.10"
-androidx_core = "1.12.0"
-firebase_common = "20.4.3"
-firebase_firestore = "24.11.0"
-firebase_auth = "22.3.1"
-gitlive_firebase = "1.11.1"
-moko_mvvm = "0.16.1"
+jetbrains-kotlin = "2.0.0"
+jetbrains-kotlin-coroutines = "1.8.1"
+jetbrains-kotlinx-datetime = "0.6.0"
+jetbrains-kotlinx-serialization = "1.6.3"
+touchlab-kermit = "2.0.2"
 lyricist = "1.7.0"
-kmm_locale = "0.5.0"
-kermit = "2.0.2"
+moko-mvvm = "0.16.1"
+multiplatform-locale = "0.5.0"
+google-firebase-common = "20.4.3"
+google-firebase-firestore = "24.11.0"
+google-firebase-auth = "22.3.1"
+gitlive-firebase = "1.11.1"
 
 [libraries]
-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 android-gradle-plugin = "com.android.tools.build:gradle:8.1.2"
-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
-vespene = "net.mbonnin.vespene:vespene-lib:0.5"
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
 
-kotlin_gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin_lang" }
-kotlin_serialization-plugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin_lang" }
-kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin_coroutines" }
-jetbrains_compose = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "jetbrains-compose" }
-jetbrains-compose-compiler-gradle-plugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin_lang" }
+jetbrains-compose-gradle-plugin = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "jetbrains-compose" }
+jetbrains-compose-compiler-gradle-plugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "jetbrains-kotlin" }
+jetbrains-kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "jetbrains-kotlin" }
+jetbrains-kotlin-serialization-plugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "jetbrains-kotlin" }
+jetbrains-kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "jetbrains-kotlin-coroutines" }
+jetbrains-kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "jetbrains-kotlinx-datetime" }
+jetbrains-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "jetbrains-kotlinx-serialization" }
 
-kotlinx_datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx_datetime" }
-kotlinx_serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx_serialization" }
-
+touchlab-kermit = { module = "co.touchlab:kermit", version.ref = "touchlab-kermit" }
 lyricist = { module = "cafe.adriel.lyricist:lyricist", version.ref = "lyricist" }
+moko-mvvm-core = { module = "dev.icerock.moko:mvvm-core", version.ref = "moko-mvvm" }
+moko-mvvm-compose = { module = "dev.icerock.moko:mvvm-compose", version.ref = "moko-mvvm" }
 
-firebase_common = { module = "com.google.firebase:firebase-common", version.ref = "firebase_common" }
-firebase_firestore = { module = "com.google.firebase:firebase-firestore-ktx", version.ref = "firebase_firestore" }
-firebase_auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebase_auth" }
-gitlive_app = { module = "dev.gitlive:firebase-app", version.ref = "gitlive_firebase" }
-gitlive_firestore = { module = "dev.gitlive:firebase-firestore", version.ref = "gitlive_firebase" }
-gitlive_auth = { module = "dev.gitlive:firebase-auth", version.ref = "gitlive_firebase" }
-gitlive_common = { module = "dev.gitlive:firebase-common", version.ref = "gitlive_firebase" }
+vanniktech-multiplatform-locale = { module = "com.vanniktech:multiplatform-locale", version.ref = "multiplatform-locale" }
 
-androidx_core = { module = "androidx.core:core-ktx", version.ref = "androidx_core" }
+mbonnin-vespene = "net.mbonnin.vespene:vespene-lib:0.5"
 
-moko_mvvm_core = { module = "dev.icerock.moko:mvvm-core", version.ref = "moko_mvvm" }
-moko_mvvm_compose = { module = "dev.icerock.moko:mvvm-compose", version.ref = "moko_mvvm" }
+google-firebase-common = { module = "com.google.firebase:firebase-common", version.ref = "google-firebase-common" }
+google-firebase-firestore = { module = "com.google.firebase:firebase-firestore-ktx", version.ref = "google-firebase-firestore" }
+google-firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "google-firebase-auth" }
 
-kmm_locale = { module = "com.vanniktech:multiplatform-locale", version.ref = "kmm_locale" }
-
-kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
+gitlive-firebase-app = { module = "dev.gitlive:firebase-app", version.ref = "gitlive-firebase" }
+gitlive-firebase-auth = { module = "dev.gitlive:firebase-auth", version.ref = "gitlive-firebase" }
+gitlive-firebase-common = { module = "dev.gitlive:firebase-common", version.ref = "gitlive-firebase" }
+gitlive-firebase-firestore = { module = "dev.gitlive:firebase-firestore", version.ref = "gitlive-firebase" }

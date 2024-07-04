@@ -17,7 +17,7 @@ library(
                 // Not sure why this is needed 🤷
                 implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.23")
                 api(libs.moko.mvvm.core)
-                api(libs.kmm.locale)
+                api(libs.vanniktech.multiplatform.locale)
             }
         }
     }

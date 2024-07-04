@@ -18,9 +18,9 @@ dependencies {
     implementation(projects.openfeedbackM3)
     implementation(projects.sampleAppShared)
 
-    implementation(libs.androidx.core)
-    implementation(libs.appcompat)
-    implementation(libs.activity.compose)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.activity.compose)
 
     implementation(compose.material3)
 }

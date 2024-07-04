@@ -12,11 +12,11 @@ repositories {
 
 dependencies {
     implementation(gradleApi())
-    implementation(libs.vespene)
-    implementation(libs.kotlin.coroutines.core)
+    implementation(libs.mbonnin.vespene)
+    implementation(libs.jetbrains.kotlinx.coroutines)
     implementation(libs.android.gradle.plugin)
-    implementation(libs.kotlin.gradle.plugin)
+    implementation(libs.jetbrains.kotlin.gradle.plugin)
     implementation(libs.jetbrains.compose.compiler.gradle.plugin)
-    implementation(libs.kotlin.serialization.plugin)
-    implementation(libs.jetbrains.compose)
+    implementation(libs.jetbrains.kotlin.serialization.plugin)
+    implementation(libs.jetbrains.compose.gradle.plugin)
 }
