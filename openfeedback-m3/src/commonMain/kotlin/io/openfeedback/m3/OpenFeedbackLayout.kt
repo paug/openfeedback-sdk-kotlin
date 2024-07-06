@@ -9,101 +9,26 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.vanniktech.locale.Locale
-import com.vanniktech.locale.Locales
-import dev.gitlive.firebase.Firebase
-import dev.gitlive.firebase.FirebaseApp
-import dev.gitlive.firebase.initialize
-import io.openfeedback.viewmodels.OpenFeedbackFirebaseConfig
-import io.openfeedback.viewmodels.OpenFeedbackUiState
-import io.openfeedback.viewmodels.OpenFeedbackViewModel
-import io.openfeedback.viewmodels.models.UIComment
-import io.openfeedback.viewmodels.models.UISessionFeedback
-import io.openfeedback.viewmodels.models.UIVoteItem
+import io.openfeedback.ui.models.UIComment
+import io.openfeedback.ui.models.UISessionFeedback
+import io.openfeedback.ui.models.UIVoteItem
 
 /**
- * @param config the
+ * Stateless OpenFeedback component to display vote items, text field to enter a new comment
+ * and display comments of a session.
+ *
+ * @param sessionFeedback Ui model for vote items, new comment value and comments.
+ * @param modifier The modifier to be applied to the component.
+ * @param columnCount Number of column to display for vote items.
+ * @param horizontalArrangement The horizontal arrangement of the vote items layout.
+ * @param verticalArrangement The vertical arrangement to display between every column.
+ * @param comment API slot for the list of comments.
+ * @param commentInput API slot for the text field to create new comment.
+ * @param voteItem API slot for vote items.
  */
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun OpenFeedback(
-    projectId: String,
-    sessionId: String,
-    modifier: Modifier = Modifier,
-    columnCount: Int = 2,
-    locale: Locale = Locale.from(Locales.currentLocaleString()),
-    appName: String? = null,
-    loading: @Composable () -> Unit = { Loading(modifier = modifier) },
-    viewModel: OpenFeedbackViewModel = viewModel(
-        key = sessionId,
-        factory = OpenFeedbackViewModel.provideFactory(
-            firebaseApp = getApp(appName),
-            projectId = projectId,
-            sessionId = sessionId,
-            locale = locale
-        )
-    )
-) {
-    val uiState = viewModel.uiState.collectAsState()
-    when (uiState.value) {
-        is OpenFeedbackUiState.Loading -> loading()
-        is OpenFeedbackUiState.Success -> {
-            val session = (uiState.value as OpenFeedbackUiState.Success).session
-            var text by remember { mutableStateOf("") }
-
-            OpenFeedbackLayout(
-                sessionFeedback = session,
-                modifier = modifier,
-                columnCount = columnCount,
-                comment = {
-                    Comment(
-                        comment = it,
-                        onClick = viewModel::upVote
-                    )
-                },
-                commentInput = {
-                    CommentInput(
-                        value = text,
-                        onValueChange = { text = it },
-                        onSubmit = { viewModel.submitComment(text) },
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                },
-                content = {
-                    VoteCard(
-                        voteModel = it,
-                        onClick = viewModel::vote,
-                        modifier = Modifier
-                            .height(100.dp)
-                            .fillMaxWidth()
-                    )
-                }
-            )
-        }
-    }
-}
-
-fun getApp(appName: String?): FirebaseApp {
-    if (appName != null) {
-        return appCache.get(appName) ?: error("OpenFeedback was not initialized for app '$appName'")
-    }
-
-    return when {
-        appCache.isEmpty() -> error("You need to call OpenFeedbackInitialize() before OpenFeedback()")
-        appCache.size == 1 -> appCache.values.single()
-        else -> error("Multiple OpenFeedback apps initialized, pass 'appName'")
-    }
-}
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OpenFeedbackLayout(
@@ -114,7 +39,7 @@ fun OpenFeedbackLayout(
     verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(8.dp),
     comment: @Composable ColumnScope.(UIComment) -> Unit,
     commentInput: @Composable ColumnScope.() -> Unit,
-    content: @Composable ColumnScope.(UIVoteItem) -> Unit
+    voteItem: @Composable ColumnScope.(UIVoteItem) -> Unit
 ) {
     Column(
         modifier = modifier,
@@ -125,7 +50,7 @@ fun OpenFeedbackLayout(
             columnCount = columnCount,
             horizontalArrangement = horizontalArrangement,
             verticalArrangement = verticalArrangement,
-            content = content
+            content = voteItem
         )
         if (sessionFeedback.comments.isNotEmpty()) {
             Spacer(modifier = Modifier.height(8.dp))
@@ -143,31 +68,5 @@ fun OpenFeedbackLayout(
         ) {
             PoweredBy()
         }
-    }
-}
-
-private val appCache = mutableMapOf<String, FirebaseApp>()
-
-fun initializeOpenFeedback(
-    config: OpenFeedbackFirebaseConfig
-) {
-    require (!appCache.containsKey(config.appName)) {
-        "Openfeedback '${config.apiKey}' is already initialized"
-    }
-
-    with(config) {
-        appCache.put(
-            appName,
-            Firebase.initialize(
-                context = context,
-                options = dev.gitlive.firebase.FirebaseOptions(
-                    projectId = projectId,
-                    applicationId = applicationId,
-                    apiKey = apiKey,
-                    databaseUrl = databaseUrl
-                ),
-                name = appName
-            )
-        )
     }
 }

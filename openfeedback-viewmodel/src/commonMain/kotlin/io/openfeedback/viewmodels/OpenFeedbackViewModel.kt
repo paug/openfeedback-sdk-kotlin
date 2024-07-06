@@ -8,23 +8,14 @@ import com.vanniktech.locale.Locale
 import dev.gitlive.firebase.FirebaseApp
 import io.openfeedback.OpenFeedbackRepository
 import io.openfeedback.model.SessionData
-import io.openfeedback.viewmodels.models.UIComment
-import io.openfeedback.viewmodels.models.UIDot
-import io.openfeedback.viewmodels.models.UISessionFeedback
-import io.openfeedback.viewmodels.models.UIVoteItem
-import kotlinx.coroutines.flow.Flow
+import io.openfeedback.ui.models.UIComment
+import io.openfeedback.ui.models.UISessionFeedback
+import io.openfeedback.ui.models.UIVoteItem
+import io.openfeedback.viewmodels.extensions.mapWithPreviousValue
+import io.openfeedback.viewmodels.mappers.toUISessionFeedback
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
-import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.format
-import kotlinx.datetime.format.MonthNames
-import kotlinx.datetime.format.char
-import kotlinx.datetime.toLocalDateTime
-import kotlin.math.absoluteValue
-import kotlin.random.Random
 import kotlin.reflect.KClass
 
 sealed class OpenFeedbackUiState {
@@ -36,7 +27,7 @@ class OpenFeedbackViewModel private constructor(
     firebaseApp: FirebaseApp,
     projectId: String,
     sessionId: String,
-    private val locale: Locale
+    locale: Locale
 ) : ViewModel() {
     private val repository = OpenFeedbackRepository(firebaseApp, projectId, sessionId)
 
@@ -63,18 +54,19 @@ class OpenFeedbackViewModel private constructor(
                 .mapWithPreviousValue<SessionData, UISessionFeedback> { prev, cur ->
                     if (prev == null) {
                         cur.toUISessionFeedback(
-                            locale,
-                            null,
-                            null
+                            locale = locale,
+                            oldVoteItems = null,
+                            oldComments = null
                         )
                     } else {
                         cur.toUISessionFeedback(
-                            locale,
-                            prev.voteItems,
-                            prev.comments
+                            locale = locale,
+                            oldVoteItems = prev.voteItems,
+                            oldComments = prev.comments
                         )
                     }
-                }.collect {
+                }
+                .collect {
                     _uiState.value = OpenFeedbackUiState.Success(it)
                 }
         }
@@ -103,90 +95,4 @@ class OpenFeedbackViewModel private constructor(
                 OpenFeedbackViewModel(firebaseApp, projectId, sessionId, locale) as T
         }
     }
-}
-
-/**
- * Allows access to the previous emitted value
- * We use that to have stable dots coordinates
- */
-private fun <T, R : Any> Flow<T>.mapWithPreviousValue(block: (previous: R?, current: T) -> R): Flow<R> {
-    var prev: R? = null
-    return flow {
-        this@mapWithPreviousValue.collect {
-            block(prev, it).also {
-                emit(it)
-                prev = it
-            }
-        }
-    }
-}
-
-private fun SessionData.toUISessionFeedback(
-    locale: Locale,
-    oldVoteItems: List<UIVoteItem>?,
-    oldComments: List<UIComment>?,
-): UISessionFeedback {
-    val sessionData = this
-    val votedItemIds = sessionData.votedItemIds
-    return UISessionFeedback(
-        voteItems = sessionData.project.voteItems
-            .filter { it.type == "boolean" }
-            .map { voteItem ->
-                val oldVoteItem = oldVoteItems?.firstOrNull { it.id == voteItem.id }
-                val count = sessionData.voteItemAggregates[voteItem.id]?.toInt() ?: 0
-                val oldDots = oldVoteItem?.dots.orEmpty()
-                val diff = count - oldDots.size
-                val dots = if (diff > 0) {
-                    oldDots + newDots(diff, sessionData.project.chipColors)
-                } else {
-                    oldDots.dropLast(diff.absoluteValue)
-                }
-                UIVoteItem(
-                    id = voteItem.id,
-                    text = voteItem.localizedName(locale.language.code),
-                    dots = dots,
-                    votedByUser = votedItemIds.contains(voteItem.id)
-                )
-            },
-        comments = sessionData.comments.map { commentItem ->
-            val localDateTime =
-                commentItem.createdAt.toLocalDateTime(TimeZone.currentSystemDefault())
-            val oldComment = oldComments?.firstOrNull { it.id == commentItem.id }
-            val oldDots = oldComment?.dots.orEmpty()
-            val diff = commentItem.plus.toInt() - oldDots.size
-            val dots = if (diff > 0) {
-                oldDots + newDots(diff, sessionData.project.chipColors)
-            } else {
-                oldDots.dropLast(diff.absoluteValue)
-            }
-            UIComment(
-                id = commentItem.id,
-                message = commentItem.text,
-                createdAt = localDateTime.format(dateFormat),
-                upVotes = commentItem.plus.toInt(),
-                dots = dots,
-                votedByUser = sessionData.votedCommentIds.contains(commentItem.id),
-                fromUser = commentItem.userId == sessionData.userId
-            )
-        },
-        colors = sessionData.project.chipColors
-    )
-}
-
-internal fun newDots(count: Int, possibleColors: List<String>): List<UIDot> = 0.until(count).map {
-    UIDot(
-        Random.nextFloat(),
-        Random.nextFloat().coerceIn(0.1f, 0.9f),
-        possibleColors[Random.nextInt().absoluteValue % possibleColors.size]
-    )
-}
-
-private val dateFormat = LocalDateTime.Format {
-    dayOfMonth()
-    char(' ')
-    monthName(MonthNames.ENGLISH_ABBREVIATED)
-    chars(", ")
-    hour()
-    char(':')
-    minute()
 }

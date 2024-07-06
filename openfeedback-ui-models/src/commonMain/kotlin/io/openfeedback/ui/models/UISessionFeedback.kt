@@ -1,7 +1,6 @@
-package io.openfeedback.viewmodels.models
+package io.openfeedback.ui.models
 
 import androidx.compose.runtime.Immutable
-import io.openfeedback.model.Project
 
 @Immutable
 data class UISessionFeedback(
@@ -9,6 +8,3 @@ data class UISessionFeedback(
     val voteItems: List<UIVoteItem>,
     val colors: List<String>,
 )
-
-internal fun Project.commentVoteItemId(): String? = voteItems.find { it.type == "text" }?.id
-

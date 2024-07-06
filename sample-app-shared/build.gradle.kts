@@ -26,7 +26,7 @@ library(
                     implementation(compose.ui)
                     implementation(compose.foundation)
                     implementation(compose.runtime)
-                    implementation(projects.openfeedbackM3)
+                    implementation(projects.openfeedbackViewmodel)
                     implementation(compose.material3)
                 }
             }

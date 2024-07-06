@@ -15,7 +15,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.openfeedbackM3)
+    implementation(projects.openfeedbackViewmodel)
     implementation(projects.sampleAppShared)
 
     implementation(libs.androidx.core.ktx)

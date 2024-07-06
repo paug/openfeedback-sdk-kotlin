@@ -16,7 +16,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import io.openfeedback.resources.LocalStrings
-import io.openfeedback.viewmodels.models.UIComment
+import io.openfeedback.ui.models.UIComment
 
 @Composable
 fun Comment(
