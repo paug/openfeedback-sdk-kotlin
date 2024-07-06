@@ -17,6 +17,9 @@ buildscript {
                 if (it is ModuleComponentSelector && it.module == "bcpg-jdk15on") {
                     useTarget("${it.group}:bcpg-jdk18on:1.77")
                 }
+                if (it is ModuleComponentSelector && it.module == "bcpkix-jdk15on") {
+                    useTarget("${it.group}:bcpkix-jdk18on:1.77")
+                }
             }
         }
     }
