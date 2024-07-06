@@ -17,7 +17,7 @@ jobs:
           java-version: 17
       - name: Build with Gradle
         run: |
-          ./gradlew build
+          ./gradlew :sample-app-android:validateSigningDebug --stacktrace
           ./gradlew publishIfNeeded
         env: # Or as an environment variable
           SONATYPE_NEXUS_USERNAME: ${{ secrets.SONATYPE_NEXUS_USERNAME }}
