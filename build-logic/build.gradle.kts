@@ -19,4 +19,5 @@ dependencies {
     implementation(libs.jetbrains.compose.compiler.gradle.plugin)
     implementation(libs.jetbrains.kotlin.serialization.plugin)
     implementation(libs.jetbrains.compose.gradle.plugin)
+    implementation(libs.jetbrains.kotlinx.binary.compatibility.validator)
 }

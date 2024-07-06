@@ -1,3 +1,4 @@
+import kotlinx.validation.ApiValidationExtension
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.plugins.signing.SigningExtension
@@ -22,5 +23,10 @@ fun Project.applyKotlinMultiplatformPlugin(): KotlinMultiplatformExtension {
 fun Project.applyJetbrainsComposePlugin(): ComposeExtension {
     pluginManager.apply("org.jetbrains.compose")
     pluginManager.apply("org.jetbrains.kotlin.plugin.compose")
+    return extension()
+}
+
+fun Project.applyBinaryCompatibilityValidation(): ApiValidationExtension {
+    pluginManager.apply("org.jetbrains.kotlinx.binary-compatibility-validator")
     return extension()
 }

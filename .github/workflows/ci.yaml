@@ -12,6 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: gradle/gradle-build-action@v3
+      - name: Check with Gradle
+        run: |
+          ./gradlew apiCheck --stacktrace
       - name: Build with Gradle
         run: |
           ./gradlew build --stacktrace

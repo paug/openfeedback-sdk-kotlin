@@ -1,0 +1,12 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <openfeedback-android-sdk:sample-app-shared>
+final fun /OpenFeedbackTheme(kotlin/Boolean, kotlin/Function2<androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>, androidx.compose.runtime/Composer?, kotlin/Int) // /OpenFeedbackTheme|OpenFeedbackTheme(kotlin.Boolean;kotlin.Function2<androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>;androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+final fun /SampleApp(kotlin/Boolean, kotlin/Any?, androidx.compose.runtime/Composer?, kotlin/Int) // /SampleApp|SampleApp(kotlin.Boolean;kotlin.Any?;androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+final fun /ThemeSwitcher(kotlin/Boolean, kotlin/Function1<kotlin/Boolean, kotlin/Unit>, androidx.compose.runtime/Composer?, kotlin/Int) // /ThemeSwitcher|ThemeSwitcher(kotlin.Boolean;kotlin.Function1<kotlin.Boolean,kotlin.Unit>;androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+final fun io.openfeedback.shared/MainViewController(): platform.UIKit/UIViewController // io.openfeedback.shared/MainViewController|MainViewController(){}[0]

@@ -3,6 +3,8 @@ import com.android.build.gradle.internal.tasks.factory.dependsOn
 import internal.configurePublishingInternal
 import internal.publishIfNeededTaskProvider
 import internal.registerReleaseTask
+import kotlinx.validation.ApiValidationExtension
+import kotlinx.validation.ExperimentalBCVApi
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.logging.LogLevel
@@ -55,17 +57,24 @@ fun Project.library(
     kotlin: (KotlinMultiplatformExtension) -> Unit
 ) {
     val kotlinMultiplatformExtension = applyKotlinMultiplatformPlugin()
+    val binaryCompatibilityValidation = applyBinaryCompatibilityValidation()
     if (compose) {
         applyJetbrainsComposePlugin()
     }
     if (publish) {
         configurePublishingInternal(kotlinMultiplatformExtension.androidTarget())
     }
+    configureBinaryCompatibilityValidation(binaryCompatibilityValidation)
     configureAndroid(namespace = namespace)
     configureKMP()
     configureKotlin()
 
     kotlin(kotlinMultiplatformExtension)
+}
+
+@OptIn(ExperimentalBCVApi::class)
+fun Project.configureBinaryCompatibilityValidation(extension: ApiValidationExtension) = with(extension) {
+    klib.enabled = true
 }
 
 fun Project.androidApp(

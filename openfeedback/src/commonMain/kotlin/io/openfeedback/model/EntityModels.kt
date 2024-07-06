@@ -14,3 +14,18 @@ data class SessionData(
     val voteItemAggregates: Map<String, Long>,
     val comments: List<Comment>,
 )
+
+internal sealed interface Event
+internal class CommitComment(
+    val text: String
+) : Event
+
+internal class VoteItemEvent(
+    val voteItemId: String,
+    val votedByUser: Boolean
+) : Event
+
+internal class VoteCommentEvent(
+    val commentId: String,
+    val votedByUser: Boolean
+) : Event

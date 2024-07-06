@@ -10,7 +10,7 @@ import io.openfeedback.model.UserVote
 import io.openfeedback.model.VoteItemCount
 import kotlinx.datetime.Instant
 
-expect fun timestampToInstant(nativeTimestamp: Any): Instant
+internal expect fun timestampToInstant(nativeTimestamp: Any): Instant
 
 /**
  * Turns the openfeedback model into something that is a bit more palatable

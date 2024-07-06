@@ -1,0 +1,78 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <openfeedback-android-sdk:openfeedback-resources>
+final class io.openfeedback.resources/CommentStrings { // io.openfeedback.resources/CommentStrings|null[0]
+    constructor <init>(kotlin/String, kotlin/String, kotlin/String, kotlin/Function1<kotlin/Int, kotlin/String>) // io.openfeedback.resources/CommentStrings.<init>|<init>(kotlin.String;kotlin.String;kotlin.String;kotlin.Function1<kotlin.Int,kotlin.String>){}[0]
+
+    final val actionSend // io.openfeedback.resources/CommentStrings.actionSend|{}actionSend[0]
+        final fun <get-actionSend>(): kotlin/String // io.openfeedback.resources/CommentStrings.actionSend.<get-actionSend>|<get-actionSend>(){}[0]
+    final val nbVotes // io.openfeedback.resources/CommentStrings.nbVotes|{}nbVotes[0]
+        final fun <get-nbVotes>(): kotlin/Function1<kotlin/Int, kotlin/String> // io.openfeedback.resources/CommentStrings.nbVotes.<get-nbVotes>|<get-nbVotes>(){}[0]
+    final val titleInput // io.openfeedback.resources/CommentStrings.titleInput|{}titleInput[0]
+        final fun <get-titleInput>(): kotlin/String // io.openfeedback.resources/CommentStrings.titleInput.<get-titleInput>|<get-titleInput>(){}[0]
+    final val titleSection // io.openfeedback.resources/CommentStrings.titleSection|{}titleSection[0]
+        final fun <get-titleSection>(): kotlin/String // io.openfeedback.resources/CommentStrings.titleSection.<get-titleSection>|<get-titleSection>(){}[0]
+
+    final fun component1(): kotlin/String // io.openfeedback.resources/CommentStrings.component1|component1(){}[0]
+    final fun component2(): kotlin/String // io.openfeedback.resources/CommentStrings.component2|component2(){}[0]
+    final fun component3(): kotlin/String // io.openfeedback.resources/CommentStrings.component3|component3(){}[0]
+    final fun component4(): kotlin/Function1<kotlin/Int, kotlin/String> // io.openfeedback.resources/CommentStrings.component4|component4(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/String = ..., kotlin/Function1<kotlin/Int, kotlin/String> = ...): io.openfeedback.resources/CommentStrings // io.openfeedback.resources/CommentStrings.copy|copy(kotlin.String;kotlin.String;kotlin.String;kotlin.Function1<kotlin.Int,kotlin.String>){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.openfeedback.resources/CommentStrings.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.openfeedback.resources/CommentStrings.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.openfeedback.resources/CommentStrings.toString|toString(){}[0]
+}
+
+final class io.openfeedback.resources/Strings { // io.openfeedback.resources/Strings|null[0]
+    constructor <init>(io.openfeedback.resources/CommentStrings, kotlin/String, kotlin/String) // io.openfeedback.resources/Strings.<init>|<init>(io.openfeedback.resources.CommentStrings;kotlin.String;kotlin.String){}[0]
+
+    final val comments // io.openfeedback.resources/Strings.comments|{}comments[0]
+        final fun <get-comments>(): io.openfeedback.resources/CommentStrings // io.openfeedback.resources/Strings.comments.<get-comments>|<get-comments>(){}[0]
+    final val fromYou // io.openfeedback.resources/Strings.fromYou|{}fromYou[0]
+        final fun <get-fromYou>(): kotlin/String // io.openfeedback.resources/Strings.fromYou.<get-fromYou>|<get-fromYou>(){}[0]
+    final val poweredBy // io.openfeedback.resources/Strings.poweredBy|{}poweredBy[0]
+        final fun <get-poweredBy>(): kotlin/String // io.openfeedback.resources/Strings.poweredBy.<get-poweredBy>|<get-poweredBy>(){}[0]
+
+    final fun component1(): io.openfeedback.resources/CommentStrings // io.openfeedback.resources/Strings.component1|component1(){}[0]
+    final fun component2(): kotlin/String // io.openfeedback.resources/Strings.component2|component2(){}[0]
+    final fun component3(): kotlin/String // io.openfeedback.resources/Strings.component3|component3(){}[0]
+    final fun copy(io.openfeedback.resources/CommentStrings = ..., kotlin/String = ..., kotlin/String = ...): io.openfeedback.resources/Strings // io.openfeedback.resources/Strings.copy|copy(io.openfeedback.resources.CommentStrings;kotlin.String;kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.openfeedback.resources/Strings.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.openfeedback.resources/Strings.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.openfeedback.resources/Strings.toString|toString(){}[0]
+}
+
+final object io.openfeedback.resources/Res { // io.openfeedback.resources/Res|null[0]
+    final fun getUri(kotlin/String): kotlin/String // io.openfeedback.resources/Res.getUri|getUri(kotlin.String){}[0]
+    final suspend fun readBytes(kotlin/String): kotlin/ByteArray // io.openfeedback.resources/Res.readBytes|readBytes(kotlin.String){}[0]
+
+    final object array // io.openfeedback.resources/Res.array|null[0]
+
+    final object drawable // io.openfeedback.resources/Res.drawable|null[0]
+
+    final object font // io.openfeedback.resources/Res.font|null[0]
+
+    final object plurals // io.openfeedback.resources/Res.plurals|null[0]
+
+    final object string // io.openfeedback.resources/Res.string|null[0]
+}
+
+final val io.openfeedback.resources/LocalStrings // io.openfeedback.resources/LocalStrings|{}LocalStrings[0]
+    final fun <get-LocalStrings>(): androidx.compose.runtime/ProvidableCompositionLocal<cafe.adriel.lyricist/Lyricist<io.openfeedback.resources/Strings>> // io.openfeedback.resources/LocalStrings.<get-LocalStrings>|<get-LocalStrings>(){}[0]
+final val io.openfeedback.resources/io_openfeedback_resources_CommentStrings$stableprop // io.openfeedback.resources/io_openfeedback_resources_CommentStrings$stableprop|#static{}io_openfeedback_resources_CommentStrings$stableprop[0]
+final val io.openfeedback.resources/io_openfeedback_resources_Res$stableprop // io.openfeedback.resources/io_openfeedback_resources_Res$stableprop|#static{}io_openfeedback_resources_Res$stableprop[0]
+final val io.openfeedback.resources/io_openfeedback_resources_Res_array$stableprop // io.openfeedback.resources/io_openfeedback_resources_Res_array$stableprop|#static{}io_openfeedback_resources_Res_array$stableprop[0]
+final val io.openfeedback.resources/io_openfeedback_resources_Res_drawable$stableprop // io.openfeedback.resources/io_openfeedback_resources_Res_drawable$stableprop|#static{}io_openfeedback_resources_Res_drawable$stableprop[0]
+final val io.openfeedback.resources/io_openfeedback_resources_Res_font$stableprop // io.openfeedback.resources/io_openfeedback_resources_Res_font$stableprop|#static{}io_openfeedback_resources_Res_font$stableprop[0]
+final val io.openfeedback.resources/io_openfeedback_resources_Res_plurals$stableprop // io.openfeedback.resources/io_openfeedback_resources_Res_plurals$stableprop|#static{}io_openfeedback_resources_Res_plurals$stableprop[0]
+final val io.openfeedback.resources/io_openfeedback_resources_Res_string$stableprop // io.openfeedback.resources/io_openfeedback_resources_Res_string$stableprop|#static{}io_openfeedback_resources_Res_string$stableprop[0]
+final val io.openfeedback.resources/io_openfeedback_resources_Strings$stableprop // io.openfeedback.resources/io_openfeedback_resources_Strings$stableprop|#static{}io_openfeedback_resources_Strings$stableprop[0]
+final val io.openfeedback.resources/openfeedback_dark // io.openfeedback.resources/openfeedback_dark|@io.openfeedback.resources.Res.drawable{}openfeedback_dark[0]
+    final fun (io.openfeedback.resources/Res.drawable).<get-openfeedback_dark>(): org.jetbrains.compose.resources/DrawableResource // io.openfeedback.resources/openfeedback_dark.<get-openfeedback_dark>|<get-openfeedback_dark>@io.openfeedback.resources.Res.drawable(){}[0]
+final val io.openfeedback.resources/openfeedback_light // io.openfeedback.resources/openfeedback_light|@io.openfeedback.resources.Res.drawable{}openfeedback_light[0]
+    final fun (io.openfeedback.resources/Res.drawable).<get-openfeedback_light>(): org.jetbrains.compose.resources/DrawableResource // io.openfeedback.resources/openfeedback_light.<get-openfeedback_light>|<get-openfeedback_light>@io.openfeedback.resources.Res.drawable(){}[0]

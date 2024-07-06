@@ -3,7 +3,7 @@ package io.openfeedback.resources
 import cafe.adriel.lyricist.LyricistStrings
 
 @LyricistStrings(languageTag = "fr")
-val FrStrings = Strings(
+internal val FrStrings = Strings(
     comments = CommentStrings(
         titleSection = "Commentaires",
         titleInput = "Votre commentaire",

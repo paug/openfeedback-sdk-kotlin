@@ -7,7 +7,11 @@ import io.openfeedback.extensions.filterFirst
 import io.openfeedback.extensions.voteComment
 import io.openfeedback.extensions.voteItem
 import io.openfeedback.mappers.mapToSessionData
+import io.openfeedback.model.CommitComment
+import io.openfeedback.model.Event
 import io.openfeedback.model.SessionData
+import io.openfeedback.model.VoteCommentEvent
+import io.openfeedback.model.VoteItemEvent
 import io.openfeedback.model.VoteStatus
 import io.openfeedback.sources.OpenFeedbackAuth
 import io.openfeedback.sources.OpenFeedbackFirestore
@@ -19,21 +23,6 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.scan
-
-sealed interface Event
-private class CommitComment(
-    val text: String
-) : Event
-
-private class VoteItemEvent(
-    val voteItemId: String,
-    val votedByUser: Boolean
-) : Event
-
-private class VoteCommentEvent(
-    val commentId: String,
-    val votedByUser: Boolean
-) : Event
 
 class OpenFeedbackRepository(
     firebaseApp: FirebaseApp,

@@ -19,11 +19,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
 
-class UserVotesResult(val data: List<UserVote>, val isFromCache: Boolean)
-class SessionThingsResult(val data: Map<String, SessionThing>, val isFromCache: Boolean)
+internal class UserVotesResult(val data: List<UserVote>, val isFromCache: Boolean)
+internal class SessionThingsResult(val data: Map<String, SessionThing>, val isFromCache: Boolean)
 
 @Suppress("UNCHECKED_CAST")
-class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
+internal class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
     fun project(projectId: String): Flow<Project> =
         firestore.collection("projects")
             .document(projectId)

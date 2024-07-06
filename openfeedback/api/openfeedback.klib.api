@@ -1,0 +1,149 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <openfeedback-android-sdk:openfeedback>
+final class io.openfeedback.model/Comment : io.openfeedback.model/SessionThing { // io.openfeedback.model/Comment|null[0]
+    constructor <init>(kotlin/String, kotlin/String, kotlin/Long = ..., kotlinx.datetime/Instant, kotlinx.datetime/Instant, kotlin/String?) // io.openfeedback.model/Comment.<init>|<init>(kotlin.String;kotlin.String;kotlin.Long;kotlinx.datetime.Instant;kotlinx.datetime.Instant;kotlin.String?){}[0]
+
+    final val createdAt // io.openfeedback.model/Comment.createdAt|{}createdAt[0]
+        final fun <get-createdAt>(): kotlinx.datetime/Instant // io.openfeedback.model/Comment.createdAt.<get-createdAt>|<get-createdAt>(){}[0]
+    final val id // io.openfeedback.model/Comment.id|{}id[0]
+        final fun <get-id>(): kotlin/String // io.openfeedback.model/Comment.id.<get-id>|<get-id>(){}[0]
+    final val plus // io.openfeedback.model/Comment.plus|{}plus[0]
+        final fun <get-plus>(): kotlin/Long // io.openfeedback.model/Comment.plus.<get-plus>|<get-plus>(){}[0]
+    final val text // io.openfeedback.model/Comment.text|{}text[0]
+        final fun <get-text>(): kotlin/String // io.openfeedback.model/Comment.text.<get-text>|<get-text>(){}[0]
+    final val updatedAt // io.openfeedback.model/Comment.updatedAt|{}updatedAt[0]
+        final fun <get-updatedAt>(): kotlinx.datetime/Instant // io.openfeedback.model/Comment.updatedAt.<get-updatedAt>|<get-updatedAt>(){}[0]
+    final val userId // io.openfeedback.model/Comment.userId|{}userId[0]
+        final fun <get-userId>(): kotlin/String? // io.openfeedback.model/Comment.userId.<get-userId>|<get-userId>(){}[0]
+
+    final fun component1(): kotlin/String // io.openfeedback.model/Comment.component1|component1(){}[0]
+    final fun component2(): kotlin/String // io.openfeedback.model/Comment.component2|component2(){}[0]
+    final fun component3(): kotlin/Long // io.openfeedback.model/Comment.component3|component3(){}[0]
+    final fun component4(): kotlinx.datetime/Instant // io.openfeedback.model/Comment.component4|component4(){}[0]
+    final fun component5(): kotlinx.datetime/Instant // io.openfeedback.model/Comment.component5|component5(){}[0]
+    final fun component6(): kotlin/String? // io.openfeedback.model/Comment.component6|component6(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/Long = ..., kotlinx.datetime/Instant = ..., kotlinx.datetime/Instant = ..., kotlin/String? = ...): io.openfeedback.model/Comment // io.openfeedback.model/Comment.copy|copy(kotlin.String;kotlin.String;kotlin.Long;kotlinx.datetime.Instant;kotlinx.datetime.Instant;kotlin.String?){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.openfeedback.model/Comment.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.openfeedback.model/Comment.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.openfeedback.model/Comment.toString|toString(){}[0]
+}
+
+final class io.openfeedback.model/Project { // io.openfeedback.model/Project|null[0]
+    constructor <init>(kotlin.collections/List<kotlin/String> = ..., kotlin.collections/List<io.openfeedback.model/VoteItem> = ...) // io.openfeedback.model/Project.<init>|<init>(kotlin.collections.List<kotlin.String>;kotlin.collections.List<io.openfeedback.model.VoteItem>){}[0]
+
+    final val chipColors // io.openfeedback.model/Project.chipColors|{}chipColors[0]
+        final fun <get-chipColors>(): kotlin.collections/List<kotlin/String> // io.openfeedback.model/Project.chipColors.<get-chipColors>|<get-chipColors>(){}[0]
+    final val voteItems // io.openfeedback.model/Project.voteItems|{}voteItems[0]
+        final fun <get-voteItems>(): kotlin.collections/List<io.openfeedback.model/VoteItem> // io.openfeedback.model/Project.voteItems.<get-voteItems>|<get-voteItems>(){}[0]
+
+    final fun component1(): kotlin.collections/List<kotlin/String> // io.openfeedback.model/Project.component1|component1(){}[0]
+    final fun component2(): kotlin.collections/List<io.openfeedback.model/VoteItem> // io.openfeedback.model/Project.component2|component2(){}[0]
+    final fun copy(kotlin.collections/List<kotlin/String> = ..., kotlin.collections/List<io.openfeedback.model/VoteItem> = ...): io.openfeedback.model/Project // io.openfeedback.model/Project.copy|copy(kotlin.collections.List<kotlin.String>;kotlin.collections.List<io.openfeedback.model.VoteItem>){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.openfeedback.model/Project.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.openfeedback.model/Project.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.openfeedback.model/Project.toString|toString(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<io.openfeedback.model/Project> { // io.openfeedback.model/Project.$serializer|null[0]
+        final val descriptor // io.openfeedback.model/Project.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // io.openfeedback.model/Project.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // io.openfeedback.model/Project.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): io.openfeedback.model/Project // io.openfeedback.model/Project.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, io.openfeedback.model/Project) // io.openfeedback.model/Project.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;io.openfeedback.model.Project){}[0]
+    }
+
+    final object Companion { // io.openfeedback.model/Project.Companion|null[0]
+        final val $childSerializers // io.openfeedback.model/Project.Companion.$childSerializers|{}$childSerializers[0]
+
+        final fun serializer(): kotlinx.serialization/KSerializer<io.openfeedback.model/Project> // io.openfeedback.model/Project.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final class io.openfeedback.model/SessionData { // io.openfeedback.model/SessionData|null[0]
+    constructor <init>(io.openfeedback.model/Project, kotlin/String, kotlin.collections/Set<kotlin/String>, kotlin.collections/Set<kotlin/String>, kotlin.collections/Map<kotlin/String, kotlin/Long>, kotlin.collections/List<io.openfeedback.model/Comment>) // io.openfeedback.model/SessionData.<init>|<init>(io.openfeedback.model.Project;kotlin.String;kotlin.collections.Set<kotlin.String>;kotlin.collections.Set<kotlin.String>;kotlin.collections.Map<kotlin.String,kotlin.Long>;kotlin.collections.List<io.openfeedback.model.Comment>){}[0]
+
+    final val comments // io.openfeedback.model/SessionData.comments|{}comments[0]
+        final fun <get-comments>(): kotlin.collections/List<io.openfeedback.model/Comment> // io.openfeedback.model/SessionData.comments.<get-comments>|<get-comments>(){}[0]
+    final val project // io.openfeedback.model/SessionData.project|{}project[0]
+        final fun <get-project>(): io.openfeedback.model/Project // io.openfeedback.model/SessionData.project.<get-project>|<get-project>(){}[0]
+    final val userId // io.openfeedback.model/SessionData.userId|{}userId[0]
+        final fun <get-userId>(): kotlin/String // io.openfeedback.model/SessionData.userId.<get-userId>|<get-userId>(){}[0]
+    final val voteItemAggregates // io.openfeedback.model/SessionData.voteItemAggregates|{}voteItemAggregates[0]
+        final fun <get-voteItemAggregates>(): kotlin.collections/Map<kotlin/String, kotlin/Long> // io.openfeedback.model/SessionData.voteItemAggregates.<get-voteItemAggregates>|<get-voteItemAggregates>(){}[0]
+    final val votedCommentIds // io.openfeedback.model/SessionData.votedCommentIds|{}votedCommentIds[0]
+        final fun <get-votedCommentIds>(): kotlin.collections/Set<kotlin/String> // io.openfeedback.model/SessionData.votedCommentIds.<get-votedCommentIds>|<get-votedCommentIds>(){}[0]
+    final val votedItemIds // io.openfeedback.model/SessionData.votedItemIds|{}votedItemIds[0]
+        final fun <get-votedItemIds>(): kotlin.collections/Set<kotlin/String> // io.openfeedback.model/SessionData.votedItemIds.<get-votedItemIds>|<get-votedItemIds>(){}[0]
+
+    final fun component1(): io.openfeedback.model/Project // io.openfeedback.model/SessionData.component1|component1(){}[0]
+    final fun component2(): kotlin/String // io.openfeedback.model/SessionData.component2|component2(){}[0]
+    final fun component3(): kotlin.collections/Set<kotlin/String> // io.openfeedback.model/SessionData.component3|component3(){}[0]
+    final fun component4(): kotlin.collections/Set<kotlin/String> // io.openfeedback.model/SessionData.component4|component4(){}[0]
+    final fun component5(): kotlin.collections/Map<kotlin/String, kotlin/Long> // io.openfeedback.model/SessionData.component5|component5(){}[0]
+    final fun component6(): kotlin.collections/List<io.openfeedback.model/Comment> // io.openfeedback.model/SessionData.component6|component6(){}[0]
+    final fun copy(io.openfeedback.model/Project = ..., kotlin/String = ..., kotlin.collections/Set<kotlin/String> = ..., kotlin.collections/Set<kotlin/String> = ..., kotlin.collections/Map<kotlin/String, kotlin/Long> = ..., kotlin.collections/List<io.openfeedback.model/Comment> = ...): io.openfeedback.model/SessionData // io.openfeedback.model/SessionData.copy|copy(io.openfeedback.model.Project;kotlin.String;kotlin.collections.Set<kotlin.String>;kotlin.collections.Set<kotlin.String>;kotlin.collections.Map<kotlin.String,kotlin.Long>;kotlin.collections.List<io.openfeedback.model.Comment>){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.openfeedback.model/SessionData.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.openfeedback.model/SessionData.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.openfeedback.model/SessionData.toString|toString(){}[0]
+}
+
+final class io.openfeedback.model/VoteItem { // io.openfeedback.model/VoteItem|null[0]
+    constructor <init>(kotlin/String = ..., kotlin.collections/Map<kotlin/String, kotlin/String> = ..., kotlin/String = ..., kotlin/Int = ..., kotlin/String = ...) // io.openfeedback.model/VoteItem.<init>|<init>(kotlin.String;kotlin.collections.Map<kotlin.String,kotlin.String>;kotlin.String;kotlin.Int;kotlin.String){}[0]
+
+    final val id // io.openfeedback.model/VoteItem.id|{}id[0]
+        final fun <get-id>(): kotlin/String // io.openfeedback.model/VoteItem.id.<get-id>|<get-id>(){}[0]
+    final val languages // io.openfeedback.model/VoteItem.languages|{}languages[0]
+        final fun <get-languages>(): kotlin.collections/Map<kotlin/String, kotlin/String> // io.openfeedback.model/VoteItem.languages.<get-languages>|<get-languages>(){}[0]
+    final val name // io.openfeedback.model/VoteItem.name|{}name[0]
+        final fun <get-name>(): kotlin/String // io.openfeedback.model/VoteItem.name.<get-name>|<get-name>(){}[0]
+    final val position // io.openfeedback.model/VoteItem.position|{}position[0]
+        final fun <get-position>(): kotlin/Int // io.openfeedback.model/VoteItem.position.<get-position>|<get-position>(){}[0]
+    final val type // io.openfeedback.model/VoteItem.type|{}type[0]
+        final fun <get-type>(): kotlin/String // io.openfeedback.model/VoteItem.type.<get-type>|<get-type>(){}[0]
+
+    final fun component1(): kotlin/String // io.openfeedback.model/VoteItem.component1|component1(){}[0]
+    final fun component2(): kotlin.collections/Map<kotlin/String, kotlin/String> // io.openfeedback.model/VoteItem.component2|component2(){}[0]
+    final fun component3(): kotlin/String // io.openfeedback.model/VoteItem.component3|component3(){}[0]
+    final fun component4(): kotlin/Int // io.openfeedback.model/VoteItem.component4|component4(){}[0]
+    final fun component5(): kotlin/String // io.openfeedback.model/VoteItem.component5|component5(){}[0]
+    final fun copy(kotlin/String = ..., kotlin.collections/Map<kotlin/String, kotlin/String> = ..., kotlin/String = ..., kotlin/Int = ..., kotlin/String = ...): io.openfeedback.model/VoteItem // io.openfeedback.model/VoteItem.copy|copy(kotlin.String;kotlin.collections.Map<kotlin.String,kotlin.String>;kotlin.String;kotlin.Int;kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.openfeedback.model/VoteItem.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.openfeedback.model/VoteItem.hashCode|hashCode(){}[0]
+    final fun localizedName(kotlin/String): kotlin/String // io.openfeedback.model/VoteItem.localizedName|localizedName(kotlin.String){}[0]
+    final fun toString(): kotlin/String // io.openfeedback.model/VoteItem.toString|toString(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<io.openfeedback.model/VoteItem> { // io.openfeedback.model/VoteItem.$serializer|null[0]
+        final val descriptor // io.openfeedback.model/VoteItem.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // io.openfeedback.model/VoteItem.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // io.openfeedback.model/VoteItem.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): io.openfeedback.model/VoteItem // io.openfeedback.model/VoteItem.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, io.openfeedback.model/VoteItem) // io.openfeedback.model/VoteItem.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;io.openfeedback.model.VoteItem){}[0]
+    }
+
+    final object Companion { // io.openfeedback.model/VoteItem.Companion|null[0]
+        final val $childSerializers // io.openfeedback.model/VoteItem.Companion.$childSerializers|{}$childSerializers[0]
+
+        final fun serializer(): kotlinx.serialization/KSerializer<io.openfeedback.model/VoteItem> // io.openfeedback.model/VoteItem.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final class io.openfeedback/OpenFeedbackRepository { // io.openfeedback/OpenFeedbackRepository|null[0]
+    constructor <init>(dev.gitlive.firebase/FirebaseApp, kotlin/String, kotlin/String) // io.openfeedback/OpenFeedbackRepository.<init>|<init>(dev.gitlive.firebase.FirebaseApp;kotlin.String;kotlin.String){}[0]
+
+    final val projectId // io.openfeedback/OpenFeedbackRepository.projectId|{}projectId[0]
+        final fun <get-projectId>(): kotlin/String // io.openfeedback/OpenFeedbackRepository.projectId.<get-projectId>|<get-projectId>(){}[0]
+    final val sessionId // io.openfeedback/OpenFeedbackRepository.sessionId|{}sessionId[0]
+        final fun <get-sessionId>(): kotlin/String // io.openfeedback/OpenFeedbackRepository.sessionId.<get-sessionId>|<get-sessionId>(){}[0]
+
+    final suspend fun fetchSessionData(): kotlinx.coroutines.flow/Flow<io.openfeedback.model/SessionData> // io.openfeedback/OpenFeedbackRepository.fetchSessionData|fetchSessionData(){}[0]
+    final suspend fun submitComment(kotlin/String) // io.openfeedback/OpenFeedbackRepository.submitComment|submitComment(kotlin.String){}[0]
+    final suspend fun upVote(kotlin/String, kotlin/Boolean) // io.openfeedback/OpenFeedbackRepository.upVote|upVote(kotlin.String;kotlin.Boolean){}[0]
+    final suspend fun vote(kotlin/String, kotlin/Boolean) // io.openfeedback/OpenFeedbackRepository.vote|vote(kotlin.String;kotlin.Boolean){}[0]
+}
