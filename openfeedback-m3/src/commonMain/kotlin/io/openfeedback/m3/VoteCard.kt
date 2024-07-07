@@ -14,7 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import io.openfeedback.viewmodels.models.UIVoteItem
+import io.openfeedback.ui.models.UIVoteItem
 
 @ExperimentalMaterial3Api
 @Composable

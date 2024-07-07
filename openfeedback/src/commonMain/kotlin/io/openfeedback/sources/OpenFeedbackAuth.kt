@@ -7,7 +7,7 @@ import dev.gitlive.firebase.auth.auth
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
-class OpenFeedbackAuth(app: FirebaseApp) {
+internal class OpenFeedbackAuth(app: FirebaseApp) {
     private val auth = Firebase.auth(app)
     private val mutex = Mutex()
 

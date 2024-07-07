@@ -3,8 +3,8 @@ package io.openfeedback.m3
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import io.openfeedback.viewmodels.models.UIComment
-import io.openfeedback.viewmodels.models.UIDot
+import io.openfeedback.ui.models.UIComment
+import io.openfeedback.ui.models.UIDot
 
 @Preview
 @Composable

@@ -8,7 +8,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.openfeedback.viewmodels.models.UIVoteItem
+import io.openfeedback.ui.models.UIVoteItem
 
 @ExperimentalMaterial3Api
 @Composable

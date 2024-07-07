@@ -1,9 +1,10 @@
 import com.android.build.api.dsl.CommonExtension
 import com.android.build.gradle.internal.tasks.factory.dependsOn
-import dev.icerock.gradle.MultiplatformResourcesPluginExtension
 import internal.configurePublishingInternal
 import internal.publishIfNeededTaskProvider
 import internal.registerReleaseTask
+import kotlinx.validation.ApiValidationExtension
+import kotlinx.validation.ExperimentalBCVApi
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.logging.LogLevel
@@ -13,7 +14,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 private fun Project.configureAndroid(namespace: String) {
     extensions.getByName("android").apply {
-        this as CommonExtension<*,*,*,*,*>
+        this as CommonExtension<*,*,*,*,*, *>
         compileSdk = 34
         this.namespace = namespace
 
@@ -49,36 +50,31 @@ private fun Project.configureKMP() {
     }
 }
 
-fun Project.configureMoko(namespace: String) {
-    pluginManager.apply("dev.icerock.mobile.multiplatform-resources")
-    extensions.getByType(MultiplatformResourcesPluginExtension::class.java).apply {
-        resourcesPackage.set(namespace)
-    }
-}
-
 fun Project.library(
     namespace: String,
-    moko: Boolean = false,
     compose: Boolean = false,
     publish: Boolean = false,
     kotlin: (KotlinMultiplatformExtension) -> Unit
 ) {
     val kotlinMultiplatformExtension = applyKotlinMultiplatformPlugin()
+    val binaryCompatibilityValidation = applyBinaryCompatibilityValidation()
     if (compose) {
         applyJetbrainsComposePlugin()
     }
     if (publish) {
         configurePublishingInternal(kotlinMultiplatformExtension.androidTarget())
     }
+    configureBinaryCompatibilityValidation(binaryCompatibilityValidation)
     configureAndroid(namespace = namespace)
     configureKMP()
     configureKotlin()
 
     kotlin(kotlinMultiplatformExtension)
+}
 
-    if (moko) {
-        configureMoko(namespace)
-    }
+@OptIn(ExperimentalBCVApi::class)
+fun Project.configureBinaryCompatibilityValidation(extension: ApiValidationExtension) = with(extension) {
+    klib.enabled = true
 }
 
 fun Project.androidApp(

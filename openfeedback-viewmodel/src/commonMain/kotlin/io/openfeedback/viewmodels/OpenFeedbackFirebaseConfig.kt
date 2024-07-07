@@ -20,9 +20,7 @@ data class OpenFeedbackFirebaseConfig(
          *
          * @param context the context on Android or null on iOS
          */
-        fun default(
-            context: Any?,
-        ): OpenFeedbackFirebaseConfig {
+        fun default(context: Any?): OpenFeedbackFirebaseConfig {
             /**
              * The firebase parameters are from the openfeedback.io project so we can
              * access firestore directly
@@ -35,8 +33,55 @@ data class OpenFeedbackFirebaseConfig(
                 apiKey = "AIzaSyB3ELJsaiItrln0uDGSuuHE1CfOJO67Hb4",
                 databaseUrl = "https://open-feedback-42.firebaseio.com/"
             )
-
         }
     }
 }
 
+private val appCache = mutableMapOf<String, FirebaseApp>()
+
+/**
+ * Initialize in cache OpenFeedback configuration.
+ *
+ * @param OpenFeedback Firebase configuration.
+ */
+fun initializeOpenFeedback(
+    config: OpenFeedbackFirebaseConfig
+) {
+    require(!appCache.containsKey(config.appName)) {
+        "Openfeedback '${config.apiKey}' is already initialized"
+    }
+
+    with(config) {
+        appCache.put(
+            appName,
+            Firebase.initialize(
+                context = context,
+                options = dev.gitlive.firebase.FirebaseOptions(
+                    projectId = projectId,
+                    applicationId = applicationId,
+                    apiKey = apiKey,
+                    databaseUrl = databaseUrl
+                ),
+                name = appName
+            )
+        )
+    }
+}
+
+/**
+ * Get OpenFeedback Firebase instance by app name.
+ *
+ * @param appName Local OpenFeedback name
+ * @return [FirebaseApp] instance.
+ */
+fun getFirebaseApp(appName: String?): FirebaseApp {
+    if (appName != null) {
+        return appCache.get(appName) ?: error("OpenFeedback was not initialized for app '$appName'")
+    }
+
+    return when {
+        appCache.isEmpty() -> error("You need to call OpenFeedbackInitialize() before OpenFeedback()")
+        appCache.size == 1 -> appCache.values.single()
+        else -> error("Multiple OpenFeedback apps initialized, pass 'appName'")
+    }
+}

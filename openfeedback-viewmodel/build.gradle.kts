@@ -6,18 +6,23 @@ plugins {
 
 library(
     namespace = "io.openfeedback.viewmodels",
-    publish = true,
     compose = true,
+    publish = true,
 ) { kotlinMultiplatformExtension ->
     kotlinMultiplatformExtension.sourceSets {
         getByName("commonMain") {
             dependencies {
                 implementation(projects.openfeedback)
+                api(projects.openfeedbackM3)
+                api(projects.openfeedbackUiModels)
+
+                implementation(kotlinMultiplatformExtension.compose.material3)
                 implementation(kotlinMultiplatformExtension.compose.runtime)
                 // Not sure why this is needed 🤷
-                implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.23")
-                api(libs.moko.mvvm.core)
-                api(libs.kmm.locale)
+                implementation(libs.jetbrains.kotlin.stdlib)
+
+                api(libs.androidx.lifecycle.viewmodel.compose)
+                api(libs.vanniktech.multiplatform.locale)
             }
         }
     }

@@ -8,9 +8,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import dev.icerock.moko.resources.compose.stringResource
-import io.openfeedback.MR
-import io.openfeedback.viewmodels.models.UIComment
+import io.openfeedback.resources.LocalStrings
+import io.openfeedback.ui.models.UIComment
 
 @Composable
 internal fun CommentItems(
@@ -25,7 +24,7 @@ internal fun CommentItems(
         verticalArrangement = verticalArrangement
     ) {
         Text(
-            text = stringResource(MR.strings.openfeedback_comments_title),
+            text = LocalStrings.current.strings.comments.titleSection,
             style = MaterialTheme.typography.titleMedium
         )
         commentInput()

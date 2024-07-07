@@ -18,8 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.openfeedback.m3.OpenFeedback
-import io.openfeedback.viewmodels.OpenFeedbackFirebaseConfig
+import io.openfeedback.OpenFeedback
 
 @Composable
 fun SampleApp(

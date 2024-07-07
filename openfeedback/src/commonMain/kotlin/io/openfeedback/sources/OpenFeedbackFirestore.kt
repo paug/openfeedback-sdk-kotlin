@@ -19,11 +19,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
 
-class UserVotesResult(val data: List<UserVote>, val isFromCache: Boolean)
-class SessionThingsResult(val data: Map<String, SessionThing>, val isFromCache: Boolean)
+internal class UserVotesResult(val data: List<UserVote>, val isFromCache: Boolean)
+internal class SessionThingsResult(val data: Map<String, SessionThing>, val isFromCache: Boolean)
 
 @Suppress("UNCHECKED_CAST")
-class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
+internal class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
     fun project(projectId: String): Flow<Project> =
         firestore.collection("projects")
             .document(projectId)
@@ -51,28 +51,30 @@ class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
             }
 
 
-    private fun Any?.toComment(id: String): Comment {
-        check(this is Map<*, *>) {
-            error("expected a map representing a comment, got '$this'")
-        }
-        return Comment(
-            id = id,
-            text = this["text"] as String,
-            plus = (this["plus"] as Long).coerceAtLeast(0),
-            createdAt = timestampToInstant(this["createdAt"]!!),
-            updatedAt = timestampToInstant(this["updatedAt"]!!),
-            userId = this["userId"] as String
-        )
+    private fun Map<*, *>.toComment(id: String): Comment = Comment(
+        id = id,
+        text = this["text"] as String,
+        plus = (this["plus"] as Long).coerceAtLeast(0),
+        createdAt = timestampToInstant(this["createdAt"]!!),
+        updatedAt = timestampToInstant(this["updatedAt"]!!),
+        userId = this["userId"] as String
+    )
+
+    /**
+     * For some weird reasons, OpenFeedback can return empty map for some comments.
+     * To avoid a crash when the comment is parsed in [toComment] function, we check
+     * that the map is not empty.
+     */
+    private fun <K, V> Map<K, V>.filterMapNotEmpty(): Map<K, V> =
+        filter { it.value is Map<*, *> && (it.value as Map<K, V>).isNotEmpty() }
+
+    private fun Map<String, *>.toCommentsMap(): CommentsMap {
+        val comments = this
+            .filterMapNotEmpty()
+            .mapValues { (it.value as Map<*, *>).toComment(it.key) }
+        return CommentsMap(comments)
     }
 
-    private fun Any?.toCommentsMap(): CommentsMap {
-        check(this is Map<*, *>) {
-            error("expected a map of comments, got '$this'")
-        }
-        return CommentsMap((this as Map<String, *>).mapValues {
-            it.value.toComment(it.key)
-        } )
-    }
     /**
      * Return all things related to this session, vote counts and comments
      */
@@ -92,8 +94,10 @@ class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
                         data.mapValues {
                             if (it.value is Long) {
                                 VoteItemCount(it.value as Long)
+                            } else if (it.value is Map<*, *>) {
+                                (it.value as Map<String, *>).toCommentsMap()
                             } else {
-                                it.value.toCommentsMap()
+                                error("expected a long or a map of comments, got '$this'")
                             }
                         }
                     }

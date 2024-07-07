@@ -15,9 +15,11 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import dev.icerock.moko.resources.compose.painterResource
-import dev.icerock.moko.resources.compose.stringResource
-import io.openfeedback.MR
+import io.openfeedback.resources.LocalStrings
+import io.openfeedback.resources.Res
+import io.openfeedback.resources.openfeedback_dark
+import io.openfeedback.resources.openfeedback_light
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 internal fun PoweredBy(
@@ -26,9 +28,9 @@ internal fun PoweredBy(
     color: Color = MaterialTheme.colorScheme.onBackground
 ) {
     val logo =
-        if (MaterialTheme.colorScheme.background.luminance() > 0.5) MR.images.openfeedback_light
-        else MR.images.openfeedback_dark
-    val poweredBy = stringResource(MR.strings.powered_by)
+        if (MaterialTheme.colorScheme.background.luminance() > 0.5) Res.drawable.openfeedback_light
+        else Res.drawable.openfeedback_dark
+    val poweredBy = LocalStrings.current.strings.poweredBy
     Row(
         modifier = modifier.semantics(mergeDescendants = true) {
             contentDescription = "$poweredBy Openfeedback"

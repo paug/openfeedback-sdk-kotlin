@@ -5,33 +5,29 @@ plugins {
 
 library(
     namespace = "io.openfeedback",
-    moko = true,
     publish = true
 ) {
     it.sourceSets {
         getByName("commonMain").apply {
             dependencies {
-                api(libs.kotlin.coroutines.core)
-                api(libs.kotlinx.datetime)
-                api(libs.kotlinx.serialization.json)
+                api(libs.jetbrains.kotlinx.coroutines)
+                api(libs.jetbrains.kotlinx.datetime)
+                api(libs.jetbrains.kotlinx.serialization.json)
 
-                api(libs.gitlive.app)
-                api(libs.gitlive.firestore)
-                implementation(libs.gitlive.auth)
-                implementation(libs.gitlive.common)
+                api(libs.gitlive.firebase.app)
+                api(libs.gitlive.firebase.firestore)
+                implementation(libs.gitlive.firebase.auth)
+                implementation(libs.gitlive.firebase.common)
 
-                api(libs.moko.resources)
-
-                implementation(libs.kermit)
+                implementation(libs.touchlab.kermit)
             }
         }
         getByName("androidMain"){
             dependencies {
-                api(libs.firebase.common)
-                api(libs.firebase.firestore)
-                implementation(libs.firebase.auth)
+                api(libs.google.firebase.common)
+                api(libs.google.firebase.firestore)
+                implementation(libs.google.firebase.auth)
             }
         }
     }
 }
-

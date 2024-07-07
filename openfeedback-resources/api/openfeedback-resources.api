@@ -1,0 +1,75 @@
+public final class io/openfeedback/resources/CommentStrings {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Lkotlin/jvm/functions/Function1;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lio/openfeedback/resources/CommentStrings;
+	public static synthetic fun copy$default (Lio/openfeedback/resources/CommentStrings;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lio/openfeedback/resources/CommentStrings;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getActionSend ()Ljava/lang/String;
+	public final fun getNbVotes ()Lkotlin/jvm/functions/Function1;
+	public final fun getTitleInput ()Ljava/lang/String;
+	public final fun getTitleSection ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/openfeedback/resources/Drawable0_commonMainKt {
+	public static final fun getOpenfeedback_dark (Lio/openfeedback/resources/Res$drawable;)Lorg/jetbrains/compose/resources/DrawableResource;
+	public static final fun getOpenfeedback_light (Lio/openfeedback/resources/Res$drawable;)Lorg/jetbrains/compose/resources/DrawableResource;
+}
+
+public final class io/openfeedback/resources/LocalStringsKt {
+	public static final fun getLocalStrings ()Landroidx/compose/runtime/ProvidableCompositionLocal;
+}
+
+public final class io/openfeedback/resources/Res {
+	public static final field $stable I
+	public static final field INSTANCE Lio/openfeedback/resources/Res;
+	public final fun getUri (Ljava/lang/String;)Ljava/lang/String;
+	public final fun readBytes (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class io/openfeedback/resources/Res$array {
+	public static final field $stable I
+	public static final field INSTANCE Lio/openfeedback/resources/Res$array;
+}
+
+public final class io/openfeedback/resources/Res$drawable {
+	public static final field $stable I
+	public static final field INSTANCE Lio/openfeedback/resources/Res$drawable;
+}
+
+public final class io/openfeedback/resources/Res$font {
+	public static final field $stable I
+	public static final field INSTANCE Lio/openfeedback/resources/Res$font;
+}
+
+public final class io/openfeedback/resources/Res$plurals {
+	public static final field $stable I
+	public static final field INSTANCE Lio/openfeedback/resources/Res$plurals;
+}
+
+public final class io/openfeedback/resources/Res$string {
+	public static final field $stable I
+	public static final field INSTANCE Lio/openfeedback/resources/Res$string;
+}
+
+public final class io/openfeedback/resources/Strings {
+	public static final field $stable I
+	public fun <init> (Lio/openfeedback/resources/CommentStrings;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Lio/openfeedback/resources/CommentStrings;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Lio/openfeedback/resources/CommentStrings;Ljava/lang/String;Ljava/lang/String;)Lio/openfeedback/resources/Strings;
+	public static synthetic fun copy$default (Lio/openfeedback/resources/Strings;Lio/openfeedback/resources/CommentStrings;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/openfeedback/resources/Strings;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getComments ()Lio/openfeedback/resources/CommentStrings;
+	public final fun getFromYou ()Ljava/lang/String;
+	public final fun getPoweredBy ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+

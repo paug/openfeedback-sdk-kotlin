@@ -6,9 +6,9 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.unit.dp
-import io.openfeedback.viewmodels.models.UIDot
+import io.openfeedback.ui.models.UIDot
 
-fun Modifier.drawDots(dots: List<UIDot>): Modifier = drawBehind {
+internal fun Modifier.drawDots(dots: List<UIDot>): Modifier = drawBehind {
     dots.forEach { dot ->
         val offset = Offset(x = this.size.width * dot.x, y = this.size.height * dot.y)
         drawCircle(

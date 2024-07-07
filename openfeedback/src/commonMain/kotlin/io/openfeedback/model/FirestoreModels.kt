@@ -1,6 +1,5 @@
 package io.openfeedback.model
 
-import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
@@ -24,7 +23,7 @@ data class VoteItem(
 }
 
 @Serializable
-enum class VoteStatus(val value: String) {
+internal enum class VoteStatus(val value: String) {
     Active("active"),
     Deleted("deleted")
 }
@@ -43,7 +42,7 @@ enum class VoteStatus(val value: String) {
  * @param text only if this is a comment
  */
 @Serializable
-data class UserVote(
+internal data class UserVote(
     val projectId: String,
     val talkId: String,
     val id: String?,
@@ -58,14 +57,14 @@ data class UserVote(
  * See https://github.com/Kotlin/kotlinx.serialization/issues/2223
  */
 //@Serializable
-sealed interface SessionThing
+internal sealed interface SessionThing
 
-class VoteItemCount(val count: Long): SessionThing
+internal class VoteItemCount(val count: Long): SessionThing
 
 /**
  * A SessionThing representing all the comments for that session
  */
-class CommentsMap(
+internal class CommentsMap(
     /**
      * The key is the comment.id
      */

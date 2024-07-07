@@ -1,4 +1,4 @@
-package io.openfeedback.viewmodels.models
+package io.openfeedback.ui.models
 
 import androidx.compose.runtime.Immutable
 

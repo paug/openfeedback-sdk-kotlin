@@ -1,0 +1,13 @@
+public final class ComposableSingletons$MainKt {
+	public static final field INSTANCE LComposableSingletons$MainKt;
+	public static field lambda-1 Lkotlin/jvm/functions/Function3;
+	public fun <init> ()V
+	public final fun getLambda-1$sample_app_shared_release ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class MainKt {
+	public static final fun OpenFeedbackTheme (ZLkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
+	public static final fun SampleApp (ZLjava/lang/Object;Landroidx/compose/runtime/Composer;I)V
+	public static final fun ThemeSwitcher (ZLkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;I)V
+}
+

@@ -1,0 +1,74 @@
+public final class io/openfeedback/ui/models/UIComment {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/util/List;ZZ)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()I
+	public final fun component5 ()Ljava/util/List;
+	public final fun component6 ()Z
+	public final fun component7 ()Z
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/util/List;ZZ)Lio/openfeedback/ui/models/UIComment;
+	public static synthetic fun copy$default (Lio/openfeedback/ui/models/UIComment;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/util/List;ZZILjava/lang/Object;)Lio/openfeedback/ui/models/UIComment;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCreatedAt ()Ljava/lang/String;
+	public final fun getDots ()Ljava/util/List;
+	public final fun getFromUser ()Z
+	public final fun getId ()Ljava/lang/String;
+	public final fun getMessage ()Ljava/lang/String;
+	public final fun getUpVotes ()I
+	public final fun getVotedByUser ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/openfeedback/ui/models/UIDot {
+	public static final field $stable I
+	public fun <init> (FFLjava/lang/String;)V
+	public final fun component1 ()F
+	public final fun component2 ()F
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (FFLjava/lang/String;)Lio/openfeedback/ui/models/UIDot;
+	public static synthetic fun copy$default (Lio/openfeedback/ui/models/UIDot;FFLjava/lang/String;ILjava/lang/Object;)Lio/openfeedback/ui/models/UIDot;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getColor ()Ljava/lang/String;
+	public final fun getX ()F
+	public final fun getY ()F
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/openfeedback/ui/models/UISessionFeedback {
+	public static final field $stable I
+	public fun <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;Ljava/util/List;Ljava/util/List;)Lio/openfeedback/ui/models/UISessionFeedback;
+	public static synthetic fun copy$default (Lio/openfeedback/ui/models/UISessionFeedback;Ljava/util/List;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)Lio/openfeedback/ui/models/UISessionFeedback;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getColors ()Ljava/util/List;
+	public final fun getComments ()Ljava/util/List;
+	public final fun getVoteItems ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/openfeedback/ui/models/UIVoteItem {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Z)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/util/List;
+	public final fun component4 ()Z
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Z)Lio/openfeedback/ui/models/UIVoteItem;
+	public static synthetic fun copy$default (Lio/openfeedback/ui/models/UIVoteItem;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ZILjava/lang/Object;)Lio/openfeedback/ui/models/UIVoteItem;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDots ()Ljava/util/List;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getText ()Ljava/lang/String;
+	public final fun getVotedByUser ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+

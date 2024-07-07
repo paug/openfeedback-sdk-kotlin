@@ -1,0 +1,79 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <openfeedback-android-sdk:openfeedback-viewmodel>
+final class io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig { // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig|null[0]
+    constructor <init>(kotlin/Any?, kotlin/String, kotlin/String, kotlin/String, kotlin/String, kotlin/String = ...) // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.<init>|<init>(kotlin.Any?;kotlin.String;kotlin.String;kotlin.String;kotlin.String;kotlin.String){}[0]
+
+    final val apiKey // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.apiKey|{}apiKey[0]
+        final fun <get-apiKey>(): kotlin/String // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.apiKey.<get-apiKey>|<get-apiKey>(){}[0]
+    final val appName // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.appName|{}appName[0]
+        final fun <get-appName>(): kotlin/String // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.appName.<get-appName>|<get-appName>(){}[0]
+    final val applicationId // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.applicationId|{}applicationId[0]
+        final fun <get-applicationId>(): kotlin/String // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.applicationId.<get-applicationId>|<get-applicationId>(){}[0]
+    final val context // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.context|{}context[0]
+        final fun <get-context>(): kotlin/Any? // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.context.<get-context>|<get-context>(){}[0]
+    final val databaseUrl // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.databaseUrl|{}databaseUrl[0]
+        final fun <get-databaseUrl>(): kotlin/String // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.databaseUrl.<get-databaseUrl>|<get-databaseUrl>(){}[0]
+    final val projectId // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.projectId|{}projectId[0]
+        final fun <get-projectId>(): kotlin/String // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.projectId.<get-projectId>|<get-projectId>(){}[0]
+
+    final fun component1(): kotlin/Any? // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.component1|component1(){}[0]
+    final fun component2(): kotlin/String // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.component2|component2(){}[0]
+    final fun component3(): kotlin/String // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.component3|component3(){}[0]
+    final fun component4(): kotlin/String // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.component4|component4(){}[0]
+    final fun component5(): kotlin/String // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.component5|component5(){}[0]
+    final fun component6(): kotlin/String // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.component6|component6(){}[0]
+    final fun copy(kotlin/Any? = ..., kotlin/String = ..., kotlin/String = ..., kotlin/String = ..., kotlin/String = ..., kotlin/String = ...): io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.copy|copy(kotlin.Any?;kotlin.String;kotlin.String;kotlin.String;kotlin.String;kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.toString|toString(){}[0]
+
+    final object Companion { // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.Companion|null[0]
+        final fun default(kotlin/Any?): io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.Companion.default|default(kotlin.Any?){}[0]
+    }
+}
+
+final class io.openfeedback.viewmodels/OpenFeedbackViewModel : androidx.lifecycle/ViewModel { // io.openfeedback.viewmodels/OpenFeedbackViewModel|null[0]
+    final val uiState // io.openfeedback.viewmodels/OpenFeedbackViewModel.uiState|{}uiState[0]
+        final fun <get-uiState>(): kotlinx.coroutines.flow/StateFlow<io.openfeedback.viewmodels/OpenFeedbackUiState> // io.openfeedback.viewmodels/OpenFeedbackViewModel.uiState.<get-uiState>|<get-uiState>(){}[0]
+
+    final fun submitComment(kotlin/String): kotlinx.coroutines/Job // io.openfeedback.viewmodels/OpenFeedbackViewModel.submitComment|submitComment(kotlin.String){}[0]
+    final fun upVote(io.openfeedback.ui.models/UIComment): kotlinx.coroutines/Job // io.openfeedback.viewmodels/OpenFeedbackViewModel.upVote|upVote(io.openfeedback.ui.models.UIComment){}[0]
+    final fun vote(io.openfeedback.ui.models/UIVoteItem): kotlinx.coroutines/Job // io.openfeedback.viewmodels/OpenFeedbackViewModel.vote|vote(io.openfeedback.ui.models.UIVoteItem){}[0]
+
+    final object Companion { // io.openfeedback.viewmodels/OpenFeedbackViewModel.Companion|null[0]
+        final fun provideFactory(dev.gitlive.firebase/FirebaseApp, kotlin/String, kotlin/String, com.vanniktech.locale/Locale): androidx.lifecycle/ViewModelProvider.Factory // io.openfeedback.viewmodels/OpenFeedbackViewModel.Companion.provideFactory|provideFactory(dev.gitlive.firebase.FirebaseApp;kotlin.String;kotlin.String;com.vanniktech.locale.Locale){}[0]
+    }
+}
+
+sealed class io.openfeedback.viewmodels/OpenFeedbackUiState { // io.openfeedback.viewmodels/OpenFeedbackUiState|null[0]
+    constructor <init>() // io.openfeedback.viewmodels/OpenFeedbackUiState.<init>|<init>(){}[0]
+
+    final class Success : io.openfeedback.viewmodels/OpenFeedbackUiState { // io.openfeedback.viewmodels/OpenFeedbackUiState.Success|null[0]
+        constructor <init>(io.openfeedback.ui.models/UISessionFeedback) // io.openfeedback.viewmodels/OpenFeedbackUiState.Success.<init>|<init>(io.openfeedback.ui.models.UISessionFeedback){}[0]
+
+        final val session // io.openfeedback.viewmodels/OpenFeedbackUiState.Success.session|{}session[0]
+            final fun <get-session>(): io.openfeedback.ui.models/UISessionFeedback // io.openfeedback.viewmodels/OpenFeedbackUiState.Success.session.<get-session>|<get-session>(){}[0]
+    }
+
+    final object Loading : io.openfeedback.viewmodels/OpenFeedbackUiState { // io.openfeedback.viewmodels/OpenFeedbackUiState.Loading|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // io.openfeedback.viewmodels/OpenFeedbackUiState.Loading.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // io.openfeedback.viewmodels/OpenFeedbackUiState.Loading.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // io.openfeedback.viewmodels/OpenFeedbackUiState.Loading.toString|toString(){}[0]
+    }
+}
+
+final val io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackFirebaseConfig$stableprop // io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackFirebaseConfig$stableprop|#static{}io_openfeedback_viewmodels_OpenFeedbackFirebaseConfig$stableprop[0]
+final val io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackUiState$stableprop // io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackUiState$stableprop|#static{}io_openfeedback_viewmodels_OpenFeedbackUiState$stableprop[0]
+final val io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackUiState_Loading$stableprop // io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackUiState_Loading$stableprop|#static{}io_openfeedback_viewmodels_OpenFeedbackUiState_Loading$stableprop[0]
+final val io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackUiState_Success$stableprop // io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackUiState_Success$stableprop|#static{}io_openfeedback_viewmodels_OpenFeedbackUiState_Success$stableprop[0]
+final val io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackViewModel$stableprop // io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackViewModel$stableprop|#static{}io_openfeedback_viewmodels_OpenFeedbackViewModel$stableprop[0]
+
+final fun io.openfeedback.viewmodels/getFirebaseApp(kotlin/String?): dev.gitlive.firebase/FirebaseApp // io.openfeedback.viewmodels/getFirebaseApp|getFirebaseApp(kotlin.String?){}[0]
+final fun io.openfeedback.viewmodels/initializeOpenFeedback(io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig) // io.openfeedback.viewmodels/initializeOpenFeedback|initializeOpenFeedback(io.openfeedback.viewmodels.OpenFeedbackFirebaseConfig){}[0]
+final fun io.openfeedback/OpenFeedback(kotlin/String, kotlin/String, androidx.compose.ui/Modifier?, kotlin/Int, com.vanniktech.locale/Locale?, kotlin/String?, kotlin/Function2<androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>?, io.openfeedback.viewmodels/OpenFeedbackViewModel?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // io.openfeedback/OpenFeedback|OpenFeedback(kotlin.String;kotlin.String;androidx.compose.ui.Modifier?;kotlin.Int;com.vanniktech.locale.Locale?;kotlin.String?;kotlin.Function2<androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>?;io.openfeedback.viewmodels.OpenFeedbackViewModel?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]

@@ -12,9 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: gradle/gradle-build-action@v3
+      - name: Check with Gradle
+        run: |
+          ./gradlew apiCheck --stacktrace
       - name: Build with Gradle
         run: |
-          ./gradlew build
+          ./gradlew build --stacktrace
           ./gradlew publishIfNeeded
         env: # Or as an environment variable
           SONATYPE_NEXUS_USERNAME: ${{ secrets.SONATYPE_NEXUS_USERNAME }}

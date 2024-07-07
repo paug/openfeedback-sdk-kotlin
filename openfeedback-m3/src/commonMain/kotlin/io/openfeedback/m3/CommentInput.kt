@@ -11,8 +11,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
-import dev.icerock.moko.resources.compose.stringResource
-import io.openfeedback.MR
+import io.openfeedback.resources.LocalStrings
 
 @Composable
 fun CommentInput(
@@ -26,12 +25,12 @@ fun CommentInput(
         value = value,
         onValueChange = onValueChange,
         modifier = modifier,
-        label = { Text(text = stringResource(MR.strings.openfeedback_comments_title_input)) },
+        label = { Text(text = LocalStrings.current.strings.comments.titleInput) },
         trailingIcon = {
             IconButton(onClick = onSubmit) {
                 Icon(
                     imageVector = Icons.Outlined.Send,
-                    contentDescription = stringResource(MR.strings.openfeedback_comments_send)
+                    contentDescription = LocalStrings.current.strings.comments.actionSend
                 )
             }
         },

@@ -10,27 +10,25 @@ A Kotlin multiplatform client for Open-Feeedback https://github.com/HugoGresse/o
 
 The Composable `OpenFeedback` is the entry point to vote on a session. It'll make calls
 between the Firebase which host your OpenFeedback instance and your mobile application. It is
-mandatory to pass the `OpenFeedbackFirebaseConfig` to give the Firebase instance which is common 
-for all sessions of your event.
+mandatory to initialize the `OpenFeedbackFirebaseConfig` class to be able to get the Firebase 
+instance which is common for all sessions of your event.
 
 Note that it is mandatory to keep this instance unique in your application because it creates the
 `FirebaseApp` instance which is the active connection between your mobile application and the
-OpenFeedback Firebase host. Consider to save this configuration in your custom `Application` class
-or in singleton in your dependency injection.
+OpenFeedback Firebase host. Consider to init this configuration in your custom `Application` class.
 
 ```kotlin
 // In your Application class
-val openfeedbackFirebaseConfig = OpenFeedbackFirebaseConfig(
+initializeOpenFeedback(OpenFeedbackFirebaseConfig(
     context = applicationContext,
     projectId = "<your-firebase-open-feedback-project-id>",
     applicationId = "<your-firebase-open-feedback-app-id>",
     apiKey = "<your-firebase-open-feedback-api-key>",
     databaseUrl = "https://<your-firebase-open-feedback-project-id>.firebaseio.com"
-)
+))
 
 // In your Compose screen
 OpenFeedback(
-    config = (application as MyApp).openfeedbackFirebaseConfig,
     projectId = "<your-open-feedback-project-id>",
     sessionId = "<your-open-feedback-session-id>"
 )
@@ -38,8 +36,8 @@ OpenFeedback(
 
 That's all!
 
-See the [sample-app](sample-app/src/main/java/io/openfeedback/android/sample/MainActivity.kt) app 
-module if you want to see this implementation in action.
+See the [sample-app-android](sample-app/src/main/java/io/openfeedback/android/sample/MainActivity.kt) 
+app module if you want to see this implementation in action.
 
 If you are interested to create your own UI, you can use the component `OpenFeedbackLayout`. This
 `Composable` takes OpenFeedback Model UI in input and you can use `OpenFeedbackViewModel` in the

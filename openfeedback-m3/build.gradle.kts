@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.plugin.serialization")
     id("org.jetbrains.compose")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 library(
@@ -11,14 +12,10 @@ library(
     kotlinMultiplatformExtension.sourceSets {
         findByName("commonMain")!!.apply {
             dependencies {
-                api(projects.openfeedback)
-                api(projects.openfeedbackViewmodel)
-
-                implementation(libs.moko.resources.compose)
-                implementation(libs.moko.mvvm.compose)
+                api(projects.openfeedbackResources)
+                api(projects.openfeedbackUiModels)
 
                 implementation(kotlinMultiplatformExtension.compose.material3)
-                implementation(kotlinMultiplatformExtension.compose.ui)
             }
         }
         val androidMain by getting {
