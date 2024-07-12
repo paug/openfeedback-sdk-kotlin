@@ -1,4 +1,4 @@
-rootProject.name = "openfeedback-android-sdk"
+rootProject.name = "openfeedback-sdk-kotlin"
 
 pluginManagement {
     listOf(repositories, dependencyResolutionManagement.repositories).forEach {
