@@ -1,0 +1,15 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+module:openfeedback
+io.openfeedback
+io.openfeedback.model
+module:openfeedback-m3
+io.openfeedback.m3
+module:openfeedback-resources
+io.openfeedback.resources
+module:openfeedback-ui-models
+io.openfeedback.ui.models
+module:openfeedback-viewmodel
+io.openfeedback
+io.openfeedback.viewmodels
