@@ -1,24 +1,19 @@
 import com.android.build.api.dsl.CommonExtension
-import com.gradleup.librarian.gradle.librarianModule
+import com.gradleup.librarian.gradle.*
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 private fun Project.configureAndroid(namespace: String) {
-    extensions.getByName("android").apply {
-        this as CommonExtension<*,*,*,*,*, *>
-        compileSdk = 34
+    configureAndroidCompatibility(23, 34, 34)
+
+    configureJavaCompatibility(17)
+    //configureKotlinCompatibility(librarianProperties().kotlinCompatibility() ?: error("no kotlin compatibility found"))
+    configureKotlinCompatibility("2.0.0")
+
+    extensions.getByType(CommonExtension::class.java).apply {
         this.namespace = namespace
-
-        defaultConfig {
-            minSdk = 23
-        }
-
-        compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_17
-            targetCompatibility = JavaVersion.VERSION_17
-        }
     }
 }
 
