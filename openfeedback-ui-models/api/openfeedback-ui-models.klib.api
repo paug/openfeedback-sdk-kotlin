@@ -5,7 +5,7 @@
 // - Show manifest properties: true
 // - Show declarations: true
 
-// Library unique name: <openfeedback-android-sdk:openfeedback-ui-models>
+// Library unique name: <io.openfeedback:openfeedback-ui-models>
 final class io.openfeedback.ui.models/UIComment { // io.openfeedback.ui.models/UIComment|null[0]
     constructor <init>(kotlin/String, kotlin/String, kotlin/String, kotlin/Int, kotlin.collections/List<io.openfeedback.ui.models/UIDot>, kotlin/Boolean, kotlin/Boolean) // io.openfeedback.ui.models/UIComment.<init>|<init>(kotlin.String;kotlin.String;kotlin.String;kotlin.Int;kotlin.collections.List<io.openfeedback.ui.models.UIDot>;kotlin.Boolean;kotlin.Boolean){}[0]
 

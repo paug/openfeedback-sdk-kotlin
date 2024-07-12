@@ -5,7 +5,7 @@
 // - Show manifest properties: true
 // - Show declarations: true
 
-// Library unique name: <openfeedback-android-sdk:openfeedback>
+// Library unique name: <io.openfeedback:openfeedback>
 final class io.openfeedback.model/Comment : io.openfeedback.model/SessionThing { // io.openfeedback.model/Comment|null[0]
     constructor <init>(kotlin/String, kotlin/String, kotlin/Long = ..., kotlinx.datetime/Instant, kotlinx.datetime/Instant, kotlin/String?) // io.openfeedback.model/Comment.<init>|<init>(kotlin.String;kotlin.String;kotlin.Long;kotlinx.datetime.Instant;kotlinx.datetime.Instant;kotlin.String?){}[0]
 

@@ -39,7 +39,7 @@ lyricist = { module = "cafe.adriel.lyricist:lyricist", version.ref = "lyricist" 
 
 vanniktech-multiplatform-locale = { module = "com.vanniktech:multiplatform-locale", version.ref = "multiplatform-locale" }
 
-mbonnin-vespene = "net.mbonnin.vespene:vespene-lib:0.5"
+librarian = "com.gradleup.librarian:librarian-gradle-plugin:0.0.4"
 
 google-firebase-common = { module = "com.google.firebase:firebase-common", version.ref = "google-firebase-common" }
 google-firebase-firestore = { module = "com.google.firebase:firebase-firestore-ktx", version.ref = "google-firebase-firestore" }

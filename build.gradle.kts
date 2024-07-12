@@ -1,3 +1,5 @@
+import com.gradleup.librarian.gradle.librarianRoot
+
 buildscript {
     repositories {
         mavenCentral()
@@ -25,12 +27,4 @@ buildscript {
     }
 }
 
-version = "1.0.0-SNAPSHOT"
-allprojects {
-    repositories {
-        mavenCentral()
-        google()
-    }
-}
-
-configureRoot()
+librarianRoot()

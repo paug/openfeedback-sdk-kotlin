@@ -5,7 +5,7 @@
 // - Show manifest properties: true
 // - Show declarations: true
 
-// Library unique name: <openfeedback-android-sdk:openfeedback-viewmodel>
+// Library unique name: <io.openfeedback:openfeedback-viewmodel>
 final class io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig { // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig|null[0]
     constructor <init>(kotlin/Any?, kotlin/String, kotlin/String, kotlin/String, kotlin/String, kotlin/String = ...) // io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig.<init>|<init>(kotlin.Any?;kotlin.String;kotlin.String;kotlin.String;kotlin.String;kotlin.String){}[0]
 

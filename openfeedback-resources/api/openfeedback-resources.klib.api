@@ -5,7 +5,7 @@
 // - Show manifest properties: true
 // - Show declarations: true
 
-// Library unique name: <openfeedback-android-sdk:openfeedback-resources>
+// Library unique name: <io.openfeedback:openfeedback-resources>
 final class io.openfeedback.resources/CommentStrings { // io.openfeedback.resources/CommentStrings|null[0]
     constructor <init>(kotlin/String, kotlin/String, kotlin/String, kotlin/Function1<kotlin/Int, kotlin/String>) // io.openfeedback.resources/CommentStrings.<init>|<init>(kotlin.String;kotlin.String;kotlin.String;kotlin.Function1<kotlin.Int,kotlin.String>){}[0]
 
