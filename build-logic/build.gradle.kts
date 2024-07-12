@@ -12,7 +12,7 @@ repositories {
 
 dependencies {
     implementation(gradleApi())
-    implementation(libs.mbonnin.vespene)
+    implementation(libs.librarian)
     implementation(libs.jetbrains.kotlinx.coroutines)
     implementation(libs.android.gradle.plugin)
     implementation(libs.jetbrains.kotlin.gradle.plugin)

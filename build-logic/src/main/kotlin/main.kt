@@ -1,15 +1,8 @@
 import com.android.build.api.dsl.CommonExtension
-import com.android.build.gradle.internal.tasks.factory.dependsOn
-import internal.configurePublishingInternal
-import internal.publishIfNeededTaskProvider
-import internal.registerReleaseTask
-import kotlinx.validation.ApiValidationExtension
-import kotlinx.validation.ExperimentalBCVApi
+import com.gradleup.librarian.gradle.librarianModule
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
-import org.gradle.api.logging.LogLevel
 import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 private fun Project.configureAndroid(namespace: String) {
@@ -31,11 +24,6 @@ private fun Project.configureAndroid(namespace: String) {
 
 private fun Project.configureKotlin() {
     tasks.withType(KotlinCompile::class.java) {
-        it.kotlinOptions {
-            if (this is KotlinJvmOptions) {
-                jvmTarget = JavaVersion.VERSION_17.toString()
-            }
-        }
         it.kotlinOptions.freeCompilerArgs += "-Xexpect-actual-classes"
     }
 }
@@ -57,52 +45,23 @@ fun Project.library(
     kotlin: (KotlinMultiplatformExtension) -> Unit
 ) {
     val kotlinMultiplatformExtension = applyKotlinMultiplatformPlugin()
-    val binaryCompatibilityValidation = applyBinaryCompatibilityValidation()
     if (compose) {
         applyJetbrainsComposePlugin()
     }
-    if (publish) {
-        configurePublishingInternal(kotlinMultiplatformExtension.androidTarget())
-    }
-    configureBinaryCompatibilityValidation(binaryCompatibilityValidation)
     configureAndroid(namespace = namespace)
     configureKMP()
+
     configureKotlin()
 
     kotlin(kotlinMultiplatformExtension)
+
+    librarianModule(publish)
 }
 
-@OptIn(ExperimentalBCVApi::class)
-fun Project.configureBinaryCompatibilityValidation(extension: ApiValidationExtension) = with(extension) {
-    klib.enabled = true
-}
 
 fun Project.androidApp(
     namespace: String,
 ) {
     configureAndroid(namespace = namespace)
     configureKotlin()
-}
-
-
-fun Project.configureRoot() {
-    check(this == rootProject) {
-        "configureRoot must be called from the root project"
-    }
-
-    val publishIfNeeded = project.publishIfNeededTaskProvider()
-    val ossStagingReleaseTask = project.registerReleaseTask("ossStagingRelease")
-
-    val eventName = System.getenv(EnvVarKeys.GitHub.event)
-    val ref = System.getenv(EnvVarKeys.GitHub.ref)
-
-    if (eventName == "push" && ref == "refs/heads/main" && project.version.toString().endsWith("SNAPSHOT")) {
-        project.logger.log(LogLevel.LIFECYCLE, "Deploying snapshot to OssSnapshot...")
-        publishIfNeeded.dependsOn(project.tasks.named("publishAllPublicationsToOssSnapshotsRepository"))
-    }
-
-    if (ref?.startsWith("refs/tags/") == true) {
-        project.logger.log(LogLevel.LIFECYCLE, "Deploying release to OssStaging...")
-        publishIfNeeded.dependsOn(ossStagingReleaseTask)
-    }
 }

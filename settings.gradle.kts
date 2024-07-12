@@ -1,10 +1,12 @@
 rootProject.name = "openfeedback-android-sdk"
 
 pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
+    listOf(repositories, dependencyResolutionManagement.repositories).forEach {
+        it.apply {
+            mavenCentral()
+            google()
+            gradlePluginPortal()
+        }
     }
 }
 
@@ -19,4 +21,3 @@ include(
     ":sample-app-android",
     ":sample-app-shared",
 )
-
