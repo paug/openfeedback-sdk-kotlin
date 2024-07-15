@@ -26,7 +26,9 @@ private fun Project.configureKotlin() {
 private fun Project.configureKMP() {
     (extensions.getByName("kotlin") as KotlinMultiplatformExtension).apply {
         applyDefaultHierarchyTemplate()
-        androidTarget()
+        androidTarget {
+            publishLibraryVariants("release")
+        }
         iosX64()
         iosArm64()
         iosSimulatorArm64()
