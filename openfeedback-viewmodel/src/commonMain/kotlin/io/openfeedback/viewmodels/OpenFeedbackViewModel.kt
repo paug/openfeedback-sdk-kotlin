@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
-import com.vanniktech.locale.Locale
 import dev.gitlive.firebase.FirebaseApp
 import io.openfeedback.OpenFeedbackRepository
 import io.openfeedback.model.SessionData
@@ -27,7 +26,7 @@ class OpenFeedbackViewModel private constructor(
     firebaseApp: FirebaseApp,
     projectId: String,
     sessionId: String,
-    locale: Locale
+    languageCode: String
 ) : ViewModel() {
     private val repository = OpenFeedbackRepository(firebaseApp, projectId, sessionId)
 
@@ -54,13 +53,13 @@ class OpenFeedbackViewModel private constructor(
                 .mapWithPreviousValue<SessionData, UISessionFeedback> { prev, cur ->
                     if (prev == null) {
                         cur.toUISessionFeedback(
-                            locale = locale,
+                            languageCode = languageCode,
                             oldVoteItems = null,
                             oldComments = null
                         )
                     } else {
                         cur.toUISessionFeedback(
-                            locale = locale,
+                            languageCode = languageCode,
                             oldVoteItems = prev.voteItems,
                             oldComments = prev.comments
                         )
@@ -89,10 +88,10 @@ class OpenFeedbackViewModel private constructor(
             firebaseApp: FirebaseApp,
             projectId: String,
             sessionId: String,
-            locale: Locale
+            languageCode: String
         ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: KClass<T>, extras: CreationExtras): T =
-                OpenFeedbackViewModel(firebaseApp, projectId, sessionId, locale) as T
+                OpenFeedbackViewModel(firebaseApp, projectId, sessionId, languageCode) as T
         }
     }
 }

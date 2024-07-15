@@ -1,18 +1,18 @@
 public final class io/openfeedback/ui/models/UIComment {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/util/List;ZZ)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlinx/collections/immutable/ImmutableList;ZZ)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
 	public final fun component4 ()I
-	public final fun component5 ()Ljava/util/List;
+	public final fun component5 ()Lkotlinx/collections/immutable/ImmutableList;
 	public final fun component6 ()Z
 	public final fun component7 ()Z
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/util/List;ZZ)Lio/openfeedback/ui/models/UIComment;
-	public static synthetic fun copy$default (Lio/openfeedback/ui/models/UIComment;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/util/List;ZZILjava/lang/Object;)Lio/openfeedback/ui/models/UIComment;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlinx/collections/immutable/ImmutableList;ZZ)Lio/openfeedback/ui/models/UIComment;
+	public static synthetic fun copy$default (Lio/openfeedback/ui/models/UIComment;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlinx/collections/immutable/ImmutableList;ZZILjava/lang/Object;)Lio/openfeedback/ui/models/UIComment;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getCreatedAt ()Ljava/lang/String;
-	public final fun getDots ()Ljava/util/List;
+	public final fun getDots ()Lkotlinx/collections/immutable/ImmutableList;
 	public final fun getFromUser ()Z
 	public final fun getId ()Ljava/lang/String;
 	public final fun getMessage ()Ljava/lang/String;
@@ -40,31 +40,31 @@ public final class io/openfeedback/ui/models/UIDot {
 
 public final class io/openfeedback/ui/models/UISessionFeedback {
 	public static final field $stable I
-	public fun <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;)V
-	public final fun component1 ()Ljava/util/List;
-	public final fun component2 ()Ljava/util/List;
-	public final fun component3 ()Ljava/util/List;
-	public final fun copy (Ljava/util/List;Ljava/util/List;Ljava/util/List;)Lio/openfeedback/ui/models/UISessionFeedback;
-	public static synthetic fun copy$default (Lio/openfeedback/ui/models/UISessionFeedback;Ljava/util/List;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)Lio/openfeedback/ui/models/UISessionFeedback;
+	public fun <init> (Lkotlinx/collections/immutable/ImmutableList;Lkotlinx/collections/immutable/ImmutableList;Lkotlinx/collections/immutable/ImmutableList;)V
+	public final fun component1 ()Lkotlinx/collections/immutable/ImmutableList;
+	public final fun component2 ()Lkotlinx/collections/immutable/ImmutableList;
+	public final fun component3 ()Lkotlinx/collections/immutable/ImmutableList;
+	public final fun copy (Lkotlinx/collections/immutable/ImmutableList;Lkotlinx/collections/immutable/ImmutableList;Lkotlinx/collections/immutable/ImmutableList;)Lio/openfeedback/ui/models/UISessionFeedback;
+	public static synthetic fun copy$default (Lio/openfeedback/ui/models/UISessionFeedback;Lkotlinx/collections/immutable/ImmutableList;Lkotlinx/collections/immutable/ImmutableList;Lkotlinx/collections/immutable/ImmutableList;ILjava/lang/Object;)Lio/openfeedback/ui/models/UISessionFeedback;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getColors ()Ljava/util/List;
-	public final fun getComments ()Ljava/util/List;
-	public final fun getVoteItems ()Ljava/util/List;
+	public final fun getColors ()Lkotlinx/collections/immutable/ImmutableList;
+	public final fun getComments ()Lkotlinx/collections/immutable/ImmutableList;
+	public final fun getVoteItems ()Lkotlinx/collections/immutable/ImmutableList;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/openfeedback/ui/models/UIVoteItem {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Z)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lkotlinx/collections/immutable/ImmutableList;Z)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/util/List;
+	public final fun component3 ()Lkotlinx/collections/immutable/ImmutableList;
 	public final fun component4 ()Z
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Z)Lio/openfeedback/ui/models/UIVoteItem;
-	public static synthetic fun copy$default (Lio/openfeedback/ui/models/UIVoteItem;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ZILjava/lang/Object;)Lio/openfeedback/ui/models/UIVoteItem;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lkotlinx/collections/immutable/ImmutableList;Z)Lio/openfeedback/ui/models/UIVoteItem;
+	public static synthetic fun copy$default (Lio/openfeedback/ui/models/UIVoteItem;Ljava/lang/String;Ljava/lang/String;Lkotlinx/collections/immutable/ImmutableList;ZILjava/lang/Object;)Lio/openfeedback/ui/models/UIVoteItem;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getDots ()Ljava/util/List;
+	public final fun getDots ()Lkotlinx/collections/immutable/ImmutableList;
 	public final fun getId ()Ljava/lang/String;
 	public final fun getText ()Ljava/lang/String;
 	public final fun getVotedByUser ()Z

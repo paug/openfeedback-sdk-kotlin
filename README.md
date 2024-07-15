@@ -43,6 +43,18 @@ If you are interested to create your own UI, you can use the component `OpenFeed
 `Composable` takes OpenFeedback Model UI in input and you can use `OpenFeedbackViewModel` in the
 viewmodel artifact to get the data from the Firebase host.
 
+## Metrics
+
+If you change Compose contracts or model ui, you can run the following command to check if
+Composable or models are still stable:
+
+```shell
+./gradlew assembleRelease -PcomposeCompilerReports=true -PcomposeCompilerMetrics=true
+```
+
+Then, you can check the `build/compose_compiler` folder where we are using Compose UI to check 
+metrics.
+
 ## Installation
 
 The SDK is available on mavenCentral:

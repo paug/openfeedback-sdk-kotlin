@@ -47,7 +47,7 @@ final class io.openfeedback.viewmodels/OpenFeedbackViewModel : androidx.lifecycl
     final fun vote(io.openfeedback.ui.models/UIVoteItem): kotlinx.coroutines/Job // io.openfeedback.viewmodels/OpenFeedbackViewModel.vote|vote(io.openfeedback.ui.models.UIVoteItem){}[0]
 
     final object Companion { // io.openfeedback.viewmodels/OpenFeedbackViewModel.Companion|null[0]
-        final fun provideFactory(dev.gitlive.firebase/FirebaseApp, kotlin/String, kotlin/String, com.vanniktech.locale/Locale): androidx.lifecycle/ViewModelProvider.Factory // io.openfeedback.viewmodels/OpenFeedbackViewModel.Companion.provideFactory|provideFactory(dev.gitlive.firebase.FirebaseApp;kotlin.String;kotlin.String;com.vanniktech.locale.Locale){}[0]
+        final fun provideFactory(dev.gitlive.firebase/FirebaseApp, kotlin/String, kotlin/String, kotlin/String): androidx.lifecycle/ViewModelProvider.Factory // io.openfeedback.viewmodels/OpenFeedbackViewModel.Companion.provideFactory|provideFactory(dev.gitlive.firebase.FirebaseApp;kotlin.String;kotlin.String;kotlin.String){}[0]
     }
 }
 
@@ -76,4 +76,4 @@ final val io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackView
 
 final fun io.openfeedback.viewmodels/getFirebaseApp(kotlin/String?): dev.gitlive.firebase/FirebaseApp // io.openfeedback.viewmodels/getFirebaseApp|getFirebaseApp(kotlin.String?){}[0]
 final fun io.openfeedback.viewmodels/initializeOpenFeedback(io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig) // io.openfeedback.viewmodels/initializeOpenFeedback|initializeOpenFeedback(io.openfeedback.viewmodels.OpenFeedbackFirebaseConfig){}[0]
-final fun io.openfeedback/OpenFeedback(kotlin/String, kotlin/String, androidx.compose.ui/Modifier?, kotlin/Int, com.vanniktech.locale/Locale?, kotlin/String?, kotlin/Function2<androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>?, io.openfeedback.viewmodels/OpenFeedbackViewModel?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // io.openfeedback/OpenFeedback|OpenFeedback(kotlin.String;kotlin.String;androidx.compose.ui.Modifier?;kotlin.Int;com.vanniktech.locale.Locale?;kotlin.String?;kotlin.Function2<androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>?;io.openfeedback.viewmodels.OpenFeedbackViewModel?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun io.openfeedback/OpenFeedback(kotlin/String, kotlin/String, androidx.compose.ui/Modifier?, kotlin/Int, kotlin/String?, kotlin/String?, kotlin/Function2<androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>?, io.openfeedback.viewmodels/OpenFeedbackViewModel?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // io.openfeedback/OpenFeedback|OpenFeedback(kotlin.String;kotlin.String;androidx.compose.ui.Modifier?;kotlin.Int;kotlin.String?;kotlin.String?;kotlin.Function2<androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>?;io.openfeedback.viewmodels.OpenFeedbackViewModel?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]

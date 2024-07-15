@@ -6,6 +6,7 @@ import io.openfeedback.ui.models.UIComment
 import io.openfeedback.ui.models.UIDot
 import io.openfeedback.ui.models.UISessionFeedback
 import io.openfeedback.ui.models.UIVoteItem
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.format
@@ -18,13 +19,13 @@ import kotlin.random.Random
 /**
  * Map [SessionData] instance to [UISessionFeedback], stable model for Compose UI.
  *
- * @param locale User locale.
+ * @param languageCode User language code.
  * @param oldVoteItems Old version of vote items.
  * @param oldComments old version of comments.
  * @return [UISessionFeedback] model.
  */
 internal fun SessionData.toUISessionFeedback(
-    locale: Locale,
+    languageCode: String,
     oldVoteItems: List<UIVoteItem>?,
     oldComments: List<UIComment>?,
 ): UISessionFeedback {
@@ -45,11 +46,12 @@ internal fun SessionData.toUISessionFeedback(
                 }
                 UIVoteItem(
                     id = voteItem.id,
-                    text = voteItem.localizedName(locale.language.code),
-                    dots = dots,
+                    text = voteItem.localizedName(languageCode),
+                    dots = dots.toImmutableList(),
                     votedByUser = votedItemIds.contains(voteItem.id)
                 )
-            },
+            }
+            .toImmutableList(),
         comments = sessionData.comments.map { commentItem ->
             val localDateTime =
                 commentItem.createdAt.toLocalDateTime(TimeZone.currentSystemDefault())
@@ -66,12 +68,12 @@ internal fun SessionData.toUISessionFeedback(
                 message = commentItem.text,
                 createdAt = localDateTime.format(dateFormat),
                 upVotes = commentItem.plus.toInt(),
-                dots = dots,
+                dots = dots.toImmutableList(),
                 votedByUser = sessionData.votedCommentIds.contains(commentItem.id),
                 fromUser = commentItem.userId == sessionData.userId
             )
-        },
-        colors = sessionData.project.chipColors
+        }.toImmutableList(),
+        colors = sessionData.project.chipColors.toImmutableList()
     )
 }
 

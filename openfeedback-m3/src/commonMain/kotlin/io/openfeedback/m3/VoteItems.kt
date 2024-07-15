@@ -9,11 +9,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.openfeedback.ui.models.UIVoteItem
+import kotlinx.collections.immutable.ImmutableList
 
 @ExperimentalMaterial3Api
 @Composable
 internal fun VoteItems(
-    voteItems: List<UIVoteItem>,
+    voteItems: ImmutableList<UIVoteItem>,
     modifier: Modifier = Modifier,
     columnCount: Int = 2,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(8.dp),
