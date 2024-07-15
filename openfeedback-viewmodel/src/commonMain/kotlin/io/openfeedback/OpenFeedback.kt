@@ -16,6 +16,7 @@ import com.vanniktech.locale.Locale
 import com.vanniktech.locale.Locales
 import io.openfeedback.m3.Comment
 import io.openfeedback.m3.CommentInput
+import io.openfeedback.m3.FeedbackNotReady
 import io.openfeedback.m3.Loading
 import io.openfeedback.m3.OpenFeedbackLayout
 import io.openfeedback.m3.VoteCard
@@ -31,11 +32,11 @@ import io.openfeedback.viewmodels.getFirebaseApp
  * @param sessionId Firestore session id
  * @param modifier The modifier to be applied to the component.
  * @param columnCount Number of column to display for vote items.
+ * @param isReady Flag to display the component or not.
  * @param displayComments Flag to display comments or not.
  * @param languageCode Language code of the user.
  * @param appName Locale openfeedback name, used to restore openfeedback configuration.
  * @param loading Component to display when the view model fetch vote items.
- * @param viewModel ViewModel instance to fetch UI models and interact with feedback form.
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -44,11 +45,20 @@ fun OpenFeedback(
     sessionId: String,
     modifier: Modifier = Modifier,
     columnCount: Int = 2,
+    isReady: Boolean = true,
     displayComments: Boolean = true,
     languageCode: String = Locale.from(Locales.currentLocaleString()).language.code,
     appName: String? = null,
     loading: @Composable () -> Unit = { Loading(modifier = modifier) },
-    viewModel: OpenFeedbackViewModel = viewModel(
+    notReady: @Composable () -> Unit = { FeedbackNotReady(modifier = modifier) },
+) {
+    if (isReady.not()) {
+        notReady()
+        return
+    }
+    // Putting the ViewModel initialization here allows us to display this component
+    // in a Composable Preview with isNotReady flag set to true.
+    val viewModel = viewModel<OpenFeedbackViewModel>(
         key = sessionId,
         factory = OpenFeedbackViewModel.provideFactory(
             firebaseApp = getFirebaseApp(appName),
@@ -57,7 +67,6 @@ fun OpenFeedback(
             languageCode = languageCode
         )
     )
-) {
     val uiState = viewModel.uiState.collectAsState()
     when (uiState.value) {
         is OpenFeedbackUiState.Loading -> loading()

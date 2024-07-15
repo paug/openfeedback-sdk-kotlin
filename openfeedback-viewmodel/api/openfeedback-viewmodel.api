@@ -1,5 +1,5 @@
 public final class io/openfeedback/OpenFeedbackKt {
-	public static final fun OpenFeedback (Ljava/lang/String;Ljava/lang/String;Landroidx/compose/ui/Modifier;ILjava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lio/openfeedback/viewmodels/OpenFeedbackViewModel;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OpenFeedback (Ljava/lang/String;Ljava/lang/String;Landroidx/compose/ui/Modifier;IZZLjava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class io/openfeedback/viewmodels/OpenFeedbackFirebaseConfig {

@@ -42,8 +42,7 @@ fun SampleApp(
                     OpenFeedback(
                         projectId = "eaJnyMXD3oNfhrrnBYDT",
                         sessionId = "100",
-                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
-                        displayComments = true
+                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
                     )
                 }
             }

@@ -1,9 +1,15 @@
 package io.openfeedback.resources
 
 data class Strings(
+    val notReady: NotReadyStrings,
     val comments: CommentStrings,
     val poweredBy: String,
     val fromYou: String
+)
+
+data class NotReadyStrings(
+    val title: String,
+    val description: String
 )
 
 data class CommentStrings(

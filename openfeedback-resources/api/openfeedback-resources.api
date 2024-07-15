@@ -25,6 +25,20 @@ public final class io/openfeedback/resources/LocalStringsKt {
 	public static final fun getLocalStrings ()Landroidx/compose/runtime/ProvidableCompositionLocal;
 }
 
+public final class io/openfeedback/resources/NotReadyStrings {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lio/openfeedback/resources/NotReadyStrings;
+	public static synthetic fun copy$default (Lio/openfeedback/resources/NotReadyStrings;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/openfeedback/resources/NotReadyStrings;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDescription ()Ljava/lang/String;
+	public final fun getTitle ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class io/openfeedback/resources/Res {
 	public static final field $stable I
 	public static final field INSTANCE Lio/openfeedback/resources/Res;
@@ -59,15 +73,17 @@ public final class io/openfeedback/resources/Res$string {
 
 public final class io/openfeedback/resources/Strings {
 	public static final field $stable I
-	public fun <init> (Lio/openfeedback/resources/CommentStrings;Ljava/lang/String;Ljava/lang/String;)V
-	public final fun component1 ()Lio/openfeedback/resources/CommentStrings;
-	public final fun component2 ()Ljava/lang/String;
+	public fun <init> (Lio/openfeedback/resources/NotReadyStrings;Lio/openfeedback/resources/CommentStrings;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Lio/openfeedback/resources/NotReadyStrings;
+	public final fun component2 ()Lio/openfeedback/resources/CommentStrings;
 	public final fun component3 ()Ljava/lang/String;
-	public final fun copy (Lio/openfeedback/resources/CommentStrings;Ljava/lang/String;Ljava/lang/String;)Lio/openfeedback/resources/Strings;
-	public static synthetic fun copy$default (Lio/openfeedback/resources/Strings;Lio/openfeedback/resources/CommentStrings;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/openfeedback/resources/Strings;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Lio/openfeedback/resources/NotReadyStrings;Lio/openfeedback/resources/CommentStrings;Ljava/lang/String;Ljava/lang/String;)Lio/openfeedback/resources/Strings;
+	public static synthetic fun copy$default (Lio/openfeedback/resources/Strings;Lio/openfeedback/resources/NotReadyStrings;Lio/openfeedback/resources/CommentStrings;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/openfeedback/resources/Strings;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getComments ()Lio/openfeedback/resources/CommentStrings;
 	public final fun getFromYou ()Ljava/lang/String;
+	public final fun getNotReady ()Lio/openfeedback/resources/NotReadyStrings;
 	public final fun getPoweredBy ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;

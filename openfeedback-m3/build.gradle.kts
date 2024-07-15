@@ -15,6 +15,7 @@ library(
                 api(projects.openfeedbackUiModels)
 
                 implementation(kotlinMultiplatformExtension.compose.material3)
+                implementation(kotlinMultiplatformExtension.compose.materialIconsExtended)
             }
         }
         val androidMain by getting {
