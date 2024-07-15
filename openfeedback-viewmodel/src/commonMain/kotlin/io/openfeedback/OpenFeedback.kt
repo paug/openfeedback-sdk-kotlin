@@ -31,6 +31,7 @@ import io.openfeedback.viewmodels.getFirebaseApp
  * @param sessionId Firestore session id
  * @param modifier The modifier to be applied to the component.
  * @param columnCount Number of column to display for vote items.
+ * @param displayComments Flag to display comments or not.
  * @param languageCode Language code of the user.
  * @param appName Locale openfeedback name, used to restore openfeedback configuration.
  * @param loading Component to display when the view model fetch vote items.
@@ -43,6 +44,7 @@ fun OpenFeedback(
     sessionId: String,
     modifier: Modifier = Modifier,
     columnCount: Int = 2,
+    displayComments: Boolean = true,
     languageCode: String = Locale.from(Locales.currentLocaleString()).language.code,
     appName: String? = null,
     loading: @Composable () -> Unit = { Loading(modifier = modifier) },
@@ -67,6 +69,7 @@ fun OpenFeedback(
                 sessionFeedback = session,
                 modifier = modifier,
                 columnCount = columnCount,
+                displayComments = displayComments,
                 comment = {
                     Comment(
                         comment = it,
