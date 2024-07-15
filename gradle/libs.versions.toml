@@ -7,6 +7,7 @@ jetbrains-compose = "1.6.11"
 jetbrains-kotlin = "2.0.0"
 jetbrains-kotlin-coroutines = "1.8.1"
 jetbrains-kotlinx-datetime = "0.6.0"
+jetbrains-kotlinx-collections-immutable = "0.3.7"
 jetbrains-kotlinx-serialization = "1.7.0"
 jetbrains-kotlinx-binary = "0.15.0-Beta.3"
 touchlab-kermit = "2.0.4"
@@ -31,6 +32,7 @@ jetbrains-kotlin-serialization-plugin = { module = "org.jetbrains.kotlin:kotlin-
 jetbrains-kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "jetbrains-kotlin" }
 jetbrains-kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "jetbrains-kotlin-coroutines" }
 jetbrains-kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "jetbrains-kotlinx-datetime" }
+jetbrains-kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "jetbrains-kotlinx-collections-immutable" }
 jetbrains-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "jetbrains-kotlinx-serialization" }
 jetbrains-kotlinx-binary-compatibility-validator = { module = "org.jetbrains.kotlinx:binary-compatibility-validator", version.ref = "jetbrains-kotlinx-binary" }
 

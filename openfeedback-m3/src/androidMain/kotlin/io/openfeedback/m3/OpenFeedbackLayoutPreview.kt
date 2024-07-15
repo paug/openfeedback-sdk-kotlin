@@ -13,6 +13,7 @@ import io.openfeedback.ui.models.UIComment
 import io.openfeedback.ui.models.UIDot
 import io.openfeedback.ui.models.UISessionFeedback
 import io.openfeedback.ui.models.UIVoteItem
+import kotlinx.collections.immutable.persistentListOf
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
@@ -21,13 +22,13 @@ private fun OpenFeedbackLayoutPreview() {
     MaterialTheme {
         OpenFeedbackLayout(
             sessionFeedback = UISessionFeedback(
-                comments = listOf(
+                comments = persistentListOf(
                     UIComment(
                         id = "",
                         message = "Nice comment",
                         createdAt = "08 August 2023",
                         upVotes = 8,
-                        dots = listOf(UIDot(x = .5f, y = .5f, color = "FF00CC")),
+                        dots = persistentListOf(UIDot(x = .5f, y = .5f, color = "FF00CC")),
                         votedByUser = true,
                         fromUser = false
                     ),
@@ -36,26 +37,26 @@ private fun OpenFeedbackLayoutPreview() {
                         message = "Another one",
                         createdAt = "08 August 2023",
                         upVotes = 0,
-                        dots = listOf(UIDot(x = .5f, y = .5f, color = "FF00CC")),
+                        dots = persistentListOf(UIDot(x = .5f, y = .5f, color = "FF00CC")),
                         votedByUser = true,
                         fromUser = false
                     )
                 ),
-                voteItems = listOf(
+                voteItems = persistentListOf(
                     UIVoteItem(
                         id = "",
                         text = "Fun",
-                        dots = listOf(UIDot(x = .5f, y = .5f, color = "FF00CC")),
+                        dots = persistentListOf(UIDot(x = .5f, y = .5f, color = "FF00CC")),
                         votedByUser = true
                     ),
                     UIVoteItem(
                         id = "",
                         text = "Fun",
-                        dots = listOf(UIDot(x = .5f, y = .5f, color = "FF00CC")),
+                        dots = persistentListOf(UIDot(x = .5f, y = .5f, color = "FF00CC")),
                         votedByUser = true
                     )
                 ),
-                colors = emptyList()
+                colors = persistentListOf()
             ),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),

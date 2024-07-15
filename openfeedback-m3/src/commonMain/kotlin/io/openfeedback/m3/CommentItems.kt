@@ -10,10 +10,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.openfeedback.resources.LocalStrings
 import io.openfeedback.ui.models.UIComment
+import kotlinx.collections.immutable.ImmutableList
 
 @Composable
 internal fun CommentItems(
-    comments: List<UIComment>,
+    comments: ImmutableList<UIComment>,
     modifier: Modifier = Modifier,
     verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(8.dp),
     commentInput: @Composable ColumnScope.() -> Unit,

@@ -5,19 +5,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import io.openfeedback.ui.models.UIComment
 import io.openfeedback.ui.models.UIDot
+import kotlinx.collections.immutable.persistentListOf
 
 @Preview
 @Composable
 private fun CommentItemsPreview() {
     MaterialTheme {
         CommentItems(
-            comments = listOf(
+            comments = persistentListOf(
                 UIComment(
                     id = "",
                     message = "Nice comment",
                     createdAt = "08 August 2023",
                     upVotes = 8,
-                    dots = listOf(UIDot(x = .5f, y = .5f, color = "FF00CC")),
+                    dots = persistentListOf(UIDot(x = .5f, y = .5f, color = "FF00CC")),
                     votedByUser = true,
                     fromUser = false
                 ),
@@ -26,7 +27,7 @@ private fun CommentItemsPreview() {
                     message = "Another comment",
                     createdAt = "08 August 2023",
                     upVotes = 0,
-                    dots = listOf(UIDot(x = .5f, y = .5f, color = "FF00CC")),
+                    dots = persistentListOf(UIDot(x = .5f, y = .5f, color = "FF00CC")),
                     votedByUser = true,
                     fromUser = false
                 )

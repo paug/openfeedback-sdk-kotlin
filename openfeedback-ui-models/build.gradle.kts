@@ -13,6 +13,7 @@ library(
             dependencies {
                 implementation(kotlinMultiplatformExtension.compose.runtime)
                 api(libs.vanniktech.multiplatform.locale)
+                api(libs.jetbrains.kotlinx.collections.immutable)
             }
         }
     }

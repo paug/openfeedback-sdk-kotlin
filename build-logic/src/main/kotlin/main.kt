@@ -1,6 +1,5 @@
 import com.android.build.api.dsl.CommonExtension
 import com.gradleup.librarian.gradle.*
-import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
@@ -17,9 +16,19 @@ private fun Project.configureAndroid(namespace: String) {
     }
 }
 
-private fun Project.configureKotlin() {
+private fun Project.configureKotlin(composeMetrics: Boolean) {
     tasks.withType(KotlinCompile::class.java) {
         it.kotlinOptions.freeCompilerArgs += "-Xexpect-actual-classes"
+        if (composeMetrics) {
+            if (project.findProperty("composeCompilerReports") == "true") {
+                it.kotlinOptions.freeCompilerArgs += "-P"
+                it.kotlinOptions.freeCompilerArgs += "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=${project.buildDir.absolutePath}/compose_compiler"
+            }
+            if (project.findProperty("composeCompilerMetrics") == "true") {
+                it.kotlinOptions.freeCompilerArgs += "-P"
+                it.kotlinOptions.freeCompilerArgs += "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=${project.buildDir.absolutePath}/compose_compiler"
+            }
+        }
     }
 }
 
@@ -48,17 +57,16 @@ fun Project.library(
     configureAndroid(namespace = namespace)
     configureKMP()
 
-    configureKotlin()
+    configureKotlin(compose)
 
     kotlin(kotlinMultiplatformExtension)
 
     librarianModule(publish)
 }
 
-
 fun Project.androidApp(
     namespace: String,
 ) {
     configureAndroid(namespace = namespace)
-    configureKotlin()
+    configureKotlin(composeMetrics = true)
 }
