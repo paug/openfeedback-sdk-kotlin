@@ -1,5 +1,8 @@
 # Next version (unreleased)
 
+# Version 1.0.0-alpha.2
+_2024-07-15_
+
 # Version 1.0.0-alpha.1
 _2024-07-13_
 
