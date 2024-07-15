@@ -4,9 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,6 +21,7 @@ import io.openfeedback.ui.models.UIVoteItem
  * @param sessionFeedback Ui model for vote items, new comment value and comments.
  * @param modifier The modifier to be applied to the component.
  * @param columnCount Number of column to display for vote items.
+ * @param displayComments Flag to display comments or not.
  * @param horizontalArrangement The horizontal arrangement of the vote items layout.
  * @param verticalArrangement The vertical arrangement to display between every column.
  * @param comment API slot for the list of comments.
@@ -35,8 +34,9 @@ fun OpenFeedbackLayout(
     sessionFeedback: UISessionFeedback,
     modifier: Modifier = Modifier,
     columnCount: Int = 2,
+    displayComments: Boolean = true,
     horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(8.dp),
-    verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(8.dp),
+    verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(16.dp),
     comment: @Composable ColumnScope.(UIComment) -> Unit,
     commentInput: @Composable ColumnScope.() -> Unit,
     voteItem: @Composable ColumnScope.(UIVoteItem) -> Unit
@@ -52,16 +52,13 @@ fun OpenFeedbackLayout(
             verticalArrangement = verticalArrangement,
             content = voteItem
         )
-        if (sessionFeedback.comments.isNotEmpty()) {
-            Spacer(modifier = Modifier.height(8.dp))
+        if (displayComments) {
             CommentItems(
                 comments = sessionFeedback.comments,
-                verticalArrangement = verticalArrangement,
                 commentInput = commentInput,
                 comment = comment
             )
         }
-        Spacer(modifier = Modifier.height(8.dp))
         Box(
             modifier = Modifier.fillMaxWidth(),
             contentAlignment = Alignment.Center
