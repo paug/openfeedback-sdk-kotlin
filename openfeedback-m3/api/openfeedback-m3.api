@@ -40,6 +40,13 @@ public final class io/openfeedback/m3/ComposableSingletons$CommentPreviewKt {
 	public final fun getLambda-1$openfeedback_m3_release ()Lkotlin/jvm/functions/Function2;
 }
 
+public final class io/openfeedback/m3/ComposableSingletons$FeedbackNotReadyKt {
+	public static final field INSTANCE Lio/openfeedback/m3/ComposableSingletons$FeedbackNotReadyKt;
+	public static field lambda-1 Lkotlin/jvm/functions/Function2;
+	public fun <init> ()V
+	public final fun getLambda-1$openfeedback_m3_release ()Lkotlin/jvm/functions/Function2;
+}
+
 public final class io/openfeedback/m3/ComposableSingletons$OpenFeedbackLayoutPreviewKt {
 	public static final field INSTANCE Lio/openfeedback/m3/ComposableSingletons$OpenFeedbackLayoutPreviewKt;
 	public static field lambda-1 Lkotlin/jvm/functions/Function4;
@@ -69,12 +76,16 @@ public final class io/openfeedback/m3/ComposableSingletons$VoteItemsPreviewKt {
 	public final fun getLambda-2$openfeedback_m3_release ()Lkotlin/jvm/functions/Function2;
 }
 
+public final class io/openfeedback/m3/FeedbackNotReadyKt {
+	public static final fun FeedbackNotReady-eopBjH0 (Landroidx/compose/ui/Modifier;JJLandroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/runtime/Composer;II)V
+}
+
 public final class io/openfeedback/m3/LoadingKt {
 	public static final fun Loading (Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class io/openfeedback/m3/OpenFeedbackLayoutKt {
-	public static final fun OpenFeedbackLayout (Lio/openfeedback/ui/models/UISessionFeedback;Landroidx/compose/ui/Modifier;ILandroidx/compose/foundation/layout/Arrangement$Horizontal;Landroidx/compose/foundation/layout/Arrangement$Vertical;Lkotlin/jvm/functions/Function4;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function4;Landroidx/compose/runtime/Composer;II)V
+	public static final fun OpenFeedbackLayout (Lio/openfeedback/ui/models/UISessionFeedback;Landroidx/compose/ui/Modifier;IZLandroidx/compose/foundation/layout/Arrangement$Horizontal;Landroidx/compose/foundation/layout/Arrangement$Vertical;Lkotlin/jvm/functions/Function4;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function4;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class io/openfeedback/m3/VoteCardKt {
