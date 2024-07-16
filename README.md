@@ -64,7 +64,7 @@ repositories {
     mavenCentral()
 }
 
-val openfeedbackVersion = "1.0.0-alpha.2"
+val openfeedbackVersion = "1.0.0-alpha.3"
 dependencies {
     // Material 3
     implementation("io.openfeedback:openfeedback-m3:$openfeedbackVersion")
