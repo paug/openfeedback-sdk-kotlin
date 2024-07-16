@@ -1,7 +1,16 @@
 # Next version (unreleased)
 
+# Version 1.0.0-alpha.3
+_2024-07-16_
+
+- [#41] ensure compose and models are stable for Compose Compiler.
+- [#41] be able to hide comments.
+- [#41] display a component if the feedback is not ready for review.
+
 # Version 1.0.0-alpha.2
 _2024-07-15_
+
+- [#38] Publish Android artifacts to maven central.
 
 # Version 1.0.0-alpha.1
 _2024-07-13_
