@@ -23,15 +23,15 @@ fun runCommand(vararg args: String): String {
 }
 
 fun setCurrentVersion(version: String) {
-    val gradleProperties = File("build.gradle.kts")
+    val gradleProperties = File("librarian.properties")
     val newContent = gradleProperties.readLines().map {
-        it.replace(Regex("version = .*"), "version = \"$version\"")
+        it.replace(Regex("pom.version=.*"), "pom.version=\"$version\"")
     }.joinToString(separator = "\n", postfix = "\n")
     gradleProperties.writeText(newContent)
 }
 
 fun getCurrentVersion(): String {
-    val versionLines = File("build.gradle.kts").readLines().filter { it.startsWith("version =") }
+    val versionLines = File("librarian.properties").readLines().filter { it.startsWith("pom.version=") }
 
     require(versionLines.isNotEmpty()) {
         "cannot find the version in ./gradle.properties"
@@ -41,7 +41,7 @@ fun getCurrentVersion(): String {
         "multiple versions found in ./gradle.properties"
     }
 
-    val regex = Regex("version = \"(.*)-SNAPSHOT\"")
+    val regex = Regex("pom.version=(.*)-SNAPSHOT")
     val matchResult = regex.matchEntire(versionLines.first())
 
     require(matchResult != null) {
