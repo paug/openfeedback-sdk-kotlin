@@ -51,14 +51,31 @@ fun getCurrentVersion(): String {
     return matchResult.groupValues[1]
 }
 
-fun getNext(version: String, position: Int) = version.split(".").mapIndexed { index, s ->
-    when {
-        index == position -> (s.toInt() + 1).toString()
-        index > position -> "0"
-        else -> s
+val versionRegex = Regex("(?<major>[0-9]+)\\.(?<minor>[0-9]+)\\.(?<patch>[0-9]+)(-(?<prereleaseName>alpha|beta)\\.(?<prerelease>[0-9]+))?(-SNAPSHOT)?")
+fun getNext(version: String, position: Int): String {
+    val groupName = when (position) {
+        0 -> "major"
+        1 -> "minor"
+        2 -> "patch"
+        3 -> "prerelease"
+        else -> throw IllegalArgumentException("position must be 0, 1, 2 or 3")
     }
-}.joinToString(".")
+    return version.replace(versionRegex) {
+        when (groupName) {
+            "major" -> "${it.groups["major"]!!.value.toInt() + 1}.0.0"
+            "minor" -> "${it.groups["major"]!!.value}.${it.groups["minor"]!!.value.toInt() + 1}.0"
+            "patch" -> "${it.groups["major"]!!.value}.${it.groups["minor"]!!.value}.${it.groups["patch"]!!.value.toInt() + 1}"
+            "prerelease" -> {
+                val prereleaseName = it.groups["prereleaseName"]?.value ?: "alpha"
+                val newPrerelease = (it.groups["prerelease"]?.value?.toInt() ?: 0) + 1
+                "${it.groups["major"]!!.value}.${it.groups["minor"]!!.value}.${it.groups["patch"]!!.value}-$prereleaseName.$newPrerelease"
+            }
+            else -> throw IllegalArgumentException("unknown group $groupName")
+        }
+    }
+}
 
+fun getNextPreRelease(version: String) = getNext(version, 3)
 fun getNextPatch(version: String) = getNext(version, 2)
 fun getNextMinor(version: String) = getNext(version, 1)
 fun getNextMajor(version: String) = getNext(version, 0)
@@ -69,26 +86,47 @@ if (runCommand("git", "status", "--porcelain").isNotEmpty()) {
 }
 
 val version = getCurrentVersion()
+val nextPreRelease = getNextPreRelease(version)
 val nextPatch = getNextPatch(version)
 val nextMinor = getNextMinor(version)
-val nextPatchAfterMinor = getNextPatch(nextMinor)
+val nextMinorAfterMinor = getNextMinor(nextMinor)
 val nextMajor = getNextMajor(version)
-val nextPatchAfterMajor = getNextPatch(nextMajor)
+val nextMinorAfterMajor = getNextMinor(nextMajor)
 
 var tagVersion: String = ""
+var nextSnapshot: String = ""
 
 while (tagVersion.isEmpty()) {
     println("Current version is '$version-SNAPSHOT'.")
-    println("1. patch: tag $version and bump to $nextPatch-SNAPSHOT")
-    println("2. minor: tag $nextMinor and bump to $nextPatchAfterMinor-SNAPSHOT")
-    println("3. major: tag $nextMajor and bump to $nextPatchAfterMajor-SNAPSHOT")
-    println("What do you want to do [1/2/3]?")
+    println("1. current: tag $version and bump to $nextMinor-SNAPSHOT")
+    println("2. prerelease: tag $version and bump to $nextPreRelease-SNAPSHOT")
+    println("3. patch: tag $nextPatch and bump to $nextMinor-SNAPSHOT")
+    println("4. minor: tag $nextMinor and bump to $nextMinorAfterMinor-SNAPSHOT")
+    println("5. major: tag $nextMajor and bump to $nextMinorAfterMajor-SNAPSHOT")
+    println("What do you want to do [1/2/3/4/5]?")
 
     val answer = readLine()!!.trim()
     when (answer) {
-        "1" -> tagVersion = version
-        "2" -> tagVersion = nextMinor
-        "3" -> tagVersion = nextMajor
+        "1" -> {
+            tagVersion = version
+            nextSnapshot = "$nextMinor-SNAPSHOT"
+        }
+        "2" -> {
+            tagVersion = version
+            nextSnapshot = "$nextPreRelease-SNAPSHOT"
+        }
+        "3" -> {
+            tagVersion = nextPatch
+            nextSnapshot = "$nextMinor-SNAPSHOT"
+        }
+        "4" -> {
+            tagVersion = nextMinor
+            nextSnapshot = "$nextMinorAfterMinor-SNAPSHOT"
+        }
+        "5" -> {
+            tagVersion = nextMajor
+            nextSnapshot = "$nextMinorAfterMajor-SNAPSHOT"
+        }
     }
 }
 
@@ -97,8 +135,7 @@ setCurrentVersion(tagVersion)
 runCommand("git", "commit", "-a", "-m", "release $tagVersion")
 runCommand("git", "tag", "v$tagVersion")
 
-val snapshot = "${getNextPatch(tagVersion)}-SNAPSHOT"
-setCurrentVersion(snapshot)
-runCommand("git", "commit", "-a", "-m", "version is now $snapshot")
+setCurrentVersion(nextSnapshot)
+runCommand("git", "commit", "-a", "-m", "version is now $nextSnapshot")
 
 println("Everything is done. Verify everything is ok and type `git push origin master` to trigger the new version.")
