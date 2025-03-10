@@ -1,6 +1,5 @@
 public final class ComposableSingletons$MainKt {
 	public static final field INSTANCE LComposableSingletons$MainKt;
-	public static field lambda-1 Lkotlin/jvm/functions/Function3;
 	public fun <init> ()V
 	public final fun getLambda-1$sample_app_shared_release ()Lkotlin/jvm/functions/Function3;
 }

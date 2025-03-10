@@ -1,3 +1,11 @@
+public final class io/openfeedback/resources/ActualResourceCollectorsKt {
+	public static final fun getAllDrawableResources (Lio/openfeedback/resources/Res;)Ljava/util/Map;
+	public static final fun getAllFontResources (Lio/openfeedback/resources/Res;)Ljava/util/Map;
+	public static final fun getAllPluralStringResources (Lio/openfeedback/resources/Res;)Ljava/util/Map;
+	public static final fun getAllStringArrayResources (Lio/openfeedback/resources/Res;)Ljava/util/Map;
+	public static final fun getAllStringResources (Lio/openfeedback/resources/Res;)Ljava/util/Map;
+}
+
 public final class io/openfeedback/resources/CommentStrings {
 	public static final field $stable I
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V

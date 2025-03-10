@@ -8,7 +8,9 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 private fun Project.configureAndroid(namespace: String) {
     configureAndroidCompatibility(23, 35, 35)
 
+    configureJavaCompatibility(17)
     //configureKotlinCompatibility(librarianProperties().kotlinCompatibility() ?: error("no kotlin compatibility found"))
+    configureKotlinCompatibility("2.0.0")
 
     extensions.getByType(CommonExtension::class.java).apply {
         this.namespace = namespace

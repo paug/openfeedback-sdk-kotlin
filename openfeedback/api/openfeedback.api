@@ -54,7 +54,6 @@ public synthetic class io/openfeedback/model/Project$$serializer : kotlinx/seria
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/openfeedback/model/Project;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class io/openfeedback/model/Project$Companion {
@@ -113,7 +112,6 @@ public synthetic class io/openfeedback/model/VoteItem$$serializer : kotlinx/seri
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/openfeedback/model/VoteItem;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class io/openfeedback/model/VoteItem$Companion {

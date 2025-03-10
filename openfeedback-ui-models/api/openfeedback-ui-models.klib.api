@@ -101,3 +101,8 @@ final val io.openfeedback.ui.models/io_openfeedback_ui_models_UIComment$stablepr
 final val io.openfeedback.ui.models/io_openfeedback_ui_models_UIDot$stableprop // io.openfeedback.ui.models/io_openfeedback_ui_models_UIDot$stableprop|#static{}io_openfeedback_ui_models_UIDot$stableprop[0]
 final val io.openfeedback.ui.models/io_openfeedback_ui_models_UISessionFeedback$stableprop // io.openfeedback.ui.models/io_openfeedback_ui_models_UISessionFeedback$stableprop|#static{}io_openfeedback_ui_models_UISessionFeedback$stableprop[0]
 final val io.openfeedback.ui.models/io_openfeedback_ui_models_UIVoteItem$stableprop // io.openfeedback.ui.models/io_openfeedback_ui_models_UIVoteItem$stableprop|#static{}io_openfeedback_ui_models_UIVoteItem$stableprop[0]
+
+final fun io.openfeedback.ui.models/io_openfeedback_ui_models_UIComment$stableprop_getter(): kotlin/Int // io.openfeedback.ui.models/io_openfeedback_ui_models_UIComment$stableprop_getter|io_openfeedback_ui_models_UIComment$stableprop_getter(){}[0]
+final fun io.openfeedback.ui.models/io_openfeedback_ui_models_UIDot$stableprop_getter(): kotlin/Int // io.openfeedback.ui.models/io_openfeedback_ui_models_UIDot$stableprop_getter|io_openfeedback_ui_models_UIDot$stableprop_getter(){}[0]
+final fun io.openfeedback.ui.models/io_openfeedback_ui_models_UISessionFeedback$stableprop_getter(): kotlin/Int // io.openfeedback.ui.models/io_openfeedback_ui_models_UISessionFeedback$stableprop_getter|io_openfeedback_ui_models_UISessionFeedback$stableprop_getter(){}[0]
+final fun io.openfeedback.ui.models/io_openfeedback_ui_models_UIVoteItem$stableprop_getter(): kotlin/Int // io.openfeedback.ui.models/io_openfeedback_ui_models_UIVoteItem$stableprop_getter|io_openfeedback_ui_models_UIVoteItem$stableprop_getter(){}[0]

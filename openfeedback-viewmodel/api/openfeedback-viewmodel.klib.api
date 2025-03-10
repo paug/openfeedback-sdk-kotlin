@@ -52,8 +52,6 @@ final class io.openfeedback.viewmodels/OpenFeedbackViewModel : androidx.lifecycl
 }
 
 sealed class io.openfeedback.viewmodels/OpenFeedbackUiState { // io.openfeedback.viewmodels/OpenFeedbackUiState|null[0]
-    constructor <init>() // io.openfeedback.viewmodels/OpenFeedbackUiState.<init>|<init>(){}[0]
-
     final class Success : io.openfeedback.viewmodels/OpenFeedbackUiState { // io.openfeedback.viewmodels/OpenFeedbackUiState.Success|null[0]
         constructor <init>(io.openfeedback.ui.models/UISessionFeedback) // io.openfeedback.viewmodels/OpenFeedbackUiState.Success.<init>|<init>(io.openfeedback.ui.models.UISessionFeedback){}[0]
 
@@ -76,4 +74,9 @@ final val io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackView
 
 final fun io.openfeedback.viewmodels/getFirebaseApp(kotlin/String?): dev.gitlive.firebase/FirebaseApp // io.openfeedback.viewmodels/getFirebaseApp|getFirebaseApp(kotlin.String?){}[0]
 final fun io.openfeedback.viewmodels/initializeOpenFeedback(io.openfeedback.viewmodels/OpenFeedbackFirebaseConfig) // io.openfeedback.viewmodels/initializeOpenFeedback|initializeOpenFeedback(io.openfeedback.viewmodels.OpenFeedbackFirebaseConfig){}[0]
+final fun io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackFirebaseConfig$stableprop_getter(): kotlin/Int // io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackFirebaseConfig$stableprop_getter|io_openfeedback_viewmodels_OpenFeedbackFirebaseConfig$stableprop_getter(){}[0]
+final fun io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackUiState$stableprop_getter(): kotlin/Int // io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackUiState$stableprop_getter|io_openfeedback_viewmodels_OpenFeedbackUiState$stableprop_getter(){}[0]
+final fun io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackUiState_Loading$stableprop_getter(): kotlin/Int // io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackUiState_Loading$stableprop_getter|io_openfeedback_viewmodels_OpenFeedbackUiState_Loading$stableprop_getter(){}[0]
+final fun io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackUiState_Success$stableprop_getter(): kotlin/Int // io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackUiState_Success$stableprop_getter|io_openfeedback_viewmodels_OpenFeedbackUiState_Success$stableprop_getter(){}[0]
+final fun io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackViewModel$stableprop_getter(): kotlin/Int // io.openfeedback.viewmodels/io_openfeedback_viewmodels_OpenFeedbackViewModel$stableprop_getter|io_openfeedback_viewmodels_OpenFeedbackViewModel$stableprop_getter(){}[0]
 final fun io.openfeedback/OpenFeedback(kotlin/String, kotlin/String, androidx.compose.ui/Modifier?, kotlin/Int, kotlin/Boolean, kotlin/Boolean, kotlin/String?, kotlin/String?, kotlin/Function2<androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>?, kotlin/Function2<androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // io.openfeedback/OpenFeedback|OpenFeedback(kotlin.String;kotlin.String;androidx.compose.ui.Modifier?;kotlin.Int;kotlin.Boolean;kotlin.Boolean;kotlin.String?;kotlin.String?;kotlin.Function2<androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>?;kotlin.Function2<androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
