@@ -36,6 +36,9 @@ jetbrains-kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotl
 jetbrains-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "jetbrains-kotlinx-serialization" }
 jetbrains-kotlinx-binary-compatibility-validator = { module = "org.jetbrains.kotlinx:binary-compatibility-validator", version.ref = "jetbrains-kotlinx-binary" }
 
+ben-manes-versions = "com.github.ben-manes.versions:com.github.ben-manes.versions.gradle.plugin:0.52.0"
+version-catalog-update = "nl.littlerobots.version-catalog-update:nl.littlerobots.version-catalog-update.gradle.plugin:0.8.5"
+
 touchlab-kermit = { module = "co.touchlab:kermit", version.ref = "touchlab-kermit" }
 lyricist = { module = "cafe.adriel.lyricist:lyricist", version.ref = "lyricist" }
 
