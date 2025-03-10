@@ -7,7 +7,6 @@ plugins {
 library(
     namespace = "io.openfeedback.viewmodels",
     compose = true,
-    publish = true,
 ) { kotlinMultiplatformExtension ->
     kotlinMultiplatformExtension.sourceSets {
         getByName("commonMain") {

@@ -23,7 +23,7 @@ fun runCommand(vararg args: String): String {
 }
 
 fun setCurrentVersion(version: String) {
-    val gradleProperties = File("librarian.properties")
+    val gradleProperties = File("librarian.root.properties")
     val newContent = gradleProperties.readLines().map {
         it.replace(Regex("pom.version=.*"), "pom.version=\"$version\"")
     }.joinToString(separator = "\n", postfix = "\n")
@@ -31,7 +31,7 @@ fun setCurrentVersion(version: String) {
 }
 
 fun getCurrentVersion(): String {
-    val versionLines = File("librarian.properties").readLines().filter { it.startsWith("pom.version=") }
+    val versionLines = File("librarian.root.properties").readLines().filter { it.startsWith("pom.version=") }
 
     require(versionLines.isNotEmpty()) {
         "cannot find the version in ./gradle.properties"
