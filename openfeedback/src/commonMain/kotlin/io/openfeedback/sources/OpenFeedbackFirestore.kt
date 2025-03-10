@@ -1,12 +1,16 @@
+// See https://github.com/GitLiveApp/firebase-kotlin-sdk/issues/710
+@file:Suppress(
+    "CANNOT_OVERRIDE_INVISIBLE_MEMBER",
+    "INVISIBLE_MEMBER",
+    "INVISIBLE_REFERENCE",
+)
 package io.openfeedback.sources
 
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.FirebaseApp
-import dev.gitlive.firebase.SpecialValueSerializer
 import dev.gitlive.firebase.firestore.FieldValue
 import dev.gitlive.firebase.firestore.FirebaseFirestore
 import dev.gitlive.firebase.firestore.firestore
-import dev.gitlive.firebase.firestore.where
 import io.openfeedback.mappers.timestampToInstant
 import io.openfeedback.model.Comment
 import io.openfeedback.model.CommentsMap
@@ -84,24 +88,24 @@ internal class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
             .snapshots
             .mapNotNull { documentSnapshot ->
                 if (documentSnapshot.exists.not()) {
-                    return@mapNotNull SessionThingsResult(emptyMap(), documentSnapshot.metadata.isFromCache)
+                    return@mapNotNull SessionThingsResult(
+                        emptyMap(),
+                        documentSnapshot.metadata.isFromCache
+                    )
                 }
-                val sessionThings = documentSnapshot.data(strategy = SpecialValueSerializer(
-                    serialName = "SessionVotes",
-                    toNativeValue = {},
-                    fromNativeValue = {
-                        val data = it as HashMap<String, *>
-                        data.mapValues {
-                            if (it.value is Long) {
-                                VoteItemCount(it.value as Long)
-                            } else if (it.value is Map<*, *>) {
-                                (it.value as Map<String, *>).toCommentsMap()
-                            } else {
-                                error("expected a long or a map of comments, got '$this'")
-                            }
-                        }
+                // See https://github.com/GitLiveApp/firebase-kotlin-sdk/issues/710
+                val sessionData = documentSnapshot.encodedData()
+                sessionData as Map<String, Any?>
+                val sessionThings = sessionData.mapValues {
+                    if (it.value is Long) {
+                        VoteItemCount(it.value as Long)
+                    } else if (it.value is Map<*, *>) {
+                        (it.value as Map<String, *>).toCommentsMap()
+                    } else {
+                        error("expected a long or a map of comments, got '$this'")
                     }
-                ))
+                }
+
                 SessionThingsResult(sessionThings, documentSnapshot.metadata.isFromCache)
             }
 

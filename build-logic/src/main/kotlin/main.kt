@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 private fun Project.configureAndroid(namespace: String) {
-    configureAndroidCompatibility(23, 34, 34)
+    configureAndroidCompatibility(23, 35, 35)
 
     configureJavaCompatibility(17)
     //configureKotlinCompatibility(librarianProperties().kotlinCompatibility() ?: error("no kotlin compatibility found"))

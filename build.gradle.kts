@@ -27,4 +27,5 @@ buildscript {
     }
 }
 
-librarianRoot()
+apply(plugin = "com.github.ben-manes.versions")
+apply(plugin = "nl.littlerobots.version-catalog-update")

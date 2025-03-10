@@ -19,12 +19,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.openfeedback.OpenFeedback
+import io.openfeedback.viewmodels.OpenFeedbackFirebaseConfig
+import io.openfeedback.viewmodels.initializeOpenFeedback
 
+private var _initialized = false
 @Composable
 fun SampleApp(
     isSystemLight: Boolean,
     context: Any?,
 ) {
+    if (!_initialized) {
+        initializeOpenFeedback(OpenFeedbackFirebaseConfig.default(context))
+    }
     var isLight by rememberSaveable(isSystemLight) { mutableStateOf(isSystemLight) }
     OpenFeedbackTheme(
         isLight = isLight

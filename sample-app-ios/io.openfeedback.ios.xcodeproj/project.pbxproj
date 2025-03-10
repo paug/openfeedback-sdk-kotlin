@@ -13,7 +13,6 @@
 		1167ADE72BB0CFEE001541D8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1167ADE62BB0CFEE001541D8 /* Preview Assets.xcassets */; };
 		11D2416F2BB0D96D00370624 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 11D2416E2BB0D96D00370624 /* FirebaseAuth */; };
 		11D241712BB0D96D00370624 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 11D241702BB0D96D00370624 /* FirebaseFirestore */; };
-		11D241762BB109C900370624 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11D241752BB109C900370624 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,7 +21,7 @@
 		1167ADE12BB0CFED001541D8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1167ADE32BB0CFEE001541D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1167ADE62BB0CFEE001541D8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		11D241752BB109C900370624 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6139617E2D7F212400216527 /* io-openfeedback-ios-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "io-openfeedback-ios-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,10 +56,10 @@
 		1167ADDE2BB0CFED001541D8 /* io.openfeedback.ios */ = {
 			isa = PBXGroup;
 			children = (
+				6139617E2D7F212400216527 /* io-openfeedback-ios-Info.plist */,
 				1167ADDF2BB0CFED001541D8 /* io_openfeedback_iosApp.swift */,
 				1167ADE12BB0CFED001541D8 /* ContentView.swift */,
 				1167ADE32BB0CFEE001541D8 /* Assets.xcassets */,
-				11D241752BB109C900370624 /* GoogleService-Info.plist */,
 				1167ADE52BB0CFEE001541D8 /* Preview Content */,
 			);
 			path = io.openfeedback.ios;
@@ -85,7 +84,6 @@
 				1167ADD82BB0CFED001541D8 /* Sources */,
 				1167ADD92BB0CFED001541D8 /* Frameworks */,
 				1167ADDA2BB0CFED001541D8 /* Resources */,
-				11D241742BB0F69300370624 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -143,7 +141,6 @@
 			files = (
 				1167ADE72BB0CFEE001541D8 /* Preview Assets.xcassets in Resources */,
 				1167ADE42BB0CFEE001541D8 /* Assets.xcassets in Resources */,
-				11D241762BB109C900370624 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,23 +163,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd \"$SRCROOT/..\"\n./gradlew :sample-app-shared:embedAndSignAppleFrameworkForXcode\n";
-		};
-		11D241742BB0F69300370624 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$SRCROOT/../gradlew\" -p \"$SRCROOT/../\" :sample-app-shared:copyFrameworkResourcesToApp \\\n    -Pmoko.resources.PLATFORM_NAME=\"$PLATFORM_NAME\" \\\n    -Pmoko.resources.CONFIGURATION=\"$CONFIGURATION\" \\\n    -Pmoko.resources.ARCHS=\"$ARCHS\" \\\n    -Pmoko.resources.BUILT_PRODUCTS_DIR=\"$BUILT_PRODUCTS_DIR\" \\\n    -Pmoko.resources.CONTENTS_FOLDER_PATH=\"$CONTENTS_FOLDER_PATH\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -331,6 +311,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../sample-app-shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "io-openfeedback-ios-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -363,6 +344,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../sample-app-shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "io-openfeedback-ios-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

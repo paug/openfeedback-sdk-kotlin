@@ -1,5 +1,8 @@
 # Next version (unreleased)
 
+- Bump Kotlin to 2.1.10
+- Bump jvmTarget to 17 (because of the gitlive-firebase update)
+
 # Version 1.0.0-alpha.3
 _2024-07-16_
 

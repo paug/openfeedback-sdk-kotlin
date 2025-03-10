@@ -13,6 +13,7 @@ import FirebaseCore
 
 struct ComposeView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
+       
 //        let options = FirebaseOptions(googleAppID: "1:635903227116:web:31de912f8bf29befb1e1c9", gcmSenderID: "lknlkn")
 //        FirebaseApp.configure(options: options)
 //        

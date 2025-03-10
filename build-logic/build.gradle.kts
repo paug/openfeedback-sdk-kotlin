@@ -20,4 +20,6 @@ dependencies {
     implementation(libs.jetbrains.kotlin.serialization.plugin)
     implementation(libs.jetbrains.compose.gradle.plugin)
     implementation(libs.jetbrains.kotlinx.binary.compatibility.validator)
+    implementation(libs.ben.manes.versions)
+    implementation(libs.version.catalog.update)
 }
