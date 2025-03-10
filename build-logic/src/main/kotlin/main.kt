@@ -1,9 +1,11 @@
 import com.android.build.api.dsl.CommonExtension
-import com.gradleup.librarian.gradle.*
-import com.gradleup.librarian.gradle.Librarian.Companion
+import com.gradleup.librarian.gradle.Librarian
+import com.gradleup.librarian.gradle.configureAndroidCompatibility
+import com.gradleup.librarian.gradle.configureJavaCompatibility
+import com.gradleup.librarian.gradle.configureKotlinCompatibility
 import org.gradle.api.Project
-import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 private fun Project.configureAndroid(namespace: String) {
     configureAndroidCompatibility(23, 35, 35)
@@ -18,16 +20,17 @@ private fun Project.configureAndroid(namespace: String) {
 }
 
 private fun Project.configureKotlin(composeMetrics: Boolean) {
-    tasks.withType(KotlinCompile::class.java) {
-        it.kotlinOptions.freeCompilerArgs += "-Xexpect-actual-classes"
+    tasks.withType(KotlinCompilationTask::class.java) {
+        val freeCompilerArgs = it.compilerOptions.freeCompilerArgs
+        freeCompilerArgs.add("-Xexpect-actual-classes")
         if (composeMetrics) {
             if (project.findProperty("composeCompilerReports") == "true") {
-                it.kotlinOptions.freeCompilerArgs += "-P"
-                it.kotlinOptions.freeCompilerArgs += "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=${project.buildDir.absolutePath}/compose_compiler"
+                freeCompilerArgs.add("-P")
+                freeCompilerArgs.add("plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=${project.layout.buildDirectory.asFile.get().absolutePath}/compose_compiler")
             }
             if (project.findProperty("composeCompilerMetrics") == "true") {
-                it.kotlinOptions.freeCompilerArgs += "-P"
-                it.kotlinOptions.freeCompilerArgs += "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=${project.buildDir.absolutePath}/compose_compiler"
+                freeCompilerArgs.add("-P")
+                freeCompilerArgs.add("plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=${project.layout.buildDirectory.asFile.get().absolutePath}/compose_compiler")
             }
         }
     }
