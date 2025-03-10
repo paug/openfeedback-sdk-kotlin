@@ -25,7 +25,7 @@ fun runCommand(vararg args: String): String {
 fun setCurrentVersion(version: String) {
     val gradleProperties = File("librarian.root.properties")
     val newContent = gradleProperties.readLines().map {
-        it.replace(Regex("pom.version=.*"), "pom.version=\"$version\"")
+        it.replace(Regex("pom.version=.*"), "pom.version=$version")
     }.joinToString(separator = "\n", postfix = "\n")
     gradleProperties.writeText(newContent)
 }
