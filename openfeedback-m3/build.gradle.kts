@@ -6,7 +6,6 @@ plugins {
 library(
     namespace = "io.openfeedback.m3",
     compose = true,
-    publish = true,
 ) { kotlinMultiplatformExtension ->
     kotlinMultiplatformExtension.sourceSets {
         findByName("commonMain")!!.apply {

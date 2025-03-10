@@ -41,7 +41,7 @@ jetbrains-kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotl
 jetbrains-kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "jetbrains-kotlin-coroutines" }
 jetbrains-kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "jetbrains-kotlinx-datetime" }
 jetbrains-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "jetbrains-kotlinx-serialization" }
-librarian = "com.gradleup.librarian:librarian-gradle-plugin:0.0.4"
+librarian = "com.gradleup.librarian:librarian-gradle-plugin:0.0.7"
 lyricist = { module = "cafe.adriel.lyricist:lyricist", version.ref = "lyricist" }
 touchlab-kermit = { module = "co.touchlab:kermit", version.ref = "touchlab-kermit" }
 vanniktech-multiplatform-locale = { module = "com.vanniktech:multiplatform-locale", version.ref = "multiplatform-locale" }

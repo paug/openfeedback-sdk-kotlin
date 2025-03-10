@@ -1,4 +1,4 @@
-import com.gradleup.librarian.gradle.librarianRoot
+import com.gradleup.librarian.gradle.Librarian
 
 buildscript {
     repositories {
@@ -26,6 +26,7 @@ buildscript {
         }
     }
 }
-
+Librarian.root(project)
 apply(plugin = "com.github.ben-manes.versions")
 apply(plugin = "nl.littlerobots.version-catalog-update")
+

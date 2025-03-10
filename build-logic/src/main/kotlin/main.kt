@@ -1,5 +1,6 @@
 import com.android.build.api.dsl.CommonExtension
 import com.gradleup.librarian.gradle.*
+import com.gradleup.librarian.gradle.Librarian.Companion
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
@@ -7,9 +8,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 private fun Project.configureAndroid(namespace: String) {
     configureAndroidCompatibility(23, 35, 35)
 
-    configureJavaCompatibility(17)
     //configureKotlinCompatibility(librarianProperties().kotlinCompatibility() ?: error("no kotlin compatibility found"))
-    configureKotlinCompatibility("2.0.0")
 
     extensions.getByType(CommonExtension::class.java).apply {
         this.namespace = namespace
@@ -47,7 +46,6 @@ private fun Project.configureKMP() {
 fun Project.library(
     namespace: String,
     compose: Boolean = false,
-    publish: Boolean = false,
     kotlin: (KotlinMultiplatformExtension) -> Unit
 ) {
     val kotlinMultiplatformExtension = applyKotlinMultiplatformPlugin()
@@ -61,7 +59,7 @@ fun Project.library(
 
     kotlin(kotlinMultiplatformExtension)
 
-    librarianModule(publish)
+    Librarian.module(project)
 }
 
 fun Project.androidApp(

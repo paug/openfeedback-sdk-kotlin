@@ -5,7 +5,6 @@ plugins {
 
 library(
     namespace = "io.openfeedback",
-    publish = true
 ) {
     it.sourceSets {
         getByName("commonMain").apply {
