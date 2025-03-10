@@ -11,6 +11,5 @@ class MainApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         context = this
-        initializeOpenFeedback(OpenFeedbackFirebaseConfig.default(this))
     }
 }

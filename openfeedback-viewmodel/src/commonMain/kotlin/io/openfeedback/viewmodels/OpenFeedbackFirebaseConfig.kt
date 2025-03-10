@@ -42,7 +42,7 @@ private val appCache = mutableMapOf<String, FirebaseApp>()
 /**
  * Initialize in cache OpenFeedback configuration.
  *
- * @param OpenFeedback Firebase configuration.
+ * @param config Firebase configuration.
  */
 fun initializeOpenFeedback(
     config: OpenFeedbackFirebaseConfig
@@ -80,7 +80,7 @@ fun getFirebaseApp(appName: String?): FirebaseApp {
     }
 
     return when {
-        appCache.isEmpty() -> error("You need to call OpenFeedbackInitialize() before OpenFeedback()")
+        appCache.isEmpty() -> error("You need to call initializeOpenFeedback() before OpenFeedback()")
         appCache.size == 1 -> appCache.values.single()
         else -> error("Multiple OpenFeedback apps initialized, pass 'appName'")
     }
