@@ -4,7 +4,9 @@ buildscript {
     repositories {
         mavenCentral()
         google()
+        maven("https://storage.googleapis.com/gradleup/m2")
         gradlePluginPortal()
+//        mavenLocal()
     }
     dependencies {
         //noinspection UseTomlInstead

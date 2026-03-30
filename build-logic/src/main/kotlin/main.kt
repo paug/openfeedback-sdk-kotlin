@@ -1,18 +1,15 @@
 import com.android.build.api.dsl.CommonExtension
 import com.gradleup.librarian.gradle.Librarian
 import com.gradleup.librarian.gradle.configureAndroidCompatibility
-import com.gradleup.librarian.gradle.configureJavaCompatibility
-import com.gradleup.librarian.gradle.configureKotlinCompatibility
 import org.gradle.api.Project
+import org.gradle.api.attributes.Attribute
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
+import tapmoc.configureJavaCompatibility
+import tapmoc.configureKotlinCompatibility
 
 private fun Project.configureAndroid(namespace: String) {
     configureAndroidCompatibility(23, 35, 35)
-
-    configureJavaCompatibility(17)
-    //configureKotlinCompatibility(librarianProperties().kotlinCompatibility() ?: error("no kotlin compatibility found"))
-    configureKotlinCompatibility("2.0.0")
 
     extensions.getByType(CommonExtension::class.java).apply {
         this.namespace = namespace
@@ -70,6 +67,8 @@ fun Project.library(
 fun Project.androidApp(
     namespace: String,
 ) {
+    configureJavaCompatibility(17)
+    configureKotlinCompatibility("2.0.0")
     configureAndroid(namespace = namespace)
     configureKotlin(composeMetrics = true)
 }

@@ -1,5 +1,3 @@
-import com.gradleup.librarian.gradle.configureAndroidCompatibility
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")

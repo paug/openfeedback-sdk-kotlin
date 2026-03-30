@@ -1,5 +1,6 @@
 plugins {
-    `embedded-kotlin`
+    alias(libs.plugins.kgp)
+    alias(libs.plugins.tapmoc)
 }
 
 group = "build-logic"
@@ -8,11 +9,14 @@ repositories {
     mavenCentral()
     google()
     gradlePluginPortal()
+    maven("https://storage.googleapis.com/gradleup/m2")
+//    mavenLocal()
 }
 
 dependencies {
     implementation(gradleApi())
     implementation(libs.librarian)
+    implementation(libs.tapmoc)
     implementation(libs.jetbrains.kotlinx.coroutines)
     implementation(libs.android.gradle.plugin)
     implementation(libs.jetbrains.kotlin.gradle.plugin)

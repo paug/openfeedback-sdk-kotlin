@@ -4,11 +4,11 @@ import org.jetbrains.compose.ComposePlugin
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 
-inline fun <reified T> Project.extensionOrNull(): T? {
+inline fun <reified T: Any> Project.extensionOrNull(): T? {
     return extensions.findByType(T::class.java)
 }
 
-inline fun <reified T> Project.extension(): T {
+inline fun <reified T: Any> Project.extension(): T {
     return extensionOrNull<T>() ?: error("No extension of type '${T::class.java.name}")
 }
 

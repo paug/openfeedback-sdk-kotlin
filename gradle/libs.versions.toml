@@ -16,6 +16,7 @@ jetbrains-kotlinx-serialization = "1.8.0"
 lyricist = "1.7.0"
 multiplatform-locale = "0.9.0"
 touchlab-kermit = "2.0.5"
+tapmoc = "0.4.1-SNAPSHOT-3afff1879a8a81afafb99c51d73b3b3d22d11a3c"
 
 [libraries]
 android-gradle-plugin = "com.android.tools.build:gradle:8.9.0"
@@ -41,8 +42,13 @@ jetbrains-kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotl
 jetbrains-kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "jetbrains-kotlin-coroutines" }
 jetbrains-kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "jetbrains-kotlinx-datetime" }
 jetbrains-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "jetbrains-kotlinx-serialization" }
-librarian = "com.gradleup.librarian:librarian-gradle-plugin:0.0.7"
+librarian = "com.gradleup.librarian:librarian-gradle-plugin:0.2.2-SNAPSHOT-4d88675e4846e5141d9a2cbaa0dc5ec292315dce"
+tapmoc = { module =  "com.gradleup.tapmoc:com.gradleup.tapmoc.gradle.plugin", version.ref = "tapmoc" }
 lyricist = { module = "cafe.adriel.lyricist:lyricist", version.ref = "lyricist" }
 touchlab-kermit = { module = "co.touchlab:kermit", version.ref = "touchlab-kermit" }
 vanniktech-multiplatform-locale = { module = "com.vanniktech:multiplatform-locale", version.ref = "multiplatform-locale" }
 version-catalog-update = "nl.littlerobots.version-catalog-update:nl.littlerobots.version-catalog-update.gradle.plugin:0.8.5"
+
+[plugins]
+kgp = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrains-kotlin" }
+tapmoc = { id = "com.gradleup.tapmoc", version.ref = "tapmoc" }

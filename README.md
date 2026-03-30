@@ -1,4 +1,4 @@
-[![BuildStatus](https://github.com/paug/openfeedback-android-sdk/actions/workflows/ci.yaml/badge.svg)](https://github.com/paug/openfeedback-android-sdk/actions/workflows/publish-snapshot.yaml/badge.svg)
+![BuildStatus](https://github.com/paug/openfeedback-android-sdk/actions/workflows/publish-snapshot.yaml/badge.svg)
 
 # Open-Feedback Kotlin SDK
 
