@@ -80,7 +80,7 @@ fun Project.androidApp(
     namespace: String,
 ) {
     configureJavaCompatibility(17)
-    configureKotlinCompatibility("2.0.0")
+    configureKotlinCompatibility("2.2.0")
     configureAndroidApplication(namespace = namespace)
     configureKotlin(composeMetrics = true)
 }
