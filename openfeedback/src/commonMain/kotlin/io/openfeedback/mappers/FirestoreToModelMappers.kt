@@ -76,8 +76,14 @@ internal fun mapToSessionData(
         val keys = sessionThings.filter { it.value is CommentsMap }.keys
         println("Several comment maps for voteItemIds = '$keys'.")
     }
-    val commentMap =
-        (commentsMaps.firstOrNull() ?: CommentsMap(emptyMap())).coerceAggregations(votedCommentIds)
+
+    // Session may have multiple comment maps, mostly due to the following actions :
+    // vote option reset, vote option changes, multiple "text" vote options, etc.
+    // We keep the one whose ID matches the "commentVoteItemId" or the first one as a fallback.
+    val commentMap = sessionThings[project.commentVoteItemId()] as? CommentsMap
+        ?: commentsMaps.firstOrNull()
+        ?: CommentsMap(emptyMap()
+    ).coerceAggregations(votedCommentIds)
 
     val comments = commentMap.all.values.sortedByDescending { it.updatedAt }
     return SessionData(
