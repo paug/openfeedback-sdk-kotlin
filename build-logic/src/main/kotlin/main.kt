@@ -2,37 +2,36 @@ import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryTarget
 import com.gradleup.librarian.gradle.Librarian
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 import tapmoc.configureJavaCompatibility
 import tapmoc.configureKotlinCompatibility
 
 private fun Project.configureAndroidLibrary(namespace: String, enableAndroidResources: Boolean) {
-    extensions.configure<KotlinMultiplatformExtension> {
+    extensions.getByType(KotlinMultiplatformExtension::class.java).apply {
         targets.withType(KotlinMultiplatformAndroidLibraryTarget::class.java).configureEach {
-            this.namespace = namespace
-            compileSdk = 35
-            minSdk = 23
-            androidResources.enable = enableAndroidResources
+            it.namespace = namespace
+            it.compileSdk = 35
+            it.minSdk = 23
+            it.androidResources.enable = enableAndroidResources
         }
     }
 }
 
 private fun Project.configureAndroidApplication(namespace: String) {
-    extensions.configure(ApplicationExtension::class.java) {
+    extensions.getByType(ApplicationExtension::class.java).apply {
         this.namespace = namespace
+        compileSdk = 35
         defaultConfig {
             targetSdk = 35
-            compileSdk = 35
             minSdk = 23
         }
     }
 }
 
 private fun Project.configureKotlin(composeMetrics: Boolean) {
-    tasks.withType(KotlinCompilationTask::class.java) {
-        val freeCompilerArgs = compilerOptions.freeCompilerArgs
+    tasks.withType(KotlinCompilationTask::class.java).configureEach {
+        val freeCompilerArgs = it.compilerOptions.freeCompilerArgs
         freeCompilerArgs.add("-Xexpect-actual-classes")
         if (composeMetrics) {
             if (project.findProperty("composeCompilerReports") == "true") {
@@ -48,7 +47,7 @@ private fun Project.configureKotlin(composeMetrics: Boolean) {
 }
 
 private fun Project.configureKMP() {
-    extensions.configure<KotlinMultiplatformExtension> {
+    extensions.getByType(KotlinMultiplatformExtension::class.java).apply {
         applyDefaultHierarchyTemplate()
         iosX64()
         iosArm64()

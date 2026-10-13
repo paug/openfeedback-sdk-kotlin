@@ -1,6 +1,6 @@
 plugins {
+    alias(libs.plugins.kgp)
     alias(libs.plugins.tapmoc)
-    `kotlin-dsl`
 }
 
 group = "build-logic"

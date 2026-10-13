@@ -61,6 +61,7 @@ vanniktech-multiplatform-locale = { module = "com.vanniktech:multiplatform-local
 version-catalog-update = "nl.littlerobots.version-catalog-update:nl.littlerobots.version-catalog-update.gradle.plugin:0.8.5"
 
 [plugins]
+kgp = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrains-kotlin" }
 tapmoc = { id = "com.gradleup.tapmoc", version.ref = "tapmoc" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
