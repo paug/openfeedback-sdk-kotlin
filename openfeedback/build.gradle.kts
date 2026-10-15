@@ -1,13 +1,13 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.plugin.serialization")
+    alias(libs.plugins.android.kotlin.multiplatform.library)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 library(
     namespace = "io.openfeedback",
-) {
-    it.sourceSets {
-        getByName("commonMain").apply {
+) { kotlinMultiplatformExtension ->
+    kotlinMultiplatformExtension.sourceSets {
+        getByName("commonMain") {
             dependencies {
                 api(libs.jetbrains.kotlinx.coroutines)
                 api(libs.jetbrains.kotlinx.datetime)
@@ -21,7 +21,7 @@ library(
                 implementation(libs.touchlab.kermit)
             }
         }
-        getByName("androidMain"){
+        getByName("androidMain") {
             dependencies {
                 api(libs.google.firebase.common)
                 api(libs.google.firebase.firestore)

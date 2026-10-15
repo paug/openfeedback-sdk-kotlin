@@ -1,18 +1,21 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.plugin.serialization")
+    alias(libs.plugins.android.kotlin.multiplatform.library)
+    alias(libs.plugins.kotlin.serialization)
+
     id("org.jetbrains.compose")
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
 library(
     namespace = "io.openfeedback.resources",
-) {
-    it.sourceSets {
-        findByName("commonMain")!!.apply {
+    compose = true,
+    enableAndroidResources = true,
+) { kotlinMultiplatformExtension ->
+    kotlinMultiplatformExtension.sourceSets {
+        getByName("commonMain") {
             dependencies {
-                implementation(it.compose.ui)
-                api(it.compose.components.resources)
+                implementation(libs.compose.ui)
+                api(libs.compose.components.resources)
 
                 api(libs.lyricist)
             }

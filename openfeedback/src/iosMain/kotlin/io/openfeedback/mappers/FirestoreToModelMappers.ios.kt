@@ -1,14 +1,11 @@
-@file:Suppress(
-    "CANNOT_OVERRIDE_INVISIBLE_MEMBER",
-    "INVISIBLE_MEMBER",
-    "INVISIBLE_REFERENCE",
-)
 package io.openfeedback.mappers
 
-import dev.gitlive.firebase.firestore.Timestamp
+import cocoapods.FirebaseCore.FIRTimestamp
+import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.datetime.Instant
 
+@OptIn(ExperimentalForeignApi::class)
 internal actual fun timestampToInstant(nativeTimestamp: Any): Instant {
-    val ts = Timestamp(nativeTimestamp)
+    val ts = nativeTimestamp as FIRTimestamp
     return Instant.fromEpochSeconds(ts.seconds, ts.nanoseconds)
 }

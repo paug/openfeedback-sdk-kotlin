@@ -46,7 +46,7 @@ public final class io/openfeedback/model/Project {
 	public fun toString ()Ljava/lang/String;
 }
 
-public synthetic class io/openfeedback/model/Project$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+public final synthetic class io/openfeedback/model/Project$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lio/openfeedback/model/Project$$serializer;
 	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/openfeedback/model/Project;
@@ -54,6 +54,7 @@ public synthetic class io/openfeedback/model/Project$$serializer : kotlinx/seria
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/openfeedback/model/Project;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class io/openfeedback/model/Project$Companion {
@@ -104,7 +105,7 @@ public final class io/openfeedback/model/VoteItem {
 	public fun toString ()Ljava/lang/String;
 }
 
-public synthetic class io/openfeedback/model/VoteItem$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+public final synthetic class io/openfeedback/model/VoteItem$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lio/openfeedback/model/VoteItem$$serializer;
 	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/openfeedback/model/VoteItem;
@@ -112,6 +113,7 @@ public synthetic class io/openfeedback/model/VoteItem$$serializer : kotlinx/seri
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/openfeedback/model/VoteItem;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class io/openfeedback/model/VoteItem$Companion {

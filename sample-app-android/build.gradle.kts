@@ -1,6 +1,5 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.application)
     id("org.jetbrains.compose")
     id("org.jetbrains.kotlin.plugin.compose")
 }
@@ -22,5 +21,5 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.activity.compose)
 
-    implementation(compose.material3)
+    implementation(libs.compose.material3)
 }

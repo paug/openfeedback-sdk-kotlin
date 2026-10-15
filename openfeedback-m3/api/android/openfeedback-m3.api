@@ -9,56 +9,56 @@ public final class io/openfeedback/m3/CommentKt {
 public final class io/openfeedback/m3/ComposableSingletons$CommentInputKt {
 	public static final field INSTANCE Lio/openfeedback/m3/ComposableSingletons$CommentInputKt;
 	public fun <init> ()V
-	public final fun getLambda-1$openfeedback_m3_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda-2$openfeedback_m3_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$1361069759$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$29531072$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class io/openfeedback/m3/ComposableSingletons$CommentInputPreviewKt {
 	public static final field INSTANCE Lio/openfeedback/m3/ComposableSingletons$CommentInputPreviewKt;
 	public fun <init> ()V
-	public final fun getLambda-1$openfeedback_m3_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-225707359$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class io/openfeedback/m3/ComposableSingletons$CommentItemsPreviewKt {
 	public static final field INSTANCE Lio/openfeedback/m3/ComposableSingletons$CommentItemsPreviewKt;
 	public fun <init> ()V
-	public final fun getLambda-1$openfeedback_m3_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-2$openfeedback_m3_release ()Lkotlin/jvm/functions/Function4;
-	public final fun getLambda-3$openfeedback_m3_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-783402886$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function4;
+	public final fun getLambda$-978096371$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$2070616590$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class io/openfeedback/m3/ComposableSingletons$CommentPreviewKt {
 	public static final field INSTANCE Lio/openfeedback/m3/ComposableSingletons$CommentPreviewKt;
 	public fun <init> ()V
-	public final fun getLambda-1$openfeedback_m3_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$741775783$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class io/openfeedback/m3/ComposableSingletons$FeedbackNotReadyKt {
 	public static final field INSTANCE Lio/openfeedback/m3/ComposableSingletons$FeedbackNotReadyKt;
 	public fun <init> ()V
-	public final fun getLambda-1$openfeedback_m3_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$2085723828$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class io/openfeedback/m3/ComposableSingletons$OpenFeedbackLayoutPreviewKt {
 	public static final field INSTANCE Lio/openfeedback/m3/ComposableSingletons$OpenFeedbackLayoutPreviewKt;
 	public fun <init> ()V
-	public final fun getLambda-1$openfeedback_m3_release ()Lkotlin/jvm/functions/Function4;
-	public final fun getLambda-2$openfeedback_m3_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-3$openfeedback_m3_release ()Lkotlin/jvm/functions/Function4;
-	public final fun getLambda-4$openfeedback_m3_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-1296777091$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$1027963012$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function4;
+	public final fun getLambda$1277830170$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1336914282$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function4;
 }
 
 public final class io/openfeedback/m3/ComposableSingletons$VoteCardPreviewKt {
 	public static final field INSTANCE Lio/openfeedback/m3/ComposableSingletons$VoteCardPreviewKt;
 	public fun <init> ()V
-	public final fun getLambda-1$openfeedback_m3_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$1336691903$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class io/openfeedback/m3/ComposableSingletons$VoteItemsPreviewKt {
 	public static final field INSTANCE Lio/openfeedback/m3/ComposableSingletons$VoteItemsPreviewKt;
 	public fun <init> ()V
-	public final fun getLambda-1$openfeedback_m3_release ()Lkotlin/jvm/functions/Function4;
-	public final fun getLambda-2$openfeedback_m3_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-1108624850$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function4;
+	public final fun getLambda$1653370759$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class io/openfeedback/m3/FeedbackNotReadyKt {

@@ -1,7 +1,6 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.multiplatform")
-    id("org.jetbrains.kotlin.plugin.serialization")
+    alias(libs.plugins.android.kotlin.multiplatform.library)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 library(
@@ -15,13 +14,18 @@ library(
                 api(projects.openfeedbackM3)
                 api(projects.openfeedbackUiModels)
 
-                implementation(kotlinMultiplatformExtension.compose.material3)
-                implementation(kotlinMultiplatformExtension.compose.runtime)
+                implementation(libs.compose.material3)
+                implementation(libs.compose.runtime)
                 // Not sure why this is needed 🤷
                 implementation(libs.jetbrains.kotlin.stdlib)
 
                 api(libs.androidx.lifecycle.viewmodel.compose)
                 api(libs.vanniktech.multiplatform.locale)
+            }
+        }
+        getByName("androidMain") {
+            dependencies {
+                implementation(libs.compose.ui.tooling.preview)
             }
         }
     }

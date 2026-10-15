@@ -1,6 +1,5 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.multiplatform")
+    alias(libs.plugins.android.kotlin.multiplatform.library)
 }
 
 library(
@@ -10,7 +9,7 @@ library(
     kotlinMultiplatformExtension.sourceSets {
         getByName("commonMain") {
             dependencies {
-                implementation(kotlinMultiplatformExtension.compose.runtime)
+                implementation(libs.compose.runtime)
                 api(libs.vanniktech.multiplatform.locale)
                 api(libs.jetbrains.kotlinx.collections.immutable)
             }

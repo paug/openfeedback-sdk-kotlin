@@ -1,6 +1,6 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.plugin.serialization")
+    alias(libs.plugins.android.kotlin.multiplatform.library)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 library(
@@ -8,19 +8,21 @@ library(
     compose = true,
 ) { kotlinMultiplatformExtension ->
     kotlinMultiplatformExtension.sourceSets {
-        findByName("commonMain")!!.apply {
+        getByName("commonMain") {
             dependencies {
                 api(projects.openfeedbackResources)
                 api(projects.openfeedbackUiModels)
 
-                implementation(kotlinMultiplatformExtension.compose.material3)
-                implementation(kotlinMultiplatformExtension.compose.materialIconsExtended)
+                implementation(libs.compose.material3)
+                implementation(libs.compose.material.icons.extended)
             }
         }
-        val androidMain by getting {
+
+        getByName("androidMain") {
             dependencies {
                 with (kotlinMultiplatformExtension) {
-                    implementation(compose.uiTooling)
+                    implementation(libs.compose.ui.tooling)
+                    implementation(libs.compose.ui.tooling.preview)
                 }
             }
         }

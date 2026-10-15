@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
-    id("com.android.library")
+    alias(libs.plugins.android.kotlin.multiplatform.library)
 }
 
 library(
@@ -23,11 +23,11 @@ library(
         kotlinMultiplatformExtension.sourceSets {
             getByName("commonMain") {
                 dependencies {
-                    implementation(compose.ui)
-                    implementation(compose.foundation)
-                    implementation(compose.runtime)
+                    implementation(libs.compose.foundation)
+                    implementation(libs.compose.material3)
+                    implementation(libs.compose.runtime)
+                    implementation(libs.compose.ui)
                     implementation(projects.openfeedbackViewmodel)
-                    implementation(compose.material3)
                 }
             }
         }

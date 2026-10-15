@@ -1,23 +1,36 @@
-import com.android.build.api.dsl.CommonExtension
+import com.android.build.api.dsl.ApplicationExtension
+import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryTarget
 import com.gradleup.librarian.gradle.Librarian
-import com.gradleup.librarian.gradle.configureAndroidCompatibility
 import org.gradle.api.Project
-import org.gradle.api.attributes.Attribute
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 import tapmoc.configureJavaCompatibility
 import tapmoc.configureKotlinCompatibility
 
-private fun Project.configureAndroid(namespace: String) {
-    configureAndroidCompatibility(23, 35, 35)
+private fun Project.configureAndroidLibrary(namespace: String, enableAndroidResources: Boolean) {
+    extensions.getByType(KotlinMultiplatformExtension::class.java).apply {
+        targets.withType(KotlinMultiplatformAndroidLibraryTarget::class.java).configureEach {
+            it.namespace = namespace
+            it.compileSdk = 35
+            it.minSdk = 23
+            it.androidResources.enable = enableAndroidResources
+        }
+    }
+}
 
-    extensions.getByType(CommonExtension::class.java).apply {
+private fun Project.configureAndroidApplication(namespace: String) {
+    extensions.getByType(ApplicationExtension::class.java).apply {
         this.namespace = namespace
+        compileSdk = 35
+        defaultConfig {
+            targetSdk = 35
+            minSdk = 23
+        }
     }
 }
 
 private fun Project.configureKotlin(composeMetrics: Boolean) {
-    tasks.withType(KotlinCompilationTask::class.java) {
+    tasks.withType(KotlinCompilationTask::class.java).configureEach {
         val freeCompilerArgs = it.compilerOptions.freeCompilerArgs
         freeCompilerArgs.add("-Xexpect-actual-classes")
         if (composeMetrics) {
@@ -34,11 +47,8 @@ private fun Project.configureKotlin(composeMetrics: Boolean) {
 }
 
 private fun Project.configureKMP() {
-    (extensions.getByName("kotlin") as KotlinMultiplatformExtension).apply {
+    extensions.getByType(KotlinMultiplatformExtension::class.java).apply {
         applyDefaultHierarchyTemplate()
-        androidTarget {
-            publishLibraryVariants("release")
-        }
         iosX64()
         iosArm64()
         iosSimulatorArm64()
@@ -48,16 +58,17 @@ private fun Project.configureKMP() {
 fun Project.library(
     namespace: String,
     compose: Boolean = false,
+    enableAndroidResources: Boolean = false,
     kotlin: (KotlinMultiplatformExtension) -> Unit
 ) {
     val kotlinMultiplatformExtension = applyKotlinMultiplatformPlugin()
     if (compose) {
         applyJetbrainsComposePlugin()
     }
-    configureAndroid(namespace = namespace)
+    configureAndroidLibrary(namespace = namespace, enableAndroidResources = enableAndroidResources)
     configureKMP()
 
-    configureKotlin(compose)
+    configureKotlin(composeMetrics = compose)
 
     kotlin(kotlinMultiplatformExtension)
 
@@ -68,7 +79,7 @@ fun Project.androidApp(
     namespace: String,
 ) {
     configureJavaCompatibility(17)
-    configureKotlinCompatibility("2.0.0")
-    configureAndroid(namespace = namespace)
+    configureKotlinCompatibility("2.2.0")
+    configureAndroidApplication(namespace = namespace)
     configureKotlin(composeMetrics = true)
 }

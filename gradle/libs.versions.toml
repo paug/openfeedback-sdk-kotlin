@@ -1,17 +1,20 @@
 [versions]
+agp = "9.1.0"
 androidx-activity = "1.10.1"
 androidx-appcompat = "1.7.0"
 androidx-core = "1.15.0"
-gitlive-firebase = "2.1.0"
+bcv = "0.17.0"
+compose-material-icons-extended = "1.7.3"
+compose-material3 = "1.9.0"
+gitlive-firebase = "2.7.0"
 google-firebase-auth = "23.2.0"
 google-firebase-common = "21.0.0"
 google-firebase-firestore = "25.1.2"
-jetbrains-compose = "1.7.3"
-jetbrains-kotlin = "2.1.10"
+jetbrains-compose = "1.10.0"
+jetbrains-kotlin = "2.4.21"
 jetbrains-kotlin-coroutines = "1.10.1"
-bcv = "0.17.0"
 jetbrains-kotlinx-collections-immutable = "0.3.8"
-jetbrains-kotlinx-datetime = "0.6.2"
+jetbrains-kotlinx-datetime = "0.7.1-0.6.x-compat"
 jetbrains-kotlinx-serialization = "1.8.0"
 lyricist = "1.7.0"
 multiplatform-locale = "0.9.0"
@@ -19,12 +22,20 @@ touchlab-kermit = "2.0.5"
 tapmoc = "0.4.1-SNAPSHOT-3afff1879a8a81afafb99c51d73b3b3d22d11a3c"
 
 [libraries]
-android-gradle-plugin = "com.android.tools.build:gradle:8.9.0"
+android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
 androidx-lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version = "2.8.4" }
 ben-manes-versions = "com.github.ben-manes.versions:com.github.ben-manes.versions.gradle.plugin:0.52.0"
+compose-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "jetbrains-compose" }
+compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "jetbrains-compose" }
+compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "compose-material3" }
+compose-material-icons-extended = { module = "org.jetbrains.compose.material:material-icons-extended", version.ref = "compose-material-icons-extended" }
+compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "jetbrains-compose" }
+compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "jetbrains-compose" }
+compose-ui-tooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "jetbrains-compose" }
+compose-ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "jetbrains-compose" }
 gitlive-firebase-app = { module = "dev.gitlive:firebase-app", version.ref = "gitlive-firebase" }
 gitlive-firebase-auth = { module = "dev.gitlive:firebase-auth", version.ref = "gitlive-firebase" }
 gitlive-firebase-common = { module = "dev.gitlive:firebase-common", version.ref = "gitlive-firebase" }
@@ -42,7 +53,7 @@ jetbrains-kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotl
 jetbrains-kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "jetbrains-kotlin-coroutines" }
 jetbrains-kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "jetbrains-kotlinx-datetime" }
 jetbrains-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "jetbrains-kotlinx-serialization" }
-librarian = "com.gradleup.librarian:librarian-gradle-plugin:0.2.2-SNAPSHOT-4d88675e4846e5141d9a2cbaa0dc5ec292315dce"
+librarian = "com.gradleup.librarian:librarian-gradle-plugin:0.2.2-SNAPSHOT-0c82d08cecd66f14f7c8914644add0b7b5b53204"
 tapmoc = { module =  "com.gradleup.tapmoc:com.gradleup.tapmoc.gradle.plugin", version.ref = "tapmoc" }
 lyricist = { module = "cafe.adriel.lyricist:lyricist", version.ref = "lyricist" }
 touchlab-kermit = { module = "co.touchlab:kermit", version.ref = "touchlab-kermit" }
@@ -52,3 +63,6 @@ version-catalog-update = "nl.littlerobots.version-catalog-update:nl.littlerobots
 [plugins]
 kgp = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrains-kotlin" }
 tapmoc = { id = "com.gradleup.tapmoc", version.ref = "tapmoc" }
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "jetbrains-kotlin" }
