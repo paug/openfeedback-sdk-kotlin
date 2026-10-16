@@ -38,14 +38,14 @@ internal enum class VoteStatus(val value: String) {
  * Note that this can not represent the absence of a vote.
  *
  * @param voteItemId the voteItemId
- * @param id only if this is an upvote for a comment
+ * @param voteId only if this is an upvote for a comment
  * @param text only if this is a comment
  */
 @Serializable
 internal data class UserVote(
     val projectId: String,
     val talkId: String,
-    val id: String?,
+    val voteId: String?,
     val voteItemId: String,
     val text: String?,
     val userId: String?,
