@@ -28,5 +28,10 @@ library(
                 implementation(libs.google.firebase.auth)
             }
         }
+        getByName("commonTest") {
+            dependencies {
+                implementation(libs.kotlin.test)
+            }
+        }
     }
 }

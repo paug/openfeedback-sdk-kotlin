@@ -53,6 +53,7 @@ jetbrains-kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotl
 jetbrains-kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "jetbrains-kotlin-coroutines" }
 jetbrains-kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "jetbrains-kotlinx-datetime" }
 jetbrains-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "jetbrains-kotlinx-serialization" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "jetbrains-kotlin" }
 librarian = "com.gradleup.librarian:librarian-gradle-plugin:0.2.2-SNAPSHOT-0c82d08cecd66f14f7c8914644add0b7b5b53204"
 tapmoc = { module =  "com.gradleup.tapmoc:com.gradleup.tapmoc.gradle.plugin", version.ref = "tapmoc" }
 lyricist = { module = "cafe.adriel.lyricist:lyricist", version.ref = "lyricist" }
