@@ -21,23 +21,27 @@ class FirestoreToModelMappersTest {
         private fun textVoteItem(id: String) = VoteItem(id = id, name = "Text $id", type = "text")
 
         private fun userVote(voteItemId: String) = UserVote(
+            id = "",
             projectId = "",
             talkId = "",
             voteId = null,
             voteItemId = voteItemId,
             text = null,
             userId = USER_ID,
-            status = VoteStatus.Active.value
+            status = VoteStatus.Active.value,
+            voteType = "",
         )
 
         private fun userCommentUpvote(voteItemId: String, commentId: String) = UserVote(
+            id = "",
             projectId = "",
             talkId = "",
             voteId = commentId,
             voteItemId = voteItemId,
             text = null,
             userId = USER_ID,
-            status = VoteStatus.Active.value
+            status = VoteStatus.Active.value,
+            voteType = "textPlus",
         )
 
         private fun comment(id: Int) = Comment(
