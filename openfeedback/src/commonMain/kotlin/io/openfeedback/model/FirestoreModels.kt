@@ -43,13 +43,15 @@ internal enum class VoteStatus(val value: String) {
  */
 @Serializable
 internal data class UserVote(
+    val id: String,
     val projectId: String,
     val talkId: String,
     val voteId: String?,
     val voteItemId: String,
     val text: String?,
     val userId: String?,
-    val status: String
+    val status: String,
+    val voteType: String?,
 )
 
 /**
