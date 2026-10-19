@@ -124,10 +124,18 @@ internal class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
             .where { "talkId" equalTo talkId }
             .where { "voteItemId" equalTo voteItemId }
             .get()
+
+        // User votes may contain upvotes. Those upvotes are identified using the "textPlus" type.
+        // The comment should be the only document whose type isn't "textPlus".
+        val document = querySnapshot.documents
+            .map { it.data<UserVote>() }
+            .filterNot { it.voteType == "textPlus" }
+            .firstOrNull()
+
         /**
          * XXX: There may be a race here where we create 2 documents, not really sure under which circumstances
          */
-        if (querySnapshot.documents.isEmpty()) {
+        if (document == null) {
             val documentReference = collectionReference.document
             documentReference.set(
                 mapOf(
@@ -143,9 +151,8 @@ internal class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
                 )
             )
         } else {
-            querySnapshot.documents[0]
             collectionReference
-                .document(querySnapshot.documents[0].id)
+                .document(document.id)
                 .update(
                     mapOf(
                         "updatedAt" to FieldValue.serverTimestamp,
