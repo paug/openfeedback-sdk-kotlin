@@ -22,24 +22,19 @@ internal fun mapToSessionData(
     sessionThings: Map<String, SessionThing>,
 ): SessionData {
     val votedItemIds = userVotes.mapNotNull {
-        if (it.text != null) {
-            // This is a comment
-            return@mapNotNull null
+        when (it) {
+            is UserVote.BooleanVote -> {
+                // In theory one cannot vote on the "text" vote item but 🤷
+                if (it.voteItemId == project.commentVoteItemId()) null else it.voteItemId
+            }
+            else -> null
         }
-        if (it.voteItemId == project.commentVoteItemId()) {
-            // In theory one cannot vote on the "text" vote item but 🤷
-            return@mapNotNull null
-        }
-        it.voteItemId
     }.toSet()
     val votedCommentIds = userVotes.mapNotNull {
-        if (it.text != null) {
-            // This is a comment
-            return@mapNotNull null
+        when (it) {
+            is UserVote.CommentUpvote -> it.commentId
+            else -> null
         }
-
-        // If it.voteId is not null, it's the upvote for a comment
-        it.voteId
     }.toSet()
 
     val voteItemAggregates = project.voteItems.mapNotNull { voteItem ->

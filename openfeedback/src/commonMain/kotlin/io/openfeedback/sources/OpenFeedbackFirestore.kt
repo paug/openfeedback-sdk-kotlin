@@ -16,7 +16,9 @@ import io.openfeedback.model.Comment
 import io.openfeedback.model.CommentsMap
 import io.openfeedback.model.Project
 import io.openfeedback.model.SessionThing
+import io.openfeedback.model.RawUserVote
 import io.openfeedback.model.UserVote
+import io.openfeedback.model.toUserVote
 import io.openfeedback.model.VoteItemCount
 import io.openfeedback.model.VoteStatus
 import kotlinx.coroutines.flow.Flow
@@ -46,7 +48,7 @@ internal class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
                     if (!it.metadata.isFromCache) {
                         isFromCache = false
                     }
-                    it.data<UserVote>()
+                    it.data<RawUserVote>().toUserVote()
                 }
                 UserVotesResult(
                     userVotes,
@@ -128,7 +130,7 @@ internal class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
         // User votes may contain upvotes. Those upvotes are identified using the "textPlus" type.
         // The comment should be the only document whose type isn't "textPlus".
         val document = querySnapshot.documents
-            .map { it.data<UserVote>() }
+            .map { it.data<RawUserVote>() }
             .filterNot { it.voteType == "textPlus" }
             .firstOrNull()
 

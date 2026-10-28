@@ -20,28 +20,33 @@ class FirestoreToModelMappersTest {
         private fun booleanVoteItem(id: String) = VoteItem(id = id, name = "Boolean $id", type = "boolean")
         private fun textVoteItem(id: String) = VoteItem(id = id, name = "Text $id", type = "text")
 
-        private fun userVote(voteItemId: String) = UserVote(
+        private fun userVote(voteItemId: String) = UserVote.BooleanVote(
             id = "",
             projectId = "",
             talkId = "",
-            voteId = null,
-            voteItemId = voteItemId,
-            text = null,
             userId = USER_ID,
             status = VoteStatus.Active.value,
-            voteType = "",
+            voteItemId = voteItemId,
         )
 
-        private fun userCommentUpvote(voteItemId: String, commentId: String) = UserVote(
+        private fun userComment(voteItemId: String, text: String) = UserVote.TextVote(
             id = "",
             projectId = "",
             talkId = "",
-            voteId = commentId,
-            voteItemId = voteItemId,
-            text = null,
             userId = USER_ID,
             status = VoteStatus.Active.value,
-            voteType = "textPlus",
+            voteItemId = voteItemId,
+            text = text,
+        )
+
+        private fun userCommentUpvote(voteItemId: String, commentId: String) = UserVote.CommentUpvote(
+            id = "",
+            projectId = "",
+            talkId = "",
+            userId = USER_ID,
+            status = VoteStatus.Active.value,
+            voteItemId = voteItemId,
+            commentId = commentId,
         )
 
         private fun comment(id: Int) = Comment(
