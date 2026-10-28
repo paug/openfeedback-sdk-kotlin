@@ -28,21 +28,9 @@ internal enum class VoteStatus(val value: String) {
     Deleted("deleted")
 }
 
-/**
- * An user vote. This is a document in firebase.
- * [UserVote] may represent:
- * - a vote on a voteItem
- * - a plus on a comment
- * - a comment
- *
- * Note that this can not represent the absence of a vote.
- *
- * @param voteItemId the voteItemId
- * @param voteId only if this is an upvote for a comment
- * @param text only if this is a comment
- */
+/** Raw user vote document, used only for deserialization purposes */
 @Serializable
-internal data class UserVote(
+internal data class RawUserVote(
     val id: String,
     val projectId: String,
     val talkId: String,
@@ -53,6 +41,50 @@ internal data class UserVote(
     val status: String,
     val voteType: String?,
 )
+
+internal fun RawUserVote.toUserVote(): UserVote = when {
+    text != null -> UserVote.TextVote(id, projectId, talkId, userId, status, voteItemId, text)
+    voteId != null -> UserVote.CommentUpvote(id, projectId, talkId, userId, status, voteItemId, commentId = voteId)
+    else -> UserVote.BooleanVote(id, projectId, talkId, userId, status, voteItemId)
+}
+
+internal sealed class UserVote {
+    abstract val id: String
+    abstract val projectId: String
+    abstract val talkId: String
+    abstract val userId: String?
+    abstract val status: String
+    abstract val voteItemId: String
+
+    data class BooleanVote(
+        override val id: String,
+        override val projectId: String,
+        override val talkId: String,
+        override val userId: String?,
+        override val status: String,
+        override val voteItemId: String,
+    ) : UserVote()
+
+    data class TextVote(
+        override val id: String,
+        override val projectId: String,
+        override val talkId: String,
+        override val userId: String?,
+        override val status: String,
+        override val voteItemId: String,
+        val text: String,
+    ) : UserVote()
+
+    data class CommentUpvote(
+        override val id: String,
+        override val projectId: String,
+        override val talkId: String,
+        override val userId: String?,
+        override val status: String,
+        override val voteItemId: String,
+        val commentId: String,
+    ) : UserVote()
+}
 
 /**
  * Not serializable using kotlinx-serialization because there is no type discriminator
