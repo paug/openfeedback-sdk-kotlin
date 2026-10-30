@@ -1,7 +1,7 @@
 package io.openfeedback.mappers
 
 import com.google.firebase.Timestamp
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 internal actual fun timestampToInstant(nativeTimestamp: Any): Instant {
     (nativeTimestamp as Timestamp)

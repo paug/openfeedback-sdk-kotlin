@@ -2,7 +2,7 @@ package io.openfeedback.extensions
 
 import io.openfeedback.model.Comment
 import io.openfeedback.model.SessionData
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
 
 /**
  * Update the [SessionData] with the new up vote on the comment.
