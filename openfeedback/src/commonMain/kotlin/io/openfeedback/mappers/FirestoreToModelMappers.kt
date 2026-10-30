@@ -8,7 +8,7 @@ import io.openfeedback.model.SessionData
 import io.openfeedback.model.SessionThing
 import io.openfeedback.model.UserVote
 import io.openfeedback.model.VoteItemCount
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 internal expect fun timestampToInstant(nativeTimestamp: Any): Instant
 

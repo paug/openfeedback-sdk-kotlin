@@ -1,6 +1,5 @@
 package io.openfeedback.viewmodels.mappers
 
-import com.vanniktech.locale.Locale
 import io.openfeedback.model.SessionData
 import io.openfeedback.ui.models.UIComment
 import io.openfeedback.ui.models.UIDot
@@ -93,7 +92,7 @@ private fun newDots(count: Int, possibleColors: List<String>): List<UIDot> = 0.u
 }
 
 private val dateFormat = LocalDateTime.Format {
-    dayOfMonth()
+    day()
     char(' ')
     monthName(MonthNames.ENGLISH_ABBREVIATED)
     chars(", ")

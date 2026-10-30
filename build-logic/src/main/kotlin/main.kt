@@ -39,6 +39,7 @@ private fun Project.configureKotlin(composeMetrics: Boolean) {
     tasks.withType(KotlinCompilationTask::class.java).configureEach {
         val freeCompilerArgs = it.compilerOptions.freeCompilerArgs
         freeCompilerArgs.add("-Xexpect-actual-classes")
+        it.compilerOptions.optIn.add("kotlin.time.ExperimentalTime")
         if (composeMetrics) {
             if (project.findProperty("composeCompilerReports") == "true") {
                 freeCompilerArgs.add("-P")
