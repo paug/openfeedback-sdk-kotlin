@@ -8,10 +8,12 @@ import io.openfeedback.model.UserVote
 import io.openfeedback.model.VoteItem
 import io.openfeedback.model.VoteItemCount
 import io.openfeedback.model.VoteStatus
-import kotlinx.datetime.Instant
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
 
+@OptIn(ExperimentalTime::class)
 class FirestoreToModelMappersTest {
 
     companion object {
