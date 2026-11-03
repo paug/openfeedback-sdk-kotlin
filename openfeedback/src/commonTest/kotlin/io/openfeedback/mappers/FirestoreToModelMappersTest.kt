@@ -46,10 +46,10 @@ class FirestoreToModelMappersTest {
             voteType = "textPlus",
         )
 
-        private fun comment(id: Int) = Comment(
+        private fun comment(id: Int, plus: Long = 10) = Comment(
             id = "COMMENT_$id",
             text = "Comment $id",
-            plus = 10,
+            plus = plus,
             createdAt = Instant.fromEpochMilliseconds((1791797145L + id) * 1000),
             updatedAt = Instant.fromEpochMilliseconds((1791797145L + id) * 1000),
             userId = ""
@@ -130,5 +130,31 @@ class FirestoreToModelMappersTest {
                 comment(1),
             )
         ), sessionData)
+    }
+
+    @Test
+    fun votedCommentsAreCoercedCorrectly() {
+        val sessionData = mapToSessionData(
+            userId = USER_ID,
+            project = Project(
+                chipColors = emptyList(),
+                voteItems = listOf(textVoteItem("NEW_COMMENTS"))
+            ),
+            userVotes = listOf(
+                userCommentUpvote("NEW_COMMENTS", "COMMENT_1"),
+            ),
+            sessionThings = mapOf(
+                "NEW_COMMENTS" to CommentsMap(all = mapOf(
+                    "COMMENT_1" to comment(1, plus = -3),
+                    "COMMENT_2" to comment(2, plus = -3),
+                )),
+            ),
+        )
+
+        // Voted comment is raised to 1, non-voted comment is raised to 0
+        assertEquals(
+            listOf(comment(2, plus = 0), comment(1, plus = 1)),
+            sessionData.comments
+        )
     }
 }
