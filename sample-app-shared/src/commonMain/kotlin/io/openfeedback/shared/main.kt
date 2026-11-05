@@ -30,6 +30,7 @@ fun SampleApp(
 ) {
     if (!_initialized) {
         initializeOpenFeedback(OpenFeedbackFirebaseConfig.default(context))
+        _initialized = true
     }
     var isLight by rememberSaveable(isSystemLight) { mutableStateOf(isSystemLight) }
     OpenFeedbackTheme(
