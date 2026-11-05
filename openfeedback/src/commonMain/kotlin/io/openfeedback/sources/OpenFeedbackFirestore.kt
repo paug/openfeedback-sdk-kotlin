@@ -10,7 +10,10 @@ import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.FirebaseApp
 import dev.gitlive.firebase.firestore.FieldValue
 import dev.gitlive.firebase.firestore.FirebaseFirestore
+import dev.gitlive.firebase.firestore.FirebaseFirestoreSettings
+import dev.gitlive.firebase.firestore.LocalCacheSettings
 import dev.gitlive.firebase.firestore.firestore
+import dev.gitlive.firebase.firestore.firestoreSettings
 import io.openfeedback.mappers.timestampToInstant
 import io.openfeedback.model.Comment
 import io.openfeedback.model.CommentsMap
@@ -246,9 +249,20 @@ internal class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
     }
 
     companion object Factory {
+
+        private val instances = mutableMapOf<String, FirebaseFirestore>()
+
         fun create(app: FirebaseApp): OpenFeedbackFirestore {
-            val firestore = Firebase.firestore(app)
-            firestore.setSettings(persistenceEnabled = true)
+            val firestore = instances.getOrPut(app.name) {
+                Firebase.firestore(app).apply {
+                    settings = firestoreSettings {
+                        cacheSettings = LocalCacheSettings.Persistent(
+                            FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED,
+                        )
+                    }
+                }
+            }
+
             return OpenFeedbackFirestore(firestore)
         }
     }

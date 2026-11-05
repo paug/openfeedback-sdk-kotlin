@@ -15,7 +15,6 @@ internal class OpenFeedbackAuth(app: FirebaseApp) {
         mutex.withLock {
             // TODO: move this to a one-time initialization at startup
             if (auth.currentUser == null) {
-                auth.signInAnonymously()
                 val result = auth.signInAnonymously()
                 if (result.user == null) {
                     Logger.e("OpenFeedbackAuth") { "Cannot signInAnonymously" }
