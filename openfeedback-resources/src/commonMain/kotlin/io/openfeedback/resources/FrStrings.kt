@@ -12,7 +12,8 @@ internal val FrStrings = Strings(
         titleSection = "Commentaires",
         titleInput = "Votre commentaire",
         actionSend = "Soumettre votre commentaire",
-        nbVotes = { nbVotes: Int -> "$nbVotes votes" }
+        nbVotes = { nbVotes: Int -> "$nbVotes votes" },
+        hidden = "Masqué par l'organisateur. Contactez-le pour plus d'informations."
     ),
     poweredBy = "Proposé par",
     fromYou = ", de vous"

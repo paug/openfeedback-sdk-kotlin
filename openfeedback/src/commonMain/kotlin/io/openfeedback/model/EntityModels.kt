@@ -13,6 +13,10 @@ data class SessionData(
      */
     val voteItemAggregates: Map<String, Long>,
     val comments: List<Comment>,
+    /**
+     * The user's comment on this session, if any.
+     */
+    val userComment: UserComment? = null,
 )
 
 internal sealed interface Event

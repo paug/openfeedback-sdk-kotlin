@@ -8,4 +8,5 @@ data class UISessionFeedback(
     val comments: ImmutableList<UIComment>,
     val voteItems: ImmutableList<UIVoteItem>,
     val colors: ImmutableList<String>,
+    val userComment: UIUserComment? = null,
 )

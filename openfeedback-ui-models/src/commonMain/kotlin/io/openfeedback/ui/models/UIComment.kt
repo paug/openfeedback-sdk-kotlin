@@ -11,5 +11,5 @@ data class UIComment(
     val upVotes: Int,
     val dots: ImmutableList<UIDot>,
     val votedByUser: Boolean,
-    val fromUser: Boolean
+    val fromUser: Boolean,
 )
