@@ -15,3 +15,16 @@ private fun CommentInputPreview() {
         )
     }
 }
+
+@Preview
+@Composable
+private fun CommentInputHiddenPreview() {
+    MaterialTheme {
+        CommentInput(
+            value = "My hidden comment",
+            onValueChange = {},
+            onSubmit = {},
+            supportingText = "Hidden by the event organizer. Contact them for more information."
+        )
+    }
+}

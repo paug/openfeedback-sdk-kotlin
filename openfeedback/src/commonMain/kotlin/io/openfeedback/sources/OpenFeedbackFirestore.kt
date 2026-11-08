@@ -42,7 +42,9 @@ internal class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
     fun userVotes(projectId: String, userId: String, sessionId: String): Flow<UserVotesResult> =
         firestore.collection("projects/$projectId/userVotes")
             .where { "userId" equalTo userId }
-            .where { "status" equalTo VoteStatus.Active.value }
+            // Include hidden votes so the user's own comment can be displayed event if
+            // it's hidden by the moderation.
+            .where { "status" inArray listOf(VoteStatus.Active.value, VoteStatus.Hidden.value) }
             .where { "talkId" equalTo sessionId }
             .snapshots
             .map { querySnapshot ->

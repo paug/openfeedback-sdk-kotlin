@@ -17,4 +17,5 @@ data class CommentStrings(
     val titleInput: String,
     val actionSend: String,
     val nbVotes: (nbVotes: Int) -> String,
+    val hidden: String,
 )

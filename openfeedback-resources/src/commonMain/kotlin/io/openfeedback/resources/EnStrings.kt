@@ -12,7 +12,8 @@ internal val EnStrings = Strings(
         titleSection = "Comments",
         titleInput = "Your comment",
         actionSend = "Submit comment",
-        nbVotes = { nbVotes: Int -> "$nbVotes votes" }
+        nbVotes = { nbVotes: Int -> "$nbVotes votes" },
+        hidden = "Hidden by the event organizer. Contact them for more information."
     ),
     poweredBy = "Powered by",
     fromYou = ", from you"

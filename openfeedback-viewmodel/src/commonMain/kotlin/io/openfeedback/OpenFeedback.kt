@@ -20,6 +20,7 @@ import io.openfeedback.m3.FeedbackNotReady
 import io.openfeedback.m3.Loading
 import io.openfeedback.m3.OpenFeedbackLayout
 import io.openfeedback.m3.VoteCard
+import io.openfeedback.resources.LocalStrings
 import io.openfeedback.viewmodels.OpenFeedbackUiState
 import io.openfeedback.viewmodels.OpenFeedbackViewModel
 import io.openfeedback.viewmodels.getFirebaseApp
@@ -72,7 +73,7 @@ fun OpenFeedback(
         is OpenFeedbackUiState.Loading -> loading()
         is OpenFeedbackUiState.Success -> {
             val session = (uiState.value as OpenFeedbackUiState.Success).session
-            var text by remember { mutableStateOf("") }
+            var text by remember(session.userComment?.message) { mutableStateOf(session.userComment?.message ?: "") }
 
             OpenFeedbackLayout(
                 sessionFeedback = session,
@@ -88,6 +89,11 @@ fun OpenFeedback(
                 commentInput = {
                     CommentInput(
                         value = text,
+                        supportingText = if (session.userComment?.isHidden == true) {
+                            LocalStrings.current.strings.comments.hidden
+                        } else {
+                            null
+                        },
                         onValueChange = { text = it },
                         onSubmit = { viewModel.submitComment(text) },
                         modifier = Modifier.fillMaxWidth()

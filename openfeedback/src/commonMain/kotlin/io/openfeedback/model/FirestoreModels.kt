@@ -23,9 +23,10 @@ data class VoteItem(
 }
 
 @Serializable
-internal enum class VoteStatus(val value: String) {
+enum class VoteStatus(val value: String) {
     Active("active"),
-    Deleted("deleted")
+    Deleted("deleted"),
+    Hidden("hidden"),
 }
 
 /** Raw user vote document, used only for deserialization purposes */
@@ -112,4 +113,11 @@ data class Comment(
     val createdAt: Instant,
     val updatedAt: Instant,
     val userId: String?,
+    val status: VoteStatus = VoteStatus.Active,
 ): SessionThing
+
+data class UserComment(
+    val id: String,
+    val text: String,
+    val status: VoteStatus = VoteStatus.Active,
+)

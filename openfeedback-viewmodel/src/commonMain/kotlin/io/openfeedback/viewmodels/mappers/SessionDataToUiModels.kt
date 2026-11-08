@@ -1,9 +1,11 @@
 package io.openfeedback.viewmodels.mappers
 
 import io.openfeedback.model.SessionData
+import io.openfeedback.model.VoteStatus
 import io.openfeedback.ui.models.UIComment
 import io.openfeedback.ui.models.UIDot
 import io.openfeedback.ui.models.UISessionFeedback
+import io.openfeedback.ui.models.UIUserComment
 import io.openfeedback.ui.models.UIVoteItem
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.datetime.LocalDateTime
@@ -69,10 +71,17 @@ internal fun SessionData.toUISessionFeedback(
                 upVotes = commentItem.plus.toInt(),
                 dots = dots.toImmutableList(),
                 votedByUser = sessionData.votedCommentIds.contains(commentItem.id),
-                fromUser = commentItem.userId == sessionData.userId
+                fromUser = commentItem.userId == sessionData.userId,
             )
         }.toImmutableList(),
-        colors = sessionData.project.chipColors.toImmutableList()
+        colors = sessionData.project.chipColors.toImmutableList(),
+        userComment = sessionData.userComment?.let {
+            UIUserComment(
+                id = it.id,
+                message = it.text,
+                isHidden = it.status == VoteStatus.Hidden,
+            )
+        }
     )
 }
 
