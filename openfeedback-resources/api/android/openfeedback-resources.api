@@ -8,15 +8,17 @@ public final class io/openfeedback/resources/ActualResourceCollectorsKt {
 
 public final class io/openfeedback/resources/CommentStrings {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Ljava/lang/String;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
 	public final fun component4 ()Lkotlin/jvm/functions/Function1;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lio/openfeedback/resources/CommentStrings;
-	public static synthetic fun copy$default (Lio/openfeedback/resources/CommentStrings;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lio/openfeedback/resources/CommentStrings;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Ljava/lang/String;)Lio/openfeedback/resources/CommentStrings;
+	public static synthetic fun copy$default (Lio/openfeedback/resources/CommentStrings;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Ljava/lang/String;ILjava/lang/Object;)Lio/openfeedback/resources/CommentStrings;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getActionSend ()Ljava/lang/String;
+	public final fun getHidden ()Ljava/lang/String;
 	public final fun getNbVotes ()Lkotlin/jvm/functions/Function1;
 	public final fun getTitleInput ()Ljava/lang/String;
 	public final fun getTitleSection ()Ljava/lang/String;

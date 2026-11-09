@@ -1,5 +1,5 @@
 public final class io/openfeedback/m3/CommentInputKt {
-	public static final fun CommentInput (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLandroidx/compose/runtime/Composer;II)V
+	public static final fun CommentInput (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLjava/lang/String;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class io/openfeedback/m3/CommentKt {
@@ -9,14 +9,15 @@ public final class io/openfeedback/m3/CommentKt {
 public final class io/openfeedback/m3/ComposableSingletons$CommentInputKt {
 	public static final field INSTANCE Lio/openfeedback/m3/ComposableSingletons$CommentInputKt;
 	public fun <init> ()V
-	public final fun getLambda$1361069759$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$29531072$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-1591175688$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-2113024553$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class io/openfeedback/m3/ComposableSingletons$CommentInputPreviewKt {
 	public static final field INSTANCE Lio/openfeedback/m3/ComposableSingletons$CommentInputPreviewKt;
 	public fun <init> ()V
 	public final fun getLambda$-225707359$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$637344939$io_openfeedback_openfeedback_m3 ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class io/openfeedback/m3/ComposableSingletons$CommentItemsPreviewKt {

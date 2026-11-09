@@ -57,22 +57,44 @@ final class io.openfeedback.ui.models/UIDot { // io.openfeedback.ui.models/UIDot
 }
 
 final class io.openfeedback.ui.models/UISessionFeedback { // io.openfeedback.ui.models/UISessionFeedback|null[0]
-    constructor <init>(kotlinx.collections.immutable/ImmutableList<io.openfeedback.ui.models/UIComment>, kotlinx.collections.immutable/ImmutableList<io.openfeedback.ui.models/UIVoteItem>, kotlinx.collections.immutable/ImmutableList<kotlin/String>) // io.openfeedback.ui.models/UISessionFeedback.<init>|<init>(kotlinx.collections.immutable.ImmutableList<io.openfeedback.ui.models.UIComment>;kotlinx.collections.immutable.ImmutableList<io.openfeedback.ui.models.UIVoteItem>;kotlinx.collections.immutable.ImmutableList<kotlin.String>){}[0]
+    constructor <init>(kotlinx.collections.immutable/ImmutableList<io.openfeedback.ui.models/UIComment>, kotlinx.collections.immutable/ImmutableList<io.openfeedback.ui.models/UIVoteItem>, kotlinx.collections.immutable/ImmutableList<kotlin/String>, io.openfeedback.ui.models/UIUserComment? = ...) // io.openfeedback.ui.models/UISessionFeedback.<init>|<init>(kotlinx.collections.immutable.ImmutableList<io.openfeedback.ui.models.UIComment>;kotlinx.collections.immutable.ImmutableList<io.openfeedback.ui.models.UIVoteItem>;kotlinx.collections.immutable.ImmutableList<kotlin.String>;io.openfeedback.ui.models.UIUserComment?){}[0]
 
     final val colors // io.openfeedback.ui.models/UISessionFeedback.colors|{}colors[0]
         final fun <get-colors>(): kotlinx.collections.immutable/ImmutableList<kotlin/String> // io.openfeedback.ui.models/UISessionFeedback.colors.<get-colors>|<get-colors>(){}[0]
     final val comments // io.openfeedback.ui.models/UISessionFeedback.comments|{}comments[0]
         final fun <get-comments>(): kotlinx.collections.immutable/ImmutableList<io.openfeedback.ui.models/UIComment> // io.openfeedback.ui.models/UISessionFeedback.comments.<get-comments>|<get-comments>(){}[0]
+    final val userComment // io.openfeedback.ui.models/UISessionFeedback.userComment|{}userComment[0]
+        final fun <get-userComment>(): io.openfeedback.ui.models/UIUserComment? // io.openfeedback.ui.models/UISessionFeedback.userComment.<get-userComment>|<get-userComment>(){}[0]
     final val voteItems // io.openfeedback.ui.models/UISessionFeedback.voteItems|{}voteItems[0]
         final fun <get-voteItems>(): kotlinx.collections.immutable/ImmutableList<io.openfeedback.ui.models/UIVoteItem> // io.openfeedback.ui.models/UISessionFeedback.voteItems.<get-voteItems>|<get-voteItems>(){}[0]
 
     final fun component1(): kotlinx.collections.immutable/ImmutableList<io.openfeedback.ui.models/UIComment> // io.openfeedback.ui.models/UISessionFeedback.component1|component1(){}[0]
     final fun component2(): kotlinx.collections.immutable/ImmutableList<io.openfeedback.ui.models/UIVoteItem> // io.openfeedback.ui.models/UISessionFeedback.component2|component2(){}[0]
     final fun component3(): kotlinx.collections.immutable/ImmutableList<kotlin/String> // io.openfeedback.ui.models/UISessionFeedback.component3|component3(){}[0]
-    final fun copy(kotlinx.collections.immutable/ImmutableList<io.openfeedback.ui.models/UIComment> = ..., kotlinx.collections.immutable/ImmutableList<io.openfeedback.ui.models/UIVoteItem> = ..., kotlinx.collections.immutable/ImmutableList<kotlin/String> = ...): io.openfeedback.ui.models/UISessionFeedback // io.openfeedback.ui.models/UISessionFeedback.copy|copy(kotlinx.collections.immutable.ImmutableList<io.openfeedback.ui.models.UIComment>;kotlinx.collections.immutable.ImmutableList<io.openfeedback.ui.models.UIVoteItem>;kotlinx.collections.immutable.ImmutableList<kotlin.String>){}[0]
+    final fun component4(): io.openfeedback.ui.models/UIUserComment? // io.openfeedback.ui.models/UISessionFeedback.component4|component4(){}[0]
+    final fun copy(kotlinx.collections.immutable/ImmutableList<io.openfeedback.ui.models/UIComment> = ..., kotlinx.collections.immutable/ImmutableList<io.openfeedback.ui.models/UIVoteItem> = ..., kotlinx.collections.immutable/ImmutableList<kotlin/String> = ..., io.openfeedback.ui.models/UIUserComment? = ...): io.openfeedback.ui.models/UISessionFeedback // io.openfeedback.ui.models/UISessionFeedback.copy|copy(kotlinx.collections.immutable.ImmutableList<io.openfeedback.ui.models.UIComment>;kotlinx.collections.immutable.ImmutableList<io.openfeedback.ui.models.UIVoteItem>;kotlinx.collections.immutable.ImmutableList<kotlin.String>;io.openfeedback.ui.models.UIUserComment?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // io.openfeedback.ui.models/UISessionFeedback.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.openfeedback.ui.models/UISessionFeedback.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.openfeedback.ui.models/UISessionFeedback.toString|toString(){}[0]
+}
+
+final class io.openfeedback.ui.models/UIUserComment { // io.openfeedback.ui.models/UIUserComment|null[0]
+    constructor <init>(kotlin/String, kotlin/String, kotlin/Boolean = ...) // io.openfeedback.ui.models/UIUserComment.<init>|<init>(kotlin.String;kotlin.String;kotlin.Boolean){}[0]
+
+    final val id // io.openfeedback.ui.models/UIUserComment.id|{}id[0]
+        final fun <get-id>(): kotlin/String // io.openfeedback.ui.models/UIUserComment.id.<get-id>|<get-id>(){}[0]
+    final val isHidden // io.openfeedback.ui.models/UIUserComment.isHidden|{}isHidden[0]
+        final fun <get-isHidden>(): kotlin/Boolean // io.openfeedback.ui.models/UIUserComment.isHidden.<get-isHidden>|<get-isHidden>(){}[0]
+    final val message // io.openfeedback.ui.models/UIUserComment.message|{}message[0]
+        final fun <get-message>(): kotlin/String // io.openfeedback.ui.models/UIUserComment.message.<get-message>|<get-message>(){}[0]
+
+    final fun component1(): kotlin/String // io.openfeedback.ui.models/UIUserComment.component1|component1(){}[0]
+    final fun component2(): kotlin/String // io.openfeedback.ui.models/UIUserComment.component2|component2(){}[0]
+    final fun component3(): kotlin/Boolean // io.openfeedback.ui.models/UIUserComment.component3|component3(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/Boolean = ...): io.openfeedback.ui.models/UIUserComment // io.openfeedback.ui.models/UIUserComment.copy|copy(kotlin.String;kotlin.String;kotlin.Boolean){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.openfeedback.ui.models/UIUserComment.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.openfeedback.ui.models/UIUserComment.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.openfeedback.ui.models/UIUserComment.toString|toString(){}[0]
 }
 
 final class io.openfeedback.ui.models/UIVoteItem { // io.openfeedback.ui.models/UIVoteItem|null[0]
@@ -100,9 +122,11 @@ final class io.openfeedback.ui.models/UIVoteItem { // io.openfeedback.ui.models/
 final val io.openfeedback.ui.models/io_openfeedback_ui_models_UIComment$stableprop // io.openfeedback.ui.models/io_openfeedback_ui_models_UIComment$stableprop|#static{}io_openfeedback_ui_models_UIComment$stableprop[0]
 final val io.openfeedback.ui.models/io_openfeedback_ui_models_UIDot$stableprop // io.openfeedback.ui.models/io_openfeedback_ui_models_UIDot$stableprop|#static{}io_openfeedback_ui_models_UIDot$stableprop[0]
 final val io.openfeedback.ui.models/io_openfeedback_ui_models_UISessionFeedback$stableprop // io.openfeedback.ui.models/io_openfeedback_ui_models_UISessionFeedback$stableprop|#static{}io_openfeedback_ui_models_UISessionFeedback$stableprop[0]
+final val io.openfeedback.ui.models/io_openfeedback_ui_models_UIUserComment$stableprop // io.openfeedback.ui.models/io_openfeedback_ui_models_UIUserComment$stableprop|#static{}io_openfeedback_ui_models_UIUserComment$stableprop[0]
 final val io.openfeedback.ui.models/io_openfeedback_ui_models_UIVoteItem$stableprop // io.openfeedback.ui.models/io_openfeedback_ui_models_UIVoteItem$stableprop|#static{}io_openfeedback_ui_models_UIVoteItem$stableprop[0]
 
 final fun io.openfeedback.ui.models/io_openfeedback_ui_models_UIComment$stableprop_getter(): kotlin/Int // io.openfeedback.ui.models/io_openfeedback_ui_models_UIComment$stableprop_getter|io_openfeedback_ui_models_UIComment$stableprop_getter(){}[0]
 final fun io.openfeedback.ui.models/io_openfeedback_ui_models_UIDot$stableprop_getter(): kotlin/Int // io.openfeedback.ui.models/io_openfeedback_ui_models_UIDot$stableprop_getter|io_openfeedback_ui_models_UIDot$stableprop_getter(){}[0]
 final fun io.openfeedback.ui.models/io_openfeedback_ui_models_UISessionFeedback$stableprop_getter(): kotlin/Int // io.openfeedback.ui.models/io_openfeedback_ui_models_UISessionFeedback$stableprop_getter|io_openfeedback_ui_models_UISessionFeedback$stableprop_getter(){}[0]
+final fun io.openfeedback.ui.models/io_openfeedback_ui_models_UIUserComment$stableprop_getter(): kotlin/Int // io.openfeedback.ui.models/io_openfeedback_ui_models_UIUserComment$stableprop_getter|io_openfeedback_ui_models_UIUserComment$stableprop_getter(){}[0]
 final fun io.openfeedback.ui.models/io_openfeedback_ui_models_UIVoteItem$stableprop_getter(): kotlin/Int // io.openfeedback.ui.models/io_openfeedback_ui_models_UIVoteItem$stableprop_getter|io_openfeedback_ui_models_UIVoteItem$stableprop_getter(){}[0]

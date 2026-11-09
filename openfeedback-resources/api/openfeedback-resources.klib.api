@@ -7,10 +7,12 @@
 
 // Library unique name: <io.openfeedback:openfeedback-resources>
 final class io.openfeedback.resources/CommentStrings { // io.openfeedback.resources/CommentStrings|null[0]
-    constructor <init>(kotlin/String, kotlin/String, kotlin/String, kotlin/Function1<kotlin/Int, kotlin/String>) // io.openfeedback.resources/CommentStrings.<init>|<init>(kotlin.String;kotlin.String;kotlin.String;kotlin.Function1<kotlin.Int,kotlin.String>){}[0]
+    constructor <init>(kotlin/String, kotlin/String, kotlin/String, kotlin/Function1<kotlin/Int, kotlin/String>, kotlin/String) // io.openfeedback.resources/CommentStrings.<init>|<init>(kotlin.String;kotlin.String;kotlin.String;kotlin.Function1<kotlin.Int,kotlin.String>;kotlin.String){}[0]
 
     final val actionSend // io.openfeedback.resources/CommentStrings.actionSend|{}actionSend[0]
         final fun <get-actionSend>(): kotlin/String // io.openfeedback.resources/CommentStrings.actionSend.<get-actionSend>|<get-actionSend>(){}[0]
+    final val hidden // io.openfeedback.resources/CommentStrings.hidden|{}hidden[0]
+        final fun <get-hidden>(): kotlin/String // io.openfeedback.resources/CommentStrings.hidden.<get-hidden>|<get-hidden>(){}[0]
     final val nbVotes // io.openfeedback.resources/CommentStrings.nbVotes|{}nbVotes[0]
         final fun <get-nbVotes>(): kotlin/Function1<kotlin/Int, kotlin/String> // io.openfeedback.resources/CommentStrings.nbVotes.<get-nbVotes>|<get-nbVotes>(){}[0]
     final val titleInput // io.openfeedback.resources/CommentStrings.titleInput|{}titleInput[0]
@@ -22,7 +24,8 @@ final class io.openfeedback.resources/CommentStrings { // io.openfeedback.resour
     final fun component2(): kotlin/String // io.openfeedback.resources/CommentStrings.component2|component2(){}[0]
     final fun component3(): kotlin/String // io.openfeedback.resources/CommentStrings.component3|component3(){}[0]
     final fun component4(): kotlin/Function1<kotlin/Int, kotlin/String> // io.openfeedback.resources/CommentStrings.component4|component4(){}[0]
-    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/String = ..., kotlin/Function1<kotlin/Int, kotlin/String> = ...): io.openfeedback.resources/CommentStrings // io.openfeedback.resources/CommentStrings.copy|copy(kotlin.String;kotlin.String;kotlin.String;kotlin.Function1<kotlin.Int,kotlin.String>){}[0]
+    final fun component5(): kotlin/String // io.openfeedback.resources/CommentStrings.component5|component5(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/String = ..., kotlin/Function1<kotlin/Int, kotlin/String> = ..., kotlin/String = ...): io.openfeedback.resources/CommentStrings // io.openfeedback.resources/CommentStrings.copy|copy(kotlin.String;kotlin.String;kotlin.String;kotlin.Function1<kotlin.Int,kotlin.String>;kotlin.String){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // io.openfeedback.resources/CommentStrings.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // io.openfeedback.resources/CommentStrings.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // io.openfeedback.resources/CommentStrings.toString|toString(){}[0]
