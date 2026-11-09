@@ -47,8 +47,8 @@ fun SampleApp(
                      * https://openfeedback.io/eaJnyMXD3oNfhrrnBYDT/
                      */
                     OpenFeedback(
-                        projectId = "helloworld",
-                        sessionId = "FHobN0bD2BedMTHqYV4A",
+                        projectId = "eaJnyMXD3oNfhrrnBYDT",
+                        sessionId = "100",
                         modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
                     )
                 }
