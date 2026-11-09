@@ -99,15 +99,20 @@ class OpenFeedbackRepository(
             println("No commentVoteItemId")
             return@coroutineScope
         }
-        voteEvents.emit(CommitComment(text))
-        firestore.setComment(
+
+        val commentWasAdded = firestore.setComment(
             projectId = projectId,
             talkId = sessionId,
             voteItemId = commentVoteItemId!!,
-            status = VoteStatus.Active,
             text = text,
             userId = auth.userId()
         )
+
+        // If the comment was not added, do not trigger an event (this happens when
+        // the user tries to update a hidden comment).
+        if (commentWasAdded) {
+            voteEvents.emit(CommitComment(text))
+        }
     }
 
     /**

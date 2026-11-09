@@ -18,15 +18,14 @@ import io.openfeedback.mappers.timestampToInstant
 import io.openfeedback.model.Comment
 import io.openfeedback.model.CommentsMap
 import io.openfeedback.model.Project
-import io.openfeedback.model.SessionThing
 import io.openfeedback.model.RawUserVote
+import io.openfeedback.model.SessionThing
 import io.openfeedback.model.UserVote
-import io.openfeedback.model.toUserVote
 import io.openfeedback.model.VoteItemCount
 import io.openfeedback.model.VoteStatus
+import io.openfeedback.model.toUserVote
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.mapNotNull
 
 internal class UserVotesResult(val data: List<UserVote>, val isFromCache: Boolean)
 internal class SessionThingsResult(val data: Map<String, SessionThing>, val isFromCache: Boolean)
@@ -93,9 +92,9 @@ internal class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
         firestore.collection("projects/$projectId/sessionVotes")
             .document(sessionId)
             .snapshots
-            .mapNotNull { documentSnapshot ->
+            .map { documentSnapshot ->
                 if (documentSnapshot.exists.not()) {
-                    return@mapNotNull SessionThingsResult(
+                    return@map SessionThingsResult(
                         emptyMap(),
                         documentSnapshot.metadata.isFromCache
                     )
@@ -116,15 +115,28 @@ internal class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
                 SessionThingsResult(sessionThings, documentSnapshot.metadata.isFromCache)
             }
 
+    /**
+     * Create or update a text vote.
+     *
+     * @param projectId the project id
+     * @param userId the user id
+     * @param talkId the talk id
+     * @param voteItemId the vote item id
+     * @param text the text vote content
+     * @return `true` if the comment was created / updated and the comment status is
+     * [VoteStatus.Active], `false` otherwise
+     */
     suspend fun setComment(
         projectId: String,
         userId: String,
         talkId: String,
         voteItemId: String,
-        status: VoteStatus,
         text: String
-    ) {
-        if (text.trim() == "") return
+    ): Boolean {
+        if (text.trim() == "") {
+            return false
+        }
+
         val collectionReference = firestore.collection("projects/$projectId/userVotes")
         val querySnapshot = collectionReference
             .where { "userId" equalTo userId }
@@ -138,6 +150,12 @@ internal class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
             .map { it.data<RawUserVote>() }
             .filterNot { it.voteType == "textPlus" }
             .firstOrNull()
+
+        // If the comment was hidden, we shouldn't set it to Active.
+        val status = when (document?.status) {
+            VoteStatus.Hidden.value -> VoteStatus.Hidden
+            else -> VoteStatus.Active
+        }
 
         /**
          * XXX: There may be a race here where we create 2 documents, not really sure under which circumstances
@@ -168,6 +186,8 @@ internal class OpenFeedbackFirestore(private val firestore: FirebaseFirestore) {
                     )
                 )
         }
+
+        return status == VoteStatus.Active
     }
 
     suspend fun setVote(
