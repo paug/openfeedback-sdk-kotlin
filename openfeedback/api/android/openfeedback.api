@@ -9,20 +9,22 @@ public final class io/openfeedback/OpenFeedbackRepository {
 }
 
 public final class io/openfeedback/model/Comment : io/openfeedback/model/SessionThing {
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;JLkotlin/time/Instant;Lkotlin/time/Instant;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;JLkotlin/time/Instant;Lkotlin/time/Instant;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;JLkotlin/time/Instant;Lkotlin/time/Instant;Ljava/lang/String;Lio/openfeedback/model/VoteStatus;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;JLkotlin/time/Instant;Lkotlin/time/Instant;Ljava/lang/String;Lio/openfeedback/model/VoteStatus;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()J
 	public final fun component4 ()Lkotlin/time/Instant;
 	public final fun component5 ()Lkotlin/time/Instant;
 	public final fun component6 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;JLkotlin/time/Instant;Lkotlin/time/Instant;Ljava/lang/String;)Lio/openfeedback/model/Comment;
-	public static synthetic fun copy$default (Lio/openfeedback/model/Comment;Ljava/lang/String;Ljava/lang/String;JLkotlin/time/Instant;Lkotlin/time/Instant;Ljava/lang/String;ILjava/lang/Object;)Lio/openfeedback/model/Comment;
+	public final fun component7 ()Lio/openfeedback/model/VoteStatus;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;JLkotlin/time/Instant;Lkotlin/time/Instant;Ljava/lang/String;Lio/openfeedback/model/VoteStatus;)Lio/openfeedback/model/Comment;
+	public static synthetic fun copy$default (Lio/openfeedback/model/Comment;Ljava/lang/String;Ljava/lang/String;JLkotlin/time/Instant;Lkotlin/time/Instant;Ljava/lang/String;Lio/openfeedback/model/VoteStatus;ILjava/lang/Object;)Lio/openfeedback/model/Comment;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getCreatedAt ()Lkotlin/time/Instant;
 	public final fun getId ()Ljava/lang/String;
 	public final fun getPlus ()J
+	public final fun getStatus ()Lio/openfeedback/model/VoteStatus;
 	public final fun getText ()Ljava/lang/String;
 	public final fun getUpdatedAt ()Lkotlin/time/Instant;
 	public final fun getUserId ()Ljava/lang/String;
@@ -62,22 +64,41 @@ public final class io/openfeedback/model/Project$Companion {
 }
 
 public final class io/openfeedback/model/SessionData {
-	public fun <init> (Lio/openfeedback/model/Project;Ljava/lang/String;Ljava/util/Set;Ljava/util/Set;Ljava/util/Map;Ljava/util/List;)V
+	public fun <init> (Lio/openfeedback/model/Project;Ljava/lang/String;Ljava/util/Set;Ljava/util/Set;Ljava/util/Map;Ljava/util/List;Lio/openfeedback/model/UserComment;)V
+	public synthetic fun <init> (Lio/openfeedback/model/Project;Ljava/lang/String;Ljava/util/Set;Ljava/util/Set;Ljava/util/Map;Ljava/util/List;Lio/openfeedback/model/UserComment;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Lio/openfeedback/model/Project;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/util/Set;
 	public final fun component4 ()Ljava/util/Set;
 	public final fun component5 ()Ljava/util/Map;
 	public final fun component6 ()Ljava/util/List;
-	public final fun copy (Lio/openfeedback/model/Project;Ljava/lang/String;Ljava/util/Set;Ljava/util/Set;Ljava/util/Map;Ljava/util/List;)Lio/openfeedback/model/SessionData;
-	public static synthetic fun copy$default (Lio/openfeedback/model/SessionData;Lio/openfeedback/model/Project;Ljava/lang/String;Ljava/util/Set;Ljava/util/Set;Ljava/util/Map;Ljava/util/List;ILjava/lang/Object;)Lio/openfeedback/model/SessionData;
+	public final fun component7 ()Lio/openfeedback/model/UserComment;
+	public final fun copy (Lio/openfeedback/model/Project;Ljava/lang/String;Ljava/util/Set;Ljava/util/Set;Ljava/util/Map;Ljava/util/List;Lio/openfeedback/model/UserComment;)Lio/openfeedback/model/SessionData;
+	public static synthetic fun copy$default (Lio/openfeedback/model/SessionData;Lio/openfeedback/model/Project;Ljava/lang/String;Ljava/util/Set;Ljava/util/Set;Ljava/util/Map;Ljava/util/List;Lio/openfeedback/model/UserComment;ILjava/lang/Object;)Lio/openfeedback/model/SessionData;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getComments ()Ljava/util/List;
 	public final fun getProject ()Lio/openfeedback/model/Project;
+	public final fun getUserComment ()Lio/openfeedback/model/UserComment;
 	public final fun getUserId ()Ljava/lang/String;
 	public final fun getVoteItemAggregates ()Ljava/util/Map;
 	public final fun getVotedCommentIds ()Ljava/util/Set;
 	public final fun getVotedItemIds ()Ljava/util/Set;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/openfeedback/model/UserComment {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lio/openfeedback/model/VoteStatus;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lio/openfeedback/model/VoteStatus;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lio/openfeedback/model/VoteStatus;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lio/openfeedback/model/VoteStatus;)Lio/openfeedback/model/UserComment;
+	public static synthetic fun copy$default (Lio/openfeedback/model/UserComment;Ljava/lang/String;Ljava/lang/String;Lio/openfeedback/model/VoteStatus;ILjava/lang/Object;)Lio/openfeedback/model/UserComment;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getId ()Ljava/lang/String;
+	public final fun getStatus ()Lio/openfeedback/model/VoteStatus;
+	public final fun getText ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
@@ -117,6 +138,21 @@ public final synthetic class io/openfeedback/model/VoteItem$$serializer : kotlin
 }
 
 public final class io/openfeedback/model/VoteItem$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class io/openfeedback/model/VoteStatus : java/lang/Enum {
+	public static final field Active Lio/openfeedback/model/VoteStatus;
+	public static final field Companion Lio/openfeedback/model/VoteStatus$Companion;
+	public static final field Deleted Lio/openfeedback/model/VoteStatus;
+	public static final field Hidden Lio/openfeedback/model/VoteStatus;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getValue ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Lio/openfeedback/model/VoteStatus;
+	public static fun values ()[Lio/openfeedback/model/VoteStatus;
+}
+
+public final class io/openfeedback/model/VoteStatus$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
