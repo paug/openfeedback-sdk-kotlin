@@ -9,8 +9,8 @@ import io.openfeedback.model.SessionThing
 import io.openfeedback.model.UserComment
 import io.openfeedback.model.UserVote
 import io.openfeedback.model.VoteItemCount
-import kotlin.time.Instant
 import io.openfeedback.model.VoteStatus
+import kotlin.time.Instant
 
 internal expect fun timestampToInstant(nativeTimestamp: Any): Instant
 
@@ -34,6 +34,7 @@ internal fun mapToSessionData(
             else -> null
         }
     }.toSet()
+
     val votedCommentIds = userVotes.mapNotNull {
         when (it) {
             is UserVote.CommentUpvote -> it.commentId
@@ -46,7 +47,7 @@ internal fun mapToSessionData(
             return@mapNotNull null
         }
 
-        val existing = sessionThings.get(voteItem.id)
+        val existing = sessionThings[voteItem.id]
         if (existing != null && existing is VoteItemCount) {
             /**
              * Be robust to negative votes
@@ -81,7 +82,7 @@ internal fun mapToSessionData(
 
     val comments = commentMap.all.values.sortedByDescending { it.updatedAt }
 
-    // Build user comment if it exists..
+    // Build user comment if it exists.
     val userComment = commentVoteItemId?.let { commentVoteItemId ->
         buildUserComment( commentVoteItemId, userVotes)
     }
@@ -111,7 +112,7 @@ private fun buildUserComment(
 
     return UserComment(
         id = textVote.id,
-        text = textVote.text!!,
+        text = textVote.text,
         status = status
     )
 }
