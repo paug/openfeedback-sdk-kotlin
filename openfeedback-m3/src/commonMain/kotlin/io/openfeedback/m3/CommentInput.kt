@@ -16,6 +16,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import io.openfeedback.resources.LocalStrings
@@ -29,6 +30,13 @@ fun CommentInput(
     enabled: Boolean = true,
     supportingText: String? = null,
 ) {
+    val keyboardController = LocalSoftwareKeyboardController.current
+
+    val submitComment: () -> Unit = {
+        keyboardController?.hide()
+        onSubmit()
+    }
+
     TextField(
         value = value,
         onValueChange = onValueChange,
@@ -54,7 +62,7 @@ fun CommentInput(
         modifier = modifier,
         label = { Text(text = LocalStrings.current.strings.comments.titleInput) },
         trailingIcon = {
-            IconButton(onClick = onSubmit) {
+            IconButton(onClick = submitComment) {
                 Icon(
                     imageVector = Icons.Outlined.Send,
                     contentDescription = LocalStrings.current.strings.comments.actionSend
@@ -62,7 +70,7 @@ fun CommentInput(
             }
         },
         enabled = enabled,
-        keyboardActions = KeyboardActions(onDone = { onSubmit() }),
+        keyboardActions = KeyboardActions(onDone = { submitComment() }),
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
         maxLines = 5
     )
